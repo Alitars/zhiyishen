@@ -1,0 +1,42 @@
+<view class="customs center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+</view>
+<view class="body" style="height:{{ SafeHigh*3 }}rpx">
+  <view class="top_tab" style="height:{{SafeButtom/2}}px" />
+  <view class="guo_box" style="height:{{SafeButtom/2}}px">
+    <image class="bg" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+    <view class="g_box">
+      <image class="g_img" src="{{ icon_Url+'/public/images/guo.png' }}"></image>
+      <view class="g_t">{{ text }}</view>
+    </view>
+  </view>
+</view>
+<view class="body_two">
+  <view class="input-box">
+    <view class="field">
+      <van-field value="{{ value }}" placeholder="例如:华为,海尔,LV" focus='{{ show }}' type="text" clearable border="{{ false }}" input-align="center" custom-style="border-bottom:2rpx solid #333;" bind:change="onChange" />
+    </view>
+  </view>
+  <view class="b_box " style="height:{{ SafeButtom }}rpx" hidden="{{ !value }}">
+    <view class="orange" bindtap="onClick">下一步</view>
+  </view>
+  <view class="b_voice" style="bottom:{{ info.statusBarHeight  }}px;" hidden="{{ value }}">
+    <view class="vioce-t" hidden="{{ animationStatus }}">按住开始</view>
+    <view class="sr_box" bindtap="onBlock">
+      <image src="/images/sr.png" mode="widthFix"></image>
+    </view>
+    <view class="vioce_box" bindtouchstart="onVioce" bindtouchend="onStop">
+      <image src="/package/component1/images/vioce_two.png" mode="widthFix"></image>
+      <view class="ripple" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple  {{animationStatus?'rippleAnimation1':''}}" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple {{animationStatus?'rippleAnimation2':''}}" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple {{animationStatus?'rippleAnimation3':''}}" hidden="{{ !animationStatus }}"></view>
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

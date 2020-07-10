@@ -1,0 +1,2 @@
+/* pages/user/my_copyright/dt//dt.wxss */
+@import '/pages/user/my_order/dt/dt.wxss';

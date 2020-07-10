@@ -1,0 +1,1 @@
+<web-view style="width:{{ width }}px" src="https://www.hao123.com/"></web-view>

@@ -1,0 +1,60 @@
+<navigation-bar back="{{ true }}" background="#fff" title="外观专利详细分析" />
+<view class="continer">
+  <view class="logo-box">
+    <image class="logo-img" src="https://admin.iguolao.com/public/uploads/20200528155237277.png" mode='widthFix'></image>
+    <text class="txt">外观专利详细分析</text>
+  </view>
+  <!-- 专利信息 -->
+  <view class="box">
+    <view class="histogram-box top-box">
+      <view>专利名称：{{list.title}}</view>
+      <view>专利号：{{list.pn}}</view>
+      <view>申请日期：{{list.pd}}</view>
+    </view>
+  </view>
+  <!-- 专利中的图片 -->
+  <view class="box">
+    <view class="histogram-box pad-bot">
+      <view class="hist-t"><text>相似专利图片</text></view>
+      <view class="schoollist">
+        <!-- <block wx:for="{{items}}" wx:key="item"> -->
+          <view class="school-list">
+              <view class="school-list-info" >
+                <image class="school-list-photo" src="{{Iurl}}"/>
+                <text class="school-list-desc">{{list.title}}</text>
+              </view>
+              <view class="ssim">
+                <view>色彩相似度：{{list.score1}}</view>
+                <view>外形相似度：{{list.score2}}</view>
+                <view>细节相似度：{{list.score3}}</view>
+                <view>综合相似度：{{list.agg_score}}</view>
+              </view>
+          </view>
+        <!-- </block> -->
+      </view>
+    </view>
+  </view>
+  <!-- 综合分析 -->
+  <view class="box">
+    <view class="histogram-box h-600">
+      <view class="hist-t">
+        <text>综合分析</text>
+      </view>
+      <view class="container2" wx:if="{{ecBarShow}}">
+          <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecBar }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  <!-- 专利文件 -->
+  <view class="box">
+    <view class="histogram-box t-a pad-bot">
+      <view class="hist-t t-a"><text>专利文件</text></view>
+        <view class="list" bindtap="tofile">
+          <view class="content">
+            <text>{{list.title}}</text>
+          </view>
+          <image class="img-right" src="../../../../../images/right-r.png"></image>
+        </view>
+    </view>
+  </view>
+</view>

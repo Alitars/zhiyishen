@@ -1,0 +1,10 @@
+<navigation-bar back="{{ true }}" background="#fff" title="订单详情" />
+<view class="container">
+  <view>订单编号：{{list.order_id}}</view>
+  <view>技术名称：{{list.name}}</view>
+  <view>订单状态：{{list.status_name}}</view>
+  <view>下单时间：{{list.created_at}}</view>
+  <view>订单金额：{{list.price}}</view>
+  <view>支付方式：{{list.pay_name}}</view>
+  <view>支付金额：{{list.price}}</view>
+</view>

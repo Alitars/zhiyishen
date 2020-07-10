@@ -1,0 +1,13 @@
+<view class="continer">
+	<view class="kong"></view>
+	<view class="padding">
+		<block wx:for='{{list}}' wx:key="index">
+			<view class="box clearfix">
+				<view class="left">{{item.integral_name}}</view>
+				<view class="right">{{item.create_time}}</view>
+			</view>
+		</block>
+		
+	</view>
+	
+</view>

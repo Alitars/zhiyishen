@@ -1,0 +1,248 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+page {
+  background: -webkit-linear-gradient(bottom, #fb9a60, #f96006);
+  padding-bottom:0rpx;
+}
+.clearfix:after {
+  content:""; 
+  display: block; 
+  clear:both; 
+}
+.fl{
+  float: left;
+}
+.fr{
+  float :right;
+}
+.continer {
+  position: relative;
+  width: 100%;
+  height: 100%
+}
+
+.logo-box {
+  position: relative;
+  width: 452rpx;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 136rpx;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 12rpx;
+  border: 1px dashed #fff;
+  left: 50%;
+  margin-left: -226rpx;
+  margin-top: 90rpx
+}
+
+.logo-img {
+  width: 182rpx;
+  padding: 0 20rpx 0 20rpx;
+  height: 62rpx;
+  position: absolute;
+  top: -31rpx;
+  z-index: 10;
+  left: 50%;
+  margin-left: -111rpx;
+  background: -webkit-linear-gradient(bottom, #f96a16, #f96913)
+}
+
+.txt {
+  font-size: 40rpx;
+  color: #fff;
+  font-weight: 600;
+  position: absolute;
+  bottom: 22rpx
+}
+.box,.box-end{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.histogram-box{
+  width: 672rpx;
+  height: 100%;
+  background: #fff;
+  margin-top: 26rpx;
+  margin-bottom: 26rpx;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.top-box{
+  padding: 40rpx 52rpx;
+  box-sizing: border-box;
+}
+.top-box view{
+  padding:8rpx 0;
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+}
+.hist-t{
+  width: inherit;
+  height: 72rpx;
+  font-size: 28rpx;
+  color: rgb(28, 132, 237);
+  text-align: center;
+  overflow: hidden;
+  line-height: 72rpx;
+  background-color: rgba(194,199,204,0.26);
+}
+.t-a{
+  text-align:left;
+  text-indent:20rpx;
+  height: 100%;
+}
+.pad-bot{
+  padding-bottom: 18rpx;
+}
+.list{
+  position: relative;
+  display: flex;
+  height: 60rpx;
+  align-items: left;
+  justify-content: left;
+  line-height: 60rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+.content{
+  width: 600rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  text-indent: 50rpx;
+}
+.content text{
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  font-family: PingFangSC-regular;
+}
+
+.img-right{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: 50rpx;
+  width: 50rpx;
+  transform: translateY(-50%);
+}
+.container{
+  height: 100%;
+  /* width: 660rpx; */
+  width: 100%;
+  padding:26rpx;
+  box-sizing: border-box;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.zlNum{
+  margin-right: 20rpx;
+}
+
+
+
+.h-600{
+  height: 700rpx;
+}
+
+.comName{
+  width: 340rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+}
+.container2{
+  height: 600rpx;
+  width: 660rpx;
+}
+.bg-tit{
+  font-family: PingFangSC-regular;
+  font-size: 14px;
+}
+.bg-box{
+  width: 100%;
+  height: 100%;
+  padding: 26rpx;
+  box-sizing: border-box;
+}
+.height-100{
+  height: 100%;
+}
+.bg-text view{
+  color: rgba(16, 16, 16, 1);
+  font-size: 14px;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  padding: 8rpx 0;
+}
+.img{
+  height: 150rpx;
+  width: 300rpx;
+}
+.zlImg{
+  float:left;
+  margin-top: 20rpx;
+}
+
+/*  */
+.schoollist{
+  margin-top: 50rpx;
+}
+.school-list-info{
+  margin-left: 24rpx;
+  margin-top: 10rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.school-list-photo{
+  width: 400rpx;
+  height: 420rpx;
+}
+.school-list-desc{
+  display: block;
+  background-color: #000;
+  color: #fff;
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400rpx;
+  text-align: center;
+  font-size: 25rpx;
+  padding: 10rpx 0;
+  opacity: 0.7;
+}
+.ssim{
+  padding: 15rpx 0;
+  padding-left: 146rpx;
+  color: rgba(16, 16, 16, 1);
+  font-size: 28rpx;
+  text-align: left;
+  font-family: PingFangSC-regular;
+  box-sizing: border-box;
+}
+.ssim view{
+  width: 100%;
+  padding: 10rpx 0;
+}

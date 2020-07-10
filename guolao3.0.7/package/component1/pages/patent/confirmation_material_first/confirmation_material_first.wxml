@@ -1,0 +1,42 @@
+<view class="body">
+  <view class="list-box">
+    <view class="first">专利说明书</view>
+    <view class="two" data-url="{{   invent_patent_book }}" data-id="1" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box fiexd">
+    <view class="first">是否同意</view>
+    <view class="checked-box">
+      <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" inactive-color="#999999" bind:change="onChange" />
+    </view>
+  </view>
+
+  <view class="list-box type_or" wx:if="{{ checked }}">
+    <view class="first">可去PC端下载文件：</view>
+  </view>
+  <view class="list-top" wx:else></view>
+
+
+  <view class="up_card" wx:if='{{ checked }}'>
+    <view class="title">
+      <text>专利委托书</text>
+      <text data-url="{{ patent_write }}" data-id="2" bindtap="onLook">查看</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ patent_write_two }}"></image>
+        <image class="max-img" hidden="{{ !patent_write_two }}" src="{{  url+patent_write_two }}" hidden="{{ !patent_write_two }}"></image>
+        <text class="up-t" hidden="{{ patent_write_two }}">上传</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="input_box center" wx:if="{{  !checked }}">
+    <van-field value="{{  value }}" custom-style="width:750rpx;height:320rpx;" clearable type="textarea" placeholder="修改意见（非必填）可以联系平台让工程师修改" bind:change="onInput" maxlength='500' border="{{ false }}" />
+  </view>
+
+  <view class="b_list_btn" style="height:{{ brhifh }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

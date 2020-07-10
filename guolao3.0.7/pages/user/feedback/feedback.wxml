@@ -1,0 +1,10 @@
+<view class="feedback center">
+	<view class="input_box">
+		<van-field value="{{  value }}" focus custom-style="width:590rpx;height:360rpx;" clearable type="textarea" placeholder="请留下您的宝贵意见，谢谢！" bind:change="onChange" maxlength='500' autosize border="{{ false }}" />
+	</view>
+	<image class="bg" src="/images/faceback.png" mode="widthFix"></image>
+</view>
+<view class="kefu">客服热线：400-630-2718</view>
+<view class="tijiao" bindtap="onSubmit">提交</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

@@ -1,0 +1,6 @@
+<view class="agent_box">
+	<image src="{{ imgUrls }}" mode="widthFix"></image>
+</view>
+<view class="b_list_btn first" style="height:{{ SafeButtom }}rpx" hidden="{{ imgUrls?false:true }}">
+	<view class="a_box" bindtap="onUser">前去个人中心申请</view>
+</view>

@@ -1,0 +1,1 @@
+@import "/template/template.wxss";page{background: #fff;}.input-box{width: 100%;position: relative;height: 100rpx;}

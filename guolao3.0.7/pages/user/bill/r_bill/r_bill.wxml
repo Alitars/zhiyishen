@@ -1,0 +1,27 @@
+<view class="body">
+	<block wx:for="{{ arry }}" wx:key="index">
+		<view class="list_box" data-index="{{ index }}" bindtap="onDt">
+			<view class="T_box">
+				<text>订单号</text>
+				<text class="van-ellipsis  max">{{ item.order_id }}...</text>
+			</view>
+			<view class="T_box">
+				<text>发票抬头</text>
+				<text>{{ item.look_up?item.look_up:item.name }}</text>
+			</view>
+			<view class="T_box">
+				<text>开票金额</text>
+				<text>￥{{ item.money }}</text>
+			</view>
+			<view class="T_box">
+				<text>申请开票时间</text>
+				<text>{{ item.create_time }}</text>
+			</view>
+			<view class="T_box2">
+				<text>{{ item.invoice_status?item.invoice_status:item.status_name }}</text>
+			</view>
+		</view>
+	</block>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

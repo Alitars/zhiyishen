@@ -1,0 +1,10 @@
+<view class="van-notice-bar" style="top:{{ statusBarHeight+45 }}px" wx:if="{{ arry.length>0?true:false }}">
+	<van-notice-bar wrapable scrollable="false" left-icon="info-o" backgroundColor="#f44" color="#fff" text="星级越低注册成功率越低" />
+</view>
+<view style="height:45px"></view>
+<view class="shar-box-s {{ transX?'transX-s':'' }}" bindtap="onShare"  wx:if="{{ transX==true }}">
+	<image class="shar-box-s-close" catchtap="onCloseWX" src="https://admin.iguolao.com/public/uploads/20200525132329403.png"></image>
+	<image class="shar-box-s-image" src="https://admin.iguolao.com/public/uploads/20200525115814568.png"></image>
+</view>
+<import src="../../../../../template/template.wxml" />
+<template is="recommend" data="{{ statusBarHeight,arry,checked,delet,show,safeHeight }}" />

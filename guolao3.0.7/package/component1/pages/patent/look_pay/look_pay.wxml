@@ -1,0 +1,67 @@
+<van-transition show="{{ apply_fee?true:false }}" custom-class="block">
+  
+
+<van-notice-bar wrapable left-icon="{{ icon }}" scrollable="false" backgroundColor="#f44" color="#fff" text="声明：如果选择官费自缴，知依昇将不再提醒您缴纳官费，产生缴费延误平台概不负责！"></van-notice-bar>
+
+<view class="body">
+  <view class="list-box" wx:if="{{ patent_advice }}">
+    <view class="first">专利说明书</view>
+    <view class="two" data-url="{{ patent_advice }}" data-id="1" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box" wx:if="{{ patent_bill }}">
+    <view class="first">缴费通知书转函</view>
+    <view class="two" data-url="{{ patent_bill }}" data-id="2" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box">
+    <view class="first">办理登记费：￥{{ apply_fee }}</view>
+    <view class="shishen">实审费：￥{{ trial_fee }}</view>
+  </view>
+  <view class="list-box top0">
+    <view class="first">是否选择平台代缴官费</view>
+    <view class="checked-box">
+      <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" data-id="1" inactive-color="#999999" bind:change="onChange" />
+    </view>
+  </view>
+
+
+  <view class="card_box" hidden="{{ !checked }}">
+    <view class="btn_zifu">
+      <text class="txt1 left">支付方式：</text>
+      <view class="zf-box">
+        <view class="icon-box al_center {{ id==1?'blue':'' }}" data-id="1" bindtap="onChecked">
+          <image src="/images/wxf.png"></image>
+          <text>微信支付</text>
+        </view>
+        <view class="icon-box al_center {{ id==2?'blue':'' }}" data-id="2" bindtap="onChecked">
+          <image src="/images/gszz.png"></image>
+          <text>银行转账</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="b_list_btn" style="height:{{ brhifh }}rpx" hidden="{{ !checked==false&&id==2?true:false }}">
+    <view class="a_box" bindtap="_onClick">提交</view>
+  </view>
+
+
+
+  <view class="card_box" hidden="{{ !checked==false&&id==2?false:true }}">
+    <view class="input-box-qy">
+      <van-field value="{{ value }}" border="{{ false }}" focus="{{ focus }}" custom-style="font-size:28rpx;" label="汇款公司名称：" placeholder="请输入汇款公司名称" clearable="true" data-id='2' bind:change="onChange" />
+    </view>
+  </view>
+
+  <view class="b_list_btns" style="height:{{ brhifh }}rpx" hidden="{{ !checked }}">
+    <view class="price-box al_center">
+      <text>总计：</text>
+      <text>￥{{ total }}</text>
+    </view>
+    <view class="a_box2 center" bindtap="onClick">支付</view>
+  </view>
+
+
+</view>
+</van-transition>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

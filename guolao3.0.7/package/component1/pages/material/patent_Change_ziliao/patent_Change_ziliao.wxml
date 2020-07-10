@@ -1,0 +1,43 @@
+<navigation-bar back="{{ true }}" background="#fff" title="提交资料" />
+<view class="card">
+  <view class="top26"></view>
+  <van-cell title="专利申请人" border="{{ false }}" />
+  <van-cell is-link title="{{  applicant?applicant:'请添加'  }}" bindtap='onapplicant' />
+  <van-cell title="专利申请号" border="{{ false }}" />
+  <van-field value="{{ patentnum }}" placeholder="{{ patentnum?patentnum:'请输入' }}" id='patentnum' maxlength='20' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="专利名称" border="{{ false }}" />
+  <van-field value="{{ patentname }}" placeholder="{{ patentname?patentname:'请输入' }}" maxlength='30' id='patentname' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="代理机构" border="{{ false }}" />
+  <van-field value="{{ patentjg }}" placeholder="{{ patentjg?patentjg:'请输入' }}" maxlength='30' id='patentjg' clearable="true" type="text" bind:change="onChange" />
+  <view class="up_card h0">
+    <view class="title">
+      <text>代理机构解聘书</text>
+      <text>（代理机构发生变化需上传）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ book }}"></image>
+        <image class="max-img" hidden="{{ !book }}" src="{{ icon_Url+book}}" hidden="{{ !book }}"></image>
+        <text class="up-t" hidden="{{ book }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card h0">
+    <view class="title">
+      <text>准予变更登记通知书</text>
+      <text>（名义变更需上传）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ blueprint }}"></image>
+        <image class="max-img" hidden="{{ !blueprint }}" src="{{ icon_Url+blueprint}}" hidden="{{ !blueprint }}"></image>
+        <text class="up-t" hidden="{{ blueprint }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="b_list_btn" style="height:{{ menu }}px">
+  <view class="a_box" bindtap="upData">提交</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

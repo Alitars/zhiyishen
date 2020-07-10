@@ -1,0 +1,93 @@
+<view>
+<view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+<view class="g_box fixd" style="padding-top:{{statusBarHeight+45}}px;margin-top:20px" id='box'>
+	<image class="g_img" src="https://admin.iguolao.com/public/uploads/20200526103100803.png"></image>
+	<view class="g_t" style="top:{{ statusBarHeight+45+40 }}px">{{ text }}</view>
+</view>
+</view>
+<view>
+<view class="body_two animate_opacity" style="height:{{ height-60 }}px;min-height:{{ height-60 }}px">
+	<scroll-view class="scroll-view-box" scroll-y="true" style="height:{{ height-80 }}px;min-height:{{ height-80 }}px;max-height:{{ height-80 }}px" scroll-top="{{ top_num }}">
+		<view class="center-box-btn">
+			<view class="box-btn"  id='field'>
+				<block wx:for="{{ arry }}" wx:key="index">
+					<view class="biaoti">{{ item.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ sec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==idx? 'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="onChoose" data-index="{{index}}">{{ item.name }}</view>
+							<!-- <view class="list-min-btn {{ item.isSelect==true?'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="onChoose" data-index="{{index}}">{{ item.name }}</view> -->
+						</block>
+					</view>
+				</block>
+
+			</view>
+		</view>
+		<!-- 专利类型 -->
+		<view class="center-box-btn" wx:if="{{zlArry.modelShow}}">
+			<view class="box-btn"  id='field'>
+					<view class="biaoti">{{ zlArry.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ zlsec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==idxzl? 'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="onChoosezl" data-index="{{index}}">{{ item.name }}</view>
+						</block>
+					</view>
+			</view>
+		</view>
+		<!-- 方法技术 -->
+		<view class="center-box-btn" wx:if="{{jsArry.modelShow}}">
+			<view class="box-btn"  id='field'>
+					<view class="biaoti">{{ jsArry.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ jsSec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==idxjs? 'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="onChoosejs" data-index="{{index}}">{{ item.name }}</view>
+						</block>
+					</view>
+			</view>
+		</view>
+		<!-- 产品技术 -->
+		<view class="center-box-btn" wx:if="{{proArry.modelShow}}">
+			<view class="box-btn"  id='field'>
+					<view class="biaoti">{{ proArry.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ proSec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==idxpro? 'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="onChoosepro" data-index="{{index}}">{{ item.name }}</view>
+						</block>
+					</view>
+			</view>
+		</view>
+		<!-- 专利类型（方法技术） -->
+		<!-- <view class="center-box-btn" wx:if="{{zlobj.modelShow}}">
+			<view class="box-btn"  id='field'>
+					<view class="biaoti">{{ zlobj.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ zlStylesec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==zlidx? 'oranges':'' }}"   data-name="{{ item.type?item.type:item.name }}"  bindtap="choose" data-index="{{index}}">{{ item.name }}</view>
+						</block>
+					</view>
+			</view>
+		</view> -->
+		<!-- <view class="center-box-btn" wx:if="{{lastobj.modelShow}}">
+			<view class="box-btn"  id='field'>
+					<view class="biaoti">{{ lastobj.title }}</view>
+					<view class="list-btn-box" >
+						<block wx:for="{{ lastsec }}" wx:for-item wx:key='index' >
+							<view class="list-min-btn {{index==lastidx? 'oranges':'' }}" data-name="{{ item.type?item.type:item.name }}"  bindtap="chooselast" data-index="{{index}}">{{ item.name }}</view>
+						</block>
+					</view>
+			</view>
+		</view> -->
+	</scroll-view>
+</view>
+</view>
+<view class="b_box " id='btn' style="height:{{ SafeButtom }}rpx">
+	<view class="orange" bindtap="onClick" wx:if="{{ isShow == true }}">下一步</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

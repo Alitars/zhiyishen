@@ -1,0 +1,46 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+
+<view
+  class="{{ utils.bem('search', { withaction: showAction || useActionSlot }) }} custom-class"
+  style="background: {{ background }}"
+>
+  <view class="{{ utils.bem('search__content', [shape]) }}">
+    <view class="van-search__label" wx:if="{{ label }}">{{ label }}</view>
+    <slot wx:else name="label" />
+
+    <van-field
+      clearable
+      type="search"
+      left-icon="data:image/png;base64,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"
+      focus="{{ focus }}"
+      error="{{ error }}"
+      border="{{ false }}"
+      confirm-type="search"
+      class="van-search__field field-class"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      readonly="{{ readonly }}"
+      maxlength="{{ maxlength }}"
+      input-align="{{ inputAlign }}"
+      input-class="input-class"
+      placeholder="{{ placeholder }}"
+      placeholder-style="{{ placeholderStyle }}"
+      custom-style="padding: 5px 10px 5px 0; background-color: transparent;"
+      bind:blur="onBlur"
+      bind:focus="onFocus"
+      bind:change="onChange"
+      bind:confirm="onSearch"
+      bind:clear="onClear"
+    />
+  </view>
+
+  <view
+    wx:if="{{ showAction || useActionSlot }}"
+    class="van-search__action"
+    hover-class="van-search__action--hover"
+    hover-stay-time="70"
+  >
+    <slot wx:if="{{ useActionSlot }}" name="action" />
+    <view wx:else bind:tap="onCancel" class="cancel-class">取消</view>
+  </view>
+</view>

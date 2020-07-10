@@ -1,0 +1,48 @@
+<view class="body" wx:if="{{ attest==0||attest==1 }}">
+	<view class="no-attest center f_c">
+		<image src="https://admin.iguolao.com/public/uploads/20200520112537753.png"></image>
+		<text>你还没有进行企业认证</text>
+		<view class="add-attest center" bindtap="onClick">添加认证</view>
+	</view>
+</view>
+<view class="body" wx:else>
+	<view class="h2"></view>
+	<view class="toplistnum">{{ name}}：<text style="color:#f96006">{{ count }}</text>个</view>
+	<block wx:for="{{ list }}" wx:key="index">
+		<van-transition show="{{  list.length }}" custom-class="block" name="fade-up">
+			<view class="list_dt bottom" hover-class="bghover" data-type="{{item.IntCls}}" data-id="{{ item.RegId }}" data-index="{{index}}" bindtap="onDt">
+				<image class="img_r" src="data:image/png;base64,{{ item.BrandImg }}" lazy-load="true"></image>
+				<view class="list_titile f_r al_center">
+					<view class="max van-ellipsis">{{ item.AppNewName }}</view>
+				</view>
+				<view class="list_Dt ">
+					<text>类别：</text>
+					<text class="van-ellipsis">{{ item.IntCls }}类</text>
+				</view>
+				<view class="list_Dt">
+					<text>注册号：</text>
+					<text>{{ item.RegId?item.RegId:'暂无' }}</text>
+				</view>
+				<view class="list_Dt">
+					<text class="rt">专用权期限：</text>
+					<text wx:if="{{ !item.Ggdate }}">暂无</text>
+					<text wx:else>{{item.Ggdate}}/{{ item.EffectiveEndDate}}</text>
+				</view>
+				<view class="list_Dt">
+					<text>当前状态：</text>
+					<text>{{ item.BrandStatus?item.BrandStatus:'暂无' }}</text>
+				</view>
+			</view>
+		</van-transition>
+	</block>
+	<view class="loading-more center" hidden="{{ display}}">
+		<van-loading size='25px' color="#f96006" />
+		<text></text>
+	</view>
+	<view class="loading-more center" hidden="{{ !display }}">
+		<text></text>
+	</view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

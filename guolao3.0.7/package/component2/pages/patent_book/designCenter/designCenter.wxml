@@ -1,0 +1,24 @@
+<navigation-bar back="{{ true }}" background="#fff" title="专利分析报告" />
+<view class="continer">
+  <!-- 搜索框 -->
+  <view>
+    <van-search value="{{ key }}" placeholder="请输入搜索关键词" use-action-slot bind:change="onChange" bind:search="onSearch">
+      <view slot="action" bind:tap="onClick">搜索</view>
+    </van-search>
+  </view>
+  <!-- 专利报告订单展示 -->
+  <view class="order">
+    <block wx:for="{{arrlist}}" wx:key="index">
+      <view class="oderinfo">
+        <view class="type clearfix">
+          <view class="fl">专利类型：{{item.type}}</view>
+          <view class="fr {{item.state == 1? 'red' : ''}}">{{item.state == 1 ? '已申请':'检测中'}}</view>
+        </view>
+        <view class="nameWidth">技术名称：{{item.name}}</view>
+        <view class="btn clearfix">
+          <button class=" {{item.state == 1?'redbtn publish':''}}" data-id="{{item.id}}" data-type="{{item.type}}" bindtap="toDetail" data-state="{{item.state}}">查看详情</button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

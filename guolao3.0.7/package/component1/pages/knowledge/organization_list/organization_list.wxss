@@ -1,0 +1,8 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+@import '/package/component1/pages/knowledge/brand_list/brand_list.wxss';.apply-num text:nth-child(1){position:absolute;left:0}.apply-name-n{position:relative;left:142rpx;height:30%;width:488rpx;max-width:488rpx;top:20%;font-size:28rpx;color:#2b3139;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.apply-name-n text{white-space:nowrap;overflow:hidden;-o-text-overflow:ellipsis;color:#999;text-overflow:ellipsis}.apply-num text:nth-child(2){position:absolute;right:0}.active{background: #e5e5e5;}

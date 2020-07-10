@@ -1,0 +1,26 @@
+<view class="body">
+  <view class="list-box">
+    <view class="first">第一次审查意见通知书</view>
+    <view class="two" data-url="{{ item.url }}" bindtap="onLook">查看</view>
+  </view>
+    <view class="list-box">
+    <view class="first">第一次审查意见陈述</view>
+    <view class="two" data-url="{{ item.url }}" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box fiexd">
+    <view class="first">是否同意</view>
+    <view class="checked-box">
+      <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" inactive-color="#999999" bind:change="onChange" />
+    </view>
+  </view>
+  <van-transition show="{{ !checked }}" name="fade-down" custom-class="block">
+    <view class="input_box center">
+      <van-field value="{{  value }}" custom-style="width:750rpx;height:320rpx;" clearable type="textarea" placeholder="请输入修改意见！" bind:change="onInput" maxlength='500' border="{{ false }}" />
+    </view>
+  </van-transition>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

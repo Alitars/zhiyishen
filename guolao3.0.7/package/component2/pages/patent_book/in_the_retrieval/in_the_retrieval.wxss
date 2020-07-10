@@ -1,0 +1,30 @@
+@import '/package/component2/pages/patent_book/select/select.wxss';
+@import '/package/component2/pages/patent_book/analysis/analysis.wxss';
+
+page {
+  background: #fff
+}
+
+.big-slider {
+  height: 6px;
+  background-color: #d8d8d8;
+  width: 630rpx;
+  position: relative;
+  overflow: hidden;
+  margin-top: -70%;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.center-box {
+  width: 120px;
+  height: 6px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  left:80rpx;
+  top: 0;
+  bottom: 0rem;
+  background: #f96006;
+}

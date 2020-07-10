@@ -1,0 +1,87 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<!--<view class="sx-box"bindtap="onClose">筛选</view>-->
+	<view class="custom-text van-ellipsis" bindtap="onClick"><text>我的订单</text></view>
+</view>
+<view class="empty_custom" style="padding-top:{{ height }}px" />
+<view class="fist-view" style="top:{{ height }}px">
+	<van-tabs active="{{ active }}" line-height="4" line-width="16" border="{{ true }}" bind:change="onChange">
+		<van-tab title="全部订单" />
+		<van-tab title="待付款" />
+		<van-tab title="待处理" />
+		<van-tab title="已完成" />
+	</van-tabs>
+</view>
+<view class="body">
+	<block wx:for="{{ arry }}" wx:key='index'>
+		<van-transition show="{{ !item.isShow }}" custom-class="block">
+			<view class="box" hidden="{{ item.isShow }}">
+				<view class="card_box">
+					<view class="check-box center" hidden="{{ active==2||active==3||item.contract }}">
+						<van-checkbox value="{{ item.isSelect }}" data-id="{{ item.id }}" checked-color="#f96006" bind:change="onCecked" />
+					</view>
+					<view class="d_box"><text>订单号：{{item.order_id}}</text><text>{{item.orderStatus?item.orderStatus:''}}</text></view>
+					<view class="{{ active==2||active==3||item.contract?'s_box2':'s_box' }}">
+						<image hidden="{{ !item.brand_img }}" src="{{ icon_Url+item.brand_img }}" lazy-load="true" mode="aspectFit"></image>
+						<image hidden="{{ item.brand_img }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image><text>{{item.click_type}}</text>
+					</view>
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>申请人：</text><text>{{item.apply_name?item.apply_name:''}}</text></view>
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>类别：</text><text>{{item.one_cate?item.one_cate+'类':''}}</text></view>
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>注册申请号：</text><text>{{item.regist_num?item.regist_num:''}}</text></view>
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom" wx:if="{{ item.good_name=='商标注册'&&item.recommend_rate>0 }}"><text>成功指数：</text>
+						<view class="rate">
+							<van-rate allow-half value="{{ item.recommend_rate }}" disabled disabled-color="#f96006" size="15" />
+						</view>
+						<!--<text>{{item.regist_num?item.regist_num:''}}</text>-->
+					</view>
+					<view class="price_box"><text>订单金额：</text><text>￥{{item.total_price}}</text></view>
+					<view class="price_box top">
+						<view class="close_box orangetxt" data-id="{{ item.id }}" hidden="{{ item.orderStatus=='待财务确认'?false:true }}" data-index="{{ index }}">待线下付款</view>
+						<view class="close_box orange" data-id="{{ item.id }}" hidden="{{ item.right_status[0]&&item.orderStatus!=='待财务确认'?false:true }}" data-index="{{ index }}" bindtap="onRight">{{item.right_status[0]}}</view>
+						<view class="close_box" data-id="{{ item.id }}" hidden="{{ item.left_status[0]?false:true }}" data-index="{{ index }}" bindtap="onLeft">{{item.left_status[0]}}</view>
+						<view class="close_box" data-id="{{ item.id }}" hidden="{{ item.contract&&item.right_status[0]!=='订单详情'&&item.left_status[0]!=='订单详情'||item.right_status[0]=='去付款'&&item.right_status[0]!=='订单详情'&&item.left_status[0]!=='订单详情'?false:true }}" data-index="{{ index }}" bindtap="onFist">订单详情</view>
+						<!--￥￥￥-->
+						<view class="close_box" data-id="{{ item.id }}" hidden="{{ item.status==1&&item.orderStatus=='待财务确认'?false:true }}" data-index="{{ index }}" bindtap="onSubmitZiliao">提交资料</view>
+					</view>
+				</view>
+			</view>
+		</van-transition>
+	</block>
+	<view class="loading-more center top40" hidden="{{ display }}">
+		<van-loading size='25px' color="#f96006" /><text></text></view>
+	<view class="loading-more center top40" hidden="{{ !display }}"><text></text></view>
+</view>
+<!--<button class="delet-all"bindtap="delete"hidden="{{ false }}">删除</button>-->
+<van-transition show="{{ active==0?true:false }}" custom-class="block">
+	<view class="b_list_btn first btn_after van-hairline--top" style="height:{{ safeHeight }}rpx">
+		<view class="van-checkbox-btn">
+			<!--<van-checkbox value="{{ contractCheck }}"data-id="1"checked-color="#f96006"bind:change="onChooseAll">全选</van-checkbox>-->
+		</view>
+		<view class=" a_box_btn" bindtap="onContract" hover-class="hoverStyle">生成合同<text wx:if='{{ false }}'>({{contractnum}})</text></view>
+	</view>
+</van-transition>
+<van-transition show="{{ active==1?true:false }}" custom-class="block">
+	<view class="b_list_btn first btn_after van-hairline--top" style="height:{{ safeHeight }}rpx">
+		<view class="van-checkbox-btn">
+			<van-checkbox value="{{ payCheck }}" data-id="2" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+		</view>
+		<view class=" a_box_btn" bindtap="onPay" hover-class="hoverStyle">合并付款<text>({{paynum}})</text></view>
+	</view>
+</van-transition>
+<van-popup show="{{ show }}" position="top" overlay="{{ true }}" bind:close="onClose">
+	<view class="empty_custom" style="padding-top:{{statusBarHeight}}px" />
+	<view class="bgbox center">
+		<view class="box2">
+			<block wx:for="{{ btn }}" wx:key='index'>
+				<view class="btn {{ id==index?'orange':'' }}" data-type="{{ item.id }}" data-id="{{ index }}" bindtap="onChoose">{{item.text}}</view>
+			</block>
+		</view>
+	</view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" safe-area-inset-top />

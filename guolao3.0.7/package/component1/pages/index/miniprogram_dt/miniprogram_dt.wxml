@@ -1,0 +1,8 @@
+<view class="body animate_opacity">
+	<view class="img">
+		<image src="{{ icon }}" mode="widthFix"></image>
+	</view>
+	<view class="b_list_btn first van-hairline--top" style="height:{{ SafeButtom }}rpx">
+		<view class="a_box" bindtap="onClick">了解更多</view>
+	</view>
+</view>

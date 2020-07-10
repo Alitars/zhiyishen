@@ -1,0 +1,14 @@
+<view class="body">
+  <view class="van-search">
+    <van-search value="{{ value }}" input-align="center" maxlength="20" placeholder="请输入企业名称" shape="round" use-action-slot bind:search="onSearch"  bind:change="onChange" bind:clear="onClear">
+      <view slot="action" data-id="1" bind:tap="onSearch">确定</view>
+    </van-search>
+  </view>
+  <view class="list-box">
+    <block wx:for="{{ arry }}" wx:key="index">
+      <van-field disabled="true" placeholder="{{ item }}" data-id="{{ item }}" placeholder-style="color: #333;" bindtap="onClick" />
+    </block>
+  </view>
+</view>
+<van-notify id="custom-selector"  />
+<van-toast id="van-toast" />

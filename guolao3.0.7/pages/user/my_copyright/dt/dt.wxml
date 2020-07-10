@@ -1,0 +1,278 @@
+<van-transition show="{{ arry.length==0?false:true }}" custom-class="block">
+  <view class="body">
+    <view class="top_box jc_center f_c" bindtap="onAdress" wx:if="{{ arry.shopAddress.address.length>0 }}">
+      <image class="set_img" src="/images/set.png"></image>
+      <view class="list_t2 al_center">
+        <text>收件地址：</text>
+        <text class="van-ellipsis" style="max-width:430rpx;">{{ arry.shopAddress.address }}</text>
+      </view>
+      <view class="list_t2 al_center">
+        <text>收件人：</text>
+        <text>{{ arry.shopAddress.consignee }}</text>
+      </view>
+      <view class="list_t2 al_center">
+        <text>联系号码：</text>
+        <text>{{ arry.shopAddress.mobile }}</text>
+      </view>
+    </view>
+    <view class="title-box" hidden="true">
+      <text>{{ arry.orderList.orderStatus }}</text>
+      <text>申请退款金额：￥600</text>
+      <text>实际退款金额：￥600</text>
+      <text>退款方式：支付宝</text>
+    </view>
+    <view class="card-box">
+      <view class="info">
+        <text>版权状态：</text>
+        <text class="orange">{{ arry.detail.status?arry.detail.status:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>当前状态：</text>
+        <text class="orange">{{  arry.brand_upload.effective_date?arry.brand_upload.effective_date:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>申请号：</text>
+        <text>{{  arry.detail.regist_num?arry.detail.regist_num:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>申请人名称：</text>
+        <text>{{  arry.detail.apply_name?arry.detail.apply_name:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>申请人地址：</text>
+        <text>{{  arry.detail.apply_address?arry.detail.apply_address:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>发明人：</text>
+        <text>{{  arry.detail.invent_name?arry.detail.invent_name:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>申请日期：</text>
+        <text>{{  arry.detail.create_time?arry.detail.create_time:'暂无' }}</text>
+      </view>
+      <view class="cell" bindtap="onType">
+        <text>申请公布号：</text>
+        <text>{{  arry.detail.apply_no?arry.detail.apply_no:'暂无' }}</text>
+      </view>
+      <view class="cell" bindtap="onType">
+        <text>申请公布号日期：</text>
+        <text>{{  arry.detail.apply_time?arry.detail.apply_time:'暂无' }}</text>
+      </view>
+
+      <view class="info">
+        <text>分类号：</text>
+        <text>{{  arry.detail.classify_num?arry.detail.classify_num:'暂无' }}</text>
+      </view>
+
+
+
+
+      <view class="cell" bindtap="onGuanlian">
+        <text>关联订单：</text>
+        <text>{{ arry.relevanceOrder.length==0?'暂无':arry.relevanceOrder[0].order_id}}</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+    <view class="card-box">
+      <view class="title al_center">订单信息</view>
+      <view class="info">
+        <text>订单号：</text>
+        <text>{{ arry.orderList.order_id }}</text>
+      </view>
+      <view class="info">
+        <text>订单状态 ：</text>
+        <text>{{ arry.orderList.orderStatus }}</text>
+      </view>
+      <view class="info">
+        <text>业务名称：</text>
+        <text>{{ arry.orderList.good_name }}</text>
+      </view>
+      <view class="info">
+        <text>服务类型：</text>
+        <text>{{ arry.orderList.click_type }}</text>
+      </view>
+      <view class="info">
+        <text>下单时间：</text>
+        <text>{{ arry.orderList.created_at }}</text>
+      </view>
+      <view class="info">
+        <text>支付方式：</text>
+        <text>{{ arry.orderList.pay_typeName?arry.orderList.pay_typeName:'未支付' }}</text>
+      </view>
+      <view class="info">
+        <text>订单金额：</text>
+        <text>￥{{arry.orderList.real_total }}</text>
+      </view>
+      <view class="info">
+        <text>优惠券金额：</text>
+        <text>￥{{ arry.orderList.coupon }}</text>
+      </view>
+      <view class="info">
+        <text>实付金额：</text>
+        <text>￥{{  arry.orderList.total_price }}</text>
+      </view>
+    </view>
+    <view class="cell border" bindtap="onProgress">
+      <text>订单进度：</text>
+      <text>{{ arry.orderList.orderStatus  }}</text>
+      <view class="arrow"></view>
+    </view>
+
+
+    <view class="card-box top" hidden="{{ !arry.certificate&&!arry.orderList.contract }}">
+      <view class="info">
+        <text>相关文件信息：</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.tec_book }}" bindtap="onLook" hidden="{{ !arry.certificate.tec_book }}">
+        <text>{{  arry.orderList.tec_book }}技术交底书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.cad_book }}" bindtap="onLook" hidden="{{ !arry.certificate.cad_book }}">
+        <text>{{  arry.orderList.cad_book }}CAD 图纸（预览）</text>
+        <text/>
+      </view>
+
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.patent_write }}" bindtap="onLook" hidden="{{ !arry.certificate.patent_write }}">
+        <text>{{  arry.orderList.patent_write }}专利说明书（预览）</text>
+        <text/>
+      </view>
+
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.patent_advice }}" bindtap="onLook" hidden="{{ !arry.certificate.patent_advice }}">
+        <text>{{  arry.orderList.patent_advice }}专利受理通知书（预览）</text>
+        <text/>
+      </view>
+
+      <view class="info  xg" data-url="{{ arry.certificate.patent_bill }}" bindtap="onLook" hidden="{{ !arry.certificate.patent_bill }}">
+        <text>{{  arry.orderList.patent_bill }}	缴费通知书（预览）</text>
+        <text/>
+      </view>
+
+      <view class="info  xg" data-url="{{ arry.certificate.patent_advice }}" bindtap="onLook" hidden="{{ !arry.certificate.patent_advice }}">
+        <text>{{  arry.orderList.patent_advice }}专利受理通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.dismissal_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.dismissal_notice }}">
+        <text>{{  arry.orderList.dismissal_notice }}驳回通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.pass_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.pass_notice }}">
+        <text>{{  arry.orderList.pass_notice }}	专利合格通知书（预览）</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.publish_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.publish_notice }}">
+        <text>{{  arry.orderList.publish_notice }}专利发明公布通知书（预览）</text>
+        <text/>
+      </view>
+
+      <view class="info  xg" data-url="{{ arry.certificate.real_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.real_notice }}">
+        <text>{{  arry.orderList.real_notice }}发明实审阶段通知书（预览）</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.first_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.first_notice }}">
+        <text>{{  arry.orderList.first_notice }}	第一次审查意见通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.second_write }}" bindtap="onLook" hidden="{{ !arry.certificate.second_write }}">
+        <text>{{  arry.orderList.second_write }}	第一次审查意见陈述（预览）</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.second_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.second_notice }}">
+        <text>{{  arry.orderList.second_write }}	第二次审查意见通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.third_write }}" bindtap="onLook" hidden="{{ !arry.certificate.third_write }}">
+        <text>{{  arry.orderList.third_write }}	第三次审查意见陈述（预览）</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.third_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.third_notice }}">
+        <text>{{  arry.orderList.third_notice }}第三次审查意见通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.regist_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.regist_notice }}">
+        <text>{{  arry.orderList.regist_notice }}		登记办理通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.license_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.license_notice }}">
+        <text>{{  arry.orderList.license_notice }}	缴纳授权转涵（预览）</text>
+        <text/>
+      </view>
+
+
+      <view class="info  xg" data-url="{{ arry.certificate.patent_book }}" bindtap="onLook" hidden="{{ !arry.certificate.patent_book }}">
+        <text>{{  arry.orderList.patent_book }}	专利证书下发(合格通知书、决定书、副本)（预览）</text>
+        <text/>
+      </view>
+
+      <view class="info  xg" data-url="{{ arry.certificate.reduce_book }}" bindtap="onLook" hidden="{{ !arry.certificate.reduce_book }}">
+        <text>{{  arry.orderList.reduce_book }}		费用减缓审批通知书（预览）</text>
+        <text/>
+      </view>
+
+
+
+
+    </view>
+
+    <view class="t_txt" hidden="{{ arry.recommend.length>0?false:true }}">
+      <text>关联推荐</text>
+    </view>
+    <view class="shop_box">
+      <block wx:for="{{ arry.recommend }}" wx:key="index">
+        <view class="s_btn f_c center" data-id="{{ item.pid }}" data-title="{{ item.title }}" bindtap="onDt">
+          <view class="icon_box center">
+            <image src="{{ icon_Url+item.pic}}" mode="widthFix"></image>
+          </view>
+          <text>{{ item.title }}</text>
+          <text>￥{{ item.total }}</text>
+        </view>
+      </block>
+    </view>
+    <view class="ft" />
+  </view>
+
+  <!-- <view class="w-box" style="height:{{ brhifh }}rpx" hidden="{{ arry.orderList.status==2||arry.orderList.status==3||arry.orderList.status==4||arry.orderList.status==6?false:true }}">
+    <view class="li-box" bindtap="onRefund">申请退款</view>
+  </view> -->
+
+</van-transition>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

@@ -1,0 +1,41 @@
+<!-- <navigation-bar back="{{ true }}" background="#fff" title="已注册商标" /> -->
+<!-- <view class="search-box">
+	<view style="width:90%"> -->
+		<!-- field-class -->
+		<!-- <van-search value="{{ value }}" field-class="search-h" input-align="center" maxlength="50" placeholder="输入企业名称" shape="round" use-action-slot bind:search="onSearch" focus="{{ focus }}" bind:change="onChange" bind:clear="onClear">
+			<view slot="action" class="search-h" bind:tap="onSearch">搜索</view>
+		</van-search>
+	</view>
+</view> -->
+<!-- height：0px select  id top -->
+<view id='fixed'></view>
+<view class="search-num {{ show==true?'':'fixed-x' }}"><text>已注册商标总数<text style="color:#f96006">{{ others?others:0 }}</text>个</text></view>
+<view class="search-num" hidden="{{ show }}"></view>
+
+<!-- <view> -->
+<block wx:for="{{ list }}" wx:key="index">
+	<van-transition show="{{  true }}" custom-class="block" name="fade-up">
+		<view class="list_dt bottom" hover-class="hoverStyle" data-type="{{item.IntCls}}" data-id="{{ item.RegId }}" data-index="{{index}}" bindtap="onDt">
+			<image class="img_r al-center" src="data:image/png;base64,{{ item.BrandImg }}" lazy-load="true"></image>
+			<!-- <view class="list_titile f_r al_center">
+				<view class="max van-ellipsis">{{item.Sbmc}}</view>
+				<view class="zt van-ellipsis">{{item.BrandStatus}}</view>
+			</view> -->
+			<view class="list_Dt "><text>申请人：</text><text class="van-ellipsis">{{item.AppNewName}}</text></view>
+			<view class="list_Dt"><text>类别：</text><text>第{{item.IntCls}}类</text></view>
+			<view class="list_Dt"><text>注册号：</text><text>{{item.RegId?item.RegId:'暂无'}}</text></view>
+			<view class="list_Dt"><text>申请日期：</text><text>{{item.AppDate?item.AppDate:'暂无'}}</text></view>
+			<view class="list_Dt"><text>当前状态：</text><text>{{item.BrandStatus?item.BrandStatus:'暂无'}}</text></view>
+		</view>
+	</van-transition>
+</block>
+
+<!-- </view> -->
+<view class="loading-more center" hidden="{{ display}}">
+	<van-loading size='25px' color="#f96006" />
+	<text/>
+  </view>
+  <view class="loading-more center"hidden="{{ !display }}">
+  <text></text>
+</view>
+<van-toast id="van-toast" />

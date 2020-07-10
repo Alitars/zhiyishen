@@ -1,0 +1,30 @@
+<navigation-bar back="{{ true }}" background="#fff" title="设置" />
+<view class="t-img">
+	<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="头像" is-link bindtap="onUpimg" />
+	<image class="avter" catchtap="onUpimg" src="{{ info.head_img?info.head_img:'/images/user.png' }}"></image>
+</view>
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="昵称" is-link placeholder="{{ info.nickname==''||info.nickname==null?'填写':info.nickname}}" data-id="1" bindtap="onChange" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="性别" is-link placeholder="{{info.sex==0?'男':'女'}}" bindtap="onClose" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="手机号" is-link placeholder="{{ info.mobile }}" data-id="2" bindtap="onChange" />
+<van-field size="large" title-width="200" value="{{ username }}" disabled input-align='right' clearable label="邮寄地址" is-link bindtap="onAdress" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="邮箱" is-link placeholder="{{ info.email==''||info.email==null?'绑定':info.email }}" data-id="3" bindtap="onChange" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="修改密码" is-link bindtap="onResetting" />
+<van-cell title="语音导航" size="large">
+<van-switch checked="{{ checked }}" bind:change="onSwitch" active-color="#f96006" size="20px" inactive-color="#fff" />
+</van-cell>
+<!-- <van-field size="large" value="{{ check_type!==2?'普通用户':'代理人' }}" disabled input-align='right' clearable label="身份类型" is-link /> -->
+<!-- <van-field size="large" value="{{ check_type!==2?'普通用户':'代理人' }}" disabled input-align='right' clearable label="身份类型" is-link error="{{ err }}" error-message="{{ remark }}" />
+<block wx:if="{{ check_type!==2 }}">
+  <van-field size="large" value="{{ groups[index].text=='普通用户'?'':groups[index].text }}" border="{{ false }}" disabled input-align='right' clearable label="申请代理人" is-link error="{{ err }}" error-message="{{ remark }}" bindtap="onAgent" />
+</block> -->
+
+<!-- <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="清除缓存" is-link bindtap="onClear" /> -->
+<view class="b_list_btn first" style="height:{{ safeHeight }}rpx">
+	<view class="a_box" bindtap="onContract" bindtap="onQuit">退出登录</view>
+</view>
+
+<mp-actionSheet bindactiontap="btnClick" show="{{showActionsheet}}" show-cancel="true" actions="{{groups}}" mask-closable="true" />
+<mp-actionSheet bindactiontap="btnClickSix" show="{{show}}" show-cancel="true" actions="{{actions}}" mask-closable="true" />
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />
+<van-dialog id="van-dialog" />

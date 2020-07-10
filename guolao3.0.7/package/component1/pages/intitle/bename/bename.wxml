@@ -1,0 +1,14 @@
+<import src="../../../../../template/template.wxml" />
+<template is="onGuo" data="{{statusBarHeight,SafeHigh,safeHeight,icon_Url,text,SafeButtom }}" />
+<view class="body_two">
+  <view class="btn-c-box center f_c">
+    <block wx:for="{{  arry }}" wx:key='index'>
+      <view class="btn-choose {{ item.isSelect?'active':'' }}" data-id="{{ index }}" data-check="{{ item.isSelect }}" bindtap="onChoose">{{ item.text }}</view>
+    </block>
+  </view>
+</view>
+<view class="b_box " style="height:{{ SafeButtom }}rpx">
+  <view class="orange" bindtap="onClick">下一步</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

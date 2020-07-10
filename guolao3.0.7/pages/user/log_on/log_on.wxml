@@ -1,0 +1,103 @@
+<view class="container">
+  <view class="slider-box">
+    <view class="slider-left" data-id="0" bindtap="onSlider">短信验证码登录</view>
+    <view class="slider-right" data-id="1" bindtap="onSlider">账号密码登录</view>
+    <view class="slider" animation="{{ animationData }}"></view>
+  </view>
+  <view class="tabs-box" wx:if="{{ slider==0 }}">
+    <van-field value="{{  code_num  }}" maxlength="11" id="code_num" type="number" size="large" clearable label="＋86" placeholder="请输入手机号码" bind:change="onChange" />
+    <van-field value="{{ code_sms }}" id="code_sms" type="number" maxlength="6" size="large" center clearable label="验证码" placeholder="请输入验证码" use-button-slot bind:change="onChange">
+      <van-button slot="button" plain size="small" data-id="1" round type="warning" bind:click="{{ code==0?'onSend':''}}">
+        <text style="color:#f96006;" hidden="{{code==0?false:true}}">获取验证码</text>
+        <text style="color:#ccc;" hidden="{{code==0?true:false}}">{{time}}s重新获取</text>
+      </van-button>
+    </van-field>
+          <view class="read_boxs">
+        <text>温馨提示：未注册知依昇网账号的手机号，登录时将自动注册，且代表您已同意</text>
+        <text data-id="1" bindtap="onReader">《用户服务协议》</text>
+        <text>和</text>
+        <text data-id="2" bindtap="onReader">《隐私条款》</text>
+      </view>
+    <button open-type="getUserInfo" class="btns {{ codeSrue?'orange':'' }} height" data-id="1" bindgetuserinfo="{{ codeSrue?'onLogon':'onCheck' }}">登录</button>
+  </view>
+
+
+
+
+  <!--账号密码-->
+  <view class="tabs-box" wx:if="{{ slider==1 }}">
+    <van-field value="{{  account_name }}" id="account_name" type="number"  maxlength="11" size="large" clearable label="账号" placeholder="请输入手机号" bind:change="onChange" />
+    <van-field value="{{ account_Pass }}" id="account_Pass" right-icon="{{  display1?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="number" maxlength="15" size="large" clearable type="{{ display1?'text':'password' }}" data-id='1' label="密码" placeholder="请输入密码" focus="{{ display1 }}"
+      bind:click-icon="onClickIcon" bind:change="onChange"></van-field>
+    <view class="list-box">
+
+                <view class="post_boxs">
+        <view class="zuces" data-id='1'  bindtap="onClick">注册</view>
+        <view class="f_ms"  data-id='2' bindtap="onClick">忘记密码</view>
+      </view>
+    </view>
+
+    <button class="btns {{ isSure?'orange':'' }}" open-type="getUserInfo" data-id="2" bindgetuserinfo="{{ isSure?'onLogon':'onCheck' }}">登录</button>
+  
+  </view>
+
+
+
+  <!-- <view class="zhuce-btn">
+    <text data-id='2' bindtap="{{ true?'onClose':'onClose' }}">立即注册</text>
+  </view> -->
+
+
+  <view class="wx_get" style="bottom:{{ height }}rpx">
+    <text>－微信登录－</text>
+    <button class="wx_box" open-type="getUserInfo" hover-class="bghover" bindgetuserinfo="onGetInfo">
+      <image src="/images/wx.png"></image>
+    </button>
+    <text>微信</text>
+  </view>
+</view>
+
+
+
+
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />
+<!-- <view class="body">
+  <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tab title="短信验证码登录">
+      <van-field value="{{  phoneNumber }}" maxlength="11" type="number" size="large" clearable label="＋86" placeholder="请输入手机号码" bind:click-icon="onClickIcon" bind:change="onPhone" />
+      <van-field value="{{ sms }}" type="number" maxlength="6" size="large" center clearable label="短信验证码" placeholder="请输入验证码" use-button-slot bind:change="onYzm">
+        <van-button slot="button" plain size="small" round type="warning" bind:click="{{ code==1?'':'onSend'}}">
+          <text hidden="{{code==''||code==2?false:true}}">获取验证码</text>
+          <text style="color:#ccc;" hidden="{{code==1?false:true}}">{{ time }}s 重新获取</text>
+        </van-button>
+      </van-field>
+      <view class="read_box">
+        <text>温馨提示：未注册知依昇网账号的手机号，登录时将自动注册，且代表您已同意</text>
+        <text bindtap="onxieyi">《用户服务协议》</text>
+        <text>和</text>
+        <text bindtap="tiaokuan">《隐私条款》</text>
+      </view>
+      <button open-type="getUserInfo" class="btn {{number.length==6&&phoneNumber.length==11?'orange':''}}" bindgetuserinfo="{{number.length==6&&phoneNumber.length==11?'onLog':'onCheck'}}">登录</button>
+    </van-tab>
+    <van-tab title="账号密码登录">
+      <van-field value="{{  phoneNumber }}" type="number" maxlength="11" size="large" clearable label="账号" placeholder="请输入手机号" bind:change="onPhone" />
+      <van-field value="{{ password }}" right-icon="{{ icon }}" type="number" maxlength="15" size="large" clearable type="{{ show }}" label="密码" placeholder="请输入密码" focus="{{ openEye }}" bind:click-icon="onClickIcon" bind:change="onPassword"></van-field>
+      <view class="post_box">
+        <view class="zuce" bindtap="onZuce">注册</view>
+        <view class="f_m" bindtap="onNav">忘记密码</view>
+      </view>
+      <view class="btn" style="margin-top:-15rpx;" hidden="{{ close }}" bindtap="onChecktwo">登录</view>
+      <button class="btn orange" open-type="getUserInfo" style="margin-top:-15rpx;" hidden="{{ !close }}" bindgetuserinfo="getLogin">登录</button>
+    </van-tab>
+  </van-tabs>
+  <view class="wx_get f_c center" style="bottom:{{ brhifh }}rpx">
+    <text>－微信登录－</text>
+    <button class="wx_box" open-type="getUserInfo" bindgetuserinfo="onGetInfo">
+      <image src="/images/wx.png"></image>
+    </button>
+    <text>微信</text>
+  </view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" /> -->

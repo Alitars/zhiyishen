@@ -1,0 +1,88 @@
+@import '/package/component2/pages/patent_book/antistop/antistop.wxss';
+
+
+.input-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #d8d8d8;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 470rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  overflow: hidden;
+  position: relative
+}
+
+.about-box {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  top: 120rpx;
+  left: 0;
+  right: 0
+}
+.about-box1 {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  top: 240rpx;
+  left: 0;
+  right: 0
+}
+
+
+
+.pencil {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  left: 15rpx;
+  top: 50%;
+  margin-top: -16rpx
+}
+
+.input-left {
+  position: absolute;
+  left: 72rpx;
+  top: 0;
+  height: inherit;
+  bottom: 0;
+  width: 380rpx;
+  overflow: hidden;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  text-indent: 20rpx
+}
+
+.btn-box {
+  width: 630rpx;
+  position: absolute;
+  top: 140rpx;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}

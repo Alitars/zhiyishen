@@ -1,0 +1,33 @@
+<!-- <navigation-bar back="{{ true }}" background="#fff" title="已注册商标" /> -->
+<view class="search-box">
+	<view style="width:90%">
+		<!-- field-class -->
+		<van-search value="{{ value }}" field-class="search-h" input-align="center" maxlength="50" placeholder="输入企业名称" shape="round" use-action-slot bind:search="onSearch" focus="{{ focus }}" bind:change="onChange" bind:clear="onClear">
+			<view slot="action" class="search-h" bind:tap="onSearch">搜索</view>
+		</van-search>
+	</view>
+</view>
+<!-- height：0px select  id top -->
+<view id='fixed'></view>
+<view class="search-num {{ show==true?'':'fixed-x' }}"><text>{{ name }}<text style="color:#f96006">{{ brand?brand:0 }}</text>个</text></view>
+<view class="search-num" hidden="{{ show }}"></view>
+
+<block wx:for="{{ list }}" wx:key="index">
+	<view class="list-view">
+		<view class="apply-name van-ellipsis"><text>申请人：{{ item.name }}</text></view>
+		<view class="apply-name apply-num">专利数量：{{ item.num?item.num:0 }}</view>
+		<view class="btn-dt {{ item.num?'':'gray'  }}" data-index="{{ index }}" bindtap="onClick">查看详情</view>
+		<view class="img-num">
+			<text> {{ index+1 }} </text>
+			<image class="list-view-img" src="http://51guolao.yiqibnb.com/public/uploads/20200608112611673.png"></image>
+		</view>
+	</view>
+</block>
+<view class="loading-more center" hidden="{{ display }}">
+	<van-loading size='25px' color="#f96006" />
+	<text/>
+  </view>
+  <view class="loading-more center"hidden="{{ !display }}">
+  <text></text>
+</view>
+<van-toast id="van-toast" />

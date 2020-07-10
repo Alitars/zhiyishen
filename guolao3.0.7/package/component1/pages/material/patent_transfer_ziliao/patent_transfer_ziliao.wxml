@@ -1,0 +1,93 @@
+<navigation-bar back="{{ true }}" background="#fff" title="提交资料" />
+<view class="card">
+  <view class="top26"></view>
+  <van-cell title="专利申请人" border="{{ false }}" />
+  <van-cell is-link title="{{  applicant?applicant:'请添加'  }}" bindtap='onapplicant' />
+  <van-cell title="专利申请号" border="{{ false }}" />
+  <van-field value="{{ patentnum }}" placeholder="{{ patentnum?patentnum:'请输入' }}" id='patentnum' maxlength='20' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="专利名称" border="{{ false }}" />
+  <van-field value="{{ patentname }}" placeholder="{{ patentname?patentname:'请输入' }}" maxlength='30' id='patentname' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="代理机构" border="{{ false }}" />
+  <van-field value="{{ patentjg }}" placeholder="{{ patentjg?patentjg:'请输入' }}" maxlength='30' id='patentjg' clearable="true" type="text" bind:change="onChange" />
+  <view class="up_card h0">
+    <view class="title">
+      <text>代理机构解聘书</text>
+      <text>（代理机构发生变化需上传）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ book }}"></image>
+        <image class="max-img" hidden="{{ !book }}" src="{{ icon_Url+book}}" hidden="{{ !book }}"></image>
+        <text class="up-t" hidden="{{ book }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card h0">
+    <view class="title">
+      <text>准予变更登记通知书</text>
+      <text>（名义变更需上传）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ blueprint }}"></image>
+        <image class="max-img" hidden="{{ !blueprint }}" src="{{ icon_Url+blueprint}}" hidden="{{ !blueprint }}"></image>
+        <text class="up-t" hidden="{{ blueprint }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="top26"></view>
+<view class="list-box fiexd" bindtap="isShow">
+  <view class="first">专利费用减缓条件</view>
+  <view class="arrow">
+  </view>
+</view>
+<view class="list-box fiexd">
+  <view class="first">申请专利费用减缓</view>
+  <view class="checked-box">
+    <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" inactive-color="#dfdfdf" bind:change="onChecked" />
+  </view>
+</view>
+<van-transition show="{{ checked }}" custom-class="block">
+  <view class="up_card  h0">
+    <view class="title">
+      <text>上年度企业所得税年度纳税申报表A类封面盖公章</text>
+      <text/>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ book3 }}"></image>
+        <image class="max-img" hidden="{{ !book3 }}" src="{{ icon_Url+book3}}" hidden="{{ !book3 }}"></image>
+        <text class="up-t" hidden="{{ book3 }}">上传</text>
+      </view>
+    </view>
+    <view class="up_card  h0">
+      <view class="title">
+        <text>上年度企业所得税年度纳税申报表B类封面盖公章</text>
+        <text/>
+      </view>
+      <view class="up-box">
+        <view class="up-img center" data-id="4" bindtap="onChooseImgs">
+          <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ book4 }}"></image>
+          <image class="max-img" hidden="{{ !book4 }}" src="{{ icon_Url+book4}}" hidden="{{ !book4 }}"></image>
+          <text class="up-t" hidden="{{ book4}}">上传</text>
+        </view>
+      </view>
+    </view>
+    <view class="ti-box">提示：除上海市以外，其他地区材料请自行面交或邮寄</view>
+  </view>
+</van-transition>
+<view class="b_list_btn" style="height:{{ menu }}px">
+  <view class="a_box" bindtap="upData">提交</view>
+</view>
+<van-popup show="{{ show }}" overlay="{{ true }}" custom-style="border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" z-index="2000" bind:close="isShow">
+  <view class="sming" style=" padding-bottom:{{ menu }}rpx">
+    <view class="t-sming">专利费用减缓条件</view>
+    <view class="sming-txt">1.申请人是公司：</view>
+    <view class="sming-txt top0">上年度应纳税所得额高于30万不用提供材料，低于30万需提供以下材料，判断标 准请看上年度企业所得税年度纳税申报表A类中的23栏是否高于30万或低于30万。</view>
+    <view class="sming-txt">2.申请人是个人：</view>
+    <view class="sming-txt top0">年收入低于4.2万元</view>
+  </view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

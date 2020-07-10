@@ -1,0 +1,34 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+@import "/template/template.wxss";page{background:#fff;overflow-y:hidden}.body-s{width:inherit;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;background:#f96006}.input-box{width:100%;position:relative;height:100rpx}.scroll-box{width:100%;position:relative;margin-top:0}.list-box{width:100%;height:128rpx;margin-bottom:24rpx;position:relative}.choose-box{width:36rpx;height:36rpx;border:1px solid #f96006;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;position:relative;left:60rpx;border-radius:5rpx}.isSelect{width:36rpx;height:36rpx;border:1px solid #f96006;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;position:relative;left:60rpx;border-radius:5rpx}.isSelect::after{content:"";width:24rpx;height:24rpx;background:#f96006;position:absolute;border-radius:5rpx}.img-box{width:128rpx;height:128rpx;background:#f9f9f9;border-radius:10rpx;position:relative;left:90rpx;overflow:hidden;border:1px solid #eee;-webkit-box-sizing:border-box;box-sizing:border-box}.img-box image{width:inherit;height:inherit}.look-m{color:#f96006;font-size:28rpx;position:absolute;right:60rpx;top:18rpx}.t-box{width:300rpx;height:inherit;position:relative;left:100rpx}.list-t{width:300rpx;height:50%;font-size:28rpx;margin-left:10rpx}.gray{color:#666}.delet-box{position:absolute;color:#f96006;font-weight:500;right:60rpx;font-size:28rpx;top:200rpx;z-index:100}.delet-box image{width:inherit;height:inherit}.g_box{width:100%;height:207rpx;position:relative;z-index:200}.g_t{max-width:400rpx;right:60rpx;-ms-flex-wrap:wrap;flex-wrap:wrap;position:absolute;font-size:36rpx;color:#333;width:400rpx;font-weight:bold}.g_img{width:170rpx;position:absolute;left:60rpx;bottom:0rpx;height:207rpx}.centerbody{height:600rpx;margin:0;top:440rpx;padding:0}.fix{z-index:300}.xiaoguo_box{width:100%;height:207rpx;width:400rpx}.btn_box_slider{width:100%;height:80rpx;min-height:80rpx;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;position:relative;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;position:relative}.btns1{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;padding:0 30rpx 0 30rpx;height:50rpx;color:#fa843d;position:relative;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:24rpx;overflow:hidden;border-top-left-radius:10rpx;border-bottom-left-radius:10rpx;border:1px solid #fa843d;-webkit-box-sizing:border-box;box-sizing:border-box}.btns2{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;padding:0 20rpx 0 20rpx;height:50rpx;color:#fa843d;position:relative;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;font-size:24rpx;overflow:hidden;border-top-right-radius:10rpx;border-bottom-right-radius:10rpx;border:1px solid #fa843d;-webkit-box-sizing:border-box;box-sizing:border-box}.btns_after{background:#fa843d;color:#fff}.fl-cm{width:100%;height:80rpx;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;position:absolute}.body_two{width:100%;height:100%;position:relative;top:0;left:0;bottom:0;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;right:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.animateOpacity{-webkit-animation-name:Opacity;animation-name:Opacity;-webkit-animation:Opacity 2s infinite linear;animation:Opacity 2s infinite linear;-webkit-animation-direction:alternate;animation-direction:alternate}@-webkit-keyframes Opacity{from{opacity:0.4}to{opacity:1}}@keyframes Opacity{from{opacity:0.4}to{opacity:1}}.check_box_v{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;font-size:28rpx}.van_checkbox{overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-bottom:40rpx}.check-box{width:32rpx;height:32rpx;border-radius:100%;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;border:solid 1px #fa7105;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;position:relative;font-size:28rpx;color:#333}.van_checkbox text{margin-left:16rpx}.check-box-after{width:20rpx;position:absolute;height:20rpx;background:#fa7105;border-radius:100%;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transition:0.3s;-o-transition:0.3s;transition:0.3s;overflow:hidden}.animate_opacity{-webkit-animation-name:opacity;animation-name:opacity;-webkit-animation:opacity 0.3s linear;animation:opacity 0.3s linear}@-webkit-keyframes opacity{from{opacity:0.8}to{opacity:1}}@keyframes opacity{from{opacity:0.8}to{opacity:1}}.bgimgs{position:absolute;z-index:400;width:100%;top:0;left:0;right:0}.fixd{z-index:410;background:none}
+.input-left{
+  position: absolute;
+  bottom: 36rpx; left:150rpx;
+  border:2rpx solid #c3c3c3;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  padding-left: 10rpx;
+}
+.check_box_v{
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  top: 120rpx;
+  left: 120rpx;
+  right: 0;
+  -webkit-box-align:start;
+  -ms-flex-align:start;
+  align-items:flex-start;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  font-size:28rpx;
+  /*  */
+}

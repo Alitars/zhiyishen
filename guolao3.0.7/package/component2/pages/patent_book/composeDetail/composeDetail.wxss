@@ -1,0 +1,11 @@
+/* package/component2/pages/patent_book/composeDetail/composeDetail.wxss */
+.container{
+  padding: 30rpx;
+  width: 100%;
+  background-color: #fff;
+  font-size: 24rpx;
+  text-indent: 50rpx;
+}
+.container view{
+  padding: 10rpx 0;
+}

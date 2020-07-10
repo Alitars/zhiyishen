@@ -1,0 +1,442 @@
+<!-- 商标注册申请书 -->
+<!-- <view class="body" hidden="{{ type==0?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标注册申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text> 商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class="body" hidden="{{ type==0?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标注册申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+          <view class="title">
+      <!-- <text>商标注册申请书</text>
+      <text>（可去PC端下载文件）</text> -->
+    </view>
+      <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_certificate }}" src="{{ icon_Url+brand_certificate }}" hidden="{{ !brand_certificate }}"></image>
+        <text class="up-t" hidden="{{ brand_certificate }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 商标变更 -->
+<view class="body" hidden="{{ type==1?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标变更申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view class="body" hidden="{{ type==1?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text> 商标变更申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标变更委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+
+<!-- 商标转让 -->
+<view class="body" hidden="{{ type==2?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标转让申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标转让委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="up_card top">
+    <view class="title">
+      <text>商标受让委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_certificate }}"></image>
+        <image class="max-img" hidden="{{ !brand_certificate }}" src="{{ icon_Url+brand_certificate }}" hidden="{{ !brand_certificate }}"></image>
+        <text class="up-t" hidden="{{ brand_certificate }}">上传</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="up_card top">
+    <view class="title">
+      <text>转让证明</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="4" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ makeover_prove }}"></image>
+        <image class="max-img" hidden="{{ !makeover_prove }}" src="{{ icon_Url+makeover_prove }}" hidden="{{ !makeover_prove }}"></image>
+        <text class="up-t" hidden="{{ makeover_prove }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 商标续展 -->
+<view class="body" hidden="{{ type==3?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标续展申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 商标宽展 -->
+<view class="body" hidden="{{ type==8?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标续展申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view class="body" hidden="{{ type==3?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text> 商标续展申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text> 商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<!-- 商标许可备案 -->
+<view class="body" hidden="{{ type==4?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标许可备案表</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标许可委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+    <view class="up_card top">
+    <view class="title">
+      <text>商标被许可委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center"  bindtap="onUpImg">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ gai_licensee }}"></image>
+        <image class="max-img" hidden="{{ !gai_licensee }}" src="{{ icon_Url+gai_licensee }}" hidden="{{ !gai_licensee }}"></image>
+        <text class="up-t" hidden="{{ gai_licensee }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- <view class="body" hidden="{{ type==4?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标许可备案表</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text> 商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+
+
+<!-- 商标撤三申请  -->
+<!-- <view class="body" hidden="{{ type==6?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标撤三申请申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text> 商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class="body" hidden="{{ type==6?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>商标撤三申请申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 补发商标注册证 -->
+<view class="body" hidden="{{ type==5?false:true }}">
+  <view class="up_card">
+    <view class="title">
+      <text>补发商标注册证申请书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_bailment_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_bailment_img }}" src="{{ icon_Url+brand_bailment_img }}" hidden="{{ !brand_bailment_img }}"></image>
+        <text class="up-t" hidden="{{ brand_bailment_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card top">
+    <view class="title">
+      <text>商标代理委托书</text>
+      <text>（可去PC端下载文件）</text>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_register_img }}"></image>
+        <image class="max-img" hidden="{{ !brand_register_img }}" src="{{ icon_Url+brand_register_img }}" hidden="{{ !brand_register_img }}"></image>
+        <text class="up-t" hidden="{{ brand_register_img }}">上传</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+  <view class="a_box" bindtap="onUpload">提交</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

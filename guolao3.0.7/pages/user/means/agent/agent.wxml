@@ -1,0 +1,163 @@
+<navigation-bar back="{{ true }}" background="#fff" title="知依昇" />
+<view wx:if="{{ show==false }}">
+	<van-tabs type="card" active="{{ active }}" color="#f97527" animated bind:click="onClick">
+		<van-tab title="企业代理">
+			<view style="height:70rpx;"></view>
+			<van-field value="{{ username }}" disabled="{{ false }}" label="联系人：" maxlength="20" clearable border="{{ true }}" placeholder="" bind:change="onUsername" />
+			<view class="up_card">
+				<view class="title">
+					<text>上传营业执照:</text>
+					<text>（需盖章后拍照上传）</text>
+				</view>
+				<view class="up-box">
+
+
+					<view class="up-img center" data-id="1" bindtap="onChooseImgs">
+						<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls1 }}"></image>
+						<image class="max-img" hidden="{{ !imgUrls1 }}" src="{{ icon_Url+imgUrls1 }}" hidden="{{ !imgUrls1 }}"></image>
+						<text class="up-t" hidden="{{ imgUrls1 }}">上传</text>
+					</view>
+
+					<view class="img_box center" data-id="{{index}}" data-type="1" bindtap="onYanglei">
+						<image src="{{ icon_yanglei }}"></image>
+						<view class="yl">营业执照样例</view>
+					</view>
+
+				</view>
+
+
+
+
+			</view>
+			<van-field value="{{ bsname }}" data-id="1" disabled="{{ false }}" label="企业名称：" maxlength="20" clearable border="{{ true }}" placeholder="{{ bsname }}" bind:change="onClicks" />
+			<view class="up_card">
+				<view class="title">
+					<text>上传法人身份证:</text>
+					<text>（需签字后拍照上传）</text>
+				</view>
+				<view class="up-box">
+					<view class="up-img center" data-id="2" bindtap="onChooseImgs">
+						<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls2 }}"></image>
+						<image class="max-img" hidden="{{ !imgUrls2 }}" src="{{ icon_Url+imgUrls2 }}" hidden="{{ !imgUrls2 }}"></image>
+						<text class="up-t" hidden="{{ imgUrls2 }}">上传</text>
+					</view>
+
+					<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+						<image src="{{ icon_idCard }}"></image>
+						<view class="yl">身份证样例</view>
+					</view>
+				</view>
+				<!-- <view class="up-box"> -->
+				<!-- <ocr-navigator class="up-img ocr-navigator" data-id="2" bind:onSuccess="onIdCard" certificateType="idCard" opposite="{{false}}">
+            <view class="up-img center margin0">
+              <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls2 }}"></image>
+              <image class="max-img" hidden="{{ !imgUrls2 }}" src="{{ icon_Url+imgUrls2 }}" hidden="{{ !imgUrls2 }}"></image>
+              <text class="up-t" hidden="{{ imgUrls2 }}">上传</text>
+            </view>
+          </ocr-navigator> -->
+				<!-- </view> -->
+			</view>
+			<van-field value="{{ CardID2 }}" data-id="2" disabled="{{ false }}" label="身份证号码：" maxlength="20" clearable border="{{ true }}" placeholder="{{ CardID2 }}" bind:change="onClicks" />
+			<view class="remark" wx:if='{{ err==false&&business_type==1 }}'>{{ remark }}</view>
+		</van-tab>
+		<van-tab title="个人代理">
+			<view style="height:70rpx;"></view>
+			<van-field value="{{ username }}" disabled="{{ false }}" label="联系人：" maxlength="20" clearable border="{{ true }}" placeholder="" bind:change="onUsername" />
+
+			<view class="up_card">
+				<view class="title">
+					<text>上传个人身份证:</text>
+					<text>（需签字后拍照上传）</text>
+				</view>
+				<view class="up-box">
+					<view class="up-img center" data-id="3" bindtap="onChooseImgs">
+						<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls3}}"></image>
+						<image class="max-img" hidden="{{ !imgUrls3 }}" src="{{ icon_Url+imgUrls3 }}" hidden="{{ !imgUrls3 }}"></image>
+						<text class="up-t" hidden="{{ imgUrls3 }}">上传</text>
+					</view>
+
+					<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+						<image src="{{ icon_idCard }}"></image>
+						<view class="yl">身份证样例</view>
+					</view>
+				</view>
+
+				<!-- <view class="up-box">
+          <ocr-navigator class="up-img ocr-navigator" data-id="3" bind:onSuccess="onIdCard" certificateType="idCard" opposite="{{false}}">
+            <view class="up-img center margin0" data-id="3" >
+              <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls3}}"></image>
+              <image class="max-img" hidden="{{ !imgUrls3 }}" src="{{ icon_Url+imgUrls3 }}" hidden="{{ !imgUrls3 }}"></image>
+              <text class="up-t" hidden="{{ imgUrls3 }}">上传</text>
+            </view>
+          </ocr-navigator>
+        </view> -->
+
+			</view>
+			<van-field value="{{ CardID3 }}" data-id="3" disabled="{{ false }}" label="身份证号码：" maxlength="20" clearable border="{{ true }}" placeholder="{{ CardID3 }}" bind:change="onClicks" />
+			<view class="remark" wx:if='{{ err==false&&business_type==2 }}'>{{ remark }}</view>
+		</van-tab>
+	</van-tabs>
+
+
+	<view class="check-box" style="bottom:{{  SafeButtom+20 }}rpx" wx:if="{{ show==false&&check_type==false }}">
+		<van-checkbox value="{{ checked }}" checked-color="#f96006" bind:change="onChange" />
+		<view class="text-daili">
+			<text>请阅读并同意</text>
+			<text style="color:#4a90e2" catchtap="onReadys">《知依昇平台代理人入驻协议》</text> </view>
+	</view>
+
+	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+		<view class="a_box" bindtap="upData">提交</view>
+	</view>
+</view>
+
+<view class="detail-box" wx:else>
+	<!-- <van-field value="{{ username }}" disabled="{{ true }}" title-width="50px" label="昵称：" clearable border="{{ true }}" placeholder="" bind:change="onUsername" /> -->
+	<van-cell title="联系人：{{ username }}" title-width="300px" />
+	<view class="up_card" hidden="{{ !list.business_license }}">
+		<view class="title">
+			<text>营业执照:</text>
+			<text>（需盖章后拍照上传）</text>
+		</view>
+		<view class="up-box">
+			<view class="up-img center" data-id="4" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ list.business_license }}"></image>
+				<image class="max-img" hidden="{{ !list.business_license }}" src="{{ icon_Url+list.business_license }}" hidden="{{ !list.business_license }}"></image>
+				<text class="up-t oran">查看</text>
+			</view>
+			<view class="img_box center" data-id="{{index}}" data-type="1" bindtap="onYanglei">
+				<image src="{{ icon_yanglei }}"></image>
+				<view class="yl">营业执照样例</view>
+			</view>
+		</view>
+		<!-- <van-field value="{{ username }}" disabled="{{ true }}" title-width="50px" label="昵称：" maxlength="20" clearable border="{{ true }}" placeholder="" /> -->
+		<van-cell title="企业名称：{{ bsname }}" title-width="300px" />
+	</view>
+
+	<view class="up_card" hidden="{{ !list.identity_card }}">
+		<view class="title">
+			<text>{{ list.user_type==2?'法人身份证:':'个人身份证：' }}</text>
+			<text>（需签字后拍照上传）</text>
+		</view>
+		<view class="up-box">
+			<view class="up-img center" data-id="5" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ list.identity_card }}"></image>
+				<image class="max-img" hidden="{{ !list.identity_card }}" src="{{ icon_Url+list.identity_card }}" hidden="{{ !list.identity_card }}"></image>
+				<text class="up-t oran">查看</text>
+			</view>
+
+			<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+				<image src="{{ icon_idCard }}"></image>
+				<view class="yl">身份证样例</view>
+			</view>
+		</view>
+		<van-cell title="{{ list.user_type==2?'法人身份证:':'个人身份证：' }}：{{ list.user_type==2?CardID2:CardID3 }}" title-width="300px" />
+		<view class="b_list_btn first" style="height:{{ safeHeight }}rpx" wx:if="{{ agree_cart!==''&&check_type==true?true:false }}">
+			<view class="a_box" bindtap="onDown">下载合同</view>
+		</view>
+
+	</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />
+<van-dialog id="van-dialog" />

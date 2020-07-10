@@ -1,0 +1,96 @@
+/* package/component1/pages/user/toAgent/toAgent.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background-color: #F9F9F9;
+  padding-bottom: 0;
+}
+.swiper {
+  text-align: center;
+  margin-top: 40rpx;
+  height: 100%;
+}
+.topImg{
+  width: 672rpx;
+  height: 220rpx;
+}
+.swiper-item{
+  width: 672rpx!important;
+  height: 220rpx!important;
+}
+.info {
+  margin:0 50rpx;
+  padding: 40rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  background-color: #fff;
+  text-align: left;
+  margin-top: 20rpx;
+}
+.get{
+  font-family: PingFangSC;
+  font-size: 28rpx;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+.getDetail{
+  font-family: PingFangSC;
+  font-size: 28rpx;
+  letter-spacing: normal;
+  color: #2b3139;
+  margin-top: 16rpx;
+}
+.mtop{
+  margin-top: 20rpx;
+}
+
+/* 积分商城 */
+.shop{
+  margin-top: 20rpx;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #999999;
+}
+.line{
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  height: 2rpx;
+  background-color: #999999;
+  width: 150rpx;
+}
+.rline{
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  height: 2rpx;
+  background-color: #999999;
+  width: 150rpx;
+}
+.jqqd{
+  margin-top: 30rpx;
+}
+.jqqd image{
+  width: 184rpx;
+  height: 260rpx;
+}
+.jqqd view{
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #999999;
+  margin-top: 30rpx;
+}

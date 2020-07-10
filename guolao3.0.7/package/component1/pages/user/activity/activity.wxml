@@ -1,0 +1,30 @@
+<scroll-view scroll-y="true" style="height:{{ height }}px" class="scroll-view {{ display?'opcity':'' }}" hidden="{{ display  }}">
+	<view class="body" style="height:{{ height }}px">
+		<image class="imgBg" src="https://admin.iguolao.com/public/uploads/20200416182748916.jpg" mode="widthFix"></image>
+		<view class="top_img" style="top:{{ statusBarHeight+45 }}px">
+			<image src="https://admin.iguolao.com/public/uploads/20200417111419332.png" mode="widthFix"></image>
+		</view>
+		<view class="bottom_img" style="top:{{ statusBarHeight+45 }}px">
+			<image src="https://admin.iguolao.com/public/uploads/20200417110152695.png" mode="widthFix"></image>
+			<view class="btn_boxs" hover-class="hoverStyle" bindtap="onClick">
+				<image src="https://admin.iguolao.com/public/uploads/20200417111244112.png"></image>
+			</view>
+			<view class="ma_box1">
+				<view class="input_text">输入手机号</view>
+				<input class="input_box1" type="number" value="{{ moblie }}" data-id="1" bindinput='onIput' maxlength="11" cursor-spacing="20" adjust-position="true"></input>
+			</view>
+			<view class="ma_box">
+				<view class="input_text" >输入验证码</view>
+				<input class="input_box" type="number" value="{{ codes }}" data-id="2" bindinput='onIput' adjust-position="true" maxlength="6" cursor-spacing="20"></input>
+				<view class="ma_btn" bindtap="{{ code==0?'onSend':'' }}" >{{ code==0?'获取验证码':time+'s后获取' }}</view>
+			</view>
+			<view class="rest_box">
+				<text bindtap="onRest">进入知依昇小程序</text>
+			</view>
+			<view class="gz_box" bindtap="onpreImg">
+				<image src="{{ images }}"></image>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+<!-- <van-toast id="van-toast" /> -->

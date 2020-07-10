@@ -1,0 +1,49 @@
+<view class="continer">
+		<image class="bg" src="https://admin.iguolao.com/public/uploads/20200629153011181.png"></image>
+		<view class="myNum">
+			<view class="tit">
+				<view class="tit1">我的积分</view>
+				<view class="tit2">{{myintegral}}</view>
+			</view>
+			<view class="numDetail" bindtap="toNumDetail">积分明细</view>
+		</view>
+		<view class="rule">
+			<text decode="{{true}}">积分规则&ensp;</text>
+			<image src="/images/rule.png"></image>
+		</view>
+		<image class="abImg" src="https://admin.iguolao.com/public/uploads/20200629152930734.png" bindtap="tolucky"></image>
+		<!--  -->
+		<view class="kon"></view>
+		<!-- 任务 -->
+		<view class="task">
+			<view class="taskTit">
+				<image src="/images/ruler.svg"></image>
+				<view>获取积分</view>
+			</view>
+			<!-- 任务详情 -->
+			<view class="ruleDetail">
+				<block wx:for="{{list}}" wx:key="index">
+					<view class="box">
+						<view class="rleft">
+							<view class="name">{{item.rule_name}}</view>
+							<view class="tip">{{item.awad_type}}</view>
+						</view>
+						<view class="rbot">
+							{{item.remark}}
+						</view>
+						<view class="qBtn" data-id="{{item.id}}" bindtap="toNext">{{item.btn}}</view>
+					</view>
+				</block>
+			</view>
+		</view>
+		<!-- 积分商城 -->
+		<view class="shop">
+			<view class="line"></view>
+			<text>积分商城</text>
+			<view class="rline"></view>
+		</view>
+		<view class="jqqd">
+			<image src="https://admin.iguolao.com/public/uploads/20200706092103255.png" ></image>
+			<view>敬请期待</view>
+		</view>
+</view>

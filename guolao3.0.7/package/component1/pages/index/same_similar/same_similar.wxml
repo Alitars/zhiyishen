@@ -1,0 +1,49 @@
+<view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<view class="body" style="height:{{ SafeHigh*3 }}rpx;">
+	<view class="top_tab" style="height:{{safeHeight/2}}px" />
+	<view class="guo_box" style="height:{{safeHeight/2}}px">
+		<image class="bg fix" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+	</view>
+</view>
+<view class="g_box" style="padding-top:{{statusBarHeight+45}}px">
+	<image class="g_img" src="{{ icon_Url+'/public/images/guo.png' }}"></image>
+	<view class="g_t" style="top:{{ statusBarHeight+45+40 }}px">{{ text }}</view>
+</view>
+<view class="fl-cm">
+	<view class="btn_box_slider">
+		<view class="btns1 {{ id==1?'btns_after':'' }}" data-id="1" bindtap="onSlider">历史的商标</view>
+		<view class="btns2 {{ id==2?'btns_after':'' }}" data-id="2" bindtap="onSlider">导入的商标</view>
+	</view>
+	<view class="body_two " id="similar">
+		<scroll-view class="scroll-box" scroll-y="true" style="height: {{ scrollHeight }}px;">
+			<block wx:for="{{ arry }}" wx:key='index'>
+				<view class="list-box  al_center">
+					<view class="center {{ item.isSelect?'isSelect':'choose-box' }}" data-id='{{ index }}' bindtap="onSelect"></view>
+					<view class="img-box">
+						<image wx:if='{{ id==1 }}' src="{{ item.brand_img?icon_Url+item.brand_img:'/images/noImg.png' }}"></image>
+						<image wx:else src="{{ item.brand_img?'data:image/png;base64,'+item.brand_img:'/images/noImg.png' }}"></image>
+					</view>
+					<view class="t-box">
+						<view class="list-t al_center">
+							<text class="van-ellipsis">{{ item.cate_name }}</text>
+						</view>
+						<view class="list-t al_center  gray">
+							<text class="van-ellipsis">{{ item.three_brand[0].num }} {{ item.three_brand[0].name }}</text>
+						</view>
+					</view>
+					<view class="look-m" data-id='{{ index }}' bindtap="onLook">查看更多</view>
+				</view>
+			</block>
+		</scroll-view>
+	</view>
+</view>
+<view class="b_box" style="height:{{ safeHeight }}rpx" id='bottom'>
+	<view class="orange" bindtap="onClick">下一步</view>
+</view>
+<van-toast id="van-toast" />

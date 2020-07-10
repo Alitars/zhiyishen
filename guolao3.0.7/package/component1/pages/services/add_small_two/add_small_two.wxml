@@ -1,0 +1,47 @@
+<view class="container">
+  <van-search value="{{ value }}" shape="round" placeholder="请输入组别名称" bind:search="onSearch" bind:change="onChange" />
+  <van-transition show="{{ list }}" duration="{{ { enter: 300, leave: 300 } }}" name="fade-down" custom-class="block">
+    <view class="list-one" bindtap="onOpen">{{ name }}</view>
+    <block wx:for="{{ list }}" wx:key='index'>
+      <view class="list-two al_center" data-id="{{ index }}" id="{{  'the-id'+index }}" data-num="{{ item.num }}" bindtap="onFold">
+        <view class="list-two-t">
+          <text class="{{ item.light==1?'size':'' }}">{{ a.getNum(item.num) }} {{ item.name }}</text>
+          <text class="r0-txt">{{ item.isSelect?'已选择'+item.isSelect:'' }}</text>
+        </view>
+        <view class="arrow {{ item.show?'rotate':''}}"></view>
+        <view class="border" hidden="{{ !item.show }}"></view>
+        <view class="border-wh" hidden="{{ item.show }}"></view>
+      </view>
+      <view class="fold">
+        <van-transition show="{{ item.show }}"  duration="{{ { enter: 300, leave: 300 } }}" name="fade-down" custom-class="block">
+          <block wx:for="{{ item.third }}" wx:for-item="item" wx:key='index'>
+            <view class="list-three  al_center" data-first="{{ item.firstIndex }}" data-name="{{ item.name }}" data-two="{{ item.twoIndex }}" bindtap="onSelect">
+              <text class="{{ item.light==1?'size':'' }}">{{ item.num }} {{ item.name }}</text>
+              <image class="true" hidden="{{ item.isSelect==false?true:false }}" src="/images/true.png"></image>
+            </view>
+          </block>
+        </van-transition>
+      </view>
+    </block>
+  </van-transition>
+  <view class="b_box " style="height:{{ SafeButtom }}rpx">
+    <view class="orange" bindtap="onClick">确定</view>
+  </view>
+</view>
+<van-transition show="{{ !display }}" custom-class="block">
+  <view class="go_top center" bindtap="onTop">
+    <image src="/images/top.png"></image>
+  </view>
+</van-transition>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+<wxs module="a">
+  var getNum = function(num) {
+    if (num.length == 3) {
+      return ('0' + num);
+    } else {
+      return num;
+    }
+  }
+  module.exports.getNum = getNum;
+</wxs>

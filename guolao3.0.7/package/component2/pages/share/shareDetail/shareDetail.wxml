@@ -1,0 +1,83 @@
+<!-- <navigation-bar back="{{ true }}" background="#fff" title="商标注册" /> -->
+
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<!--<view class="sx-box"bindtap="onClose">筛选</view>-->
+	<view class="custom-text van-ellipsis" bindtap="onClick"><text>商标注册</text></view>
+</view>
+<view class="empty_custom" style="padding-top:{{ statusBarHeight }}px" />
+<view class="continer">
+		<image class="bg" src="https://admin.iguolao.com/public/uploads/20200618101548522.png"></image>
+		<view class="box">
+			<view class="imgbox"  hidden="{{strShow}}" bindtap="upWen"> 
+				<image class="img" src="{{strimg ==''? '../../../images/up-ch.png':url + strimg}}"></image>
+				<!-- {{url + strimg}}../../../images/up-ch.png -->
+			</view>
+			<view class="imgbox" bindtap="uploadImg" hidden="{{show}}"> 
+				<image class="img" src="{{create ==''? '../../../images/up-ch.png':url + create}}"></image>
+			</view>
+			<view class="text" hidden="{{show}}">点击图片更换商标图案</view>
+			<view class="changeCol clearfix" hidden="{{show}}">
+				<view class="icon-l left {{isBlack == false? 'col-b':'col-o'}}" data-id="0" bindtap="toBlack">原图</view>
+				<view class="icon-r left {{isBlack == true? 'col-b':'col-o'}}" data-id="1" bindtap="toBlack">转黑白</view>
+			</view>
+			<view class="kon"></view>
+			<view class="type clearfix">
+				<view class="left">商标类型:</view>
+				<view class="left mg-l2 w100">
+					<picker bindchange="changeStyle" value="{{styleIndex}}" range="{{styleText}}" class="picker">
+						<!-- <view hidden="{{ value.length>0&&create.length>0?false:true }}"> -->
+							<van-cell is-link data-id="2" value="{{ style[styleIndex].name}}" />
+							<!-- <view>{{ style[styleIndex].name}}</view> -->
+						<!-- </view> -->
+					</picker>
+				</view>
+			</view>
+			<view class="name clearfix" hidden="{{strShow}}">
+				<view class="left">商标名称:</view>
+				<view class="left mg-l2 w100" >
+					<input class="comName" value="{{value}}" bindinput="changeName" bind:blur="onCreateIcon" placeholder="请输入商标名称"></input>
+				</view>
+			</view>
+			<view class="font clearfix" hidden="{{strShow}}">
+				<view class="left">商标字体:</view>
+				<view class="left mg-l2 w100" >
+					<picker bindchange="bindPickerChange" value="{{formIndex}}" range="{{formText}}" class="picker">
+						<!-- <view hidden="{{ value.length>0&&create.length>0?false:true }}"> -->
+							<van-cell is-link data-id="4" value="{{ form[formIndex].font_name }}" />
+							<!-- <view> {{ form[formIndex].font_name }}</view> -->
+						<!-- </view> -->
+					</picker>
+				</view>
+			</view>
+
+			<!-- 商标类别 -->
+			<view class="title">商标类别</view>
+			<block wx:for='{{  arry  }}' wx:key='index'>
+				<view class="first-box {{ item.isSelect==true?'rotate':'' }}" data-index="{{ index }}" bindtap="onClick">
+					<image src="https://admin.iguolao.com/public/uploads/20200525144717502.png"></image>
+					<text>第{{item.num}}类{{ item.name }}</text>
+				</view>
+				<view class="over">
+					<van-transition show="{{ item.isSelect }}" name="fade-down" custom-class="block">
+						<view class="flex-box">
+							<view class="center-box-fl">
+								<block wx:for='{{ item.sec }}' wx:for-item="item" wx:key='index'>
+									<block wx:for="{{ item.third }}" wx:for-item="item" wx:key='index'>
+										<view class="flx-btn">{{ item.num + ' ' + item.name }}</view>
+									</block>
+								</block>
+							</view>
+						</view>
+					</van-transition>
+				</view>
+			</block>
+			
+			<view class="k-box"></view>
+		</view>
+		<view class="check" bindtap="toCheck">加入购物车</view>
+</view>

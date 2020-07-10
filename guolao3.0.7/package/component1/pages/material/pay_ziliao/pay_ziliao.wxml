@@ -1,0 +1,284 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+  <view class="custom-text van-ellipsis" bindtap="onClick">
+    <text>提交资料</text>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{ statusBarHeight }}px" />
+<!-- 商标注册 -->
+<view class="body" hidden="{{ type==1?false:true }}">
+  <van-transition show="{{ popup }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="申请人（中文）" border="{{ false }}" />
+    <van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+    <!-- 商标注册 -->
+    <view class="list-box fiexd">
+      <view class="first">同个商标的资料同步提交</view>
+      <view class="checked-box">
+        <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" inactive-color="#999999" bind:change="onCheck" />
+      </view>
+    </view>
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+
+<!-- 商标撤三申请 -->
+<view class="body" hidden="{{ type==2?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="申请人（中文）" border="{{ false }}" />
+    <van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+   <van-cell title="撤三理由" border="{{ false }}" />
+		<van-field value="{{ reason }}" custom-style="width:100%;height:160rpx;" clearable type="textarea" placeholder="请输入" autosize border="{{ true }}" bind:change="onTextarea" />
+		<!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+      <view class="zhusi">申请撤销理由示例：申请人未发现商标注册人在三年内使用过第xxxxxx号“xxx”  商标，特提出该撤销申请。</view>
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+
+<!-- 补发商标证书 -->
+<view class="body" hidden="{{ type==4?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="申请人（中文）" border="{{ false }}" />
+    <van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+    <!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+
+<!-- 商标许可备案 -->
+<view class="body" hidden="{{ type==5?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="许可人（中文）" border="{{ false }}" />
+    <van-field value="{{  xuke?xuke:'请添加'  }}" data-id='1' disabled is-link bindtap='onXuke' />
+    <van-cell title="被许可人（中文）" border="{{ false }}" />
+    <van-field value="{{  beixuke?beixuke:'请添加'  }}" data-id='2' disabled is-link bindtap='onXuke' />
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+    <!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+
+    <view class="up_card">
+      <view class="title">
+        <text>商标许可合同/协议 </text>
+        <text> 合同模板可去PC端下载</text>
+      </view>
+      <view class="up-box">
+        <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+          <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ upload_file }}"></image>
+          <image class="max-img" hidden="{{ !upload_file }}" src="{{ icon_Url+upload_file }}" hidden="{{ !upload_file }}"></image>
+          <text class="up-t" hidden="{{ upload_file }}">上传</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+<!-- 商标转让 -->
+<view class="body" hidden="{{ type==6?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+
+    <van-cell title="转让人（中文）" border="{{ false }}" />
+    <van-field value="{{  zhuanrangren?zhuanrangren:'请添加'  }}" data-id='1' disabled is-link bindtap='onZhuanRang' />
+    <van-cell title="受让人（中文）" border="{{ false }}" />
+    <van-field value="{{  shourangren?shourangren:'请添加'  }}" data-id='2' disabled is-link bindtap='onZhuanRang' />
+
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+    <!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+
+
+
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+
+<!-- 商标变更 -->
+<view class="body" hidden="{{ type==7?false:true }}">
+	<van-transition show="{{ display }}" name="slide-down" custom-class="block">
+		<view class="ti-box">
+			<image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+			<text class="ti-text">{{ display }}</text>
+		</view>
+	</van-transition>
+	<view class="card">
+		<van-cell title="申请人（中文）" border="{{ false }}" />
+		<van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+		<van-cell title="注册号" border="{{ false }}" />
+		<van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+		<!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+		<van-cell title="变更类型" border="{{ false }}" />
+		<picker bindchange="bindPickerChange" value="{{formIndex}}" range="{{formText}}">
+			<van-field value="{{  formText[formIndex]  }}" disabled is-link />
+			<!-- <van-cell title="变更类型" value='{{ formText[formIndex]  }}' is-link /> -->
+		</picker>
+
+		<view class="up_card" wx:if="{{ formIndex==0 }}">
+			<view class="title">
+				<text>准予变更（备案）登记通知书</text>
+				<text>（名义变更需上传）</text>
+			</view>
+			<view class="up-box flr_box">
+				<view class="up-img center" data-id="2" bindtap="onChooseImgs">
+					<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ upload_file }}"></image>
+					<image class="max-img" hidden="{{ !upload_file }}" src="{{ icon_Url+upload_file }}" hidden="{{ !upload_file }}"></image>
+					<text class="up-t" hidden="{{ upload_file }}">上传</text>
+				</view>
+				<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+					<image src="{{ img_enTrust }}"></image>
+					<view class="yl">示例</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="up_card" wx:if="{{ formIndex==2 }}">
+			<view class="title">
+				<!-- <text>予以变更登记说明书</text> -->
+				<text>准予变更（备案）登记通知书</text>
+				<text>（名义变更需上传）</text>
+			</view>
+			<view class="up-box flr_box">
+				<view class="up-img center" data-id="2" bindtap="onChooseImgs">
+					<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ upload_file }}"></image>
+					<image class="max-img" hidden="{{ !upload_file }}" src="{{ icon_Url+upload_file }}" hidden="{{ !upload_file }}"></image>
+					<text class="up-t" hidden="{{ upload_file }}">上传</text>
+				</view>
+				<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+					<image src="{{ img_enTrust }}"></image>
+					<view class="yl">示例</view>
+				</view>
+			</view>
+		</view>
+		<!-- <view class="up_card">
+		<view class="title">
+			<text>变更后营业执照</text>
+			<text/>
+      </view>
+      <view class="up-box">
+        <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+          <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ brand_img }}"></image>
+          <image class="max-img" hidden="{{ !brand_img }}" src="{{ icon_Url+brand_img }}" hidden="{{ !brand_img }}"></image>
+          <text class="up-t" hidden="{{ brand_img }}">上传</text>
+		</view>
+	</view>
+</view>
+<view class="up_card">
+	<view class="title">
+		<text>变更后营业执照中文翻译件</text>
+		<text/>
+      </view>
+      <view class="up-box">
+        <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+          <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ translated_img }}"></image>
+          <image class="max-img" hidden="{{ !translated_img }}" src="{{ icon_Url+translated_img}}" hidden="{{ !translated_img }}"></image>
+          <text class="up-t" hidden="{{ translated_img }}">上传</text>
+	</view>
+</view>
+</view> -->
+	</view>
+	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+		<view class="a_box" bindtap="onClick">提交</view>
+	</view>
+</view>
+
+
+<!-- 商标续展 -->
+<view class="body" hidden="{{ type==8?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="申请人（中文）" border="{{ false }}" />
+    <van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+    <!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+
+
+
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+<view class="body" hidden="{{ type==9?false:true }}">
+  <van-transition show="{{ display }}" name="slide-down" custom-class="block">
+    <view class="ti-box">
+      <image class="ti-img" src="/package/component1/images/!!!!.png"></image>
+      <text class="ti-text">{{ display }}</text>
+    </view>
+  </van-transition>
+  <view class="card">
+    <van-cell title="申请人（中文）" border="{{ false }}" />
+    <van-field value="{{  name?name:'请添加'  }}" disabled is-link bindtap='onAttest' />
+    <van-cell title="注册号" border="{{ false }}" />
+    <van-field value="{{ value }}" placeholder="{{ brand_num?brand_num:'请输入' }}" maxlength='20' clickable type="number" bind:change="onChange" />
+    <!-- <van-cell title="商标类别" border="{{ false }}" />
+    <van-field value="{{ category?category:'请添加' }}" disabled is-link bindtap='onClose' /> -->
+
+
+
+  </view>
+  <view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onClick">提交</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />
+<!-- <van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+  <van-picker show-toolbar title="请选择" columns="{{ columns }}" bind:cancel="onCancel" bind:confirm="onConfirm" />
+</van-popup> -->

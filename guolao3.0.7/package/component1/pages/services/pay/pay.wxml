@@ -1,0 +1,133 @@
+  <navigation-bar back="{{ true }}" background="#fff" title="确认订单" />
+  <view class="body">
+  	<view class="top_box jc_center f_c" bindtap="onAdress" hidden="{{ shippAddress.length==0?true:false }}">
+  		<image class="set_img" src="/images/set.png"></image>
+  		<view class="list_t al_center">
+  			<text>收货地址：</text>
+  			<text class="van-ellipsis" style="max-width:430rpx;">{{ shippAddress.address }}</text>
+  		</view>
+  		<view class="list_t al_center">
+  			<text>收货人：</text>
+  			<text>{{ shippAddress.consignee }}</text>
+  		</view>
+  		<view class="list_t al_center">
+  			<text>联系号码：</text>
+  			<text>{{ shippAddress.mobile }}</text>
+  		</view>
+  		<view class="arrow"></view>
+  	</view>
+
+  	<view class="top_box2 jc_center f_c" bindtap="onAdress" hidden="{{ shippAddress.length==0?false:true }}">
+  		<image class="bgoran" src="/package/component1/images/add.png"></image>
+  		<view class="list_t al_center">
+  			<text>您还没有设置地址，点击进行设置</text>
+  			<text/>
+    </view>
+    <view class="arrow"></view>
+  </view>
+
+  <block wx:for='{{ orderList }}' wx:key='index'>
+    <view class="card_box">
+      <text class="biaohao">订单编号 {{ item.order_id }}</text>
+  			<view class="card_list">
+  				<text>业务名称：</text>
+  				<text>{{ item.good_name  }}</text>
+  			</view>
+  			<view class="card_list">
+  				<text>服务类型：</text>
+  				<text>{{ item.click_type }}</text>
+  			</view>
+  			<view class="card_list" hidden="{{ !item.one_cate }}">
+  				<text>类别：</text>
+  				<text>{{ applyType[item.one_cate-1].name }}</text>
+  			</view>
+  			<view class="list_price">
+  				<view class="price_box">
+  					<text style="color:#333">价格：</text>
+  					<text>￥{{ item.total_price }}</text>
+  				</view>
+  			</view>
+  		</view>
+  		</block>
+
+  		<view class="card_box {{  invoice_id?' pdd':'' }}">
+  			<view class="btn_list" bindtap="{{ !show?'onCoupon':''  }}">
+  				<text>优惠券：</text>
+  				<text wx:if="{{ !show&&isUseCoupon==true&&couponNum>0 }}" hidden="{{ couponNum>0&&coupon_price==0 }}">{{ coupon_price?'已使用优惠券'+'￥'+coupon_price+'.00':'不使用优惠券' }}</text>
+  				<text wx:else>{{ isUseCoupon&&couponNum==0?'不使用优惠券':'' }}</text>
+  				<text class="couponNum" wx:if="{{ couponNum>0&&coupon_price==0&&isUseCoupon==true }}">您有{{ couponNum }}张优惠券可以使用</text>
+  				<text wx:if="{{ isUseCoupon==false }}">不使用优惠券</text>
+  			</view>
+  			<view class="btn_list" bindtap="onGl">
+  				<text>发票：</text>
+  				<text>{{ invoice_id?name:'不开发票' }}</text>
+  			</view>
+  			<view class="btn_list3" wx:if="{{  invoice_id?true:false }}">
+  				<text>提示：</text>
+  				<text>每月25日后申请的发票，公司统一下月初开出</text>
+  			</view>
+  		</view>
+			<!-- 积分 -->
+			<view class="card_box" hidden="{{integralShow}}">
+				<view class="integral">
+					<text>积分：</text>
+					<text>共{{my_integral}}积分       ({{proportion}}积分可以抵扣1元)</text>
+				</view>
+				<view class="integral">
+					<text class="abs">当前可抵扣￥{{cuntPrice}}  (-{{cunt_integral}}积分)</text>
+				</view>
+			</view>
+  		<view class="card_box" hidden="{{ show }}">
+  			<view class="btn_zifu">
+  				<text class="txt1">支付方式：</text>
+  				<view class="zf-box">
+  					<view class="icon-box al_center {{ checked==2?'blue':'' }}" data-id="2" bindtap="onChecked">
+  						<image src="/images/gszz.png"></image>
+  						<text>银行转账</text>
+  					</view>
+
+  					<view class="icon-box al_center {{ checked==1?'blue':'' }}" data-id="1" bindtap="onChecked">
+  						<image src="/images/wxf.png"></image>
+  						<text>微信支付</text>
+  					</view>
+
+  				</view>
+  			</view>
+  		</view>
+  		<!-- <view class="card_box" hidden="{{ !focus }}"> -->
+  		<view class="card_box" wx:if="{{ checked==2 }}">
+  			<view class="input-box-qy">
+  				<van-field value="{{ value }}" border="{{ false }}" focus="{{ focus }}" custom-style="font-size:24rpx;" label="汇款公司：" placeholder="请输入企业的汇款公司名称" clearable="true" bind:change="onChange" />
+  			</view>
+  		</view>
+  		<view class="b_box" style="height:{{ SafeButtom }}rpx">
+  			<view class="j_btn_box">
+  				<view class="top_box_b">
+  					<text>合计:</text>
+  					<text>{{ total }}</text>
+  					<text>￥</text>
+  				</view>
+  				<view class="bottom_box_b">
+  					<text>实付金额:</text>
+  					<text>{{ nhr_pay }}</text>
+  					<text>￥</text>
+  				</view>
+  				<button class="btn_pay" bindtap="onPay">结算({{ orderList.length }})</button>
+  			</view>
+  		</view>
+  	</view>
+
+  	<van-popup show="{{ display }}" bind:close="onClose" custom-style="border-radius: 15rpx;" z-index='1000' catchtouchmove="true" >
+  		<view class="card_kaipiao_box">
+  			<view class="title-box">转账信息</view>
+  			<view class="van-cells">公司名称：知升(上海)知识产权代理有限公司</view>
+  			<view class="van-cells">开户行：上海浦东发展银行松江支行</view>
+  			<view class="van-cells">账号：98080078801500002499</view>
+  			<view class="van-cells">(或者到我的个人中心查看银行转账信息)</view>
+  			<view class="sure_buton" bindtap="onSrue_Invoice">知道了</view>
+  		</view>
+  	</van-popup>
+
+
+  	<van-toast id="van-toast" />
+  	<!-- <van-notify id="custom-selector" safe-area-inset-top /> -->

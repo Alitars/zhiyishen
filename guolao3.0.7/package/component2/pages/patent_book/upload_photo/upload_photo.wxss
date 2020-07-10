@@ -1,0 +1,8 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+@import '/package/component2/pages/patent_book/antistop/antistop.wxss';.up-box{width:192rpx;height:192rpx}.up-box image{width:inherit;height:inherit;overflow:hidden}.imgBox{max-width:400rpx;max-height:400rpx;overflow:hidden;background:#f1f1f1;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.txt{font-size:28rpx;color:#f96006;position:absolute;z-index:10}.imgBox image{max-width:400rpx;max-height:400rpx}

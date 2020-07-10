@@ -1,0 +1,53 @@
+<import src="../../../../../template/template.wxml" />
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+  <!-- <view class="sx-box" bindtap="onClose">筛选</view> -->
+  <view class="custom-text van-ellipsis" bindtap="onClick">
+    <text>我的订单</text>
+  </view>
+</view>
+<view>
+  <view style="padding-top:{{ height+statusBarHeight }}px"></view>
+  <view class="tabs_box" style="top:{{ height }}px">
+    <view class="tab {{active==0?'t_c':''}}" data-id="0" bindtap="anima">全部</view>
+    <view class="tab {{active==1?'t_c':''}}" data-id="1" bindtap="anima">待付款</view>
+    <view class="tab {{active==2?'t_c':''}}" data-id="2" bindtap="anima">待处理</view>
+    <view class="tab {{active==3?'t_c':''}}" data-id="3" bindtap="anima">已完成</view>
+    <view class="border" animation="{{ animationData }}"></view>
+  </view>
+  <block wx:for="{{ list }}" wx:key='index'>
+			<view class="box" >
+				<view class="card_box">
+						<view class="d_box"><text>订单号：{{item.order_id}}</text><text class="text-overflow van-ellipsis">{{item.status_name}}</text></view>
+            <view class="name">技术名称：{{item.name}}</view>
+            <view class="clearfix">
+              <view class="fr col m-10">￥ {{item.price}}</view>
+            </view>
+            <view class="button clearfix">
+              <view class="pay fr" wx:if="{{item.status == 0}}">去付款</view>
+              <view class="edit fr" wx:if="{{item.status == 0}}">去编辑</view>
+              <view class="cancel fr" wx:if="{{item.status == 0}}" data-id="{{item.id}}" bindtap="cancelOrder">取消订单</view>
+              <view class="hasCancel fr" wx:if="{{item.status == -1}}">已取消</view>
+              <view class="fr" wx:if="{{item.status_name == '已支付'|| item.status_name == '撰写中'||item.status_name == '取消订单'||item.status_name == '修改中'}}" data-id="{{item.id}}" bindtap="toDetail">订单详情</view>
+              <view class="fr" wx:if="{{item.status_name == '已支付'}}">撰写中</view>
+            </view>
+				</view>
+			</view>
+	</block>
+<view class="loading-more center top40" hidden="{{ display }}">
+		<van-loading size='25px' color="#f96006" /><text></text></view>
+<view class="loading-more center top40" hidden="{{ !display }}"><text></text></view>
+  
+
+<!-- <van-transition show="{{ active==1?true:false }}" custom-class="block">
+  <view class="b_list_btn first btn_after van-hairline--top" style="height:{{ safeHeight }}rpx">
+  </view> 
+</van-transition> -->
+</view>
+<!-- <van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" safe-area-inset-top/> -->

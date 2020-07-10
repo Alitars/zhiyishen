@@ -1,0 +1,40 @@
+<!-- <navigation-bar back="{{ true }}" background="#fff" title="已注册商标" /> -->
+<!-- <view class="search-box">
+	<view style="width:90%"> -->
+		<!-- field-class -->
+		<!-- <van-search value="{{ value }}" field-class="search-h" input-align="center" maxlength="50" placeholder="输入代理机构名称" shape="round" use-action-slot bind:search="onSearch" focus="{{ focus }}" bind:change="onChange" bind:clear="onClear">
+			<view slot="action" class="search-h" bind:tap="onSearch">搜索</view>
+		</van-search>
+	</view>
+</view> -->
+<!-- height：0px select  id top -->
+<view id='fixed'></view>
+<view class="search-num {{ show==true?'':'fixed-x' }}"><text>代理机构总数<text style="color:#f96006">{{ brand?brand:0 }}</text>个</text></view>
+<view class="search-num" style="background:#fff" hidden="{{ show }}"></view>
+<block wx:for="{{ list }}" wx:key="index">
+	<view class="list-view" hover-class="active" data-name="{{ item.Value }}" bindtap="onClick" wx:if="{{item.Value?true:false}}">
+		<view class="apply-name van-ellipsis"><text>申请人：{{ item.Value }}</text></view>
+		<view class="apply-name-n apply-num"><text>商标数量：{{ item.Count?item.Count:0 }}</text><text>占比：{{ item.p }}%</text></view>
+		<view class="img-num">
+			<text style="font-size:26rpx"> {{ index+1 }} </text>
+			<image class="list-view-img" src="http://51guolao.yiqibnb.com/public/uploads/20200608112611673.png"></image>
+		</view>
+	</view>
+	<view class="list-view" hover-class="active" data-name="{{ item.name }}" bindtap="onClick1" wx:if="{{item.Value?false:true}}">
+		<view class="apply-name van-ellipsis"><text>公司名称：{{ item.name }}</text></view>
+		<view class="apply-name-n apply-num"><text>专利数量：{{ item.value?item.value:0 }}</text></view>
+		<!-- <view class="btn-dt {{ item.num?'':'gray'  }}" data-index="{{ index }}" bindtap="onClick">查看详情</view> -->
+		<view class="img-num">
+			<text style="font-size:26rpx"> {{ index+1 }} </text>
+			<image class="list-view-img" src="http://51guolao.yiqibnb.com/public/uploads/20200608112611673.png"></image>
+		</view>
+	</view>
+</block>
+<view class="loading-more center" hidden="{{ display }}">
+	<van-loading size='25px' color="#f96006" />
+	<text/>
+  </view>
+  <view class="loading-more center"hidden="{{ !display }}">
+  <text></text>
+</view>
+<van-toast id="van-toast" />

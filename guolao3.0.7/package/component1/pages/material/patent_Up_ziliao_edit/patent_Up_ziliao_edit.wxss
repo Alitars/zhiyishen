@@ -1,0 +1,3 @@
+/* package/component1/pages/material/patent_Up_ziliao_edit/patent_Up_ziliao_edit.wxss */
+
+@import '/package/component1/pages/material/patent_Up_ziliao/patent_Up_ziliao.wxss';

@@ -1,0 +1,57 @@
+<import src="../../../template/template.wxml" />
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+  <!-- <view class="sx-box" bindtap="onClose">筛选</view> -->
+  <view class="custom-text van-ellipsis" bindtap="onClick">
+    <text>我的订单</text>
+  </view>
+</view>
+<view>
+  <view style="padding-top:{{ height+statusBarHeight }}px"></view>
+  <view class="tabs_box" style="top:{{ height }}px">
+    <view class="tab {{active==0?'t_c':''}}" data-id="0" bindtap="anima">全部</view>
+    <view class="tab {{active==1?'t_c':''}}" data-id="1" bindtap="anima">待付款</view>
+    <view class="tab {{active==2?'t_c':''}}" data-id="2" bindtap="anima">服务中</view>
+    <view class="tab {{active==3?'t_c':''}}" data-id="3" bindtap="anima">已完成</view>
+    <view class="border" animation="{{ animationData }}"></view>
+  </view>
+
+
+  <view>
+    <!-- <button class="delet-all" bindtap="delete" hidden="{{ false }}">删除</button> -->
+    <template is="order" data="{{ arry,statusBarHeight,height,safeHeight,active,icon_Url,display }}" />
+  </view>
+  <!-- <van-transition show="{{ active==0?true:false }}" custom-class="block">
+    <view class="b_list_btn first" style="height:{{ safeHeight }}rpx">
+      <view class="a_box" bindtap="onContract">生成合同</view>
+    </view>
+  </van-transition> -->
+  <!-- <van-transition show="{{ active==1?true:false }}" custom-class="block">
+    <view class="b_list_btn first" style="height:{{ safeHeight }}rpx">
+      <view class="a_box" bindtap="onPay">合并付款</view>
+    </view>
+  </van-transition> -->
+  <!-- <van-transition show="{{ active==1?true:false }}" custom-class="block">
+  <view class="b_list_btn first btn_after van-hairline--top" style="height:{{ safeHeight }}rpx">
+    <view class="van-checkbox-btn">
+      <van-checkbox value="{{ payCheck }}" data-id="2" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+    </view>
+    <view class=" a_box_btn" bindtap="onPay" hover-class="hoverStyle">合并付款<text>({{ paynum }})</text> </view>
+  </view> 
+</van-transition> -->
+<van-transition show="{{ active==1?true:false }}" custom-class="block">
+  <view class="b_list_btn first btn_after van-hairline--top" style="height:{{ safeHeight }}rpx">
+    <view class="van-checkbox-btn">
+      <van-checkbox value="{{ payCheck }}" data-id="2" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+    </view>
+    <view class=" a_box_btn" bindtap="onPay" hover-class="hoverStyle">合并付款<text>({{ paynum }})</text> </view>
+  </view> 
+</van-transition>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" safe-area-inset-top/>

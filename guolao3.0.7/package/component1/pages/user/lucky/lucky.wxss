@@ -1,0 +1,87 @@
+/* pages/main/main.wxss */
+page{
+  height: 100%;
+  background-image: url(https://admin.iguolao.com/public/uploads/20200629165442427.png);
+  width: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 0;
+}
+.logo{
+  width:100%;
+  text-align: center;
+  padding-top: 80rpx;
+}
+.logo image{
+  
+  height: 136rpx;
+  width: 614rpx;
+}
+canvas{
+  border: solid 0px black
+}
+.free{
+  color: #fff;
+  text-align: center;
+  font-family: PingFangSC;
+  font-size: 32rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  height: 40rpx;
+  line-height: 40rpx;
+  /* margin-top: 40rpx; */
+}
+.rel{
+  position: relative;
+}
+.choose{
+  font-family: PingFangSC;
+  font-size: 32rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  margin-top: 20rpx;
+}
+.check{
+  height:32rpx;
+  width: 32rpx;
+  border-radius: 50%;
+  border: 1rpx solid #fff;
+  line-height: 32rpx;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 170rpx;
+  transform: translateY(-50%);
+}
+.check image{
+  height:32rpx;
+  width: 32rpx;
+}
+.fl{
+  float: left;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.abc{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100rpx;
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  height: 26rpx;
+}

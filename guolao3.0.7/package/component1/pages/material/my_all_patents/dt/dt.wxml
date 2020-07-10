@@ -1,0 +1,120 @@
+<view>
+
+  <view class="cards-boxs">
+    <view class="cards-lists">
+      <text>专利名称：</text>
+      <text style="color:#f96006">3D打印</text>
+    </view>
+
+    <view class="cards-lists">
+      <text>法律状态：</text>
+      <text>有效</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>申请号：</text>
+      <text>2012343455</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>公开号：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>CN12325436</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>授函公告日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>专利权人：</text>
+      <text>刘德华</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>设计人：</text>
+      <text>张学友</text>
+    </view>
+
+
+    <view class="cards-lists">
+      <text>主分类号：</text>
+      <text>14-03</text>
+    </view>
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+
+
+    <view class="cards-lists">
+      <text>申请日：</text>
+      <text>2019-12-12</text>
+    </view>
+
+    <view class="contents">
+      <text>简要说明：</text>
+      <text>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</text>
+    </view>
+
+
+  </view>
+
+  <view class="cell border" bindtap="onProgress">
+    <text>专利pdf文件：</text>
+    <text>查看</text>
+    <view class="arrow"></view>
+  </view>
+
+</view>

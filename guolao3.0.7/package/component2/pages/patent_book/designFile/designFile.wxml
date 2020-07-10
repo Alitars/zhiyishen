@@ -1,0 +1,2 @@
+<navigation-bar back="{{ true }}" background="#fff" title="相关专利" />
+<text>package/component2/pages/patent_book/designFile/designFile.wxml</text>

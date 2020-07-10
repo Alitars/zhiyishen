@@ -1,0 +1,60 @@
+<wxs module="timeTranslate" src="./time.wxs"></wxs>
+<view class="body" hidden="{{  show }}">
+	<view class="list_box" data-id="{{ item.id }}" bindtap="onDt">
+		<view class="T_box">
+			<text>发票抬头</text>
+			<text class="van-ellipsis max-text" wx:if="{{ mold=='brand' }}">{{ arry.invoice.company_name?arry.invoice.company_name:'暂无' }}</text>
+			<text class="van-ellipsis max-text" wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.company_name?arry.company_name:'暂无' }}</text>
+		</view>
+		<view class="T_box">
+			<text>税号</text>
+			<text  wx:if="{{ mold=='brand' }}">{{ arry.invoice.credit_code?arry.invoice.credit_code:'暂无' }}</text>
+			<text  wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.credit_code?arry.credit_code:'暂无' }}</text>
+		</view>
+		<view class="T_box">
+			<text>公司地址</text>
+			<text class="van-ellipsis max-text" wx:if="{{ mold=='brand' }}">{{ arry.invoice.detail_address?arry.invoice.detail_address:'暂无' }}</text>
+			<text class="van-ellipsis max-text" wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.address?arry.address:'暂无' }}</text>
+		</view>
+		<view class="T_box">
+			<text>公司电话</text>
+			<text wx:if="{{ mold=='brand' }}">{{ arry.invoice.mobile?arry.invoice.mobile:'暂无' }}</text>
+			<text  wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.mobile?arry.mobile:'暂无' }}</text>
+		</view>
+		<view class="T_box" hidden="{{ !arry.invoice.bank }}">
+			<text>开户银行</text>
+			<text wx:if="{{ mold=='brand' }}">{{ arry.invoice.bank?arry.invoice.bank:'暂无' }}</text>
+			<text wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.bank_name?arry.bank_name:'暂无' }}</text>
+		</view>
+		<view class="T_box" hidden="{{ !arry.invoice.bank_count }}">
+			<text>银行账户</text>
+			<text wx:if="{{ mold=='brand' }}">{{ arry.invoice.bank_count?arry.invoice.bank_count:'暂无' }}</text>
+			<text wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.bank?arry.bank:'暂无' }}</text>
+		</view>
+		<view class="T_box">
+			<text>开票金额</text>
+			<text>￥{{ timeTranslate.toFixed(arry.invoice_money) }}</text>
+		</view>
+		<view class="T_box">
+			<text>申请开票时间</text>
+			<text wx:if="{{ mold=='brand' }}">{{ timeTranslate.timestampToTime(arry.create_time)}}</text>
+			<text wx:if="{{ mold=='patent'||mold=='copyright' }}">{{ arry.apply_time }}</text>
+		</view>
+		<view class="T_box">
+			<text>快递公司</text>
+			<text>{{ arry.express_company?arry.express_company:'暂无' }}</text>
+		</view>
+		<view class="T_box">
+			<text>快递单号</text>
+			<text>{{ arry.express_num?arry.express_num:'暂无' }}</text>
+		</view>
+		<block wx:for="{{ arry.order_id }}" wx:key='index'>
+			<view class="T_box">
+				<text hidden="{{ index!==0 }}">关联订单</text>
+				<text>{{item }}</text>
+			</view>
+		</block>
+	</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

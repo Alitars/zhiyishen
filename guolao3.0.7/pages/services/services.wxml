@@ -1,0 +1,23 @@
+<navigation-bar back="{{ false }}" background="#fff" title="服务分类" />
+<view class="container">
+	<view class="choose_box">
+		<view class="l_box" wx:for="{{items}}" wx:key="index">
+			<view class="btn_list_box {{id==index?'c_orange':''}}" data-id="{{index}}" bindtap="onChoose"><text hidden="{{index==id}}">{{item.cate_name}}</text></view>
+		</view>
+		<view class="bg_or" animation="{{ animationData }}">{{items[id].cate_name}}</view>
+	</view>
+	<scroll-view class="scro-v" scroll-y style="height:calc(100vh)">
+		<view class="shop_box" wx:for="{{items[id].goods}}" wx:key="index">
+			<view class="shop_dt" data-id="{{item.id}}" data-title="{{ item.title }}" bindtap="onClick">
+				<image class="animate_opacity" src="{{main_Url+item.icon?main_Url+item.icon:'/images/noImg.png'}}" lazy-load="true"></image><text class="dt_t1 van-ellipsis">{{item.title}}</text>
+			</view>
+		</view>
+		<view class="shop_box" wx:if="{{ items[id].goods.length==0?true:false}}">
+			<view class="no-shops f_c center {{ arry[id].animation?'':'' }}">
+				<image class="no-shops-img" src="https://admin.iguolao.com/public/uploads/20200520112406938.png" mode="widthFix"></image><text>敬请期待</text>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

@@ -1,0 +1,32 @@
+<navigation-bar back="{{ true }}" color="#333" background="#fff" title="AI工商核名" />
+
+<view class="body">
+	<image class="bg-img" src="https://admin.iguolao.com/public/uploads/20200521111009260.jpg" mode="widthFix"></image>
+	<image class="t-name" src="https://admin.iguolao.com/public/uploads/20200520155133814.png"></image>
+
+	<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+		<view class="list-input" style="top:430rpx">
+			<view class="t-list">注册城市：</view>
+			<text style="color:{{ region[1]?'#fff':'#fff' }}">{{region[1]?region[1]:'请选择您的注册城市'}}</text>
+			<!-- <input class="input-box" disabled placeholder="请选择您的注册城市" maxlength='50' data-id="1" bindinput="onInput"></input> -->
+		</view>
+	</picker>
+
+
+	<view class="list-input" style="top:470rpx">
+		<view class="t-list">公司名称：</view>
+		<input class="input-box" placeholder-style="color: #fff;" maxlength='50' placeholder="请输入您的公司的名字" data-id="2" bindinput="onInput"></input>
+	</view>
+
+	<view class="list-input-s" style="top:510rpx;">
+		<picker bindchange="bindPickerTrade" mode='selector' value="{{tradeItem}}" range="{{trade}}">
+			<view class="t-list-s">行业类型：<text>{{ tradeItem }}</text></view>
+		</picker>
+		<picker bindchange="bindPickerCommpany" mode='selector' value="{{commpanyItem}}" range="{{commpany}}">
+			<view class="input-box-s">{{ commpany[commpanyItem] }}</view>
+		</picker>
+	</view>
+	<view class="bm-box" hover-class="black" bindtap="onGS">立即免费核名</view>
+
+</view>
+<van-toast id="van-toast" />

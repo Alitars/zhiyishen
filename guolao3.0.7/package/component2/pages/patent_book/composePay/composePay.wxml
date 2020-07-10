@@ -1,0 +1,70 @@
+  <navigation-bar back="{{ true }}" background="#fff" title="确认订单" />
+    <view class="card_box">
+      <text class="biaohao">订单编号：{{orderId}}</text>
+			<view class="card_list">
+				<text>技术名称：{{name}}</text>
+			</view>
+			<view class="list_price">
+				<view class="price_box">
+					<text style="color:#333">价格：</text>
+					<text>￥ {{price}}</text>
+				</view>
+			</view>
+  	</view>
+
+  		<view class="card_box">
+  			<view class="btn_zifu">
+  				<text class="txt1">支付方式：</text>
+  				<view class="zf-box">
+  					<view class="icon-box al_center {{ checked==2?'blue':'' }}" data-id="2" bindtap="onChecked">
+  						<image src="/images/gszz.png"></image>
+  						<text>银行转账</text>
+  					</view>
+
+  					<view class="icon-box al_center {{ checked==1?'blue':'' }}" data-id="1" bindtap="onChecked">
+  						<image src="/images/wxf.png"></image>
+  						<text>微信支付</text>
+  					</view>
+
+  				</view>
+  			</view>
+  		</view>
+			<!-- 显示输入汇款公司 -->
+			<view class="card_box" hidden="{{ !focus }}">
+				<view class="card_box" wx:if="{{ checked==2 }}">
+					<view class="input-box-qy">
+						<van-field value="{{ value }}" border="{{ false }}" focus="{{ focus }}" custom-style="font-size:24rpx;" label="汇款公司：" placeholder="请输入企业的汇款公司名称" clearable="true" bind:change="onChange" />
+					</view>
+				</view>
+			</view>
+			<!-- 底部 -->
+  		<view class="b_box" style="height:{{ SafeButtom }}rpx">
+  			<view class="j_btn_box">
+  				<view class="top_box_b">
+  					<text>合计:</text>
+  					<text>{{ price }}</text>
+  					<text>￥</text>
+  				</view>
+  				<view class="bottom_box_b">
+  					<text>实付金额:</text>
+  					<text>{{ price }}</text>
+  					<text>￥</text>
+  				</view>
+  				<button class="btn_pay" bindtap="onPay">结算</button>
+  			</view>
+  		</view>
+
+  	<!-- <van-popup show="{{ display }}" bind:close="onClose" custom-style="border-radius: 15rpx;" z-index='1000' catchtouchmove="true" >
+  		<view class="card_kaipiao_box">
+  			<view class="title-box">转账信息</view>
+  			<view class="van-cells">公司名称：知升(上海)知识产权代理有限公司</view>
+  			<view class="van-cells">开户行：上海浦东发展银行松江支行</view>
+  			<view class="van-cells">账号：98080078801500002499</view>
+  			<view class="van-cells">(或者到我的个人中心查看银行转账信息)</view>
+  			<view class="sure_buton" bindtap="onSrue_Invoice">知道了</view>
+  		</view>
+  	</van-popup> -->
+
+
+  	<van-toast id="van-toast" />
+  	<!-- <van-notify id="custom-selector" safe-area-inset-top /> -->

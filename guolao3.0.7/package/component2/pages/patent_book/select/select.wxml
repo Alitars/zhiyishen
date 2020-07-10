@@ -1,0 +1,30 @@
+<view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+<view class="g_box fixd" style="padding-top:{{statusBarHeight+45}}px;margin-top:20px" id='box'>
+	<image class="g_img" src="https://admin.iguolao.com/public/uploads/20200526103100803.png"></image>
+	<view class="g_t" style="top:{{ statusBarHeight+45+40 }}px">{{ text }}</view>
+</view>
+<!-- 第1个问题 -->
+<view class="body_two animate_opacity" style="height:{{ height-60 }}px">
+	<view class="check_box_v">
+		<block wx:for="{{ CheckBox }}" wx:key="index">
+			<view class="van_checkbox" data-id="{{ index }}" data-name="{{item.text}}" bindtap="onChangeText">
+				<view class="check-box">
+					<view class="check-box-after" wx:if="{{ item.isSelect==true }}" />
+				</view>
+				<text>{{ item.text }}</text>
+			</view>
+		</block>
+	</view>
+</view>
+<view class="b_box " id='btn' style="height:{{ SafeButtom }}rpx">
+	<view class="orange" bindtap="onClick">下一步</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

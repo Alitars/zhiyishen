@@ -1,0 +1,6 @@
+<view class="van-notice-bar" style="top:{{ statusBarHeight+45 }}px" wx:if="{{ arry.length>0?true:false }}">
+  <van-notice-bar wrapable scrollable="false" left-icon="info-o" backgroundColor="#f44" color="#fff" text="星级越低注册成功率越低" />
+</view>
+<view style="height:45px"></view>
+<import src="../../../../../template/template.wxml" />
+<template is="recommend" data="{{ statusBarHeight,arry,checked,delet,show,safeHeight,SafeButtom }}" />

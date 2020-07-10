@@ -1,0 +1,8 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+@import "/package/component1/pages/knowledge/brand_list/brand_list.wxss";@import "/pages/index/search/search.wxss";page{background:#f9f9f9}.bottom{margin-bottom:20rpx}.list_dt::before{content:"";border:none;height:0}.al-center{top:50%;margin-top:-100rpx}.margin{margin-left:50rpx}

@@ -1,0 +1,60 @@
+<navigation-bar back="{{ true }}" background="#fff" title="会员购买" />
+<view class="body">
+	<view class="t-btn" style="top:{{statusBarHeight+56}}px">
+		<image class="t-btn_image" src="{{ list.info.head_img?list.info.head_img:'/images/user.png' }}" mode="widthFix"></image>
+		<view class="name ">{{ list.info.nickname?list.info.nickname:list.info.mobile }}</view>
+		<view class="isAgent">
+			<image class="isAgent_image" src="/package/component1/images/agent.png" mode="widthFix"></image>
+			<text>{{list.attest?list.attest:'未认证'}}</text>
+			<view class="iskaitong" wx:if="{{ list.user_type==3 }}">
+				<image class="iskaitong_image" src="/package/component1/images/皇冠.png" mode="widthFix"></image>
+				<text>已开通白银会员</text>
+			</view>
+		</view>
+		<view class="time" wx:if="{{ list.user_type==3 }}">会员有效期: 2020.1.1-2020.12.31</view>
+	</view>
+	<view class="info_box">
+		<image class="info_box_img" src="/package/component1/images/xxgg.png" mode="widthFix"></image>
+		<image class="info_box_txt" src="/package/component1/images/zyshy.jpg" mode="widthFix"></image>
+		<view class="price_txt">
+			<text style="color:#c71628">￥{{ detail.amount }}</text>
+			<text>/年</text>
+		</view>
+	</view>
+	<view class="pay_box_wx">
+		<text>支付方式：</text>
+		<text>微信支付</text>
+		<image src="/images/wxf.png"></image>
+	</view>
+</view>
+
+
+<view class="b_list_btn" style="height:{{ SafeButtom }}rpx;z-index:1000">
+	<view class="tab_box_vip">
+		<view class="first_boxs">
+			<text class="first_boxs_text">合计:</text>
+			<view class="price_vip">
+				<text  style="font-size:22rpx;font-weight:0">￥</text>
+				<text>{{ detail.amount }}</text>
+			</view>
+		</view>
+		<view class="two_boxs">
+			<text class="two_boxs_text">实付金额:</text>
+			<view class="price_vip">
+				<text style="font-size:22rpx;font-weight:0">￥</text>
+				<text>{{ detail.amount }}</text>
+			</view>
+		</view>
+		<view class="b_r_box" bindtap="onBuy">立即购买</view>
+	</view>
+</view>
+
+
+<!-- <view class="result" hidden="{{ succesfull }}">
+	<navigation-bar back="{{false }}" background="#f9f9f9" title="" />
+	<wux-result title="支付成功" label="您已开通白银会员" buttons="{{ buttons }}" extra="" fixed bind:click="onClick" />
+</view> -->
+
+
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

@@ -1,0 +1,70 @@
+<navigation-bar back="{{ true }}" background="#fff" title="专利分析报告" />
+<view class="continer">
+  <view class="logo-box">
+    <image class="logo-img" src="https://admin.iguolao.com/public/uploads/20200528155237277.png" mode='widthFix'></image>
+    <text class="txt">专利分析报告</text>
+  </view>
+  <!-- 相似度分析 -->
+  <view class="box">
+    <view class="histogram-box">
+      <view class="hist-t"><text>相似度分布</text></view>
+      <view class="container" wx:if="{{ecBarShow}}">
+        <ec-canvas id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  <!-- 注册公司分布 -->
+  <view class="box">
+    <view class="histogram-box height-700">
+      <view class="hist-t"><text>注册公司分布</text></view>
+      <view class="container1" wx:if="{{ec1Show}}">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="histogram-box">
+      <view class="hist-t"><text>热门技术话语</text></view>
+      <view class="container2" wx:if="{{ec2Show}}">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  <!-- 报告结语 -->
+  <view class="box">
+    <view class="histogram-box height-100">
+      <view class="hist-t"><text>报告结语</text></view>
+      <view class="bg-box">
+        <view class="bg-tit">根据分析塔推演:</view>
+        <view class="bg-text">
+          <view>{{comment1}}</view>
+          <view>{{comment2}}</view>
+          <view>{{comment3}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 相关专利展示 -->
+  <view class="box">
+    <view class="histogram-box t-a pad-bot">
+      <view class="hist-t t-a"><text>相关专利展示</text></view>
+      <block wx:for="{{patent_title}}" wx:key="index">
+        <view class="list" data-id="{{index}}" bindtap="toDetail">
+          <view class="content">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="percent">
+            <text>{{item.per}}</text>
+          </view>
+          <image class="img-right" src="../../../../../images/right-r.png"></image>
+        </view>
+      </block>
+      
+    </view>
+  </view>
+</view>
+
+<view class="bootom-btn" style="height:{{ SafeButtom }}rpx">
+  <view class="left-btn" hover-class="leftClass" bindtap="toBuy">立即购买</view>
+  <view class="right-btn" hover-class="rightClass" bindtap="toCompose">撰写技术交底书</view>
+</view>

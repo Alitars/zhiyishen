@@ -1,0 +1,12 @@
+<view>
+  <block wx:for="{{ arry }}">
+    <view class="cards-boxs" bindtap="onClick">
+      <block wx:for="arry">
+        <view class="cards-lists">
+          <text>专利名称：</text>
+          <text style="color:#f96006">啥都哈是的哈电话</text>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

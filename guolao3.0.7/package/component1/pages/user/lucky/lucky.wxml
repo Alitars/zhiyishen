@@ -1,0 +1,17 @@
+<view class="logo">
+  <image src="https://admin.iguolao.com/public/uploads/20200629170224203.png"></image>
+</view>
+<canvas style='width: {{windowWidth}}px; height:840rpx' disable-scroll="true" bindtouchstart="canvasTouchStart" bindtouchmove="touchMove" bindtouchend="canvasTouchEnd" canvas-id="canvas"></canvas>
+<!-- 这边先写中奖记录入口 -->
+<view class="free" >免费抽奖次数:{{free_draw_num}}</view>
+<view class="rel" >
+  <view class="choose" bindtap="choose">
+    <view class="check" >
+      <image src="../../../../../images/gou.png" wx:if="{{show}}"></image>
+    </view>
+    <text>消耗{{con_integral}}积分抽奖一次</text>
+  </view>
+  
+  <view class="abc" bindtap="toWin">中奖记录</view>
+</view>
+<!-- 规则 -->

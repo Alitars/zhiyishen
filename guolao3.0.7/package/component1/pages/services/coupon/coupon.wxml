@@ -1,0 +1,30 @@
+<view>
+	<view class="no_list center f_c" hidden="{{noUsed[0].user_total}}">
+		<image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+		<text>尚未拥有优惠券…</text>
+	</view>
+	<block wx:for="{{ noUsed }}" wx:key="index">
+		<view class="counpon_box" data-total="{{ item.user_total }}" data-total2="{{ item.total }}" data-id="{{ item.id }}" bindtap="{{ open?'onUsing':'' }}">
+			<image src="https://admin.iguolao.com/public/uploads/20200520112743999.png"></image>
+			<view class="l_box center f_c">
+				<text class="price red"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+				<block wx:if="{{ item.total>0 }}">
+					<view class="type_box orange">满{{ item.total }}元减{{ item.user_total }}元</view>
+				</block>
+				<block wx:if="{{ item.total==0 }}">
+					<view class="type_box orange"> 通用{{ item.user_total }}元</view>
+				</block>
+				<text class="date_txt c9">有效期限：{{item.start}} - {{item.end}}</text>
+			</view>
+			<view class="r_box orange_t f_c center" data-id="{{item.id}}" bindtap="onUsed">
+				<text>立即</text>
+				<text>使用</text>
+			</view>
+		</view>
+	</block>
+	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+		<view class="a_box" bindtap="onClick">不使用优惠券</view>
+	</view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

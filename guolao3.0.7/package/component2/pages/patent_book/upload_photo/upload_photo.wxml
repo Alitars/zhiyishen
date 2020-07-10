@@ -1,0 +1,26 @@
+<view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+<view class="g_box fixd" style="padding-top:{{statusBarHeight+45}}px;margin-top:20px" id='box'>
+	<image class="g_img" src="https://admin.iguolao.com/public/uploads/20200526103100803.png"></image>
+	<view class="g_t" style="top:{{ statusBarHeight+45+40 }}px">{{text}}</view>
+</view>
+	<view class="body_two animate_opacity" style="height:{{ height-60 }}px;">
+		<view class="up-box" hidden="{{ imgUrls?true:false }}" bindtap="onChooseImgs">
+			<image src="/images/up-ch.png"></image>
+		</view>
+		<view class="imgBox" hidden="{{ imgUrls?false:true }}" bindtap="onChooseImgs">
+			<image src="{{ icon_Url+imgUrls }}" mode="aspectFit"></image><text class="txt">重新上传</text>
+		</view>
+	</view>
+	<view class="b_box " id='btn' style="height:{{ SafeButtom }}rpx" >
+		<view class="orange" bindtap="onClick" wx:if="{{compose == 'compose'?true:false}}">下一步</view>
+		<view class="orange" bindtap="onClick" wx:else>检测</view>
+	</view>
+	<van-toast id="van-toast" />
+	<van-notify id="custom-selector" safe-area-inset-top />

@@ -1,0 +1,11 @@
+<view class="body">
+  <view class="bg_orange" />
+  <view class="form_box top center">
+    <view class="icon">
+      <image src="{{ icon_Url+'/public/images/bgfour.png' }}" mode="widthFix"></image>
+    </view>
+    <text class="txt_one">您的资料已提交审核！</text>
+    <text class="txt_two">审核通过后将有短信通知感谢您对知依昇的信任</text>
+    <view class="b_box" bindtap="onNav">{{ text }}</view>
+  </view>
+</view>

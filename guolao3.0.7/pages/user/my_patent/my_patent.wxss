@@ -1,0 +1,3 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+@import '/pages/user/my_order/my_order.wxss';.tabs_box{width:100%;height:44px;background:#fff;position:fixed;left:0;z-index:100}.tab{width:25%;height:inherit;text-align:center;line-height:44px;color:#7d7e80;float:left;font-size:28rpx}.t_c{color:#333;font-weight:500}.border{width:16px;height:4px;background:#f96006;position:absolute;bottom:0;left:10.5%;border-radius:2px}.blue{color:#4a90e2;font-weight:bold}.blue image{width:20rpx;height:20rpx;margin-left:px}.text-overflow{width:250rpx;max-width:250rpx;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden;text-align:right}

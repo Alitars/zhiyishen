@@ -1,0 +1,10 @@
+<view class="body" hidden="{{ src?false:true }}">
+	<view class="back_box" style="top:{{ statusBarHeight+20 }}px" bindtap="onBack">
+		<image src="/package/component1/images/left-arrow.png"></image>
+	</view>
+	<image class="bgimgs" src="{{ src }}" mode="widthFix"></image>
+	<view class="text">
+		<text>{{ total_price  }}</text>
+	</view>
+	<view class="jion-box" bindtap="onServer"></view>
+</view>

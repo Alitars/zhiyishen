@@ -1,0 +1,94 @@
+<import src="../../../../../template/template.wxml" />
+<template is="onGuo" data="{{statusBarHeight,SafeHigh,safeHeight,icon_Url,text,SafeButtom }}" />
+
+
+<!-- 第1个问题 Id:0 -->
+<view class="body_two animate_opacity" wx:if="{{ Id==0?true:false }}">
+	<view class="input-box">
+		<view class="field">
+			<van-field value="{{ value }}" placeholder="请输入名称" focus="{{ display }}" bind:clear='onClear' input-align="center" custom-style="border-bottom:2rpx solid #333;" clearable border="{{ false }}" bind:change="onInput" />
+		</view>
+	</view>
+	<view class="b_voice" style="bottom:{{ info.statusBarHeight  }}px;" wx:if="{{ value.length>0?false:true }}">
+		<view class="vioce-t" hidden="{{ animationStatus }}">按住开始</view>
+		<view class="sr_box" bindtap="onBlock">
+			<image src="/images/sr.png" mode="widthFix"></image>
+		</view>
+		<view class="vioce_box" bindtouchstart="onVioceTS" bindtouchend="onStopTS">
+			<image src="/package/component1/images/vioce_two.png" mode="widthFix"></image>
+			<view class="ripple" hidden="{{ !animationStatus }}"></view>
+			<view class="ripple  {{animationStatus?'rippleAnimation1':''}}" hidden="{{ !animationStatus }}"></view>
+			<view class="ripple {{animationStatus?'rippleAnimation2':''}}" hidden="{{ !animationStatus }}"></view>
+			<view class="ripple {{animationStatus?'rippleAnimation3':''}}" hidden="{{ !animationStatus }}"></view>
+		</view>
+	</view>
+</view>
+
+
+<!-- 第2个问题 -->
+<view class="body_two animate_opacity" wx:if="{{ Id==1?true:false }}">
+	<view class="check_box_v" wx:for="{{ CheckBox }}" wx:key="index">
+		<view class="van_checkbox">
+			<van-checkbox icon-size='10px' value="{{ item.isSelect }}" checked-color="#f96006" data-id="{{ index }}" bind:change="onChangeText">{{ item.text }}</van-checkbox>
+		</view>
+	</view>
+</view>
+
+
+
+<!-- 第3个问题 -->
+<view class="body_two animate_opacity" wx:if="{{ Id==2?true:false }}">
+	<view class="tabs-vioce">
+		<view class="tabs-box-v {{ active==0?'oranges':'' }}" data-id="0" bindtap="onSlider">文本输入</view>
+		<view class="tabs-box-v {{ active==1?'oranges':'' }}" data-id="1" bindtap="onSlider">语音录制</view>
+		<view class="tabs-slider" animation="{{ animationData }}"></view>
+	</view>
+	<view class="recoder_box" hidden="{{ active==0?false:true  }}">
+		<van-field value="{{  value }}" focus="{{ focus }}" custom-style="width: 502rpx;height: 460rpx;  border: 1px dashed #ccc;" clearable type="textarea" placeholder="请做简单的描述" bind:change="onChangeText" maxlength='100000' autosize border="{{ false }}" />
+	</view>
+	<view class="recoder_box" hidden="{{ active==1?false:true  }}">
+		<view class="re_big_box center">
+			<view class="down_box">{{ h.length==1?'0'+ h:h }}:{{ m.length==1?'0'+m:m }}:{{ s.length==1?'0'+s:s }}</view>
+			<view class="left_recoder">
+				<image class="imgs_recoder" src="/package/component1/images/leftsds.png"></image>
+			</view>
+			<view class="recodr_img" bindtap="onStart">
+				<image src="/package/component1/images/recoderStart.png" hidden="{{ !isRecorder }}"></image>
+				<image src="/package/component1/images/stopRecoder.png" hidden="{{ isRecorder }}"></image>
+			</view>
+			<view class="right_recoder">
+				<image class="imgs_recoder" src="/package/component1/images/rightsds.png"></image>
+			</view>
+			<view class="status_box {{ isRecorder?'animateOpacity':'' }}">{{ isRecorder?'正在录音…':'已暂停' }}</view>
+			<view class="save_box" bindtap="onStop">保存</view>
+		</view>
+	</view>
+</view>
+
+
+
+<view class="body_two animate_opacity" wx:if="{{ Id==4?true:false }}">
+	第4个问题
+</view>
+
+<view class="body_two animate_opacity" wx:if="{{ Id==5?true:false }}">
+	第5个问题
+</view>
+
+
+<view class="body_two animate_opacity" wx:if="{{ Id==6?true:false }}">
+	第6个问题
+</view>
+
+<view class="body_two animate_opacity" wx:if="{{ Id==7?true:false }}">
+	第7个问题
+</view>
+
+
+
+
+<view class="b_box " style="height:{{ SafeButtom }}rpx" wx:if="{{ Id==0&&value.length==0?false:true }}">
+	<view class="orange" bindtap="onClick">下一步</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

@@ -1,0 +1,1 @@
+page{background:#f9f9f9}.body{width:100%;height:100%}.merg-sm{margin-top:50rpx;top:300rpx;font-size:24rpx;color:#707070;margin-left:40rpx}.card-box{background:#fff;margin-top:40rpx}@import '/pages/user/attest/attest.wxss';

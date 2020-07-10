@@ -1,0 +1,27 @@
+<navigation-bar back="{{ true }}" background="#fff" title="" />
+<view class="titles">
+	<text>知依昇账号注册</text>
+</view>
+<view class="field">
+	<van-field value="{{ phoneNumber }}" maxlength="11" type="number" size="large" clearable placeholder="请输入手机号码" bind:change="onPhone" />
+	<van-field value="{{ password }}" focus="{{ display }}" right-icon="{{ display?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ display?'text':'password' }}" focus="{{ display }}" maxlength="15" size="large" clearable placeholder="请设置登录密码" data-id="1" bind:click-icon="onClickIcon" bind:change="onPassword" />
+	<van-field value="{{ rePassword }}" right-icon="{{ show?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ show?'text':'password' }}" maxlength="15" size="large" clearable focus="{{ show }}" placeholder="请再次确认密码" data-id="2" bind:click-icon="onClickIcon" bind:change="rePassword" />
+	<van-field value="{{ sms }}" type="number" maxlength="10" size="large" center clearable placeholder="请输入验证码" use-button-slot bind:change="onMa">
+		<van-button slot="button" plain size="small" round type="warning" bind:click="{{id==''?'onSend':''}}">
+			<text style="color:#4a90e2;" bindtap="onSend" hidden="{{ id==''?false:true}}">获取验证码</text>
+			<text style="color:#ccc;" hidden="{{ id=='1'?false:true}}">{{ time }}s 重新获取</text>
+		</van-button>
+	</van-field>
+	<van-field value="{{ Invitation_code }}" clearable left-icon="https://admin.iguolao.com/public/uploads/20200403154447226.png" bind:change="onInvitation" bind:clear="onClears" placeholder="邀请码（选填）" />
+	<view class="read_box f_r al_center">
+		<van-checkbox value="{{ checked }}" checked-color="#4a90e2" bind:change="onChange" />
+		<text style="color:#333;margin-left:15rpx;">我已阅读并同意</text>
+		<text style="color:#4a90e2;" bindtap="onxieyi">《用户服务协议》</text>
+		<text style="color:#333;">和</text>
+		<text style="color:#4a90e2;" bindtap="onyinsi">《隐私条款》</text>
+	</view>
+	<view class="btn margin-l" hidden="{{ done==false?fasle:true }}" bindtap="onCheck">注册</view>
+	<view class="btn orange margin-l" hidden="{{ done==true?fasle:true }}" bindtap="onLogon">注册</view>
+</view>
+<van-notify id="custom-selector" safe-area-inset-top/>
+<van-toast id="van-toast" />

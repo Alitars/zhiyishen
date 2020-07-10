@@ -1,0 +1,164 @@
+<navigation-bar back="{{ true }}" background="#fff" title="修改资料" />
+<van-transition show="{{ firstname.length==0?false:true }}" custom-class="block">
+<view class="card">
+  <view class="top26"></view>
+  <van-cell title="专利申请人" border="{{ false }}" />
+  <!-- <van-field value="{{  applicant?applicant:'请添加'  }}" data-id='1' disabled is-link bindtap='onapplicant' /> -->
+    <van-cell is-link title="{{  applicant?applicant:'请添加'  }}" bindtap='onapplicant' />
+  <view wx:if="{{ false }}">
+    <van-cell title="受让人（中文）" border="{{ false }}" />
+    <van-field value="{{  assignee?assignee:'请添加'  }}" disabled is-link bindtap='onassignee' />
+  </view>
+  <view class="box-assig">
+    <view class="assig-list">
+      <text>共同申请人</text>
+      <image src="/images/more.png" bindtap="onSameapplicant"></image>
+    </view>
+    <block wx:for="{{ list }}" wx:key="index">
+      <view class="list-box-de">
+        <view class="de-img">
+          <image src="/images/de.png" data-index="{{ index }}" bindtap="onDelet"></image>
+        </view>
+        <view class="right-box">{{ item.company_name }}{{ item.chinese_name }}</view>
+      </view>
+    </block>
+    <view class="h20" wx:if="{{ list.length>0 }}" />
+  </view>
+  <van-cell title="第一发明人" border="{{ false }}" />
+  <van-field value="{{ firstname }}" placeholder="{{ firstname?firstname:'请输入' }}" id='firstname' maxlength='20' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="第一发明人身份证号" border="{{ false }}" />
+  <van-field value="{{ idcard }}" placeholder="{{ idcard?idcard:'请输入' }}" maxlength='18' id='idcard' clearable="true" type="idcard" bind:change="onChange" />
+  <van-cell title="技术联系人" border="{{ false }}" />
+  <van-field value="{{ name }}" placeholder="{{ name?name:'请输入' }}" maxlength='20' id='name' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="技术联系人电话" border="{{ false }}" />
+  <van-field value="{{ phone  }}" placeholder="{{ phone?phone:'请输入' }}" maxlength='11' id='phone' clearable="true" type="text" bind:change="onChange" />
+  <van-cell title="电子邮箱" border="{{ false }}" />
+  <van-field value="{{ mail }}" placeholder="{{ mail?mail:'请输入' }}" maxlength='20' id='mail' clearable="true" type="number" bind:change="onChange" />
+  <van-cell title="其他发明人(多个发明人用逗号隔开)" border="{{ false }}" />
+  <van-field value="{{ othername }}" placeholder="{{ othername?othername:'请输入' }}" id='othername' maxlength='70' clearable="true" type="text" bind:change="onChange" />
+  <view class="up_card h0">
+    <view class="title">
+      <text>技术交底书</text>
+      <text/>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ book }}"></image>
+        <image class="max-img" hidden="{{ !book }}" src="{{ icon_Url+book}}" hidden="{{ !book }}"></image>
+        <text class="up-t" hidden="{{ book }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="up_card h0">
+    <view class="title">
+      <text>CAD图纸</text>
+      <text/>
+    </view>
+    <view class="up-box">
+      <view class="up-img center" data-id="2" bindtap="onChooseImgs">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ blueprint }}"></image>
+        <image class="max-img" hidden="{{ !blueprint }}" src="{{ icon_Url+blueprint}}" hidden="{{ !blueprint }}"></image>
+        <text class="up-t" hidden="{{ blueprint }}">上传</text>
+      </view>
+    </view>
+  </view>
+  <view class="top26"></view>
+  <view class="list-box fiexd" bindtap="isShow" wx:if="{{ is_com==false }}">
+    <view class="first">同报专利订单</view>
+    <view class="common">{{ common_id }}</view>
+  </view>
+  <view class="card-bottom">
+    <view class="list-box fiexd" wx:if="{{ is_com==true }}">
+      <view class="first">是否同报专利</view>
+      <view class="checked-box">
+        <van-switch checked="{{ checked1 }}" size='20px' data-id="1" active-color="#6fe457" inactive-color="#dfdfdf" bind:change="onChecked" />
+      </view>
+    </view>
+    <van-transition show="{{ isTogether }}" name="slide-down" custom-class="block">
+      <view class="list-box fiexd" bindtap="onChooeorder" wx:if="{{ is_com==true }}">
+        <view class="first">同报订单选择</view>
+        <view class="chooseId" wx:if="{{ chooseId.length>0 }}">已选择{{ chooseId.length }}个订单</view>
+        <view class="arrow">
+        </view>
+      </view>
+    </van-transition>
+    <view class="list-box fiexd">
+      <view class="first">申请专利费用减缓</view>
+      <view class="checked-box">
+        <van-switch checked="{{ checked2 }}" size='20px' data-id="2" active-color="#6fe457" inactive-color="#dfdfdf" bind:change="onChecked" />
+      </view>
+    </view>
+    <van-transition show="{{ checked2 }}" name="slide-down" custom-class="block">
+      <view class="list-box fiexd" bindtap="isShow">
+        <view class="first">专利费用减缓条件</view>
+        <view class="arrow">
+        </view>
+      </view>
+    </van-transition>
+  </view>
+  <view wx:if="{{ ptype==2?false:true }}">
+    <van-transition show="{{ checked2 }}" custom-class="block">
+      <view class="top26"></view>
+      <view class="up_card h30">
+        <view class="title">
+          <text>个人收入证明盖单位公章</text>
+          <text/>
+        </view>
+        <view class="up-box">
+          <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+            <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ income1 }}"></image>
+            <image class="max-img" hidden="{{ !income1 }}" src="{{ icon_Url+income1 }}" hidden="{{ !income1 }}"></image>
+            <text class="up-t" hidden="{{ income1 }}">上传</text>
+          </view>
+        </view>
+      </view>
+    </van-transition>
+  </view>
+  <view wx:else>
+    <van-transition show="{{ checked2 }}" custom-class="block">
+      <view class="top26"></view>
+      <view class="up_card h30">
+        <view class="title">
+          <text>上年度企业所得税年度纳税申报表A类盖公章</text>
+          <text/>
+        </view>
+        <view class="up-box">
+          <view class="up-img center" data-id="3" bindtap="onChooseImgs">
+            <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ income1 }}"></image>
+            <image class="max-img" hidden="{{ !income1 }}" src="{{ icon_Url+income1 }}" hidden="{{ !income1 }}"></image>
+            <text class="up-t" hidden="{{ income1 }}">上传</text>
+          </view>
+        </view>
+      </view>
+      <view class="up_card h30">
+        <view class="title">
+          <text>上年度企业所得税年度纳税申报表A类封面盖公章</text>
+          <text/>
+        </view>
+        <view class="up-box">
+          <view class="up-img center" data-id="4" bindtap="onChooseImgs">
+            <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ income2 }}"></image>
+            <image class="max-img" hidden="{{ !income2 }}" src="{{ icon_Url+income2}}" hidden="{{ !income2 }}"></image>
+            <text class="up-t" hidden="{{ income2 }}">上传</text>
+          </view>
+        </view>
+      </view>
+    </van-transition>
+  </view>
+  <view class="ti-box" wx:if="{{ checked2==true }}">提示：除上海市以外，其他地区材料请自行面交或邮寄</view>
+</view>
+<view class="b_list_btn" style="height:{{ menu }}px">
+  <view class="a_box" bindtap="onClick">提交</view>
+</view>
+</van-transition>
+<van-popup show="{{ show }}" overlay="{{ true }}" custom-style="border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" z-index="2000" bind:close="isShow">
+  <view class="sming" style=" padding-bottom:{{ menu }}rpx">
+    <view class="t-sming">专利费用减缓条件</view>
+    <view class="sming-txt">1.申请人是公司：</view>
+    <view class="sming-txt top0">上年度应纳税所得额高于30万不用提供材料，低于30万需提供以下材料，判断标 准请看上年度企业所得税年度纳税申报表A类中的23栏是否高于30万或低于30万。</view>
+    <view class="sming-txt">2.申请人是个人：</view>
+    <view class="sming-txt top0">年收入低于4.2万元</view>
+  </view>
+</van-popup>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

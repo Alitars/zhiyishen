@@ -1,0 +1,13 @@
+<view class="continer">
+	<block wx:for="{{list}}" wx:key="index">
+		<view class="list-view">
+			<view class="apply-name van-ellipsis"><text>{{item.integral_name}}</text></view>
+			<view class="apply-name gray">时间 {{item.create_time}}</view>
+			<view class="btn-dt">+ {{item.integral_num}}</view>
+			<view class="img-num">
+				<text>{{index +1}}</text>
+				<image class="list-view-img" src="http://51guolao.yiqibnb.com/public/uploads/20200608112611673.png"></image>
+			</view>
+		</view>
+	</block>
+</view>

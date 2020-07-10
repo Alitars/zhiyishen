@@ -1,0 +1,46 @@
+<view class="continer">
+	<view class="center">
+		<image class="topImg" src="https://admin.iguolao.com/public/uploads/20200629104835229.png"></image>
+		<view class="jifen">
+			<view class="num">{{my_integral}}</view>
+			<view class="myjf">我的积分</view>
+		</view>
+	</view>
+	<!-- 签到栏 -->
+	<view class="qdBox">
+		<view class="rule clearfix">
+			<view class="r-l">
+				<image src="https://admin.iguolao.com/public/uploads/20200629111726224.svg"></image>
+				<text>其他活动</text>
+			</view>
+			<view class="r-r">
+				<image src="https://admin.iguolao.com/public/uploads/20200629112624671.svg"></image>
+				<text>活动规则</text>
+			</view>
+		</view>
+		<!-- 日期栏 -->
+		<view class="date">
+				<block wx:for="{{list}}" wx:key="index">
+					<view class="day">
+						<image src="{{item.flag ? icon :iconNo}}"></image>
+						<view class="posa">{{item.num}}</view>
+						<view class="tip">{{item.name}}</view>
+					</view>
+				</block>
+			
+		</view>
+		<!-- 累计签到 -->
+		<view class="Add">您已连续签到{{con_num}}天,请继续坚持</view>
+		<view class="btn">
+			<view class="now" bindtap="toNow">{{btnText}}</view>
+		</view>
+	</view>
+</view>
+
+<!-- 遮罩层 -->
+<view class="show" hidden="{{modelShow}}" bindtap="changeModel">
+	<image class="success" src="https://admin.iguolao.com/public/uploads/20200629145509620.png"></image>
+	<!-- 领取积分 -->
+	<image class="end" src="https://admin.iguolao.com/public/uploads/20200629145417906.svg"></image>
+	<view class="addNum">+{{score}} 积分</view>
+</view>

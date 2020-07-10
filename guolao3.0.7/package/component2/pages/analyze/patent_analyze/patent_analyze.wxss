@@ -1,0 +1,54 @@
+@import '/package/component2/pages/patent_book/select/select.wxss';
+
+.scroll-view-box {
+  width: inherit;
+  margin-top: 40rpx;
+  overflow: hidden
+}
+
+.center-box-btn {
+  width: inherit;
+  display: flex;
+  justify-content: center
+}
+
+.box-btn {
+  width: 458rpx;
+}
+
+.biaoti {
+  width: inherit;
+  height: 100rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  text-align: start;
+  color: #999
+}
+
+.list-btn-box {
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+
+.list-min-btn {
+  width: max-content;
+  display: flex;
+  padding: 10rpx 48rpx 10rpx 48rpx;
+  font-size: 24rpx;
+  margin-bottom: 46rpx;
+  border-radius: 8rpx;
+  border: solid 1px #555;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #555;
+  align-items: center;
+  justify-content: center
+}
+.oranges{
+  border: solid 1px #f98d4c;
+  color: #fa7105;
+  background: #fbd7c2;
+}

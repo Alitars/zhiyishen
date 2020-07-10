@@ -1,0 +1,2 @@
+/* package/component1/pages/knowledge/organization_list/brand/brand.wxss */
+@import '/package/component1/pages/knowledge/agency_list/agency_list.wxss';

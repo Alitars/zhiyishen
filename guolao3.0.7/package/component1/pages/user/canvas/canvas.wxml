@@ -1,0 +1,25 @@
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200416182748916.jpg" mode="widthFix" hidden="{{  display }}"></image>
+<view class="body" hidden="{{ display }}">
+	<view class="back_box" style="top:{{ statusBarHeight+20 }}px" bindtap="onBack">
+		<image src="/package/component1/images/left-arrow.png"></image>
+	</view>
+	<view class="guanggao" style="padding-top:{{ statusBarHeight+30 }}px">
+		<image src="https://admin.iguolao.com/public/uploads/20200416182252339.png"></image>
+	</view>
+	<view class="bottom_btn">
+		<view class="wx_btn" bindtap="onWxcode">
+			<image src="https://admin.iguolao.com/public/uploads/20200417153020647.png"></image>
+		</view>
+		<view class="wx_t">分享给好友</view>
+	</view>
+	<view class="share_box" catchtouchmove="true" hidden="{{ none }}">
+		<view class="card_boxs  {{ none?'':'scale' }}">
+			<view class="close" bindtap="onClose">
+				<image src="/package/component1/images/ccaa.png"></image>
+			</view>
+			<image class="imgs" src="{{ images }}" catchtap="onpreImg"></image>
+		</view>
+	</view>
+	<canvas id="myCanvas" type="2d" class="canvas" wx:if="{{  canvasClose }}"></canvas>
+</view>
+<van-toast id="van-toast" />

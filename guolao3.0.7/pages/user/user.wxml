@@ -1,0 +1,165 @@
+<navigation-bar back="{{ false }}" background="#fff" title="我的" />
+<view class="container">
+	<view class="btn_list_sn" hidden="{{ !show }}">
+		<view class="set_box" data-id="2" bindtap="onSet">
+			<image src="/images/bl2.png"></image>
+		</view>
+		<view class="set_box" data-id="1" bindtap="onSet">
+			<image src="/images/setting.png"></image>
+		</view>
+	</view>
+	<view class="user_box" bindtap="{{  show?'':'onRegister' }}">
+		<view class="r_box_user">
+			<image class="user_img" src="{{info.head_img? info.head_img:'/images/user.png'}}" catchtap="{{ info.head_img?'onChooseImg':'onoImg' }}"></image>
+		</view>
+		<view class="l_box_user">
+			<view class="top_t"><text class="u_t_1 van-ellipsis"hidden="{{ !info.nickname }}">{{info.nickname?info.nickname:'请登录'}}</text><text class="u_t_2 van-ellipsis"hidden="{{ info.nickname }}">{{info.mobile?info.mobile:'请登录'}}</text></view>
+			<view class="bottom_t">
+				<!-- <view class="flx_box"><text class="u_t_3 van-ellipsis">{{attest?attest:'未认证'}}{{check_type==2?'（代理人）':''}}</text></view> -->
+				<view class="flx_box"><text class="u_t_3 van-ellipsis">{{info.level_name}}</text></view>
+				<view class="duanwei" wx:if="{{ info.user_type==3 }}">白银</view>
+			</view>
+		</view>
+		<view class="qiandao" bindtap="toSignIn">
+				<image class="qdImg" src="../../images/qiandao.svg"></image>
+				<view class="qdText">签到</view>
+		</view>
+		<!-- <view class="r_box_user">
+			<image class="user_img" src="{{info.head_img? info.head_img:'/images/user.png'}}" catchtap="{{ info.head_img?'onChooseImg':'onoImg' }}"></image>
+		</view> -->
+	</view>
+	<!-- 广告先隐藏 -->
+	<view class="huiyuan" wx:if="{{ info.user_type==1&&info.user_type!==2 }}">
+		<image src="/images/vips.jpg" bindtap="onVip"></image>
+		<view class="huiyuantxt" catchtap="onVip">商标注册享受358元优惠</view>
+	</view>
+	<view class="huiyuan" wx:if="{{ info.user_type==3&&info.user_type!==2 }}">
+		<image src="/images/vips2.jpg" bindtap="onVip"></image>
+		<view class="huiyuantxt" catchtap="onVip">商标注册享受5单优惠特权</view>
+	</view>
+	<!-- d代理人中心 积分 优惠券 -->
+	<view class="Mycenter" wx:if="{{flag}}">
+		<view class="vipcenter" bindtap="onVip" hidden="{{info.is_agent == 0? false :true}}">
+			<image src="../../images/hg.svg"></image>
+			<view class="m_t_a" />
+			<view>会员中心</view>
+		</view>
+		<view class="vipcenter" bindtap="toAgent" hidden="{{info.is_agent == 1? false :true}}">
+			<image src="../../images/hg.svg"></image>
+			<view class="m_t_a" />
+			<view>代理人中心</view>
+		</view>
+		<view class="myintegral" bindtap="toIntegral">
+			<view class="red">{{info.my_integral}}</view>
+			<view class="m_t_a" />
+			<view>我的积分</view>
+		</view>
+		<view class="coupon" bindtap="tocoupon">
+			<view class="red">{{info.c_count}}</view>
+			<view class="m_t_a" />
+			<view>我的优惠券</view>
+		</view>
+	</view>
+
+	<view class="Mycenter"wx:else>
+		<view class="vipcenter">
+			<image src="../../images/hg.svg"></image>
+			<view class="m_t_a" />
+			<view>会员中心</view>
+		</view>
+		<view class="vipcenter">
+			<image src="../../images/hg.svg"></image>
+			<view class="m_t_a" />
+			<view>代理人中心</view>
+		</view>
+		<view class="myintegral">
+			<view class="red">0</view>
+			<view class="m_t_a" />
+			<view>我的积分</view>
+		</view>
+		<view class="coupon">
+			<view class="red">0</view>
+			<view class="m_t_a" />
+			<view>我的优惠券</view>
+		</view>
+	</view>
+	<view class="m_t_b" />
+	<!--slider-->
+	<view class="gl_tabs">
+		<block wx:for="{{ sliderBtn }}" wx:key='index'>
+			<view class="slider_l_btn {{ active==index?'':'gray-color' }}" data-id="{{ index }}" bindtap="onChangeSlider">{{item}}</view>
+		</block>
+		<view class="slider_l_orange" animation="{{ animationData }}"></view>
+	</view>
+	<!--swiper-->
+	<swiper class="swiper-order-box" current="{{ active }}" bindchange="onSwiper" duration="400">
+		<swiper-item>
+			<view class="list_p center">
+				<block wx:for="{{listBtn}}" wx:key="index">
+					<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+						<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+						<view hidden="{{ index == 1&&unpaid1!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid1 }}">{{unpaid1?unpaid1:'0'}}</view>
+						<view hidden="{{ index == 2&&in_server1!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server1 }}">{{in_server1?in_server1:'0'}}</view>
+					</view>
+				</block>
+			</view>
+		</swiper-item>
+		<swiper-item>
+			<view class="list_p center">
+				<block wx:for="{{listBtn}}" wx:key="index">
+					<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+						<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+						<view hidden="{{ index == 1&&unpaid2!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid2 }}">{{unpaid2?unpaid2:'0'}}</view>
+						<view hidden="{{ index == 2&&in_server2!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server2 }}">{{in_server2?in_server2:'0'}}</view>
+					</view>
+				</block>
+			</view>
+		</swiper-item>
+		<swiper-item>
+			<view class="list_p center">
+				<block wx:for="{{listBtn}}" wx:key="index">
+					<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+						<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+						<view hidden="{{ index == 1&&unpaid3!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid3 }}">{{unpaid3?unpaid3:'0'}}</view>
+						<view hidden="{{ index == 2&&in_server3!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server3 }}">{{in_server3?in_server3:'0'}}</view>
+					</view>
+				</block>
+			</view>
+		</swiper-item>
+	</swiper>
+	<!-- <view class="share-box" hover-class="hoverStyleImg" bindtap="onShareDt">
+		<image src="https://admin.iguolao.com/public/uploads/20200415131430776.jpg"></image>
+	</view> -->
+	<view hover-class="hoverStyle" class="cell_box">
+		<view class="m_t_b" />
+		<view hover-class="hoverStyle" class="list_cell server_box" bindtap="onAgent">
+			<image class="l_icon" src="/images/dailiren.png"></image><text class="cell_t">{{check_type==0?'代理人申请':'代理人详情'}}</text>
+			<view class="status">{{groups[index].text=='普通用户'?'':groups[index].text=='代理人'?'':groups[index].text}}</view>
+			<view class="r_link" />
+		</view>
+	</view>
+	<!-- 分析报告列表查看 -->
+	<view hover-class="hoverStyle" class="cell_box">
+		<view class="m_t_b" />
+		<view hover-class="hoverStyle" class="list_cell server_box"  bindtap="toReport">
+			<image class="l_icon" src="/images/patent.png"></image><text class="cell_t">专利分析报告</text>
+			<view class="r_link" />
+		</view>
+	</view>
+	
+	<view hover-class="hoverStyle" class="cell_box" wx:for="{{ userBtn }}" wx:key="index">
+		<view wx:if="{{index !== 1&&index !==2&&index !== 4&&index !== 6}}" class="m_t_b" />
+		<view hover-class="hoverStyle" class="list_cell server_box" data-id="{{item.url}}" bindtap="{{ index!==2?'goDt':'makePhone' }}">
+			<image class="l_icon" src="{{item.images}}"></image><text class="cell_t">{{item.text}}</text>
+			<view class="r_link" />
+			<view class="list_b" wx:if="{{index == 1 || index ==3||index==5}}" />
+		</view>
+		<view wx:if="{{index !== 2&&index !== 1&&index !==4&&index !==3&&index !==5&&index !==6}}" class="m_t_b" />
+	</view>
+</view>
+<!-- <button bindtap="onColor">生成颜色</button> -->
+<block wx:for="{{ color }}" wx:key="index">
+	<view style="width:100%;height:20rpx;background: -webkit-linear-gradient(left,{{ item.left  }},{{ item.right }})" />
+</block>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

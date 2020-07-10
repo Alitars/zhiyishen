@@ -1,0 +1,160 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": true,
+		"uglifyFileName": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wx136b9b05752a428d",
+	"projectname": "guolao",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/index/index",
+					"pathName": "package/component1/pages/user/winDetail/winDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/index/index",
+					"pathName": "package/component1/pages/user/member/member",
+					"query": "flag=user",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "资产管理",
+					"pathName": "pages/admin/admin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "我的积分",
+					"pathName": "package/component1/pages/user/integral/integral",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "撰写书列表",
+					"pathName": "package/component2/pages/patent_book/composeList/composeList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "分析报告",
+					"pathName": "package/component1/pages/user/toAgent/toAgent",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component2/pages/share/category_share/category_share",
+					"pathName": "package/component2/pages/share/category_share/category_share",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "package/component2/pages/share/shareDetail/shareDetail",
+					"pathName": "package/component2/pages/share/shareDetail/shareDetail",
+					"query": "id=64",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component2/pages/analyze/patent_analyze/patent_analyze",
+					"pathName": "package/component2/pages/analyze/patent_analyze/patent_analyze",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "用户中心",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "zx",
+					"pathName": "package/component1/pages/user/toAgent/toAgent",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "抽奖",
+					"pathName": "package/component1/pages/user/lucky/lucky",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

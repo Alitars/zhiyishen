@@ -1,0 +1,28 @@
+<view class="body">
+	<view class="f-box">
+		<text>知依昇</text>
+		<text>企业知识产权智能管家</text>
+		<image class="r_img" src="{{ icon_Url+'/public/images/guanyu.png' }}"></image>
+	</view>
+	<view class="t-box">
+		<image src="/images/xin.png"></image>
+		<text class="ly">服务理念</text>
+		<view class="ln">
+			<text>专业 </text>
+			<text> 快速 </text>
+			<text> 贴心 </text>
+			<text> 超值</text>
+		</view>
+	</view>
+	<view class="jian_jie">
+		<view class="title">知昇</view>
+		<view class="txt-box">
+			<text>公司核心由超10年从业经验的行内顶尖知识产权专家及专业服务团队组成。致力为国内外各类企业提供全方位的知识产权服务。
+秉持着“专业、省心、保障”的原则，让客户的知识产权真正获得价值。2019年，精心打造全球首款知识产权人工智能服务平台 ——“知依昇”。</text>
+		</view>
+		<view class="txt-box">
+			<text>告别传统知识产权业务模式，不断取得突破，引领知识产权时代新方向。
+</text>
+		</view>
+	</view>
+</view>

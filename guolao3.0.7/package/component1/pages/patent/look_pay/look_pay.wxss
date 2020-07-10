@@ -1,0 +1,4 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
+@import "/package/component1/pages/material/balance_payment/balance_payment.wxss";
+@import "/package/component1/pages/material/recheck/recheck.wxss";
+.top0{margin-top:0;position:relative;}.top0::after{content:"";width:670rpx;position:absolute;top:0;left:40rpx;height:1px;background:#dbdbdb;}.shishen{position:absolute;left:50%;}.left{left:40rpx;}

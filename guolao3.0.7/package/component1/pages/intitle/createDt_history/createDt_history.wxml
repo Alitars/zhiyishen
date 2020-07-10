@@ -1,0 +1,69 @@
+<navigation-bar back="{{ true }}" background="#fff" title="商品详情" />
+<view class="body">
+	<van-transition show="{{ imgUrls[current].mean }}" custom-class="block">
+		<view class="notify jc_center">
+			<image class="xinxin" src="/package/component1/images/xinxin.png"></image>
+			<view class="wenben">
+				<text>取自：{{ imgUrls[current].mean }}</text>
+			</view>
+		</view>
+	</van-transition>
+	<view class="top_box">
+		<swiper class="swiper-box" current="{{ current }}" circular="true" previous-margin="110px" next-margin="110px" bindchange="onChange">
+			<block wx:for="{{ imgUrls }}" wx:key="index">
+				<swiper-item class="item">
+					<view class="item-img center {{ index==current?'':'scale' }}">
+						<text class="biaoti" hidden="{{ item.icon }}">{{ item.title }}</text>
+						<image hidden="{{ !item.icon }}" src="{{ icon_Url+item.icon }}" mode="widthFix"></image>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+		<picker bindchange="bindPickerChange" value="{{formIndex}}" range="{{formText}}">
+			<view class="size">
+				<text>A</text>
+				<text>更换字体</text>
+			</view>
+		</picker>
+		<view class="title">推荐注册类别及关注热度</view>
+		<view class="body">
+			<block wx:for="{{ imgUrls[current].fir }}" wx:key="ids">
+				<view class="list-box" data-id="{{ index }}" data-index="{{ current }}" data-check="{{ item.isSelect}}" bindtap="onChoose">
+					<image class="imgs1" src="/images/down1.png" hidden="{{ !item.isSelect }}"></image>
+					<image class="imgs2" src="/images/down1.png" hidden="{{ item.isSelect }}"></image>
+					<text class="txt1">{{ item.num }}类</text>
+					<text class="txt2">{{ applyType[item.num-1].name }}</text>
+				</view>
+				<view class="over">
+					<van-transition show="{{ item.isSelect }}" custom-class='trans' name='slide-down' duration="{{ { enter: 500, leave: 200 } }}" custom-class="block">
+						<block wx:for="{{ item.sec }}" wx:for-item="item" wx:key="id">
+							<view class="list-box2">
+								<view class="rate-t van-ellipsis">{{ item.num }} {{ item.name }}</view>
+								<view class="rate-star">
+									<van-rate allow-half value="{{ item.sscore }}" disabled icon="like" void-icon="like-o" disabled-color="#f96006" size="15" />
+								</view>
+							</view>
+						</block>
+					</van-transition>
+				</view>
+			</block>
+			<view style="height:300rpx;"></view>
+		</view>
+	</view>
+	<view class="b_box" style="height:{{ SafeButtom }}rpx">
+		<view class="orange" bindtap="{{ pass?'onClick':'' }}">申请注册</view>
+	</view>
+</view>
+<!-- <van-popup show="{{ show }}" custom-style="  border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" overlay="{{ true }}" z-index="1000" data-id="0" bind:close="onClose">
+	<view class="btn_choose">
+		<image class="close" src="/images/t_x.png" data-id="1" catchtap="onClose"></image>
+		<view class="list_btn_p ">
+			<block wx:for="{{ form }}" wx:key='font'>
+				<view class="btn_p {{ss==index?'oran':''}}" data-index="{{ index }}" data-id="{{ item.id }}" bindtap="onFrom">{{ item.font_name }}</view>
+			</block>
+		</view>
+		<view class="sure" data-id="2" bindtap="onSure">确定</view>
+	</view>
+</van-popup> -->
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

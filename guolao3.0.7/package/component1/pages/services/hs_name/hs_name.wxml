@@ -1,0 +1,6 @@
+<import src="../../../../../template/template.wxml" />
+<template is="name" data="{{ formIndex,formText,statusBarHeight,SafeHigh,SafeButtom,icon_Url,text,isSelect,display,btn,checked,imgUrlsTwo,animationData,value,active,show,animationStatus,form,create,imgUrls,slider,url,ch,info,imgUrls_id,imgUrlsTwo_id }}" />
+<view wx:if="{{ isCut }}">
+	<image-cropper id="image-cropper" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" limit_move="{{limit_move}}" disable_rotate="{{ true }}" width="{{width}}" height="{{height}}" imgSrc="{{src}}" angle="{{angle}}" disable_width="{{disable_width}}" max_width="{{max_width}}" max_height="{{max_height}}" disable_height="{{disable_height}}" disable_ratio="{{disable_ratio}}" bind:run="onImagesUp">
+	</image-cropper>
+</view>

@@ -1,0 +1,49 @@
+<view class="continer">
+  <view class="list-box">
+    <view class="first">{{ list.note_name }}</view>
+    <view class="two" data-url="{{ item.url }}" bindtap="onLook">查看</view>
+  </view>
+
+  <view class="list-box">
+    <view class="first">费用明细：</view>
+  </view>
+  <view class="list-box2 f_c">
+    <text>您注册的商标{{ list.orderStatus }}</text>
+    <text>请支付尾款：￥{{ final_price }}</text>
+  </view>
+
+
+  <view class="card_box" >
+    <view class="btn_zifu">
+      <text class="txt1">支付方式：</text>
+      <view class="zf-box">
+        <view class="icon-box al_center {{ checked==1?'blue':'' }}" data-id="1" bindtap="onChecked">
+          <image src="/images/wxf.png"></image>
+          <text>微信支付</text>
+        </view>
+        <view class="icon-box al_center {{ checked==2?'blue':'' }}" data-id="2" bindtap="onChecked">
+          <image src="/images/gszz.png"></image>
+          <text>银行转账</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+    <view class="card_box" wx:if="{{ checked==2 }}">
+    <view class="input-box-qy">
+      <van-field value="{{ value }}" border="{{ false }}" focus="{{ focus }}" custom-style="font-size:28rpx;" label="汇款公司：" placeholder="请输入汇款公司名称" clearable="true" bind:change="onChange" />
+    </view>
+  </view>
+
+
+  <view class="b_list_btns" style="height:{{ SafeButtom }}rpx">
+    <view class="price-box al_center">
+      <text>总计：</text>
+      <text>￥{{ final_price }}</text>
+    </view>
+    <view class="a_box2 center" bindtap="onClick">支付</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

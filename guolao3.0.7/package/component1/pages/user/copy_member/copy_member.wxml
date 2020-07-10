@@ -1,0 +1,46 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px;background:none;">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/package/component1/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<view class="custom-text van-ellipsis" bindtap="onClick">
+		<text style="color:#fff">会员中心</text>
+	</view>
+</view>
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200511172856278.jpg" mode="widthFix"></image>
+<view class="body">
+	<view class="t-btn" style="top:{{statusBarHeight+56}}px">
+		<image class="t-btn_image" src="{{ list.info.head_img?list.info.head_img:'/images/user.png' }}" mode="widthFix"></image>
+		<view class="name ">{{ list.info.nickname?list.info.nickname:list.info.mobile }}</view>
+		<view class="isAgent">
+			<image class="isAgent_image" src="/package/component1/images/agent.png" mode="widthFix"></image>
+			<text>{{list.attest?list.attest:'未认证'}}</text>
+			<view class="iskaitong" wx:if="{{ list.user_type==3 }}">
+				<image class="iskaitong_image" src="/package/component1/images/皇冠.png" mode="widthFix"></image>
+				<text>已开通白银会员</text>
+			</view>
+		</view>
+		<view class="time" wx:if="{{ list.user_type==3 }}">会员有效期: 2020.1.1-2020.12.31</view>
+	</view>
+
+	<view class="cardboxx" style="top:{{statusBarHeight+90}}px" wx:for="{{ detail }}" wx:key="index">
+		<view class="xufei">
+			<image class="viplogo" src="{{ icon_Url+item.img_url }}" mode="widthFix"></image>
+			<image class="bgxufei" src="/package/component1/images/xufeibg.jpg"></image>
+			<view class="first_t">
+				<text style="color:#fdd468;font-size:32rpx">{{ item.amount }}元</text>
+				<text>一年</text>
+			</view>
+			<view class="two_t">
+				<text>商标注册享受</text>
+				<text style="color:#fdd468;">{{ item.brand_price }}元</text>
+				<text>优惠</text>
+			</view>
+			<view class="btn" hover-class="hoverStyle" data-index="{{ index }}" data-id="{{ list.user_type }}" bindtap="onBuy">{{ list.user_type==3?'立即续费':'立即购买'  }}</view>
+		</view>
+	</view>
+</view>
+
+<van-toast id="van-toast" />
+<!-- <van-notify id="custom-selector" safe-area-inset-top /> -->

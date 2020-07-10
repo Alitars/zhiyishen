@@ -1,0 +1,84 @@
+<navigation-bar back="{{ true }}" background="#fff" title="专利分析报告" />
+<view class="continer">
+  <view class="logo-box">
+    <image class="logo-img" src="https://admin.iguolao.com/public/uploads/20200528155237277.png" mode='widthFix'></image>
+    <text class="txt">专利分析报告</text>
+  </view>
+  <!-- 相似关键词 -->
+  <!-- <view class="box">
+    <view class="histogram-box height-100">
+      <view class="hist-t"><text>相似关键词</text></view>
+      <view class="container clearfix">
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+        <view class="gj-box">人工智能</view>
+      </view>
+    </view>
+  </view> -->
+  <!-- 热门公司 -->
+  <view class="box">
+    <view class="histogram-box">
+      <view class="hist-t"><text>热门公司</text></view>
+      <view class="register">
+        <view class="reg-tit clearfix">
+          <view class="fl">公司名称</view>
+          <view class="fr">专利占比</view>
+          <view class="fr zlNum">专利数量</view>
+        </view>
+        <!-- 公司名称 专利数量 -->
+        <view class="info">
+        <block wx:for="{{company}}" wx:key="index">
+          <view class="clearfix p-10">
+            <view class="fl comName">{{item.name}}</view>
+            <view class="fl ml">{{item.value}}</view>
+            <view class="fr ml">{{item.per}}</view>
+          </view>
+        </block>
+          
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 综合分析 -->
+  <view class="box">
+    <view class="histogram-box h-600">
+      <view class="hist-t"><text>综合分析</text></view>
+      <view class="container2" wx:if="{{ecBarShow}}">
+        <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecBar }}"></ec-canvas>
+      </view>
+    </view>
+  </view>
+  <!-- 相关专利图片 -->
+  <view class="box">
+    <view class="histogram-box pad-bot">
+      <view class="hist-t t-a clearfix"><text>相似专利图片</text></view>
+      <view class="schoollist">
+        <block wx:for="{{imgList}}" wx:key="index">
+          <view class="school-list">
+            <navigator url="/package/component2/pages/patent_book/designDetail/designDetail?id={{id}}&url={{item.baseimg}}">
+              <view class="school-list-info" >
+                <image class="school-list-photo" src="{{item.imgurl}}"/>
+                <text class="school-list-desc">{{item.title}}</text>
+              </view>
+            </navigator>
+          </view>
+          
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bootom-btn" style="height:{{ SafeButtom }}rpx">
+  <view class="left-btn" hover-class="leftClass">立即购买</view>
+  <view class="right-btn" hover-class="rightClass">撰写技术交底书</view>
+</view>

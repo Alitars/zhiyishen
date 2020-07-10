@@ -1,0 +1,8 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+page{background:#f9f9f9}.body{width:100%;overflow:hidden;height:100%}.flex-boxs{width:inherit;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;border:solid 1px #dcdcdc;position:relative;margin-top:16rpx;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.cell-box-s{position:relative;width:inherit;height:94rpx}.cell-box{position:absolute;width:inherit;height:94rpx;line-height:94rpx}.O{left:82rpx}.t{left:226rpx;width:484rpx;max-width:484rpx;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.r{left:558rpx;color:#f96006}.border::after{content:"";width:670rpx;height:1px;background:#dbdbdb;position:absolute;bottom:0;left:50%;margin-left:-335rpx}

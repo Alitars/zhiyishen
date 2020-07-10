@@ -1,0 +1,10 @@
+<navigation-bar back="{{ true }}" background="#fff" title="相关专利" />
+<view class="content-box">
+	<view class="t-box">
+  <text class="title">基于YYY的光敏测温计</text>
+  <text>{{ text }}</text>
+  </view>
+</view>
+<view class="b_box "  style="height:{{ SafeButtom }}rpx">
+	<view class="orange" bindtap="onClick">下载</view>
+</view>

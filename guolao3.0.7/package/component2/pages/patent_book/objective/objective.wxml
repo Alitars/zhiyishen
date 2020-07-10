@@ -1,0 +1,52 @@
+<view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+</view>
+<image class="bgimgs" src="https://admin.iguolao.com/public/uploads/20200525162716555.png" mode="widthFix"></image>
+<view class="g_box fixd" style="padding-top:{{statusBarHeight+45}}px;margin-top:20px" id='box'>
+	<image class="g_img" src="https://admin.iguolao.com/public/uploads/20200526103100803.png"></image>
+	<view class="g_t text-box" style="top:{{ statusBarHeight+45 }}px">{{ text }}</view>
+</view>
+<!-- 第1个问题 -->
+<view class="body_two" style="height:{{ height }}px">
+	<view class="tabs-vioce">
+		<view class="tabs-box-v {{ active==0?'oranges':'' }}" data-id="0" bindtap="onSlider">文本输入</view>
+		<view class="tabs-box-v {{ active==1?'oranges':'' }}" data-id="1" bindtap="onSlider">语音录制</view>
+		<!-- <view class="tabs-slider" animation="{{ animationData }}"></view> -->
+		<view class="tabs-slider"></view>
+	</view>
+	<view class="recoder_box">
+		<scroll-view class="scroll-view-box" scroll-y="true" style="height:400rpx" scroll-top="{{ top_num }}">
+			<view id='field'>
+				<van-field value="{{  value }}" custom-style="border-radius: 4px;min-width: 590rpx;min-height: 400rpx;" clearable type="textarea" placeholder="请做简单的描述" autosize bind:change="onChangeText" maxlength='100000' autosize border="{{ false }}" />
+			</view>
+		</scroll-view>
+	</view>
+
+	<view class="recoder_box" hidden="{{ active==1?false:true  }}">
+		<view class="re_big_box center">
+			<view class="down_box">{{ h.length==1?'0'+ h:h }}:{{ m.length==1?'0'+m:m }}:{{ s.length==1?'0'+s:s }}</view>
+			<view class="left_recoder">
+				<image class="imgs_recoder" src="/package/component2/images/leftsds.png"></image>
+			</view>
+			<view class="recodr_img" bindtap="onStart">
+				<image src="/package/component2/images/recoderStart.png" hidden="{{ !isRecorder }}"></image>
+				<image src="/package/component2/images/stopRecoder.png" hidden="{{ isRecorder }}"></image>
+			</view>
+			<view class="right_recoder">
+				<image class="imgs_recoder" src="/package/component2/images/rightsds.png"></image>
+			</view>
+			<view class="status_box {{ isRecorder?'animateOpacity':'' }}">{{ isRecorder?'正在录音…':'已暂停' }}</view>
+			<view class="save_box" bindtap="onStop">保存</view>
+		</view>
+	</view>
+</view>
+
+<view class="b_box " id='btn' style="height:{{ SafeButtom }}rpx">
+	<view class="orange" bindtap="onClick">下一步</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

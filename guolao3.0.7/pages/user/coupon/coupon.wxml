@@ -1,0 +1,83 @@
+<view>
+	<van-tabs active="{{ active }}" line-height="4" bind:change="onChange" line-width="16">
+		<van-tab title="未使用">
+			<view class="no_list center f_c" hidden="{{ noUsed }}">
+				<image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+				<text>尚未拥有优惠券…</text>
+			</view>
+			<block wx:for="{{ noUsed }}" wx:key="index">
+				<view class="counpon_box" bindtap="onUse">
+					<image src="https://admin.iguolao.com/public/uploads/20200520112743999.png"></image>
+					<view class="l_box center f_c">
+						<text class="price red"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+						<!-- <view></view> -->
+						<block wx:if="{{ item.total>0 }}">
+							<view class="type_box orange">满{{ item.total }}元减{{ item.user_total }}元</view>
+						</block>
+						<block wx:if="{{ item.total==0 }}">
+							<view class="type_box orange"> 通用{{ item.user_total }}元</view>
+						</block>
+						<text class="date_txt c9">有效期限：{{item.start}} - {{item.end}}</text>
+					</view>
+					<view class="r_box orange_t f_c center" data-id="{{item.id}}">
+						<text>立即</text>
+						<text>使用</text>
+					</view>
+				</view>
+			</block>
+		</van-tab>
+		<van-tab title="已使用">
+			<view class="no_list center f_c" hidden="{{ haveUsed }}">
+				<image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+				<text>尚未拥有优惠券…</text>
+			</view>
+			<block wx:for="{{ haveUsed }}" wx:key="index">
+				<view class="counpon_box">
+					<image src="https://admin.iguolao.com/public/uploads/20200520113026600.png"></image>
+					<view class="l_box center f_c">
+						<text class="price"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+						<block wx:if="{{ item.total>0 }}">
+							<view class="type_box">满{{ item.total }}元减{{ item.user_total }}元</view>
+						</block>
+						<block wx:if="{{ item.total==0 }}">
+							<view class="type_box"> 通用{{ item.user_total }}元</view>
+						</block>
+						<text class="date_txt">有效期限：{{item.start}} - {{item.end}}</text>
+					</view>
+					<view class="r_box f_c center">
+						<text>已使用</text>
+					</view>
+				</view>
+			</block>
+		</van-tab>
+		<van-tab title="已过期">
+			<view class="no_list center f_c" hidden="{{ overDue }}">
+				<image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+				<text>尚未拥有优惠券…</text>
+			</view>
+
+			<block wx:for="{{overDue}}" wx:key="index">
+				<view class="counpon_box">
+					<image src="https://admin.iguolao.com/public/uploads/20200520113026600.png"></image>
+					<view class="l_box center f_c">
+						<text class="price"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+						<block wx:if="{{ item.total>0 }}">
+							<view class="type_box">满{{ item.total }}元减{{ item.user_total }}元</view>
+						</block>
+						<block wx:if="{{ item.total==0 }}">
+							<view class="type_box"> 通用{{ item.user_total }}元</view>
+						</block>
+						<text class="date_txt">有效期限：{{item.start}} - {{item.end}}</text>
+					</view>
+					<view class="r_box f_c center">
+						<text>过期</text>
+						<text>作废</text>
+					</view>
+				</view>
+			</block>
+
+		</van-tab>
+	</van-tabs>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

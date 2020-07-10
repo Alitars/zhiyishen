@@ -1,0 +1,27 @@
+<view class="swiper">
+  <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"  style="height:610rpx">
+    <block wx:for="{{list}}" wx:key="index">
+      <swiper-item>
+        <image class="topImg" src="{{img+item.url_img}}"></image>
+        <view class='info'>
+          <view class="get">获取资格</view>
+          <view class="getDetail">{{item.qualificate}}</view>
+
+          <view class="get mtop">享受权益</view>
+          <view class="getDetail">{{item.equities}}</view>
+          <!-- <view class="getDetail">2.被邀请的代理人名下产出的订单金额*15的积分奖励</view> -->
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 积分商城 -->
+  <view class="shop">
+    <view class="line"></view>
+    <text>积分商城</text>
+    <view class="rline"></view>
+  </view>
+  <view class="jqqd">
+    <image src="https://admin.iguolao.com/public/uploads/20200706092103255.png" ></image>
+    <view>敬请期待</view>
+  </view>
+</view>
