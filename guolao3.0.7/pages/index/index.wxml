@@ -196,4 +196,9 @@
 <!-- </block> -->
 <van-toast id="van-toast" />
 <van-dialog id="van-dialog" /><canvas class="canvas-box" type="2d" id="canvas-img"></canvas>
+
+<view class="show" hidden="{{modelShow}}" >
+	<image class="absImg" src="https://admin.iguolao.com/public/uploads/20200710181437374.png" bindtap="changeModel"></image>
+	<image  class="showImage" src="https://admin.iguolao.com/public/uploads/20200710180243621.png" bindtap="toDaili"></image>
+</view>
 <!-- https://admin.iguolao.com/public/uploads/20200522150757745.png -->

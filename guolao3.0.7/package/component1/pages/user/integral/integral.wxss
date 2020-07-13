@@ -248,3 +248,13 @@ page {
   margin-top: 30rpx;
   padding-bottom: 20rpx;
 }
+.butt{
+  background-color: #fff;
+  /* padding: 2rpx 0; */
+  box-sizing: border-box;
+  line-height: 46rpx;
+  border-radius: 26rpx ;
+  height: 56rpx;
+  width: 166rpx;
+}
+button::after { border: none; }

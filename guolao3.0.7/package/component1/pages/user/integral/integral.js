@@ -49,9 +49,7 @@ Page({
     }
     if(id == 4){
       // 推荐代理人
-      // wx.navigateTo({
-      //   url: '../signIn/signIn',
-      // })
+      this.onShareAppMessage()
     }
     if(id == 5){
       // 晋级代理人
@@ -109,6 +107,9 @@ Page({
    */
   onShow: function () {
     this.getData()
+    this.setData({
+      phone:wx.getStorageSync('phone')
+    })
   },
 
   /**
@@ -142,7 +143,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (res) {
+    return {
+      title: '知昇(上海)人工智能科技有限公司，智能商标注册',
+      path: '/package/component1/pages/user/activity/activity?phone=' +this.data.phone ,
+      imageUrl: "https://admin.iguolao.com/public/uploads/20200710185325498.png"
+    }
   }
 })

@@ -65,9 +65,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/index/index",
-					"pathName": "package/component1/pages/user/winDetail/winDetail",
-					"query": "",
+					"name": "package/component1/pages/user/activity/activity",
+					"pathName": "package/component1/pages/user/activity/activity",
+					"query": "phone=11111",
 					"scene": null
 				},
 				{

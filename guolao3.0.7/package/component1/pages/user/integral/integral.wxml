@@ -31,7 +31,8 @@
 						<view class="rbot">
 							{{item.remark}}
 						</view>
-						<view class="qBtn" data-id="{{item.id}}" bindtap="toNext">{{item.btn}}</view>
+						<view class="qBtn" data-id="{{item.id}}" bindtap="toNext" wx:if='{{item.id!=4}}'>{{item.btn}}</view>
+						<button class="qBtn butt" data-id="{{item.id}}" bindtap="toNext" wx:if='{{item.id==4}}' open-type="share">{{item.btn}}</button>
 					</view>
 				</block>
 			</view>

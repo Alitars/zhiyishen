@@ -62,11 +62,11 @@
 	</view>
 
 	<view class="Mycenter"wx:else>
-		<view class="vipcenter">
+		<!-- <view class="vipcenter">
 			<image src="../../images/hg.svg"></image>
 			<view class="m_t_a" />
 			<view>会员中心</view>
-		</view>
+		</view> -->
 		<view class="vipcenter">
 			<image src="../../images/hg.svg"></image>
 			<view class="m_t_a" />

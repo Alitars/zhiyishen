@@ -83,6 +83,7 @@
       "pages/index/agent_dt/agent_dt",
       "pages/user/transfer_accounts/transfer_accounts",
       "pages/user/activity/activity",
+      "pages/user/activitytwo/activitytwo",
       "pages/services/dt/dt",
       "pages/services/pay/pay",
       "pages/services/coupon/coupon",

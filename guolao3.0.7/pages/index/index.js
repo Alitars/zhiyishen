@@ -198,6 +198,34 @@ Page({
       })
     }
   },
+
+  changeModel(){
+    this.setData({
+      modelShow:true
+    })
+  },
+  toDaili(){
+    if (!getApp().globalData.userid) {
+      Toast('请先登录')
+      if(this.data.phone){
+        wx.navigateTo({
+          url: '/pages/user/log_on/log_on?mobile='+options.mobile,
+        });
+      }else{
+        wx.navigateTo({
+          url: '/pages/user/log_on/log_on',
+        });
+      }
+      return;
+    }else{
+      this.setData({
+        modelShow:true
+      })
+      wx.navigateTo({
+        url: '/package/component1/pages/user/activitytwo/activitytwo',
+      })
+    }
+  },
   onTool(e) {
     var id = e.currentTarget.dataset.id;
     if (!getApp().globalData.userid) {
@@ -943,9 +971,13 @@ Page({
   onLoad: function (options) {
     // console.log(options, 'index,options');
     // this.onShow();
+    
     if (!getApp().globalData.userid) {
       Toast('请先登录')
       if(options.mobile){
+        this.setData({
+          phone:options.mobile
+        })
         wx.navigateTo({
           url: '/pages/user/log_on/log_on?mobile='+options.mobile,
         });
@@ -956,6 +988,9 @@ Page({
       }
       return;
     };
+    this.setData({
+      modelShow:false
+    })
   },
   onShow: function () {
     // logoCheck();

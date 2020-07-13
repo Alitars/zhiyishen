@@ -2,7 +2,7 @@
 	<view class="body" style="height:{{ height }}px">
 		<image class="imgBg" src="https://admin.iguolao.com/public/uploads/20200416182748916.jpg" mode="widthFix"></image>
 		<view class="top_img" style="top:{{ statusBarHeight+45 }}px">
-			<image src="https://admin.iguolao.com/public/uploads/20200417111419332.png" mode="widthFix"></image>
+			<image src="https://admin.iguolao.com/public/uploads/20200710183632897.png" mode="widthFix"></image>
 		</view>
 		<view class="bottom_img" style="top:{{ statusBarHeight+45 }}px">
 			<image src="https://admin.iguolao.com/public/uploads/20200417110152695.png" mode="widthFix"></image>

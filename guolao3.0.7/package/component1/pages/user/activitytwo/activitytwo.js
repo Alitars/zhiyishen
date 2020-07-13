@@ -19,7 +19,7 @@ Page({
   onLoad: function (options) {
     wx.downloadFile({
       // url: 'https://admin.iguolao.com/public/uploads/20200423170451162.jpg',
-      url:'https://admin.iguolao.com/public/uploads/20200710185752759.jpg',
+      url:'https://admin.iguolao.com/public/uploads/20200710185608693.jpg',
       success: ((res) => {
         // console.log(res)
         this.setData({

@@ -7,7 +7,8 @@
 		</view>
 	</view>
 	<!--<view class="sx-box"bindtap="onClose">筛选</view>-->
-	<view class="custom-text van-ellipsis" bindtap="onClick"><text>商标注册</text></view>
+	<!-- <view class="custom-text van-ellipsis" bindtap="onClick"><text>商标注册</text></view> -->
+	<view class="custom-text van-ellipsis"><text>商标注册</text></view>
 </view>
 <view class="empty_custom" style="padding-top:{{ statusBarHeight }}px" />
 <view class="continer">

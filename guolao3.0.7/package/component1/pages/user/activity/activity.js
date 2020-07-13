@@ -163,18 +163,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '活动已结束',
-      confirmColor: "#f96509",
-      success: (res => {
-        if (res.confirm) {
-          this.onRest();
-        }
-      })
-    })
-    return;
+    // wx.showModal({
+    //   title: '提示',
+    //   showCancel: false,
+    //   content: '活动已结束',
+    //   confirmColor: "#f96509",
+    //   success: (res => {
+    //     if (res.confirm) {
+    //       this.onRest();
+    //     }
+    //   })
+    // })
+    // return;
     if (JSON.stringify(options) == '{}') {
       setTime(2000).then(() => {
         wx.showModal({
@@ -190,7 +190,7 @@ Page({
         })
       })
     } else {
-      this.data.invitation_code = options.scene;
+      this.data.invitation_code = options.phone;
     };
     wx.showLoading({
       title: '加载中...',
