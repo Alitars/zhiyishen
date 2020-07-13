@@ -12,6 +12,10 @@
 <view class="empty_custom" style="padding-top:{{statusBarHeight}}px" /> -->
 <!-- 引入wxs -->
 <wxs module="apply" src="./apply.wxs"></wxs>
+<view class="choose border">
+	<view class="{{colShow == true?'red':''}}" data-id="0" bindtap="changeCol">非积分开票</view>
+	<view class="{{colShow == true?'':'red'}}" data-id="1" bindtap="changeCol">积分开票</view>
+</view>
 <view class="top_switch top0 border">
 	<view class="checkbox al_center">
 		<van-checkbox value="{{ checked }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>

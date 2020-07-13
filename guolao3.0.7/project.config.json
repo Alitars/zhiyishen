@@ -143,7 +143,7 @@
 				{
 					"id": 11,
 					"name": "zx",
-					"pathName": "package/component1/pages/user/toAgent/toAgent",
+					"pathName": "pages/user/bill/apply/apply",
 					"query": "",
 					"scene": null
 				},

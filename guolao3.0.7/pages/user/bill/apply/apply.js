@@ -12,6 +12,8 @@ Page({
     invoice_type: '',
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     height: getApp().globalData.menu.height + getApp().globalData.menu.top,
+    colShow:true,
+    code:0,
   },
 
   onChooseAll() {
@@ -148,6 +150,7 @@ Page({
           invoice_id: invoice_id,
           invoice_type: invoice_type,
           l_order: l_order,
+          is_useingral:this.data.code
         },
       }).then(res => {
         resolve(res.data.code == 1 ? true : false);
@@ -217,7 +220,9 @@ Page({
     var brand = new Promise((resolve, reject) => {
       NetworkRequest({
         url: '/invoice/invoiceList',
-        data: {},
+        data: {
+          is_useingral:this.data.code
+        },
       }).then(res => {
         if (res.data.data) {
           var order = res.data.data.level_order;
@@ -279,10 +284,60 @@ Page({
       })
     })
   },
+  changeCol(e){
+    var id = e.currentTarget.dataset.id
+    if(id == 0){
+      this.setData({
+        colShow: true,
+        code:0,
+        checked:false
+      })
+      this.getData()
+    }else{
+      this.setData({
+        colShow: false,
+        code:1,
+        checked:false
+      })
+      this.getNo()
+    }
+  },
+  getNo(){
+    wx.showLoading({
+      title: '加载中...',
+    });
+    NetworkRequest({
+      url: '/invoice/invoiceList',
+      data: {
+        is_useingral:this.data.code
+      },
+    }).then(res=>{
+      if (res.data.data) {
+        var order = res.data.data.level_order;
+        var list = res.data.data.dataList;
+        for (var s = 0; s < order.length; s++) {
+          order[i].iSelect = false;
+          order[i].mold = 'level_order';
+        };
+        for (var i = 0; i < list.length; i++) {
+          list[i].iSelect = false;
+          list[i].mold = 'brand';
+        };
+        var arry = order.concat(list);
+        this.setData({
+          arry:arry
+        })
+      };
+    })
+  },
   onLoad: function (options) {
     this.getData();
   },
   onPullDownRefresh: function () {
-    this.getData();
+    if(this.data.code == 0){
+      this.getData();
+    }else{
+      this.getNo();
+    }
   },
 })

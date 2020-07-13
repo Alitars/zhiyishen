@@ -74,6 +74,7 @@ Page({
   },
   onReadys() {
     var url = getApp().globalData.dm_Url + '/public/materials/licenserecord/知依昇平台代理人入驻协议.pdf';
+    console.log(url)
     Toast.loading({
       message: '加载中...',
       duration: 0,
