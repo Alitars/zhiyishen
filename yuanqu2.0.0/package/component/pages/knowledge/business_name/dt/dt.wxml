@@ -1,0 +1,21 @@
+<navigation-bar back="{{ true }}" color="#ffffff" background="-webkit-linear-gradient(left,#2fa5fc,#277cfb)" title="核名结果" />
+<view class="body">
+	<image class="bg-img" id='bg' style="top:{{ statusBarHeight+43 }}px" src="https://admin.iguolao.com/public/uploads/20200513162632444.jpg" mode="widthFix"></image>
+	<view class="bottom_bg" style="top:{{ top+statusBarHeight+43 }}px"></view>
+	<view class="card-box">
+		<view class="title"><text>{{ valueTwo }}</text></view>
+		<view class="list-row">注册地址：{{ region[1] }}</view>
+		<view class="list-row">行业类型：{{ tradeItem }}</view>
+		<view class="list-row">综合风险等级：<view class="danger-box" style="background:{{ color[level] }}"><text>{{ text[level] }}</text></view>
+		</view>
+	</view>
+	<view class="card-box-s">
+		<view class="t-s-box">近似公司分析</view>
+		<block wx:for="{{ arry }}" wx:key='index'>
+			<view class="flex-box">
+				<view class="left-flex">{{ item.company_name }}</view>
+				<view class="right-flex">综合相似度：<text style="color:{{ item.color }}">{{ item.warning }}</text></view>
+			</view>
+		</block>
+	</view>
+</view>

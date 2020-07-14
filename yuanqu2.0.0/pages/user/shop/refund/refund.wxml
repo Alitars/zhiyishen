@@ -1,0 +1,18 @@
+<view class="body">
+  <view class="card-box">
+    <view class="title">退款方式</view>
+    <view class="c-box" >
+      <text>{{  title }}</text>
+      <view class="arrow"></view>
+    </view>
+    <view class="title">退款账号</view>
+    <input class="c-box" value="{{  refund_account }}" type="number" maxlength="20" placeholder="请输入退款账号" bindinput="onInput"></input>
+    <view class="title">退款理由</view>
+    <van-field value="{{ value }}" custom-style="width:582rpx;height:130rpx;border:2rpx solid #939393;box-sizing:border-box;border-radius:10rpx;margin-left:30rpx;" clearable input-align="center" type="textarea" maxlength="100" placeholder="请输入退款理由" 
+      border="{{ false }}" bind:change="onChange"/>
+    <view class="btn after" bindtap="onRefund">提交</view>
+  </view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

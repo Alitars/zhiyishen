@@ -1,0 +1,46 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onClickLeft">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+  <view class="sx-box" bindtap="onAdd">添加</view>
+  <view class="custom-text van-ellipsis">
+    <text>开票信息管理</text>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{ statusBarHeight }}px" />
+<view class="body">
+  <block wx:for="{{ arry }}" wx:key="index">
+    <view class="list_box" data-id="{{ item.id }}" data-name="{{ item.company_name }}" data-type="{{ item.invoice_type }}" bindtap="{{ open?'onChoose':'' ||  onPay?'onPay':'' }}">
+      <view class="list_t2">
+        <text hidden="{{ item.invoice_type==2 }}">普通发票</text>
+        <text hidden="{{ item.invoice_type==1 }}">增值税发票</text>
+      </view>
+      <view class="list_t">
+        <text>发票抬头</text>
+        <text>{{ item.company_name }}</text>
+      </view>
+      <view class="list_t">
+        <text>税号</text>
+        <text>{{ item.credit_code }}</text>
+      </view>
+      <view class="b_box" data-id="{{ item.id }}" catchtap="onEdit">
+        <image src="/images/big.png"></image>
+      </view>
+      <view class="delet_box al_center f_r" data-id="{{ item.id }}" catchtap="onDelet">
+        <image src="/images/delet.png"></image>
+        <text>删除</text>
+      </view>
+      <view class="setBtn {{ item.status==1?'':'org' }}" data-id="{{ item.id }}" catchtap="onSet">
+        <text>设为默认</text>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="b_list_btn" hidden="{{ !onPay }}" style="height:{{ SafeButtom }}rpx">
+  <view class="a_box" bindtap="onClick">不使用发票</view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>
+<van-dialog id="van-dialog" />

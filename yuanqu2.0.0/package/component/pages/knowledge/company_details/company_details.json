@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "ec-canvas": "/package/component/pages/ec-canvas/ec-canvas"
+  }
+}

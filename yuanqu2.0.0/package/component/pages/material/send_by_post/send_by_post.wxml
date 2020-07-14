@@ -1,0 +1,100 @@
+<view class="body" hidden="{{ id==1?false:true }}">
+  <view class="bg-white">
+    <view class="list">企业营业执照副本复印件（盖公章）</view>
+    <view class="list">驳回通知书电子档/原件及邮寄信封原件</view>
+  </view>
+  <view class="bg-orange">可去PC端下载文件：</view>
+  <view class="bg-white">
+    <view class="list">商标驳回复审正文（盖公章）</view>
+    <view class="list">商标驳回复审申请书（盖公章）</view>
+    <view class="list">商标代理委托书（盖公章）</view>
+  </view>
+  <view class="bottom">
+    <view class="txt">*以上文件需邮寄到我们公司</view>
+    <view class="txt">邮寄地址：上海市松江区松江新城文成路知依昇（上海）</view>
+    <view class="txt">互联网技术有限公司</view>
+    <view class="txt">联系电话：400-630-2718</view>
+  </view>
+</view>
+<!--  -->
+
+
+
+
+<view class="body" hidden="{{ id==2?false:true }}">
+  <view class="bg-white">
+    <view class="list">企业营业执照副本复印件（盖公章）</view>
+  </view>
+  <view class="bg-orange">可去PC端下载文件：</view>
+  <view class="bg-white">
+    <view class="list">商标异议正文（盖公章）</view>
+    <view class="list">商标异议申请书（盖公章）</view>
+    <view class="list">商标代理委托书（盖公章）</view>
+  </view>
+  <view class="bottom">
+    <view class="txt">*以上文件需邮寄到我们公司</view>
+    <view class="txt">邮寄地址：上海市松江区松江新城文成路知依昇（上海）</view>
+    <view class="txt">互联网技术有限公司</view>
+    <view class="txt">联系电话：400-630-2718</view>
+  </view>
+</view>
+
+
+<view class="body" hidden="{{ id==3?false:true }}">
+  <view class="bg-white">
+    <view class="list">企业营业执照副本复印件（盖公章）</view>
+    <view class="list">异议通知书原件以及邮寄信封原件</view>
+  </view>
+  <view class="bg-orange">可去PC端下载文件：</view>
+  <view class="bg-white">
+    <view class="list">商标异议正文（盖公章）</view>
+    <view class="list">商标代理委托书（盖公章）</view>
+  </view>
+  <view class="bottom">
+    <view class="txt">*以上文件需邮寄到我们公司</view>
+    <view class="txt">邮寄地址：上海市松江区松江新城文成路知依昇（上海）</view>
+    <view class="txt">互联网技术有限公司</view>
+    <view class="txt">联系电话：400-630-2718</view>
+  </view>
+</view>
+<!--  -->
+
+
+<view class="body" hidden="{{ id==4?false:true }}">
+  <view class="bg-white">
+    <view class="list">企业营业执照副本复印件（盖公章）</view>
+    <view class="list">身份证复印件（签名）</view>
+  </view>
+  <view class="bg-orange">可去PC端下载文件：</view>
+  <view class="bg-white">
+    <view class="list">商标撤三申请书（盖公章）</view>
+    <view class="list">商标代理委托书（盖公章）</view>
+  </view>
+  <view class="bottom">
+    <view class="txt">*以上文件需邮寄到我们公司</view>
+    <view class="txt">邮寄地址：上海市松江区松江新城文成路知依昇（上海）</view>
+    <view class="txt">互联网技术有限公司</view>
+    <view class="txt">联系电话：400-630-2718</view>
+  </view>
+</view>
+<!--  -->
+
+
+<view class="body" hidden="{{ id==5?false:true }}">
+  <view class="bg-white">
+    <view class="list">企业营业执照副本复印件（盖公章）</view>
+    <view class="list">商标撤销三年不使用通知书原件及邮寄信封原件</view>
+  </view>
+  <view class="bg-orange">可去PC端下载文件：</view>
+  <view class="bg-white">
+    <view class="list">商标撤三答辩正文（盖公章）</view>
+    <view class="list">商标代理委托书（盖公章）</view>
+  </view>
+  <view class="bottom">
+    <view class="txt">*以上文件需邮寄到我们公司</view>
+    <view class="txt">邮寄地址：上海市松江区松江新城文成路知依昇（上海）</view>
+    <view class="txt">互联网技术有限公司</view>
+    <view class="txt">联系电话：400-630-2718</view>
+  </view>
+</view>
+<!--  -->

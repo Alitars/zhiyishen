@@ -1,0 +1,1 @@
+<web-view class="body" src="{{ url }}"></web-view>

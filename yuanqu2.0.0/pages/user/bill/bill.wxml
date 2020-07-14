@@ -1,0 +1,1 @@
+<view class="container"><view class="list_box_top" wx:for="{{ listBtn }}" wx:key='index'><view class="list_icon_box center" data-id="{{item.url}}" bindtap="onChange"><image class="icon_d" src="{{item.images}}"></image><text class="d_t">{{item.text}}</text></view></view></view>

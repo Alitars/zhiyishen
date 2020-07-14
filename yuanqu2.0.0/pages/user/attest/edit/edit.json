@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "认证编辑",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#f96006",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
+}

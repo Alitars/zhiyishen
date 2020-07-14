@@ -1,0 +1,48 @@
+<view class="body">
+  <block wx:for="{{ list }}" wx:key="index">
+    <van-transition show="{{  list.length }}" custom-class="block" name="fade-up">
+      <view class="list_dt"  hover-class="bghover" data-type="{{item.IntCls}}" data-id="{{ item.RegId }}" data-index="{{index}}" bindtap="onDt">
+        <image class="img_r" src="data:image/png;base64,{{ item.BrandImg }}" lazy-load="true"></image>
+        <!-- <image class="edt-box" src="/images/big.png"></image> -->
+        <view class="on-attend" catchtap="onClick">办理续展</view>
+        <view class="top" />
+        <view class="top" />
+        <view class="list_Dt ">
+          <text>类别：</text>
+          <text class="van-ellipsis">{{ item.IntCls }}类</text>
+        </view>
+        <view class="list_Dt ">
+          <text>注册号：</text>
+          <text class="van-ellipsis">{{ item.IntCls }}类</text>
+        </view>
+        <view class="list_Dt">
+          <text>专用权期限：</text>
+          <text>{{ item.RegId?item.RegId:'暂无' }}</text>
+        </view>
+        <view class="list_Dt">
+          <text class="rt">当前状态：</text>
+          <text wx:if="{{ !item.Ggdate }}">暂无</text>
+          <text wx:else>{{item.Ggdate}}/{{ item.EffectiveEndDate}}</text>
+        </view>
+        <view class="top" />
+        <view class="top" />
+      </view>
+    </van-transition>
+  </block>
+</view>
+<view class="loading-more center" hidden="{{ display }}">
+  <van-loading size='25px' color="#f96006" />
+  <text></text>
+</view>
+<view class="loading-more center" hidden="{{ !display }}">
+  <text></text>
+</view>
+<!-- <view class="body" hidden="{{ list.length>0&&display }}">
+  <view class="no-attest center f_c">
+    <image src="/images/zc-no.png"></image>
+    <text>你还没有进行企业认证</text>
+    <view class="add-attest center" bindtap="onClick">添加认证</view>
+  </view>
+</view> -->
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

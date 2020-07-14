@@ -1,0 +1,7 @@
+	<van-cell-group>
+		<view bindtap="onCopyText">
+			<van-cell size='large' title="公司名称：知升(上海)知识产权代理有限公司" is-link />
+			<van-cell size='large' title="开户行：上海浦东发展银行松江支行" />
+			<van-cell size='large' title="账号：98080078801500002499" />
+		</view>
+	</van-cell-group>

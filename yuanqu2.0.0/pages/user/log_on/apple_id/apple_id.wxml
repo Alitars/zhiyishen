@@ -1,0 +1,18 @@
+<view>
+  <van-field value="{{  phoneNumber }}" maxlength="11" type="number" size="large" clearable label="＋86" placeholder="请输入手机号码" bind:click-icon="onClickIcon" bind:change="onPhone" />
+  <van-field value="{{ sms }}" type="number" maxlength="6" size="large" center clearable label="短信验证码" placeholder="请输入验证码" use-button-slot bind:change="onYzm">
+    <van-button slot="button" plain size="small" round type="warning" bind:click="{{ code==1?'':'onSend'}}">
+      <text hidden="{{code==''||code==2?false:true}}">获取验证码</text>
+      <text style="color:#ccc;" hidden="{{code==1?false:true}}">{{ time }}s 重新获取</text>
+    </van-button>
+  </van-field>
+  <view class="read_box">
+    <text>温馨提示：未注册知依昇网账号的手机号，登录时将自动注册，且代表您已同意</text>
+    <text bindtap="onxieyi">《用户服务协议》</text>
+    <text>和</text>
+    <text bindtap="tiaokuan">《隐私条款》</text>
+  </view>
+  <view class="btn {{number.length==6&&phoneNumber.length==11?'orange':''}}" bindtap="{{number.length==6&&phoneNumber.length==11?'onLog':''}}">登录</view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

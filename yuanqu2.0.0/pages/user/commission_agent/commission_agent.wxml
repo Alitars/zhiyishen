@@ -1,0 +1,8 @@
+<view class="containers">
+  <block wx:for="{{ btn }}" wx:key='index'>
+    <view class="btn-box" hover-class="bghover" data-url="{{ item.url }}" bindtap="onClick">
+      <image src="{{ item.img }}"></image>
+      <text>{{ item.text }}</text>
+    </view>
+  </block>
+</view>

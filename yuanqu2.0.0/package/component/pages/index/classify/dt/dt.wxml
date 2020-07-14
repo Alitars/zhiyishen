@@ -1,0 +1,33 @@
+	<navigation-bar back="{{ true }}" color="#ffffff" background="-webkit-linear-gradient(left,#2fa5fc,#277cfb)" title="商品详情" />
+	<block wx:if="{{ AllClassArry.length>0 }}">
+		<view class="top-search" style="top:{{ top }}px">
+			<van-search value="{{ value }}" shape="round" placeholder="请输入类别名称" type="text" bind:search="onSearch" bind:change="onChange" />
+		</view>
+		<view style="height:54px;background:#f9f9f9"></view>
+		<view class="continer">
+			<block wx:for="{{ AllClassArry }}" wx:key="index">
+				<view class="flex-box">
+					<text>{{ item.id.length==1?'0'+item.id:item.id }}{{ item.name }}</text>
+				</view>
+				<block wx:for="{{ item.sec }}" wx:for-item="item" wx:key="index">
+					<view class="flex-box-two  border {{ item.isSelect==true?'down':'up' }}" data-id="2" data-f="{{ item.firstIndex }}" data-t="{{ item.twoIndex }}" bindtap="onflod">
+						<text style="color:{{ item.isSelect==true?'#017fff':'#333' }}">{{ item.num }}{{ item.name }}</text>
+					</view>
+					<view class="over">
+						<van-transition show="{{ item.isSelect==true }}" name="fade-down" custom-class="block">
+							<block wx:for="{{ item.third }}" wx:for-item="item" wx:key="index">
+								<view class="flex-box-three  border-three">
+									<block wx:for="{{ item.text }}" wx:for-item="item" wx:key="index">
+										<text>{{ item.num }}</text>
+										<text style="color:{{ item.color }}">{{ item.str }}</text>
+									</block>
+								</view>
+							</block>
+						</van-transition>
+					</view>
+				</block>
+			</block>
+		</view>
+	</block>
+	<van-toast id="van-toast" />
+	<van-notify id="custom-selector" />

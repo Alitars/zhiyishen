@@ -1,0 +1,143 @@
+@import '/package/component/pages/knowledge/business_name/business_name.wxss';
+
+.card-box {
+  width: 670rpx;
+  height: 100%;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20rpx;
+  position: relative;
+  left: 50%;
+  margin-left: -335rpx;
+  padding-top: 40rpx;
+  top: 40rpx;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 40rpx;
+  z-index: 20
+}
+
+.bg-img {
+  width: inherit;
+  height: 1380rpx;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  overflow: hidden
+}
+
+.card-box-s {
+  z-index: 20;
+  width: 670rpx;
+  height: 100%;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 20rpx;
+  position: relative;
+  left: 50%;
+  margin-left: -335rpx;
+  padding-top: 40rpx;
+  top: 80rpx;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 140rpx
+}
+
+.flex-box {
+  position: relative;
+  z-index: 20;
+  left: 50%;
+  margin-left: -315rpx;
+  width: 630rpx;
+  display: flex;
+  min-height: 100rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  align-items: center;
+  box-shadow: inset 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  border: solid 1px #277cfb;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 20rpx;
+  font-size: 28rpx;
+  color: #fff;
+  padding-bottom: 20rpx;
+  justify-content: space-between;
+  margin-bottom: 20rpx
+}
+
+.left-flex {
+  display: flex;
+  width: 308rpx;
+  margin-left: 20rpx;
+  overflow: hidden
+}
+
+.right-flex {
+  margin-right: 20rpx;
+  max-width: 240rpx;
+  overflow: hidden
+}
+
+.title {
+  width: inherit;
+  height: 44rpx;
+  color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.title text {
+  max-width: 570rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+
+.t-s-box {
+  color: #fff;
+  font-size: 28rpx;
+  width: inherit;
+  text-indent: 40rpx;
+  margin-bottom: 20rpx
+}
+
+.list-row {
+  color: #fff;
+  font-size: 28rpx;
+  width: 540rpx;
+  max-width: 540rpx;
+  overflow: hidden;
+  margin-left: 60rpx;
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.danger-box {
+  margin-left: 20rpx;
+  color: #fff;
+  font-size: 28rpx;
+  display: flex;
+  width: 156rpx;
+  overflow: hidden;
+  padding: 0;
+  height: 56rpx;
+  align-items: center;
+  justify-content: center
+}
+
+.bottom_bg {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  height: 200px;
+  right: 0;
+  left: 0;
+  z-index: 30;
+}

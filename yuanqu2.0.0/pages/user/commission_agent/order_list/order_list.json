@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单统计",
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#2d9afb",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
+}

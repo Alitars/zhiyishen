@@ -1,0 +1,30 @@
+<view class="custom center bg" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow2.png"></image>
+    </view>
+  </view>
+  <view class="custom-text van-ellipsis bgt" bindtap="onClick">
+    <text>园区选择</text>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight }}px" />
+<view class="body" style="height:{{ height }}px">
+  <view class="card-box">
+    <!-- <van-transition show="{{ show }}" custom-class="block"> -->
+      <view class="title-box">园区搜索（输入关键字搜索）</view>
+      <input class="input-box" confirm-type="搜索" type="text" maxlength="20" value="{{ value }}" placeholder="请输入园区名并选择" bindinput="onInput"></input>
+      <scroll-view class="seach-box-list" scroll-y="true" style="height: 620rpx">
+        <block wx:for="{{ searchArry }}" wx:key="index">
+          <view class="list-box {{ item.park_name==value?'blue':'' }}" data-id="{{ index }}" bindtap="onChoose">
+            <text>{{item.park_name}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    <!-- </van-transition> -->
+    <button class="btn" open-type="getUserInfo" hover-class="bghover" bindtap="onClick">立即绑定</button>
+  </view>
+  <!-- <view class="user-logon" bindtap="onBack">已有账号？立即登录</view> -->
+</view>
+<van-notify id="custom-selector" safe-area-inset-top/>
+<van-toast id="van-toast" />

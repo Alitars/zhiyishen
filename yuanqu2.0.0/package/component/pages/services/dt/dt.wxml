@@ -1,0 +1,144 @@
+<navigation-bar back="{{ true }}" background="#fff" title="业务详情" />
+<van-transition show="{{ arry.length }}" custom-class="block">
+	<view class="body">
+		<view class="{{ mold==1||mold==3?'top_box':'' }} {{ mold==2?'top_box_two':'' }} center">
+			<image src="https://admin.iguolao.com/public/uploads/20200423110003633.png" wx:if="{{ mold==1 }}"></image>
+			<image src="https://admin.iguolao.com/public/uploads/20200508133234443.jpg" wx:if="{{ mold==2 }}"></image>
+			<image src="https://admin.iguolao.com/public/uploads/20200423110003633.png" wx:if="{{ mold==3 }}"></image>
+			<view class="btn_t {{ mold==2?'newcolor':'' }}" hidden="{{ showId==39?true:false  }}">{{arry[type].title}}</view>
+			<view class="btn_t" hidden="{{ showId==39?false:true }}">AI商标注册</view>
+		</view>
+		<view class="title-price" hidden="{{ showId==39 }}">
+			<text>￥{{ arry[type].total }}</text>
+		</view>
+		<view class="list_dt_oran" hidden="{{ !arry[type].desc }}" style="{{ showId!==39?'':'padding-top:20rpx;padding-bottom:20rpx;' }}">
+			<text>{{arry[type].desc}}</text>
+		</view>
+		<view class="biao_txt wh100 m_t20">服务类型：</view>
+		<view class="lsit-btn" hidden="{{ showId==39?true:false }}">
+			<block wx:for="{{ arry }}" wx:key="index">
+				<view class="btn-box {{ type==index?'juh':'' }}" data-type="{{ index }}" bindtap="onType">{{ item.title }}</view>
+			</block>
+		</view>
+		<view class="lsit-btn" hidden="{{ showId==39?false:true }}">
+			<view class="btn-box juh" data-type="{{ index }}" bindtap="onType">AI商标注册</view>
+		</view>
+		<view class="biao_txt2 wh100">服务详情</view>
+		<view class="biao_txt wh100 m_t20">服务介绍：</view>
+		<view class="list_x_box m_t20 center">
+			<view class="sever-box">
+				<text>{{ arry[type].appwork }}</text>
+			</view>
+		</view>
+		<view class="biao_txt wh100 m_t20">平台优势：</view>
+		<view class="wh100 f_r center m_t20" bindtap="onClose">
+			<block wx:for="{{popup}}" wx:key="index">
+				<view class="icon_box f_c center m_l40">
+					<image src="{{item.icon}}" mode="widthFix"></image>
+					<text>{{item.itxt}}</text>
+				</view>
+			</block>
+			<view class="arrow" catchtap="onClose" />
+		</view>
+		<view class="biao_txt wh100 m_t20">服务流程：</view>
+		<view class="list_x_box m_t20 center">
+			<view class="sever-box">
+				<text>{{ arry[type].appservice }}</text>
+			</view>
+		</view>
+		<view class="biao_txt wh100 m_t20">所需材料：</view>
+		<view class="l_c_box m_t20">
+			<image src="{{ main_Url+arry[type].appdatas }}" mode="widthFix"></image>
+		</view>
+		<view class="b_list_btn" style="height:{{ brhifh }}rpx" bindtap="onCheck" hidden="{{ showId!==39 }}">
+			<view class="check_bl center">
+				<text>检测办理</text>
+			</view>
+		</view>
+		<view class="b_list_btn van-hairline--top" style="height:{{ brhifh }}rpx" hidden="{{ showId==39 }}">
+			<view class="go-shop f_c center" bindtap="onShop">
+				<image src="/package/component/images/sp.png" mode="widthFix"></image>
+				<text>购物车</text>
+			</view>
+			<view class="go-buy" bindtap="onBlock">立即购买</view>
+			<view class="add-shop" bindtap="onAddshop">加入购物车</view>
+		</view>
+		<van-popup show="{{ show }}" safe-area-inset-bottom="true" custom-style="border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;" z-index="1000" position="bottom" bind:close="onClose">
+			<view class="mask_box f_c al_center">
+				<view class="close_x center" bindtap="onClose">
+					<image src="/package/component/images/t_x.png"></image>
+				</view>
+				<text class="t_txt">平台优势</text>
+				<block wx:for="{{popup}}" wx:key="index">
+					<view class="list_box_p f_r center">
+						<view class="icon_box f_c center">
+							<image src="{{item.icon}}" mode="widthFix"></image>
+							<text>{{item.itxt}}</text>
+						</view>
+						<view class="p_txt">
+							<text>{{item.txt}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+		</van-popup>
+		<van-popup show="{{ display }}" safe-area-inset-bottom="true" position="bottom" custom-style="border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;" z-index="1000" bind:close="onAddshop">
+			<view class="mask_box f_c al_center">
+				<view class="close_x center" bindtap="onAddshop">
+					<image src="/package/component/images/t_x.png"></image>
+				</view>
+				<view class="shop_type">
+					<image src="{{ main_Url+arry[type].icon }}" mode="widthFix"></image>
+					<view class="shop_type_t">
+						<text>￥{{ arry[type].total }}</text>
+						<text>{{arry[type].title}}</text>
+					</view>
+				</view>
+				<view class="b_j_q_b">
+					<text class="nu">服务类型：</text>
+					<view class="btn_fl_box_two ac o">{{ arry[type].title }}</view>
+				</view>
+				<view class="b_j_q">
+					<text class="nu">购买数量：</text>
+					<van-stepper value="{{ count }}" integer min="1" max="99" step="1" bind:change="onChange" />
+				</view>
+				<view class="b-list-box" style="padding-bottom:{{ brhifh/4 }}rpx">
+					<text>总计：</text>
+					<text>￥{{ total }}</text>
+					<view class="btn_s" bindtap="onAddShopCar">确定</view>
+				</view>
+			</view>
+		</van-popup>
+
+		<van-popup show="{{ block }}" safe-area-inset-bottom="true" position="bottom" custom-style="border-top-left-radius: 20rpx;border-top-right-radius:20rpx;overflow: hidden;" z-index="1000"  bind:close="onBlock">
+			<view class="mask_box f_c al_center">
+				<view class="close_x center" bindtap="onBlock">
+					<image src="/package/component/images/t_x.png"></image>
+				</view>
+				<view class="shop_type">
+					<image src="{{ main_Url+arry[type].icon }}" mode="widthFix"></image>
+					<view class="shop_type_t">
+						<text>￥{{ arry[type].total }}</text>
+						<text>{{arry[type].title}}</text>
+					</view>
+				</view>
+				<view class="b_j_q_b">
+					<text class="nu">服务类型：</text>
+					<view class="btn_fl_box_two ac o">{{ arry[type].title }}</view>
+				</view>
+				<view class="b_j_q">
+					<text class="nu">购买数量：</text>
+					<van-stepper value="{{ count }}" integer min="1" max="99" step="1" bind:change="onChange" />
+				</view>
+				<view class="b-list-box" style="padding-bottom:{{ brhifh/4 }}rpx">
+					<text>总计：</text>
+					<text>￥{{ total }}</text>
+					<view class="btn_s" bindtap="onBalance">确定</view>
+				</view>
+			</view>
+		</van-popup>
+	</view>
+</van-transition>
+<van-notify id="custom-selector" safe-area-inset-top />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

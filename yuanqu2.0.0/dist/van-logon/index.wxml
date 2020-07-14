@@ -1,0 +1,87 @@
+
+  <view class="container">
+    <view class="slider-box">
+      <view class="slider-left" data-id="0" bindtap="onSlider">短信验证码登录</view>
+      <view class="slider-right" data-id="1" bindtap="onSlider">账号密码登录</view>
+      <view class="slider" animation="{{ animationData }}"></view>
+    </view>
+    <view class="tabs-box" wx:if="{{ slider==0 }}">
+      <van-field value="{{  code_num  }}" maxlength="11" id="code_num" type="number" size="large" clearable label="手机号" placeholder="请输入手机号码" bind:change="onChange" />
+      <van-field value="{{ code_sms }}" id="code_sms" type="number" maxlength="6" size="large" center clearable label="验证码" placeholder="请输入验证码" use-button-slot bind:change="onChange">
+        <van-button slot="button" plain size="small" data-id="1" round type="warning" bind:click="{{ code==0?'onSend':''}}">
+          <text hidden="{{code==0?false:true}}">获取验证码</text>
+          <text style="color:#ccc;" hidden="{{code==0?true:false}}">{{time}}s重新获取</text>
+        </van-button>
+      </van-field>
+      <button open-type="getUserInfo" class="btn {{ codeSrue?'orange':'' }} height" data-id="1" bindgetuserinfo="{{ codeSrue?'onLogon':'onCheck' }}">登录</button>
+    </view>
+    <!--账号密码-->
+    <view class="tabs-box" wx:if="{{ slider==1 }}">
+      <van-field value="{{  account_name }}" id="account_name" type="text" maxlength="20" size="large" clearable label="账号" placeholder="请输入手机号/用户名" bind:change="onChange" />
+      <van-field value="{{ account_Pass }}" id="account_Pass" right-icon="{{  display1?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="number" maxlength="15" size="large" clearable type="{{ display1?'text':'password' }}" data-id='1' label="密码" placeholder="请输入密码" focus="{{ display1 }}"
+        bind:click-icon="onClickIcon" bind:change="onChange"></van-field>
+      <view class="list-box">
+        <text data-id='2' bindtap="onClose">注册</text>
+        <!--<text data-id='3'bindtap="onClose">忘记密码</text>-->
+      </view>
+      <button class="btn {{ isSure?'orange':'' }}" open-type="getUserInfo" data-id="2" bindgetuserinfo="{{ isSure?'onLogon':'onCheck' }}">登录</button>
+    </view>
+    <view class="wx_get" style="bottom:{{ height }}rpx">
+      <text>－微信登录－</text>
+      <button class="wx_box" open-type="getUserInfo" bindgetuserinfo="onGetInfo">
+        <image src="/images/wx.png"></image>
+      </button>
+      <text>微信</text>
+    </view>
+  </view>
+  <van-popup overlay="{{ false }}" show="{{ show2 }}" position="bottom" closeable round custom-style="height:100%;border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" data-id='2'  bind:close="onClose">
+    <view>
+      <view class="close-box">
+        <image src="/images/t_x.png" data-id="1" bindtap="onClose"></image>
+      </view>
+      <van-field value="{{ logon_num }}" id="logon_num" maxlength="11" type="number" size="large" clearable label="手机号码" placeholder="请输入手机号码" bind:change="onChange" />
+      <van-field value="{{ logon_smsCode }}" type="number" id="logon_smsCode" label="验证码" maxlength="10" size="large" center clearable placeholder="请输入验证码" use-button-slot bind:change="onChange">
+        <van-button slot="button" plain size="small" data-id="2" round type="warning" bind:click="{{code==0?'onSend':''}}">
+          <text style="color:#f96006;" bindtap="onSend2" hidden="{{ code==0?false:true}}">获取验证码</text>
+          <text style="color:#ccc;" hidden="{{ code==1?false:true}}">{{time}}s重新获取</text>
+        </van-button>
+      </van-field>
+      <van-field value="{{ logon_password }}" id="logon_password" data-id="2" label="设置密码" focus="{{ display2 }}" right-icon="{{ display2?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ display2?'text':'password' }}" focus="{{ display2 }}" maxlength="15" size="large"
+        clearable placeholder="请设置登录密码" bind:click-icon="onClickIcon" bind:change="onChange" />
+      <van-field value="{{ logon_repassword }}" id="logon_repassword" label="确认密码" right-icon="{{ display3?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ display3?'text':'password' }}" maxlength="15" size="large" clearable focus="{{ display3 }}" placeholder="请再次确认密码"
+        data-id="3" bind:click-icon="onClickIcon" bind:change="onChange" />
+    </view>
+    <van-field value="{{  value }}" maxlength="30" type="text" size="large" clearable label="园区名" placeholder="请输入" bind:change="onSeach" />
+    <button class="btn {{ isDone?'orange':'' }} height" open-type="getUserInfo" data-id="3" bindtap="{{ isDone?'onLogon':'' }}">注册</button>
+    <scroll-view class="seach-box-list" scroll-y="true" style="height: 200px" wx:if="{{ searchArry.length>0&&show2==true&&show3==false?true:false }}" wx:for="{{ searchArry }}" wx:key="index">
+      <block wx:for="{{ searchArry }}" wx:key="index">
+        <view class="list-box-seach" data-index="{{ index }}" bindtap="onChoose">
+          <text>{{item.park_name}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </van-popup>
+  <van-popup overlay="{{ false }}" show="{{ show3 }}" position="bottom" closeable="true" custom-style="height:100%;border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" data-id='3'  bind:close="onClose">
+    <view class="close-box">
+      <image src="/images/t_x.png" data-id="1" bindtap="onClose"></image>
+    </view>
+    <van-field value="{{ wx_num }}" id="wx_num" maxlength="11" type="number" size="large" clearable label="手机号码" placeholder="请输入手机号码" bind:change="onChange" />
+    <van-field value="{{ wx_smsCode }}" type="number" id="wx_smsCode" label="验证码" maxlength="6" size="large" center clearable placeholder="请输入验证码" use-button-slot bind:change="onChange">
+      <van-button slot="button" plain size="small" data-id="3" round type="warning" bind:click="{{code==0?'onSend':''}}">
+        <text style="color:#f96006;" bindtap="onSend2" hidden="{{ code==0?false:true}}">获取验证码</text>
+        <text style="color:#ccc;" hidden="{{ code==1?false:true}}">{{time}}s重新获取</text>
+      </van-button>
+    </van-field>
+    <van-field value="{{  value }}" maxlength="30" type="text" size="large" clearable label="园区名" placeholder="请输入" bind:change="onSeach" />
+    <button class="btn {{ wxSure?'orange':'' }} height" open-type="getUserInfo" data-id="4" bindgetuserinfo="{{ wxSure?'onLogon':'onCheck' }}">登录</button>
+    <scroll-view class="seach-box-list" scroll-y="true" style="height: 200px;" wx:if="{{ searchArry.length>0&&show3==true&&show2==false?true:false }}">
+      <block wx:for="{{ searchArry }}" wx:key="index">
+        <view class="list-box-seach" data-index="{{ index }}" bindtap="onChoose">
+          <text>{{item.park_name}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </van-popup>
+
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

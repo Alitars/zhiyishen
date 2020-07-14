@@ -1,0 +1,61 @@
+<view class="body">
+
+  <view class="bg_orange">
+    <view class="check_box">
+      <van-checkbox value="{{ checked1 }}" checked-color="#faa977" data-id="1" bind:change="onChange">
+        <image slot="icon" src="{{ checked ? icon.active : icon.normal }}" />
+        <text style="color:#fff;">普通发票</text>
+      </van-checkbox>
+    </view>
+    <view class="check_box_two">
+      <van-checkbox value="{{ checked2 }}" checked-color="#faa977" data-id="2" bind:change="onChange">
+        <image slot="icon" src="{{ checked ? icon.active : icon.normal }}" />
+        <text style="color:#fff;">增值税发票</text>
+      </van-checkbox>
+    </view>
+  </view>
+
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="form_box top">
+
+
+      <van-cell title="公司名称" style="color:#333" value="{{ companny?companny:list.company_name }}" border="{{ false }}" bindtap="onSearch" is-link />
+
+      <!-- <van-field clearable input-align='right' type='text' label="公司名称" title-width="100px" placeholder="{{ list.company_name?list.company_name:'请输入' }}" border="{{ false }}" name='companny' maxlength='20' /> -->
+
+      <van-field clearable input-align='right' value="{{ shuihao }}" type='number' label="税号" title-width="100px" placeholder="{{  list.credit_code?list.credit_code:'请输入' }}" border="{{ false }}" name='shuihao' maxlength='20' />
+      <!-- <van-field clearable input-align='right' value='{{ address }}' type='text' disabled label="选择地址" title-width="100px" placeholder="{{ list.recive_address+list.recive_address_city+list.recive_address_area }}" border="{{ false }}" name='address' bindtap="onClose"
+      /> -->
+
+      <van-field clearable input-align='right' value='{{ addressxx }}' type="textarea" maxlength='50' autosize label="详细地址" title-width="100px" placeholder="{{ list.detail_address?list.detail_address:'请输入' }}" border="{{ false }}" name='addressxx' maxlength='30'
+      />
+
+      <van-field clearable input-align='right' value="{{ phone }}" type='number' label="公司电话" title-width="100px" placeholder="{{ list.mobile?list.mobile:'请输入' }}" border="{{ false }}" name='phone' maxlength='11' />
+
+      <view class="tran_over">
+        <van-transition show="{{ !checked1 }}" name='slide-down' custom-class="block">
+          <van-field clearable input-align='right' value="{{ bank }}" type='text' label="开户银行" title-width="100px" placeholder="{{ list.bank?list.bank:'请输入' }}" border="{{ false }}" name='bank' maxlength='20' />
+          <van-field clearable input-align='right' value="{{ banknumber }}" type='number' label="银行账户" title-width="100px" placeholder="{{ list.bank_count?list.bank_count:'请输入' }}" border="{{ false }}" name='banknumber' maxlength='20' />
+        </van-transition>
+      </view>
+    </view>
+    <view class="btn_box">
+      <button class="save" form-type="submit">保存</button>
+    </view>
+  </form>
+  <view class="s_txt" style="bottom:{{ SafeButtom/2 }}rpx">
+    <text>开票说明</text>
+    <text>1、请填写正确的公司名称和税号。如需开增值税发票，请填写
+开户银行名称及银行账号。</text>
+    <text>2、发票将在申请后七个工作日内开具，届时将寄到您在订单中
+填写的收货地址。如需更改收票地址，请与客服联系。
+客服电话：400-333-555(工作日8:00-18:00)</text>
+    <text>3、发票将按照订单实际付款金额开票。</text>
+  </view>
+</view>
+
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+  <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="请选择" bind:confirm="onConfirm" bind:cancel="onCancel" />
+</van-popup>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

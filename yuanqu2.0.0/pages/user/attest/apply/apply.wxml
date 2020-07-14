@@ -1,0 +1,244 @@
+<view class="body">
+	<view class="bg_orange" />
+	<view class="c_list_btn">
+		<view class="l_btn {{id==1?'':'act'}}" data-id="1" bindtap="onClick">
+			<text>企业认证</text>
+		</view>
+		<view class="r_btn {{id==2?'act_orange':''}}" data-id="2" bindtap="onClick">
+			<text>个人认证</text>
+		</view>
+		<view class="move_box}}" animation="{{animationData}}"></view>
+	</view>
+	<view class="form_box" hidden="{{id==2}}">
+		<form bindsubmit='formSubmit'>
+			<view class="list_head m_t20">
+				<text hidden="{{id==2}}">企业类型</text>
+				<text hidden="{{id==1}}">个人类型</text>
+			</view>
+			<view class="inpu_box m_t20 or" bindtap="onClose">
+				<text hidden="{{id==2}}">{{ columnsOne[index] }}</text>
+				<text hidden="{{id==1}}">{{ columnsTwo[current] }}</text>
+				<view class="down_arrow"></view>
+			</view>
+			<view class="list_head m_t20" hidden="{{id==2}}">
+				<text>企业全称</text>
+			</view>
+			<input value="{{ companny }}" placeholder-class='input-text' disabled="true" class="inpu_box m_t20 {{companny.length>0?'or':''}}" data-id="2" name="{{ companny }}" type="text" maxlength="15" placeholder="请输入" bindinput="onInput" hidden="{{id==2}}" bindtap="onSearch"></input>
+			<view class="list_head m_t20">
+				<text>手机号码</text>
+			</view>
+			<input value="{{ phoneNmuber }}" placeholder-class='input-text' data-id="3" name="phoneNmuber" class="inpu_box m_t20 {{phoneNmuber.length>0?'or':''}}" type="number" placeholder="请输入" maxlength="11" bindinput="onInput"></input>
+			<block wx:if="{{ id==1&&index==1 }}">
+				<view class="list_head m_t20">
+					<text>法人身份证号码</text>
+				</view>
+				<input value="{{ idcard }}" data-id="4" placeholder-class='input-text' name="idcard" class="inpu_box m_t20 {{idcard.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="18" bindinput="onInput"></input>
+			</block>
+			<!-- 
+      <view class="list_head m_t20" bindtap="onAdress">
+        <text>注册地址</text>
+        <view class="down_arrow right"></view>
+      </view>
+      <input value="{{contactAdress.length?contactAdress[0].name+'/'+contactAdress[1].name+'/'+contactAdress[2].name:''  }}" placeholder-class='input-text' disabled="true" class="inpu_box m_t20 {{contactAdress.length>0?'or':''}}" type="text" placeholder="省/市/区选择"></input>
+      <view class="list_head m_t20">
+        <text>详细地址</text>
+        <view class="down_arrow right"></view>
+      </view>
+      <input value="{{message}}" bindinput="onDetailAdress" placeholder-class='input-text' class="inpu_box m_t20 {{message.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="50"></input>
+      <view style="height:20rpx" /> -->
+			<view class="list_head m_t20" hidden="{{index!==1}}">
+				<text>法人身份证</text>
+				<text class="txt_two">（需签字后拍照上传）</text>
+			</view>
+			<view class="up_img_list m_t20" hidden="{{index!==1}}">
+				<block wx:for="{{ imgUrlsTwo }}" wx:key="index">
+					<view class="img_box" data-type="2" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-type="2" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box center" hidden="{{imgUrlsTwo.length<1?false:true}}" data-type="2" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+
+				<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+					<image src="{{ icon_idCard }}"></image>
+					<view class="yl">身份证样例</view>
+				</view>
+
+				<!-- <block wx:for="{{  imgUrlsTree }}" wx:key="index">
+					<view class="img_box" data-type="3" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-type="3" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box center" hidden="{{imgUrlsTree.length<1?false:true}}" data-type="3" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view> -->
+			</view>
+			<view class="list_head m_t20" hidden="{{index!==0&&index!==1&&index!==2&&index!==3&&index!==4}}">
+				<text>营业执照</text>
+				<text class="txt_two">（需盖公章后拍照上传）</text>
+			</view>
+			<view class="up_img_list m_t20" hidden="{{index!==0&&index!==1&&index!==2&&index!==3&&index!==4}}">
+				<block wx:for="{{ imgUrls }}" wx:key="index">
+					<view class="img_box" data-id="{{index}}" data-type="1" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-id="{{index}}" data-type="1" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box center" hidden="{{imgUrls.length<1?false:true}}" data-type="1" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+				<view class="img_box center" data-id="{{index}}" data-type="1" bindtap="onYanglei">
+					<image src="{{ icon_yanglei }}"></image>
+					<view class="yl">营业执照样例</view>
+				</view>
+			</view>
+			<view class="list_head m_t20" hidden="{{index!==4}}">
+				<text>营业执照中英文翻译件</text>
+				<text class="txt_two">（需盖公章后拍照上传）</text>
+			</view>
+			<view class="up_img_list m_t20" hidden="{{index!==4}}">
+				<block wx:for="{{ imgUrlsFour }}" wx:key="index">
+					<view class="img_box" data-id="{{index}}" data-type="4" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-id="{{index}}" data-type="4" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box center" hidden="{{imgUrlsFour.length<1?false:true}}" data-type="4" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+			</view>
+			<button form-type="submit" class="submit_box">
+				<image src="/images/submit.png"></image>
+			</button>
+		</form>
+	</view>
+	<view class="form_box" hidden="{{id==1}}">
+		<form bindsubmit='formSubmit'>
+			<view class="list_head m_t20">
+				<text hidden="{{id==2}}">企业类型</text>
+				<text hidden="{{id==1}}">个人类型</text>
+			</view>
+			<view class="inpu_box m_t20 or" bindtap="onClose">
+				<text hidden="{{id==2}}">{{ columnsOne[index] }}</text>
+				<text hidden="{{id==1}}">{{ columnsTwo[current] }}</text>
+				<view class="down_arrow"></view>
+			</view>
+			<view class="list_head m_t20" hidden="{{id==1}}">
+				<text>姓名</text>
+			</view>
+			<input value="{{ name }}" name="name" placeholder-class='input-text' data-id="1" class="inpu_box m_t20 {{name.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="11" bindinput="onInput" hidden="{{id==1}}"></input>
+			<view class="list_head m_t20">
+				<text>手机号码</text>
+			</view>
+			<input value="{{ phoneNmuber }}" data-id="3" placeholder-class='input-text' name="phoneNmuber" class="inpu_box m_t20 {{phoneNmuber.length>0?'or':''}}" type="number" placeholder="请输入" maxlength="11" bindinput="onInput"></input>
+
+
+			<block wx:if="{{ id==2&&current==0 }}">
+				<view class="list_head m_t20">
+					<text>身份证号码</text>
+				</view>
+				<input value="{{ idcard }}" data-id="4" placeholder-class='input-text' name="idcard" class="inpu_box m_t20 {{idcard.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="18" bindinput="onInput"></input>
+			</block>
+			<!-- <view class="list_head m_t20" bindtap="onAdress">
+        <text>注册地址</text>
+        <view class="down_arrow right"></view>
+      </view>
+      <input value="{{contactAdress.length?contactAdress[0].name+'/'+contactAdress[1].name+'/'+contactAdress[2].name:''  }}" placeholder-class='input-text' disabled="true" class="inpu_box m_t20 {{contactAdress.length>0?'or':''}}" type="text" placeholder="省/市/区选择"></input>
+      <view class="list_head m_t20">
+        <text>详细地址</text>
+        <view class="down_arrow right"></view>
+      </view>
+      <input value="{{message}}" bindinput="onDetailAdress" placeholder-class='input-text' class="inpu_box m_t20 {{message.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="50"></input>
+      <view style="height:20rpx" /> -->
+			<view class="list_head m_t20">
+				<text>详细地址</text>
+				<!-- <view class="down_arrow right"></view> -->
+			</view>
+			<input value="{{message}}" bindinput="onDetailAdress" placeholder-class='input-text' class="inpu_box m_t20 {{message.length>0?'or':''}}" type="text" placeholder="请输入" maxlength="100"></input>
+			<view style="height:20rpx" />
+			<view class="list_head m_t20" hidden="{{current!==0}}">
+				<text>身份证照片</text>
+				<text class="txt_two">（需签字后拍照上传）</text>
+			</view>
+			<view class="list_head m_t20" hidden="{{current!==3&&current!==2&&current!==1}}">
+				<text>护照照片</text>
+				<text class="txt_two">（需签字后拍照上传）</text>
+			</view>
+			<view class="up_img_list m_t20" hidden="{{current!==0&&current!==3&&current!==2&&current!==1}}">
+				<view class="up_img_box center" hidden="{{imgUrlsTree.length<1?false:true}}" data-type="3" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+				<block wx:for="{{ imgUrlsTree }}" wx:key="index">
+					<view class="img_box" data-type="3" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-type="3" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+
+
+
+				<view class="img_box center" data-id="{{index}}" data-type="2" bindtap="onYanglei">
+					<image src="{{ icon_idCard }}"></image>
+					<view class="yl">身份证样例</view>
+				</view>
+
+
+				<!-- <view class="up_img_box center" hidden="{{imgUrlsTwo.length<1?false:true}}" data-type="2" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+				<block wx:for="{{ imgUrlsTwo }}" wx:key="index">
+					<view class="img_box" data-type="2" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-type="2" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block> -->
+			</view>
+			<view class="list_head m_t20" hidden="{{current!==3}}">
+				<text>护照中文翻译件照片</text>
+				<text class="txt_two">（需签字后拍照上传）</text>
+			</view>
+			<view class="up_img_list m_t20" hidden="{{current!==3}}">
+				<block wx:for="{{ imgUrls }}" wx:key="index">
+					<view class="img_box" data-id="{{index}}" data-type="1" bindtap="preview">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-id="{{index}}" data-type="1" catchtap="deletImg">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box center" hidden="{{imgUrls.length<1?false:true}}" data-type="1" bindtap="onChoose">
+					<image src="/images/up.png"></image>
+				</view>
+			</view>
+			<button form-type="submit" class="submit_box">
+				<image src="/images/submit.png"></image>
+			</button>
+		</form>
+	</view>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose" wx:if="{{id==1}}">
+	<van-picker show-toolbar title="请选择" columns="{{ columnsOne }}" bind:cancel="onCancel" bind:confirm="onConfirm" />
+</van-popup>
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose" wx:if="{{id==2}}">
+	<van-picker show-toolbar title="请选择" columns="{{  columnsTwo }}" bind:cancel="onCancel" bind:confirm="onConfirm" />
+</van-popup>
+<van-popup show="{{ isShow }}" position="bottom" bind:close="onAdress">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="请选择" bind:confirm="onConfirmAdress" bind:cancel="onCancelAdress" />
+</van-popup>

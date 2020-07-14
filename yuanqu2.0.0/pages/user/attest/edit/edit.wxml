@@ -1,0 +1,174 @@
+<view class="body">
+	<view class="bg_orange" />
+	<view class="form_box top">
+		<form bindsubmit='formSubmit'>
+			<view class="list_name" hidden="{{ ptype==1?fasle:true }}">
+				<text>个人类型</text>
+				<text>{{ columns1[arry.type]  }}</text>
+			</view>
+			<view class="list_name" hidden="{{ ptype==2?fasle:true }}">
+				<text>企业类型</text>
+				<text>{{ columns2[arry.type-1]  }}</text>
+			</view>
+			<view class="list_name" wx:if="{{ arry.chinese_name }}">
+				<text>姓名</text>
+				<input value="{{ names }}" name="names" class="input-box" placeholder-class='input-text' placeholder="{{arry.chinese_name}}" type="text" maxlength="20"></input>
+			</view>
+			<view class="list_name" wx:if="{{ arry.company_name }}">
+				<text>企业全称</text>
+				<input value="{{ names }}" name="names" class="input-box" placeholder-class='input-text' placeholder="{{arry.company_name}}" type="text" clearable maxlength="20"></input>
+			</view>
+			<view class="list_name" hidden="{{ !arry.mobile }}">
+				<text>手机号码</text>
+				<input value="{{ phoneNumber }}" name="phoneNumber" class="input-box" placeholder-class='input-text' placeholder="{{arry.mobile}}" type="number" maxlength="11"></input>
+			</view>
+
+			<van-transition show="{{ arry }}" custom-class="block">
+				<!-- <view class="list_name" hidden="{{ !arry.contact_address_area }}" bindtap="onAdress">
+          <text>省/市/区选择</text>
+          <input value="{{ contactAdress.length>0?contactAdress[0].name+'/'+contactAdress[1].name+'/'+contactAdress[2].name:'' }}" class="input-box" disabled="true" placeholder-class='input-text' placeholder="{{arry.contact_address_pro+'/'+arry.contact_address_city+'/'+arry.contact_address_area}}" type="text" ></input>
+        </view>
+        <view class="list_name" hidden="{{ !arry.add_detail_address }}">
+          <text>详细地址</text>
+          <input value="{{ message }}" name="message" class="input-box" placeholder-class='input-text' placeholder="{{arry.add_detail_address}}" type="text" maxlength="50"></input>
+        </view> -->
+				<view class="list_name" hidden="{{ !arry.idcard_address }}">
+					<text>详细地址</text>
+					<input value="{{ message }}" name="message" class="input-box" placeholder-class='input-text' placeholder="{{ arry.idcard_address }}" type="text" maxlength="100"></input>
+				</view>
+
+				<!-- 国内个体 -->
+				<view class="list_name" wx:if="{{ arry.idcard_num.length>0&&ptype==2&&type==1?true:false }}">
+					<text>身份证号码</text>
+					<input value="{{ car_num }}" name="car_num" class="input-box" placeholder-class='input-text' placeholder="{{arry.idcard_num}}" type="text" maxlength="18"></input>
+				</view>
+				<view class="list_img_box {{ arry.pic_reverse?'':'hg' }}" hidden="{{ ptype==2&&type==1?fasle:true }}">
+					<text>法人身份证照片</text>
+					<view class="img_box_t" data-id="2" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.pic }}"></image>
+					</view>
+					<view class="img_box_t two" data-id="1" bindtap="onUp" hidden="{{ arry.pic_reverse?false:true }}">
+						<image class="z_img" src="{{ icon_Url+arry.pic_reverse }}"></image>
+					</view>
+				</view>
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==1?fasle:true }}">
+					<text>营业执照</text>
+					<view class="img_box_t" data-id="3" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+					</view>
+				</view>
+
+				<!-- 台湾企业 -->
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==4?fasle:true }}">
+					<text>营业执照</text>
+					<view class="img_box_t" data-id="3" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+					</view>
+				</view>
+
+
+				<!-- 港澳企业 -->
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==3?fasle:true }}">
+					<text>营业执照</text>
+					<view class="img_box_t" data-id="3" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+					</view>
+				</view>
+
+
+				<!-- 国外企业 -->
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==5?fasle:true }}">
+					<text>营业执照</text>
+					<view class="img_box_t" data-id="3" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+					</view>
+				</view>
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==5?fasle:true }}">
+					<text>营业执照中英文翻译件</text>
+					<view class="img_box_t" data-id="4" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.english_license }}"></image>
+					</view>
+				</view>
+
+
+				<!-- 国内企业 -->
+				<view class="list_img_box hg" hidden="{{ ptype==2&&type==2?fasle:true }}">
+					<text>营业执照</text>
+					<view class="img_box_t" data-id="3" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+					</view>
+				</view>
+
+
+
+				<!-- 国内个人 -->
+				<view class="list_name" wx:if="{{ ptype==1&&type==0?true:fasle }}">
+					<text>身份证号码</text>
+					<input value="{{ car_num }}" name="car_num" class="input-box" placeholder-class='input-text' placeholder="{{arry.car_num}}" type="text" maxlength="18"></input>
+				</view>
+				<view class="list_img_box {{ arry.idcard_img_reverse?'':'hg' }}" hidden="{{ ptype==1&&type==0?fasle:true }}">
+					<text>身份证照片</text>
+					<view class="img_box_t" data-id="5" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img }}"></image>
+					</view>
+					<view class="img_box_t two" data-id="6" bindtap="onUp" hidden="{{ arry.idcard_img_reverse?false:true }}">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img_reverse }}"></image>
+					</view>
+				</view>
+
+
+
+				<!-- 港澳个人 -->
+				<view class="list_img_box" hidden="{{ ptype==1&&type==1?fasle:true }}">
+					<text>护照照片</text>
+					<view class="img_box_t" data-id="5" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img }}"></image>
+					</view>
+					<view class="img_box_t two" data-id="6" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img_reverse }}"></image>
+					</view>
+				</view>
+
+				<!-- 台湾个人 -->
+				<view class="list_img_box" hidden="{{ ptype==1&&type==2?fasle:true }}">
+					<text>护照照片</text>
+					<view class="img_box_t" data-id="5" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img }}"></image>
+					</view>
+					<view class="img_box_t two" data-id="6" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img_reverse }}"></image>
+					</view>
+				</view>
+
+
+
+				<!-- 国外个人 -->
+				<view class="list_img_box" hidden="{{ ptype==1&&type==3?fasle:true }}">
+					<text>护照照片</text>
+					<view class="img_box_t" data-id="5" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img }}"></image>
+					</view>
+					<view class="img_box_t two" data-id="6" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.idcard_img_reverse }}"></image>
+					</view>
+				</view>
+				<view class="list_img_box hg" hidden="{{ ptype==1&&type==3?fasle:true }}">
+					<text>护照中文翻译件照片</text>
+					<view class="img_box_t" data-id="7" bindtap="onUp">
+						<image class="z_img" src="{{ icon_Url+arry.english_img }}"></image>
+					</view>
+				</view>
+
+			</van-transition>
+
+			<button form-type="submit" class="submit_box">
+				<image src="/images/submit.png"></image>
+			</button>
+		</form>
+	</view>
+</view>
+<van-popup show="{{ isShow }}" position="bottom" bind:close="onAdress">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="请选择" bind:confirm="onConfirmAdress" bind:cancel="onCancelAdress" />
+</van-popup>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

@@ -8,7 +8,7 @@
 	</view>
 	<!-- 签到栏 -->
 	<view class="qdBox">
-		<view class="rule clearfix">
+		<!-- <view class="rule clearfix">
 			<view class="r-l">
 				<image src="https://admin.iguolao.com/public/uploads/20200629111726224.svg"></image>
 				<text>其他活动</text>
@@ -17,7 +17,7 @@
 				<image src="https://admin.iguolao.com/public/uploads/20200629112624671.svg"></image>
 				<text>活动规则</text>
 			</view>
-		</view>
+		</view> -->
 		<!-- 日期栏 -->
 		<view class="date">
 				<block wx:for="{{list}}" wx:key="index">

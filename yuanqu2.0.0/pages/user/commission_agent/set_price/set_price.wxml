@@ -1,0 +1,33 @@
+<view class="body">
+
+
+  <view class="input-box">
+    <view class="list-name-yw">
+      <text>业务名称</text>
+      <text>{{ arry.title }}</text>
+    </view>
+    <view class="list-name-yw">
+      <text>总平台价格(元/件)</text>
+      <text style="color:#333;">{{ arry.price }}</text>
+    </view>
+  </view>
+
+  <view class="{{ arry.first_garden_little==''?'input-box-two':'input-box' }}">
+    <view class="withmax">
+      <van-field title-width="150px" value="{{ bigprice  }}" id='bigprice' maxlength="10" border="{{ false }}" input-align="right" type="number" size="large" clearable label="设置价格(元/件)" placeholder="{{ arry.p_price?arry.p_price:'请输入' }}" bind:click-icon="onClickIcon" bind:change="onchange" />
+      <view wx:if="{{ arry.first_garden_little==''?false:true }}">
+        <van-field value="{{ minprice }}" title-width="150px" id='minprice' type="number" maxlength="10" border="{{ false }}" input-align="right" size="large" center clearable label="小商品价格(元/件)" placeholder="{{ arry.minprice?arry.minprice:'请输入' }}" bind:change="onchange" />
+      </view>
+    </view>
+  </view>
+
+
+  <view class="seaf-box" style="height:{{ safeHeight }}rpx;">
+    <view class="add-box center" hover-class="bghover" bindtap="onEdit">
+      <text>保存</text>
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" />

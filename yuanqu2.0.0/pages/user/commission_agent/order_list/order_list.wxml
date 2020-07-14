@@ -1,0 +1,28 @@
+<view class="body">
+  <block wx:for="{{ list }}" wx:key='index'>
+    <view class="card-box" hover-class="bghovers" data-index="{{  index }}" bindtap="onClick">
+      <view class="list-box">
+        <view class="list-titile-two">手机号码：</view>
+        <view class="edit-box-two" data-id="{{ item.mobile }}" catchtap="onPhone">{{ item.mobile }}</view>
+      </view>
+      <view class="list-box">
+        <view class="list-titile-two">代理商名称：</view>
+        <view class="edit-box-two">{{ item.yqname }}</view>
+      </view>
+      <view class="list-box">
+        <view class="list-titile-two">订单数量：</view>
+        <view class="edit-box-two">{{ item.count==0?'暂无':item.count+'个' }}</view>
+      </view>
+    </view>
+  </block>
+  <view class="loading-more center" hidden="{{ display }}">
+    <van-loading size='25px' color="#f96006" />
+    <text></text>
+  </view>
+  <view class="loading-more center" hidden="{{ !display }}">
+    <text></text>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" />

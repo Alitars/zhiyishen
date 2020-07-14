@@ -1,0 +1,109 @@
+<!-- <view class="body">
+	<view class="body" wx:if="{{ arry.length==0 }}">
+		<view class="no-attest center f_c" wx:if="{{ attest!==2||attest!==3 }}">
+			<image src="/images/zc-no.png"></image>
+			<text>暂无认证</text>
+		</view>
+	</view>
+	<recycle-view batch="{{batchSetRecycleData}}" id="recycleId" bindscrolltolower='onBottom' bindrefresherrefresh="onpull">
+		<recycle-item wx:for="{{arry}}" wx:key="index">
+			<view class="list_c_box al_center" hidden="{{ item.isShow }}" data-ptype="{{ item.ptype }}" data-index="{{ index }}" bindtap="{{ open?'onZiliao':'' }}">
+				<view class="l-box" data-index="{{ index }}" bindtouchmove="{{ item.status==3||item.status==1?'onTap':'' }}"></view>
+				<view class="r-box" data-index="{{ index }}" bindtouchmove="{{ item.status==3||item.status==1?'onTap2':'' }}"></view>
+				<view class="bg_orange" wx:if="{{ item.isDelete }}">
+					<text class="title">删除{{item.chinese_name}}{{item.company_name}}</text>
+				</view>
+				<view class="t_box " data-id="{{item.id}}">
+					<text class="t_txt" wx:if="{{ item.chinese_name }}">{{item.chinese_name}}</text>
+					<text class="t_txt" wx:if="{{ item.company_name }}">{{item.company_name}}</text>
+					<text wx:if="{{ item.status==1?true:fasle }}" class="type_t">未审核</text>
+					<text wx:if="{{ item.status==2?true:fasle  }}" class="type_t">已审核</text>
+					<text wx:if="{{ item.status==3?true:fasle  }}" class="type_t">审核不通过</text>
+				</view>
+				<button class="r_btn center" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==1&&!item.isDelete?true:fasle }}" catchtap="onChange" data-ptype="{{ item.ptype }}" data-type="1" bindtouchmove="{{ item.status==3||item.status==1?'onTap':'' }}">
+					<text>编辑</text>
+				</button>
+				<button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==2&&!item.isDelete?true:fasle }}" data-type="2" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+					<text>查看详情</text>
+				</button>
+				<button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==3&&!item.isDelete?true:fasle }}" data-type="1" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+					<text>编辑</text>
+				</button>
+				<button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==1&&!item.isDelete?true:fasle }}" data-type="1" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+					<text>编辑</text>
+				</button>
+				<button class="r_btn center bg" wx:if="{{ item.isDelete }}" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-type="3" data-index="{{ index }}" catchtap="onChange">
+					<text>删除</text>
+				</button>
+			</view>
+		</recycle-item>
+		<view slot="after">
+			<view class="loading-more center" hidden="{{ display}}">
+				<van-loading size='25px' color="#f96006" />
+				<text></text>
+			</view>
+			<view class="loading-more center" hidden="{{ !display }}">
+				<text></text>
+			</view>
+			<view style="height:{{ SafeButtom }}rpx"></view>
+		</view>
+	</recycle-view>
+</view>
+<view class="b_list_btn first" style="height:{{ SafeButtom }}rpx">
+	<view class="a_box" bindtap="onClick">申请认证</view>
+</view>
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" /> -->
+<view class="body">
+  <block wx:for="{{ arry }}" wx:key="index">
+    <view class="list_c_box al_center" hidden="{{ item.isShow }}" data-ptype="{{ item.ptype }}" data-index="{{ index }}" bindtap="{{ open?'onZiliao':'' }}">
+      <view class="l-box" data-index="{{ index }}" bindtouchmove="{{ item.status==3||item.status==1?'onTap':'' }}"></view>
+      <view class="r-box" data-index="{{ index }}" bindtouchmove="{{ item.status==3||item.status==1?'onTap2':'' }}"></view>
+      <view class="bg_orange" wx:if="{{ item.isDelete }}">
+        <text class="title">删除{{item.chinese_name}}{{item.company_name}}</text>
+      </view>
+      <view class="t_box " data-id="{{item.id}}">
+        <text class="t_txt" wx:if="{{ item.chinese_name }}">{{item.chinese_name}}</text>
+        <text class="t_txt" wx:if="{{ item.company_name }}">{{item.company_name}}</text>
+        <text wx:if="{{ item.status==1?true:fasle }}" class="type_t">未审核</text>
+        <text wx:if="{{ item.status==2?true:fasle  }}" class="type_t">已审核</text>
+        <text wx:if="{{ item.status==3?true:fasle  }}" class="type_t">审核不通过</text>
+      </view>
+      <button class="r_btn center" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==1&&!item.isDelete?true:fasle }}" catchtap="onChange" data-ptype="{{ item.ptype }}" data-type="1" bindtouchmove="{{ item.status==3||item.status==1?'onTap':'' }}">
+        <text>编辑</text>
+      </button>
+      <button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}" wx:if="{{ item.status==2&&!item.isDelete?true:fasle }}" data-type="2" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+        <text>查看详情</text>
+      </button>
+      <button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}"  wx:if="{{ item.status==3&&!item.isDelete?true:fasle }}" data-type="1" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+        <text>编辑</text>
+      </button>
+      <button class="r_btn center" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-index="{{ index }}"  wx:if="{{ item.status==1&&!item.isDelete?true:fasle }}" data-type="1" catchtap="onChange" bindtouchmove="{{ item.status==3?'onTap':'' }}">
+        <text>编辑</text>
+      </button>
+      <button class="r_btn center bg"  wx:if="{{ item.isDelete }}" data-ptype="{{ item.ptype }}" data-id="{{ item.id }}" data-type="3" data-index="{{ index }}" catchtap="onChange">
+        <text>删除</text>
+      </button>
+    </view>
+  </block>
+    <view class="loading-more center" hidden="{{ display}}">
+    <van-loading size='25px' color="#f96006" />
+    <text></text>
+  </view>
+  <view class="loading-more center" hidden="{{ !display }}">
+    <text></text>
+  </view>
+</view>
+<view class="body" wx:if="{{ arry.length==0 }}">
+  <view class="no-attest center f_c" wx:if="{{ attest!==2||attest!==3 }}">
+    <image src="/images/zc-no.png"></image>
+    <text>暂无认证</text>
+  </view>
+</view>
+<view class="b_list_btn first" style="height:{{ SafeButtom }}rpx">
+  <view class="a_box" bindtap="onClick">申请认证</view>
+</view>
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

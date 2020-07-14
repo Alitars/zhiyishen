@@ -1,0 +1,103 @@
+<view class="body">
+	<view class="top_box jc_center f_c" bindtap="onAdress" hidden="{{ shippAddress.length==0?true:fasle }}">
+		<image class="set_img" src="/images/set.png"></image>
+		<view class="list_t al_center">
+			<text>收货地址：</text>
+			<text class="van-ellipsis" style="max-width:430rpx;">{{ shippAddress.address }}</text>
+		</view>
+		<view class="list_t al_center">
+			<text>收货人：</text>
+			<text>{{ shippAddress.consignee }}</text>
+		</view>
+		<view class="list_t al_center">
+			<text>联系号码：</text>
+			<text>{{ shippAddress.mobile }}</text>
+		</view>
+		<view class="arrow"></view>
+	</view>
+
+	<view class="top_box2 jc_center f_c" bindtap="onAdress" hidden="{{ shippAddress.length==0?fasle:true }}">
+		<image class="bgoran" src="/package/component/images/add.png"></image>
+		<view class="list_t al_center">
+			<text>您还没有设置地址，点击进行设置</text>
+			<text/>
+    </view>
+    <view class="arrow"></view>
+  </view>
+
+  <block wx:for='{{ orderList }}' wx:key='index'>
+    <view class="card_box">
+      <text class="biaohao">订单编号 {{ item.order_id }}</text>
+			<view class="card_list">
+				<text>业务名称：</text>
+				<text>{{ item.good_name  }}</text>
+			</view>
+			<view class="card_list">
+				<text>服务类型：</text>
+				<text>{{ item.click_type }}</text>
+			</view>
+			<view class="card_list" hidden="{{ !item.one_cate }}">
+				<text>类别：</text>
+				<text>{{ applyType[item.one_cate-1].name }}</text>
+			</view>
+			<view class="list_price">
+				<view class="price_box">
+					<text style="color:#333">价格：</text>
+					<text>￥{{ item.total_price }}</text>
+				</view>
+			</view>
+		</view>
+		</block>
+
+		<view class="card_box">
+			<view class="btn_list" bindtap="{{ !show?'onCoupon':''  }}">
+				<text>优惠券：</text>
+				<text wx:if="{{ !show }}">{{ coupon_price?'已使用优惠券'+'￥'+coupon_price+'.00':'不使用优惠券' }}</text>
+				<text wx:else>无法使用优惠券</text>
+			</view>
+			<view class="btn_list" bindtap="onGl">
+				<text>发票：</text>
+				<text>{{ invoice_id?name:'不开发票' }}</text>
+			</view>
+		</view>
+
+		<view class="card_box" hidden="{{ show }}">
+			<view class="btn_zifu">
+				<text class="txt1">支付方式：</text>
+				<view class="zf-box">
+					<view class="icon-box al_center {{ checked==1?'blue':'' }}" data-id="1" bindtap="onChecked">
+						<image src="/images/wxf.png"></image>
+						<text>微信支付</text>
+					</view>
+					<view class="icon-box al_center {{ checked==2?'blue':'' }}" data-id="2" bindtap="onChecked">
+						<image src="/images/gszz.png"></image>
+						<text>银行转账</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="card_box" hidden="{{ !focus }}">
+			<view class="input-box-qy">
+				<van-field value="{{ value }}" border="{{ false }}" focus="{{ focus }}" custom-style="font-size:24rpx;" label="企业输入：" placeholder="请输入企业名称" clearable="true" bind:change="onChange" />
+			</view>
+			<view class="zzxinxi">备注：转账信息可在个人中心查看</view>
+		</view>
+		<view class="b_box" style="height:{{ SafeButtom }}rpx">
+			<view class="j_btn_box">
+				<view class="top_box_b">
+					<text>合计:</text>
+					<text>{{ total }}</text>
+					<text>￥</text>
+
+				</view>
+				<view class="bottom_box_b">
+					<text>实付金额:</text>
+					<text>{{ nhr_pay }}</text>
+					<text>￥</text>
+				</view>
+				<button class="btn_pay" bindtap="onPay">结算({{ orderList.length }})</button>
+			</view>
+		</view>
+	</view>
+	<van-toast id="van-toast" />
+	<van-notify id="custom-selector" />

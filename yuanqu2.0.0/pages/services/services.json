@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "服务分类",
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom",
+  "usingComponents": {}
+}

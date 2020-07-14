@@ -7,10 +7,10 @@
 			</view>
 			<view class="numDetail" bindtap="toNumDetail">积分明细</view>
 		</view>
-		<view class="rule">
+		<!-- <view class="rule">
 			<text decode="{{true}}">积分规则&ensp;</text>
 			<image src="/images/rule.png"></image>
-		</view>
+		</view> -->
 		<image class="abImg" src="https://admin.iguolao.com/public/uploads/20200629152930734.png" bindtap="tolucky"></image>
 		<!--  -->
 		<view class="kon"></view>

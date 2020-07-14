@@ -1,0 +1,68 @@
+<view>
+  <van-tabs active="{{ active }}" line-height="5" bind:change="onChange" line-width="16">
+    <van-tab title="未使用">
+      <view class="no_list center f_c" hidden="{{ noUsed }}">
+        <image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+        <text>尚未拥有优惠券…</text>
+      </view>
+      <block wx:for="{{ noUsed }}" wx:key="index">
+        <view class="counpon_box">
+          <image src="/images/coupon_ora.png"></image>
+          <view class="l_box center f_c">
+            <text class="price red"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+            <view class="type_box orange">无金额门槛</view>
+            <text class="date_txt c9">有效期限：{{item.start}} - {{item.end}}</text>
+          </view>
+          <view class="r_box orange_t f_c center" data-id="{{item.id}}" bindtap="onUsed">
+            <text>立即</text>
+            <text>使用</text>
+          </view>
+        </view>
+      </block>
+    </van-tab>
+    <van-tab title="已使用">
+
+      <view class="no_list center f_c" hidden="{{ haveUsed }}">
+        <image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+        <text>尚未拥有优惠券…</text>
+      </view>
+      <block wx:for="{{ haveUsed }}" wx:key="index">
+        <view class="counpon_box">
+          <image src="/images/coupon.png"></image>
+          <view class="l_box center f_c">
+            <text class="price"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+            <view class="type_box">无金额门槛</view>
+            <text class="date_txt">有效期限：{{item.start}} - {{item.end}}</text>
+          </view>
+          <view class="r_box f_c center">
+            <text>已使用</text>
+          </view>
+        </view>
+      </block>
+    </van-tab>
+    <van-tab title="已过期">
+      <view class="no_list center f_c" hidden="{{ overDue }}">
+        <image src="{{ icon_Url+'/public/images/nocoupon.png' }}" mode="widthFix"></image>
+        <text>尚未拥有优惠券…</text>
+      </view>
+
+      <block wx:for="{{overDue}}" wx:key="index">
+        <view class="counpon_box">
+          <image src="/images/coupon.png"></image>
+          <view class="l_box center f_c">
+            <text class="price"><text class="s_txt">¥</text>{{ item.user_total }}</text>
+            <view class="type_box">无金额门槛</view>
+            <text class="date_txt">有效期限：{{item.start}} - {{item.end}}</text>
+          </view>
+          <view class="r_box f_c center">
+            <text>过期</text>
+            <text>作废</text>
+          </view>
+        </view>
+      </block>
+
+    </van-tab>
+  </van-tabs>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

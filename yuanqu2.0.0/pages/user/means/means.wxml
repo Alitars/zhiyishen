@@ -1,0 +1,25 @@
+<view class="t-img">
+  <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="头像" is-link bindtap="onUpimg" />
+  <image class="avter" catchtap="onUpimg" src="{{ info.head_img?info.head_img:'/images/user.png' }}"></image>
+</view>
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="昵称" is-link placeholder="{{ info.nickname==''||info.nickname==null?'填写':info.nickname}}" data-id="1" bindtap="onChange" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="性别" is-link placeholder="{{info.sex==0?'男':'女'}}" bindtap="onClose" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="手机号" is-link placeholder="{{ info.mobile }}" data-id="2" bindtap="onChange" />
+<van-field size="large" title-width="200" value="{{ username }}" disabled input-align='right' clearable label="邮寄地址" is-link bindtap="onAdress" />
+<!-- <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="邮箱" is-link placeholder="{{ info.email==''||info.email==null?'绑定':info.email }}" data-id="3" bindtap="onChange" /> -->
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="修改密码" is-link bindtap="onResetting" />
+<!-- <van-cell title="语音导航">
+  <van-switch checked="{{ checked }}" bind:change="onSwitch" active-color="#f96006" size="20px" inactive-color="#fff" />
+</van-cell> -->
+<!-- <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="清除缓存" is-link bindtap="onClear" /> -->
+<!-- <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="退出登录" is-link bindtap="onQuit" /> -->
+
+
+ <view class="b_list_btn first" style="height:{{ safeHeight }}rpx" >
+    <view class="a_box" bindtap="onContract" bindtap="onQuit">退出登录</view>
+  </view>
+
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />
+<van-action-sheet show="{{ show }}" actions="{{ actions }}" safe-area-inset-bottom bind:select="onSelect" />
+<van-dialog id="van-dialog" />

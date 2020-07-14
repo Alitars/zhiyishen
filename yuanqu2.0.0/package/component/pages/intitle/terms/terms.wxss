@@ -1,0 +1,1 @@
+@import "/template/template.wxss";page{background:#fff}.input-box{width:100%;position:relative;height:100rpx}.g_t{max-width:400rpx;top:300rpx;right:60rpx;-ms-flex-wrap:wrap;flex-wrap:wrap;position:absolute;font-size:18px;color:#333;width:400rpx;font-weight:500}

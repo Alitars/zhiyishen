@@ -1,0 +1,77 @@
+<view class="containers">
+	<navigation-bar back="{{ false }}" color="#ffffff" background="-webkit-linear-gradient(left,#2fa5fc,#277cfb)" title="个人中心" />
+	<view class="blue-bg-img">
+		<view class="avater-box" bindtap="{{  info.mobile?'':'onRegister' }}">
+			<image class="user_img" src="{{info.head_img?info.head_img:'/images/user.png'}}" catchtap="{{ info.head_img?'onUpimg':'onoImg' }}"></image><text class="u_t_1 van-ellipsis"hidden="{{ !info.mobile }}">{{info.nickname?info.nickname:info.mobile}}</text><text class="u_t_1 van-ellipsis"hidden="{{ info.mobile }}">请登录</text><text class="u_t_3 van-ellipsis">{{attest?attest:'未认证'}}</text>
+		</view>
+		<view class="list-price">
+			<view class="price-box"><text>￥{{ !info.mobile?'0.00':info.total_price }}</text><text>累计交易金额</text></view>
+			<view class="price-box"><text>￥{{  !info.mobile?'0.00':info.mounth_price }}</text><text>本月交易金额</text></view>
+			<view class="price-box"><text>￥{{  !info.mobile?'0.00':info.day_price }}</text><text>今日交易金额</text></view>
+		</view>
+		<view></view>
+		<view class="big-list-box">
+			<view class="list-btn-row">
+				<view class="list-btn-box-s" data-id='0' bindtap="onChangeSlider">商标订单</view>
+				<view class="list-btn-box-s" data-id="1" bindtap="onChangeSlider">专利订单</view>
+				<view class="list-btn-box-s" data-id="2" bindtap="onChangeSlider">版权订单</view>
+				<view class="slider-s" animation="{{ animationData }}"></view>
+			</view>
+			<swiper class="swiper-order-box" current="{{ active }}" bindchange="onSwiper" duration="400">
+				<swiper-item>
+					<view class="list_p center">
+						<block wx:for="{{listBtn}}" wx:key="index">
+							<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+								<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+								<view hidden="{{ index == 1&&unpaid1!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid1 }}">{{unpaid1?unpaid1:'0'}}</view>
+								<view hidden="{{ index == 2&&in_server1!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server1 }}">{{in_server1?in_server1:'0'}}</view>
+							</view>
+						</block>
+					</view>
+				</swiper-item>
+								<swiper-item>
+					<view class="list_p center">
+						<block wx:for="{{listBtn}}" wx:key="index">
+							<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+								<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+								<view hidden="{{ index == 1&&unpaid2!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid2 }}">{{unpaid2?unpaid2:'0'}}</view>
+								<view hidden="{{ index == 2&&in_server2!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server2 }}">{{in_server2?in_server2:'0'}}</view>
+							</view>
+						</block>
+					</view>
+				</swiper-item>
+								<swiper-item>
+					<view class="list_p center">
+						<block wx:for="{{listBtn}}" wx:key="index">
+							<view class="p_box" data-id="{{item.id}}" bindtap="onDraw">
+								<image class="p_imgs" src="{{item.images}}"></image><text class="p_text">{{item.text}}</text>
+								<view hidden="{{ index == 1&&unpaid3!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ unpaid3 }}">{{unpaid3?unpaid3:'0'}}</view>
+								<view hidden="{{ index == 2&&in_server3!==0&&!length>0?false:true }}" class="dot_box" wx:if="{{ in_server3 }}">{{in_server3?in_server3:'0'}}</view>
+							</view>
+						</block>
+					</view>
+				</swiper-item>
+			</swiper>
+		</view>
+	</view>
+	<view hover-class="bghover" class="cell_box" wx:for="{{ userBtn }}" wx:key="index">
+		<view wx:if="{{index !== 1&&index !==2&&index !== 3 }}" class="m_t_b" />
+		<view hover-class="bghover" class="list_cell server_box" wx:if="{{ info.length==0?index!==3:true }}" data-id="{{item.url}}" hidden="{{ index==1&&ISAGENT!==2 }}" bindtap="goDt">
+			<image class="l_icon" src="{{item.images}}"></image><text class="cell_t">{{item.text}}</text>
+			<view class="r_link" />
+			<view class="list_b" wx:if="{{index == 1||index == 2}}" />
+		</view>
+		<view wx:if="{{index !== 2&&index !== 1&&index !==4}}" class="m_t_b" />
+	</view>
+</view>
+
+	<view hover-class="bghover" class="cell_box">
+		<view hover-class="bghover" class="list_cell server_box" bindtap="goBanck">
+			<image class="l_icon" src="/images/zhuangzhangxinxi.png"></image><text class="cell_t">银行转账信息</text>
+			<view class="r_link" />
+			<!-- <view class="list_b" /> -->
+		</view>
+	</view>
+<!-- <button  bindtap="onGS">工商</button> -->
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

@@ -1,0 +1,103 @@
+<view class="container" hidden="{{ !open }}">
+	<van-transition show="true" duration="{{ { enter: 300, leave: 300 } }}" name="fade-down" custom-class="block">
+		<view class="list-one">{{ name }}</view>
+		<block wx:for="{{ three_brand }}" wx:key='index'>
+			<view class="list-two2 al_center">
+				<text>{{ a.getNum(item.num) }} {{ item.name }}</text>
+				<view class="border1" />
+			</view>
+		</block>
+	</van-transition>
+</view>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+
+
+<view class="container" hidden="{{ open }}">
+	<van-search value="{{ value }}" shape="round" placeholder="请输入商品名称" bind:search="onSearch" bind:change="onRetrieval" />
+	<view class="over_hidden" wx:if="{{ newList.length>0 }}" wx:for="{{ newList }}" wx:key='index'>
+		<van-cell title="{{ item.name }}" data-index='{{ index }}' data-first="{{ item.firstIndex }}" data-name="{{ item.name }}" data-two="{{ item.twoIndex }}" bindtap="onSelect">
+			<van-icon slot="right-icon" name="{{ item.isSelect?'success':'s' }}" color="#f96006" size="15px" class="custom-icon" />
+		</van-cell>
+	</view>
+	<view class="over_hidden" wx:if="{{ newList.length==0 }}">
+		<van-transition show="{{ list }}" duration="{{ { enter: 300, leave: 300 } }}" name="fade-down" custom-class="block">
+			<view class="list-one" bindtap="onOpen">{{ name }}</view>
+			<block wx:for="{{ list }}" wx:key='index'>
+				<scroll-view style="width:100%;height: 100%;" scroll-y="true">
+					<view class="list-two al_center" data-id="{{ index }}" id="{{ 'the-id'+index }}" data-num="{{ item.num }}" bindtap="onFold">
+						<view class="list-two-t">
+							<text class="{{ item.light==1?'size':'' }}">{{ a.getNum(item.num) }} {{ item.name }} </text>
+							<text class="r0-txt">{{ item.isSelect?'已选择'+item.isSelect:'' }}</text>
+						</view>
+						<view class="arrow {{ item.show?'rotate':''}}"></view>
+						<view class="border" hidden="{{ !item.show }}"></view>
+						<view class="border-wh" hidden="{{ item.show }}"></view>
+					</view>
+					<view class="fold">
+						<van-transition show="{{ item.show }}" duration="{{ { enter: 300, leave: 300 } }}" name="fade-down" custom-class="block">
+							<block wx:for="{{ item.third }}" wx:for-item="item" wx:key='index'>
+								<view class="list-three  al_center" data-first="{{ item.firstIndex }}" data-name="{{ item.name }}" data-two="{{ item.twoIndex }}" bindtap="onSelect">
+									<text class="{{ item.light==1?'size':'' }}">{{ item.num }} {{ item.name }}</text>
+									<image class="true" hidden="{{ item.isSelect==false?true:false }}" src="/images/true.png"></image>
+								</view>
+							</block>
+						</van-transition>
+					</view>
+				</scroll-view>
+			</block>
+		</van-transition>
+	</view>
+
+	<view class="b_box fiexd" style="height:{{ SafeButtom }}rpx">
+		<view class="add-shop center">
+			<view class="add-shop-img" bindtap="onChange">
+				<!-- <image src="/images/shop-icon.png"></image> -->
+				<image src="/images/bl3.png"></image>
+				<view class="num-box center">
+					<text>{{ sum }}</text>
+				</view>
+			</view>
+			<view class="t-tile al_center">
+				<text>商品可选总数</text>
+				<text>{{ len }}</text>
+				<text>个</text>
+				<text>当前还能选</text>
+				<text>{{ len-sum }}</text>
+				<text>个</text>
+			</view>
+			<view class="save-box center" bindtap="onUp">保存</view>
+		</view>
+	</view>
+</view>
+<van-transition show="{{ !display }}" custom-class="block">
+	<view class="go_top center" bindtap="onTop">
+		<image src="/images/top.png"></image>
+	</view>
+</van-transition>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />
+<van-popup show="{{ show }}" position="bottom" custom-style="margin-bottom:{{ SafeButtom }}rpx" bind:close="onChange" safe-area-inset-bottom>
+	<view style="padding-bottom:{{  SafeButtom/2 }}rpx">
+		<van-cell title="已选择商品" />
+		<view class="list-one" bindtap="onOpen">{{ name }}</view>
+		<block wx:for="{{ newArry }}" wx:key='index'>
+			<view class="list-threes  al_center" data-first="{{ item.firstIndex }}" data-index="{{ index }}" data-two="{{ item.twoIndex }}" bindtap="onCheck">
+				<text class="{{ item.light==1?'size':'' }}">{{ item.num }} {{ item.name }}</text>
+				<view class="van-check">
+					<van-checkbox value="{{ item.isSelect }}" checked-color="#f96006" />
+				</view>
+			</view>
+		</block>
+	</view>
+</van-popup>
+<wxs module="a">
+	var getNum = function(num) {
+		if (num.length == 3) {
+			return ('0' + num);
+		} else {
+			return num;
+		}
+	}
+	module.exports.getNum = getNum;
+</wxs>

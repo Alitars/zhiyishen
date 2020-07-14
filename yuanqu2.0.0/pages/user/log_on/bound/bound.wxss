@@ -1,0 +1,6 @@
+/* pages/user/log_on/bound/bound.wxss */
+@import '/pages/user/log_on/bind/bind.wxss';
+
+page {
+  padding: 0;
+}

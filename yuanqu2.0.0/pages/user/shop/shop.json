@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {}
+}

@@ -1,0 +1,111 @@
+<view class="body">
+  <view class="top_bg">
+    <image src="http://admin.iguolao.com/public/images/bg1.png" mode="widthFix"></image>
+    <view class="logo">
+      <image src="data:image/png;base64,{{ list.BrandImg }}"></image>
+    </view>
+    <view class="status-t">当前：{{ list.BrandStatus?list.BrandStatus:'暂无' }}</view>
+  </view>
+  <view class="center_box">
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">商标名称：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.BrandName?'暂无':list.BrandName }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">类别：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.genre?'暂无':list.genre }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">申请/注册号：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.RegId?'暂无':list.RegId }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">申请人：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.AppNewName?'暂无':list.AppNewName }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">申请人地址：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.AppAddress?'暂无':list.AppAddress }}</view>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">申请日期：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.AppDate?'暂无':list.AppDate }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">初审公告日期：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.PreAnnouncementDate?'暂无':list.PreAnnouncementDate }}</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">注册公告日期：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ list.Ggdate?list.Ggdate:'暂无' }}</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">专用权期限：</view>
+      <view class="r-box">
+        <view class="r-box-cell" wx:if="{{ !list.Ggdate }}">暂无</view>
+        <view class="r-box-cell" wx:else>{{ list.Ggdate }}/{{ list.EffectiveEndDate }}</view>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">是否共有商标：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.genre?'暂无':list.genre }}</view>
+      </view>
+    </view>
+    <view class="cell-box" data-id="4" bindtap="{{ block.length==0?'':'onDt' }}">
+      <view class="l-box">商品/服务项目：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ block.length>0?block.length+'项':'暂无' }}</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">类似群：</view>
+      <view class="r-box">
+        <view class="r-box-cell">暂无</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">代理/办理机构：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !list.AgentName?'暂无':list.AgentName }}</view>
+      </view>
+    </view>
+    <view class="cell-box" bindtap="onDt">
+      <view class="l-box">商标公告：</view>
+      <view class="r-box">
+        <view class="r-box-cell">暂无</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <view class="cell-box" data-id="6" bindtap="onDt">
+      <view class="l-box">商标流程：</view>
+      <view class="r-box">
+        <view class="r-box-cell">{{ !arry.length?'暂无':arry.length }}项</view>
+      </view>
+      <view class="arrow"></view>
+    </view>
+    <text class="b_t">*商标查询信息仅供参考，实际以国家商标局为准。</text>
+  </view>
+</view>

@@ -1,0 +1,40 @@
+<view class="body">
+  <view class="nolist-box" wx:if="{{ arry.lenth==0 }}">
+    <image src="{{ icon_Url+'/public/uploads/20200108172024310.png' }}" mode="widthFix"></image>
+    <text>您暂无订单记录哦～</text>
+  </view>
+  <block wx:for="{{ arry }}" wx:key='index'>
+    <view class="cards">
+      <view class="icon-box">
+        <image src="{{ item.brand_img?icon_Url+item.brand_img:'/images/noImg.png' }}"></image>
+      </view>
+      <view class="list-box">
+        <text>业务名称：</text>
+        <text>{{item.click_type}}</text>
+      </view>
+      <view class="list-box">
+        <text>代理商名称：</text>
+        <text>{{list.yqname}}</text>
+      </view>
+      <view class="list-box">
+        <text>申请人：</text>
+        <text>{{item.apply_name?item.apply_name:'暂无'}}</text>
+      </view>
+      <view class="list-box">
+        <text>订单编号：</text>
+        <text>{{item.order_id}}</text>
+      </view>
+      <view class="list-box">
+        <text>订单金额：</text>
+        <text>￥{{item.total_price}}</text>
+      </view>
+    </view>
+  </block>
+  <view class="loading-more center" hidden="{{ display }}">
+    <van-loading size='25px' color="#f96006" />
+    <text></text>
+  </view>
+  <view class="loading-more center" hidden="{{ !display }}">
+    <text></text>
+  </view>
+</view>

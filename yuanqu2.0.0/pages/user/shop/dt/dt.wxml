@@ -1,0 +1,125 @@
+<view>
+  <view class="custom center" style="padding-top:{{statusBarHeight}}px">
+    <view class="l-T-arrow al_center" bindtap="onClickLeft">
+      <view class="l-T-arrow-two center">
+        <image src="/images/left-arrow.png"></image>
+      </view>
+    </view>
+    <view class="sx-box" bindtap="onClose">费用说明</view>
+    <view class="custom-text van-ellipsis" bindtap="onClick">
+      <text>近似商标</text>
+    </view>
+  </view>
+  <view class="empty_custom" style="padding-top:{{ statusBarHeight+10 }}px" />
+  <block wx:for="{{ arry }}" wx:for-item="item" wx:key="id">
+    <van-transition show="{{ arry[0] }}" name="fade-down" custom-class="block">
+      <view class="card-box">
+        <view class="title  al_center">
+          <view class="checkbox">
+            <van-checkbox value="{{ item.checked }}" data-id="1" data-first="{{ item.firstIndex }}" data-index="{{ index }}" checked-color="#f96006" bind:change="onChange">{{ item.name }}</van-checkbox>
+          </view>
+          <view class="r-tst" hidden="{{ item.primary==1?false:true }}">主要推荐类别</view>
+          <view class="r-tst" hidden="{{ item.primary==0?false:true }}">相关推荐类别</view>
+        </view>
+        <block wx:for="{{ item.sec }}" wx:for-item="item" wx:key="id">
+          <view class="title2">
+            <view class="checkbox">
+              <van-checkbox value="{{ item.checked }}" data-id="2" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" data-index="{{ index }}" checked-color="#f96006" bind:change="onChange">
+                <view class="two-t van-ellipsis">{{ a.getNum(item.num) }}{{ item.name }}</view>
+              </van-checkbox>
+            </view>
+            <view class="dustbin-box" data-id="2" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" bindtap="onDustbin">
+              <image src="/images/dustbin.png"></image>
+            </view>
+          </view>
+          <view class="title2" hidden="{{ item.sscore>0?false:true }}">
+            <view class="rate al_center">
+              <text>成功指数</text>
+              <view class="rate-box-list">
+                <van-rate allow-half value="{{ item.sscore }}" disabled disabled-color="#f96006" size="15" />
+              </view>
+            </view>
+            <view class="similar al_center" data-group="{{ item.num }}" data-first="{{ item.firstIndex }}" bindtap="onSimilar" hidden="{{ item.sscore>=4 }}">
+              <text>查看近似商标</text>
+            </view>
+          </view>
+          <view class="btn-box">
+            <view class="more">
+              <view data-id="{{ item.num }}" data-index="{{ index }}" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" data-name="{{ item.name }}" bindtap="addSmall">
+                <image src="/images/more.png"></image>
+              </view>
+            </view>
+            <view class="lftmg">
+              <block wx:for="{{ item.third}}" wx:key="index">
+                <view class="btn" hidden="{{ item.isSelect==false }}">
+                  <text>{{ item.num }} {{ item.name }}</text>
+                  <image class="delet-imgs" data-id="{{ item.id }}" src="/images/delet3.png" bindtap="onDeletBtn"></image>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+        <view class="b-list-box f_c al_center">
+          <view class="h-choose">
+            <text>已选 </text>
+            <text>{{ item.number }} </text>
+            <text>项（超过10项每项加收50元）</text>
+            <view class="price al_center rt">
+              <text>总计金额：</text>
+              <text>￥{{ item.list[item.listIndex].bigprice}}</text>
+            </view>
+          </view>
+          <view class="h-choose bgh">
+            <text>服务类型：{{ item.list[item.listIndex].title }}</text>
+          </view>
+          <view class="ptz">
+            <view class="ptz-text al_center">
+              <text hidden="{{ item.listIndex==0?false:true }}">*首次支付费用为:￥{{item.list[item.listIndex].cost }},初审公告后支付金额:￥{{ item.list[item.listIndex].instance }}</text>
+              <text hidden="{{ item.listIndex==1?false:true }}">*首次支付费用为:￥{{item.list[item.listIndex].cost }},初审公告后支付金额:￥{{ item.list[item.listIndex].instance }}</text>
+              <text hidden="{{ item.listIndex==2?false:true }}">*首次支付费用为:￥{{item.list[item.listIndex].cost }},初审公告后支付金额:￥{{ item.list[item.listIndex].instance }}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-transition>
+  </block>
+  <view class="b_box" style="height:{{ safeHeight }}rpx">
+    <view class="check_box">
+      <van-checkbox value="{{ checked }}" data-id="3" checked-color="#f96006" bind:change="onChange">全选</van-checkbox>
+    </view>
+    <van-transition show="{{ delet }}" name="slide-right" duration="{{ { enter: 50, leave: 50 } }}" custom-class="block">
+      <view>
+        <view class="add_shop" bindtap="onAddShop">提交</view>
+        <view class="add_more2" bindtap="onDeleteArry">删减类别</view>
+      </view>
+    </van-transition>
+    <van-transition show="{{ !delet }}" name="slide-right" duration="{{ { enter: 50, leave: 50 } }}" custom-class="block">
+      <view class="delet-box">
+        <view class="delet-choose" bindtap="onDeleteArry">删除</view>
+      </view>
+    </van-transition>
+  </view>
+</view>
+<van-popup show="{{ show }}" overlay="{{ true }}" custom-style="border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" z-index="90" bind:close="onClose">
+  <view class="sming">
+    <view class="t-sming">费用标准说明</view>
+    <view class="sming-txt">1.每个类别的基础价格包含10个小商品，超过10个商品的每个小商品加收50元；</view>
+    <view class="sming-txt">2.每个类别的总计金额为:官费+服务费+50*(小商品数量-10)， 小商品数量不足10个的以10个计算；</view>
+    <view class="sming-txt">3.四星商标注册(成功指数高于三星)，首次无需支付任何费 用，初审公告后再支付全部费用；</view>
+    <view class="sming-txt">4.三星商标注册(成功指数为三星)，首次支付费用为： 300+30*(小商品数量-10)，初审公告后再支付尾款；</view>
+    <view class="sming-txt">5.普通商标注册(成功指数低于三星)，首次需支付全部费用；</view>
+  </view>
+</van-popup>
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />
+<wxs module="a">
+  var getNum = function(num) {
+    if (num.length == 3) {
+      return ('0' + num);
+    } else {
+      return num;
+    };
+  };
+  module.exports.getNum = getNum;
+</wxs>

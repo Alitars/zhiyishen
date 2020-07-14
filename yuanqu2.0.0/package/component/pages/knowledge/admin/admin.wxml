@@ -1,0 +1,43 @@
+<view class="titel-box" style="padding-top:{{ statusBarHeight }}px;height: 45px;">知产管理</view>
+<view style="height:{{ statusBarHeight + 45 }}px;"></view>
+<view class="body">
+	<view class="card_box">
+		<view class="title-box">
+			<image class="title-box-img" src="https://admin.iguolao.com/public/uploads/20200504173338403.png"></image><text>商标数据统计</text>
+		</view>
+		<view class="btn-box">
+			<view class="v-display">
+				<block wx:for="{{  record }}" wx:key='index'>
+					<view class="btn-box-t" style="{{ index<3?'justify-content: center':'' }}" data-index="{{ index }}" bindtap="onDtails"><text>{{item.text1}}</text><text>{{item.text2}}</text></view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="histogram-box">
+		<view class="hist-t"><text>近{{year.length==0?'10':year}}年商标申请量统计</text></view>
+		<view class="canvas-hist" wx:if="{{ ecShow }}">
+			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+		</view>
+	</view>
+	<!--<view class="card_box"><view class="title-box"><image class="title-box-img"src="https://admin.iguolao.com/public/uploads/20200504173338403.png"></image><text>专利数据统计</text></view><view class="btn-box"><view class="v-display"><block wx:for="{{  record }}"wx:key='index'><view class="btn-box-t"style="{{ index<3?'justify-content: center':'' }}"wx:if="{{ index<5 }}"><text>{{item.text1}}</text><text>{{item.text2}}</text></view></block></view></view></view>-->
+	<!--<view class="histogram-box"><view class="hist-t"><text>近四年专利申请量统计</text></view><view class="canvas-hist"wx:if="{{ doubleShow }}"><ec-canvas id="mychart-dom-bar"canvas-id="mychart-bar"ec="{{ double }}"></ec-canvas></view></view>-->
+	<view class="list-box">
+		<view class="hist-t"><text>企业知产数据统计</text></view>
+		<view class="tabar-box">
+			<view class="tabar-t">
+				<view class="num-title-s">排名</view>
+				<view class="companny-name-s"><text>公司名称</text></view>
+				<view class="sbiao-num-s">商标数量</view>
+				<view class="zli-num-s">专利数量</view>
+			</view>
+		</view>
+		<view class="list-row" wx:for="{{ AgentName }}" wx:key="index" wx:if="{{  index<5 }}">
+			<view class="num-title">{{index+1}}</view>
+			<view class="companny-name"><text>{{item.name}}</text></view>
+			<view class="sbiao-num">{{item.num}}</view>
+			<view class="zli-num">0</view>
+		</view>
+		<view class="action-box" bindtap="onCompanny">点击查看更多企业></view>
+	</view>
+</view>
+<van-toast id="van-toast" />

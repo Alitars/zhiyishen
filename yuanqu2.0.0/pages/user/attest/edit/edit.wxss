@@ -1,0 +1,1 @@
+@import "/pages/user/attest/dt/dt.wxss";.submit_box{width:88rpx;height:88rpx;border-radius:100%;position:absolute;bottom:-44rpx;left:50%;padding:0;margin:0;box-sizing:border-box;margin-left:-44rpx;background:#fff;}.submit_box::after{border:0;}.submit_box image{width:inherit;height:inherit;}.input-box{position: absolute;left: 45%;max-width: 50%;color: #333;font-size: 28rpx;}

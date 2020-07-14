@@ -1,0 +1,20 @@
+<view class="container">
+  <van-transition show="{{ list }}" name="fade-down" custom-class="block">
+    <van-search value="{{ value }}" shape="round" placeholder="请输入类别名称" type="text" bind:search="onSearch" bind:change="onChange" />
+    <view wx:for="{{ list }}" wx:key="index" >
+      <view class="gray_list al_center" hidden="{{ item.show }}" data-id="{{ item.index }}" data-index="{{ item.id }}" bindtap="onChoose">
+        <view class="gray_list_box">
+          <text>{{ item.name }}</text>
+        </view>
+        <view class="selt-box" hidden="{{ !item.isSelect }}">
+          <text>已选择{{ item.isSelect }}项</text>
+        </view>
+      </view>
+    </view>
+  </van-transition>
+  <view class="b_box " style="height:{{ SafeButtom }}rpx">
+    <view class="orange" bindtap="onClick">确定</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

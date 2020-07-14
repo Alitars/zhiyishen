@@ -1,0 +1,27 @@
+<view class="body">
+  <view class="f-box">
+    <text>知昇</text>
+    <text>纵度垂直专业互联网知识产权平台</text>
+    <image class="r_img" src="{{ icon_Url+'/public/images/guanyu.png' }}"></image>
+  </view>
+  <view class="t-box">
+    <image src="/images/xin.png"></image>
+    <text class="ly">服务理念</text>
+    <view class="ln">
+      <text>专业 </text>
+      <text> 快速 </text>
+      <text> 贴心 </text>
+      <text> 超值</text>
+    </view>
+  </view>
+  <view class="jian_jie">
+    <view class="title">知昇</view>
+    <view class="txt-box">
+      <text>纵度垂直专业互联网知识产权平台，超100家上市公司信赖的互联网知识产权平台，业内深耕10年以上的顶尖知识产权专家和专业服务团队联袂精心打造。</text>
+    </view>
+    <view class="txt-box">
+      <text>秉承[专业、省心、 保障]的服务理念提供集AI商标取名,AI商标设计，AI商标检测，AI专利技术交底撰写，及SaaS管理于一体的保姆式知识产权专业服务旨在为各行业，各团体，以及各级政府提供定制化的知识产权AI专业分析报告及AI大数据研究报告!
+</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+<import src="../../template/template.wxml" />
+<view class="custom center" style="padding-top:{{statusBarHeight}}px;">
+	<view class="custom-text van-ellipsis" style="" bindtap="onClick"><text>购物车</text></view>
+</view>
+<view class="choose-type-t center" style="top:{{height+10}}px" id="toptab">
+	<view class="choose-box-t">
+		<view class="t-t-box center" data-id="1" bindtap="onSlider">{{ id==1?'':'商标' }}</view>
+		<view class="t-t-box center" data-id="2" bindtap="onSlider">{{ id==2?'':'专利' }}</view>
+		<view class="t-t-box center" data-id="3" bindtap="onSlider">{{ id==3?'':'版权' }}</view>
+		<view class="slide-box center" animation="{{ animationData }}">{{id==1?'商标':''||id==2?'专利':''||id==3?'版权':''}}</view>
+	</view>
+</view>
+
+
+
+
+<view class="top_switch_two van-hairline--bottom" style="top:{{height}}px;">
+	<template wx:if="{{ id==1 }}" is="shopTop1" data="{{ checked1,show1 }}"></template>
+	<template wx:if="{{ id==2 }}" is="shopTop2" data="{{ checked2,show2 }}"></template>
+	<template wx:if="{{ id==3 }}" is="shopTop3" data="{{ checked3,show3 }}"></template>
+</view>
+
+
+
+<swiper class="shop-slider" current="{{ id-1 }}" bindchange="onSwiper" duration="400" style="height:calc(100vh);padding-top:{{height+50}}px">
+	<swiper-item><template is="shopList1" data="{{ arry1,url,height,safeHeight,id }}" /></swiper-item>
+	<swiper-item><template is="shopList2" data="{{ arry2,url,height,safeHeight }}" /></swiper-item>
+	<swiper-item><template is="shopList3" data="{{ arry3,url,height,safeHeight }}" /></swiper-item>
+</swiper>
+
+<template wx:if="{{ id==1 }}" is="shopListtab1" data="{{ price1,number1,show1,checked1,safeHeight,safetop }}" />
+<template wx:if="{{ id==2 }}" is="shopListtab2" data="{{ price2,number2,show2,checked2,safeHeight,safetop }}" />
+<template wx:if="{{ id==3 }}" is="shopListtab3" data="{{ price3,number3,show3,checked3,safeHeight,safetop }}" />
+
+<van-notify id="custom-selector" safe-area-inset-top />
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />

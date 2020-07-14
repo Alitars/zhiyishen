@@ -1,0 +1,22 @@
+<navigation-bar back="{{ true }}" color="#ffffff" background="-webkit-linear-gradient(left,#2fa5fc,#277cfb)" title="企业列表" />
+<view class="body">
+	<block wx:for="{{ arry }}" wx:key="index">
+		<view class="flex-boxs">
+			<view class="cell-box-s border">
+				<view class="cell-box O">企业名称</view>
+				<view class="cell-box t"><text>{{ item.name }}</text></view>
+				<view class="cell-box r"></view>
+			</view>
+			<view class="cell-box-s">
+				<view class="cell-box O">商标数量</view>
+				<view class="cell-box t">{{ item.num }}</view>
+				<view class="cell-box r" data-id="{{ item.name }}" bindtap="onDt">商标管理</view>
+			</view>
+			<!-- <view class="cell-box-s">
+				<view class="cell-box O">专利数量</view>
+				<view class="cell-box t">20</view>
+				<view class="cell-box r">专利管理</view>
+			</view> -->
+		</view>
+	</block>
+</view>

@@ -1,0 +1,21 @@
+<view class="body">
+  <view class="list-box">
+    <view class="first">专利说明书</view>
+    <view class="two" data-url="{{ item.url }}" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box">
+    <view class="first">缴费通知书转函</view>
+    <view class="two" data-url="{{ item.url }}" bindtap="onLook">查看</view>
+  </view>
+  <view class="list-box">
+    <view class="first">办理登记费:￥1000.00</view>
+  </view>
+  <view class="list-box top0">
+    <view class="first">是否选择平台代缴官费</view>
+    <view class="checked-box">
+      <van-switch checked="{{ checked }}" size='20px' active-color="#6fe457" inactive-color="#999999" bind:change="onChange" />
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

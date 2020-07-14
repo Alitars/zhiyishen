@@ -1,0 +1,30 @@
+<view class="body" hidden="{{ id==0?false:true }}">
+  <block wx:for="{{ arry }}" wx:key='index'>
+    <view class="card-box center">
+      <view class="list-box">
+        <text>{{item.num?item.num:''}} {{item.name?item.name:''}}</text>
+        <text></text>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="body" hidden="{{ id==1?false:true }}">
+  <block wx:for="{{ arry }}" wx:key='index'>
+    <view class="card-box center">
+      <view class="list-box">
+        <text>{{item.click_type}}</text>
+        <text>{{item.order_id}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="body" hidden="{{ id==2?false:true }}">
+  <block wx:for="{{ arry }}" wx:key='index'>
+    <view class="card-box center">
+      <view class="list-box">
+        <text>{{item.create_time}}</text>
+        <text>{{item.remark}}</text>
+      </view>
+    </view>
+  </block>
+</view>

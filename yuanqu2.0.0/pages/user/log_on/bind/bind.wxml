@@ -1,0 +1,41 @@
+<view class="custom center bg" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow2.png"></image>
+    </view>
+  </view>
+  <view class="custom-text van-ellipsis bgt" bindtap="onClick">
+    <text>{{ show?'园区选择':'绑定手机号' }}</text>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight }}px" />
+<view class="body" style="height:{{ height }}px">
+  <view class="card-box">
+    <van-transition show="{{ show }}" custom-class="block">
+      <view class="title-box">园区搜索（输入关键字搜索）</view>
+      <input class="input-box" confirm-type="搜索" type="text" maxlength="20" value="{{ value }}" placeholder="请输入园区名并选择" bindinput="onInput"></input>
+      <scroll-view class="seach-box-list" scroll-y="true" style="height: 620rpx">
+        <block wx:for="{{ searchArry }}" wx:key="index">
+          <view class="list-box {{ item.park_name==value?'blue':'' }}" data-id="{{ index }}" bindtap="onChoose">
+            <text>{{item.park_name}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </van-transition>
+    <van-transition show="{{ !show }}" custom-class="block">
+      <view class="card-box2">
+        <van-field value="{{ logon_num }}" id="logon_num" border="{{ false }}" maxlength="11" type="number" size="large" clearable placeholder="请输入手机号" bind:change="onChange" custom-style="border-bottom:1px solid #666;font-size:32rpx;" />
+        <van-field value="{{ logon_smsCode }}" type="number" custom-style="border-bottom:1px solid #666;font-size:32rpx;" border="{{ false }}" id="logon_smsCode" maxlength="10" size="large" center clearable placeholder="请输入验证码" use-button-slot bind:change="onChange">
+          <van-button slot="button" custom-style="font-size:32rpx;" plain size="small" data-id="2" round type="warning" bind:click="{{code==0?'onSend':''}}">
+            <text style="color:#2fa5fc;" bindtap="onSend" hidden="{{ code==0?false:true}}">获取验证码</text>
+            <text style="color:#ccc;" hidden="{{ code==1?false:true}}">{{time}}s重新获取</text>
+          </van-button>
+        </van-field>
+      </view>
+    </van-transition>
+    <button class="btn" open-type="getUserInfo" hover-class="bghover" bindtap="onClick">{{ show?'继续':'绑定' }}</button>
+  </view>
+  <view class="user-logon" bindtap="onBack">已有账号？立即登录</view>
+</view>
+<van-notify id="custom-selector" safe-area-inset-top/>
+<van-toast id="van-toast" />

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "帐号管理",
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#2d9afb",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
+}

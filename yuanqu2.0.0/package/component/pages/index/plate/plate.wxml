@@ -1,0 +1,14 @@
+<import src="../../../../../template/template.wxml" />
+<template is="onGuo" data="{{statusBarHeight,SafeHigh,safeHeight,icon_Url,text,SafeButtom}}" />
+<view class="body_two">
+  <view class="input-box">
+    <view class="field">
+      <van-field value="{{ value }}" placeholder="例如:T恤,酒店" focus='{{ show }}' type="text" clearable border="{{ false }}" input-align="center" custom-style="border-bottom:2rpx solid #333;" bind:change="onChange" />
+    </view>
+    <view class="lei-txt tph">类如产品名称:T恤,面包,油漆,机械设备</view>
+    <view class="lei-txt">服务行业:保险,酒店,培训,软件开发</view>
+  </view>
+  <template is="onVioce" data="{{statusBarHeight,info,safeHeight,icon_Url,value,animationStatus,SafeButtom}}" />
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

@@ -1,0 +1,13 @@
+<view class="body">
+  <view class="card-box">
+    <van-field value="{{ entrust }}" size="large" type="text" disabled clearable label="委托人" is-link placeholder="请选择" bindtap="onClick" />
+    <van-field value="{{ value }}" size="large" type="text" maxlength='20' clearable label="联系人" placeholder="请输入" bind:change="onChange" data-id='1' />
+    <van-field value="{{ phone }}" size="large" maxlength='11' clearable type="number" label="联系电话" placeholder="请输入" border="{{ false }}" bind:change="onChange" data-id='2' />
+  </view>
+  <view class="merg-sm">*合同文件可去订单详情查看</view>
+  <view class="b_list_btn first" style="height:{{ SafeButtom }}rpx">
+    <view class="a_box" bindtap="onSubmit">提交</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

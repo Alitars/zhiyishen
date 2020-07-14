@@ -482,7 +482,6 @@ var BusinessOCR = function () {
           success: ((res) => {
             var list = JSON.parse(res.data);
             var arry = JSON.parse(JSON.stringify(list.data));
-            // console.log(res);
             // console.log(arry, 'asdadsdsadasdasdaa');
             if (list.code == 1) {
               wx.showToast({
@@ -492,11 +491,15 @@ var BusinessOCR = function () {
               })
               arry.errcode == 0;
               arry.tempFilePaths = arry.business_license;
+              arry.address = arry.address
+              arry.reg_num = arry.reg_num
               arry.enterprise_name = arry.company_name;
               resolve({
                 'errcode': 0,
                 'tempFilePaths': arry.business_license,
                 'enterprise_name': arry.company_name,
+                'reg_num':arry.reg_num,
+                'address':arry.address
               })
             } else {
               wx.showToast({

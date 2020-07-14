@@ -1,0 +1,636 @@
+<template name="onCheck">
+  <view class="body" style="height:{{ high*3 }}rpx">
+    <view class="top_tab" style="height:{{SafeButtom/2}}px" />
+    <view class="guo_box" style="height:{{SafeButtom/2}}px">
+      <image class="bg" src="/package/component/images/pinlbg.png" mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="body-two">
+    <view class="g_box bg center">
+      <view class="g_img">
+        <image src="{{ icon_Url+'/public/images/guogif.gif' }}" mode="widthFix"></image>
+      </view>
+      <view class="g_t">{{text}}</view>
+      <view class="wh630">
+        <progress percent="{{ percent }}" active-mode="forwards" active border-radius="5rpx" stroke-width="15rpx" activeColor="#f96006" />
+      </view>
+      <view class="j-txt">{{percent>99?'100':percent}}%</view>
+    </view>
+  </view>
+  <van-dialog id="van-dialog" />
+</template>
+<template name="onGuo">
+  <view class="customs scenter" style="padding-top:{{statusBarHeight}}px">
+    <view class="l-T-arrow al_center" bindtap="onBack">
+      <view class="l-T-arrow-two center">
+        <image src="/images/left-arrow.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="body" style="height:{{ high*3 }}rpx">
+    <view class="top_tab" style="height:{{safeHeight/2}}px" />
+    <view class="guo_box" style="height:{{safeHeight/2}}px">
+      <image class="bg" src="/package/component/images/pinlbg.png" mode="widthFix"></image>
+      <view class="g_box">
+        <image class="g_img" src="{{ icon_Url+'/public/images/guo.png' }}"></image>
+        <view class="g_t">{{text}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<template name="onVioce">
+  <view class="b_box " style="height:{{ safeHeight }}rpx" hidden="{{ !value }}">
+    <view class="orange" bindtap="onClick">下一步</view>
+  </view>
+  <view class="b_voice" style="bottom:{{ info.statusBarHeight  }}px;" hidden="{{ value }}">
+    <view class="vioce-t" hidden="{{ animationStatus }}">按住开始</view>
+    <view class="sr_box" bindtap="onBlock">
+      <image src="/images/sr.png" mode="widthFix"></image>
+    </view>
+    <view class="vioce_box" bindtouchstart="onVioce" bindtouchend="onStop">
+      <image src="/package/component/images/vioce_two.png" mode="widthFix"></image>
+      <view class="ripple" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple  {{animationStatus?'rippleAnimation1':''}}" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple {{animationStatus?'rippleAnimation2':''}}" hidden="{{ !animationStatus }}"></view>
+      <view class="ripple {{animationStatus?'rippleAnimation3':''}}" hidden="{{ !animationStatus }}"></view>
+    </view>
+  </view>
+</template>
+<template name="onChoose">
+  <view class="customs center" style="padding-top:{{statusBarHeight}}px">
+    <view class="l-T-arrow al_center" bindtap="onBack">
+      <view class="l-T-arrow-two center">
+        <image src="/images/left-arrow.png"></image>
+      </view>
+    </view>
+  </view>
+  <view class="body" style="height:{{ high*3 }}rpx">
+    <view class="top_tab" style="height:{{SafeButtom/2}}px" />
+    <view class="guo_box" style="height:{{SafeButtom/2}}px">
+      <image class="bg" src="/package/component/images/pinlbg.png" mode="widthFix"></image>
+      <view class="g_box">
+        <image class="g_img" src="{{ icon_Url+'/public/images/guo.png' }}"></image>
+        <view class="g_t">{{text}}</view>
+        <view class="ht" /></view>
+    </view>
+    <view class="l_box">
+      <block wx:for="{{ tabs }}" wx:key="index">
+        <view class="l_list_tabs van-ellipsis" id="{{ item.isSelect?'the-id':'' }}" data-id="{{ index }}" bindtap="onTabs">
+          <text class="{{ item.isSelect?'t-orange':'' }}">{{item.title}}</text>
+        </view>
+      </block>
+      <view class="now_tabs van-ellipsis" animation="{{ animationData }}">
+        <text class="{{ tabs[id].isSelect?'t-orange':'' }}">{{tabs[id].title}}</text>
+      </view>
+    </view>
+    <view class="r_box">
+      <block wx:for="{{ tabs[id].sec }}" wx:key="index">
+        <view class="cell_box" data-id="{{ index }}" bindtap="onChoose">
+          <text class="{{ item.isSelect?'t-orange':'' }}">{{item.title}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="b_box " style="height:{{ SafeButtom }}rpx">
+      <view class="orange" bindtap="onClick">下一步</view>
+    </view>
+  </view>
+</template>
+<template name="recommend">
+  <view>
+    <view class="custom center" style="padding-top:{{statusBarHeight}}px">
+      <view class="l-T-arrow al_center" bindtap="onClickLeft">
+        <view class="l-T-arrow-two center">
+          <image src="/images/left-arrow.png"></image>
+        </view>
+      </view>
+      <view class="sx-box" bindtap="onClose">费用说明</view>
+      <view class="custom-text van-ellipsis" bindtap="onClick">
+        <text>类别推荐</text>
+      </view>
+    </view>
+    <view class="empty_custom" style="padding-top:{{ statusBarHeight+10 }}px" />
+    <block wx:for="{{ arry }}" wx:for-item="item" wx:key="id">
+      <van-transition show="{{ true }}" name="fade-down" custom-class="block">
+        <view class="card-box">
+          <view class="title  al_center">
+            <view class="checkbox">
+              <van-checkbox value="{{ item.checked }}" data-id="1" data-first="{{ item.firstIndex }}" data-index="{{ index }}" checked-color="#f96006" bind:change="onChange">{{item.name}}</van-checkbox>
+            </view>
+            <view class="r-tst" wx:if="{{ item.primary==1?true:false }}">主要推荐类别</view>
+            <view class="r-tst" wx:if="{{ item.primary==0?true:false }}">相关推荐类别</view>
+            <view class="dustbin-box" data-id="1" data-first="{{ item.firstIndex }}" bindtap="onDustbin">
+              <image src="/images/dustbin.png"></image>
+            </view>
+          </view>
+          <block wx:for="{{ item.sec }}" wx:for-item="item" wx:key="id">
+            <view class="title2">
+              <view class="checkbox">
+                <van-checkbox value="{{ item.checked }}" data-id="2" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" data-index="{{ index }}" checked-color="#f96006" bind:change="onChange">
+                  <view class="two-t van-ellipsis">{{a.getNum(item.num)}}{{item.name}}</view>
+                </van-checkbox>
+              </view>
+              <view class="dustbin-box" data-id="2" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" bindtap="onDustbin">
+                <image src="/images/dustbin.png"></image>
+              </view>
+            </view>
+            <view class="title2" wx:if="{{ item.sscore>0?true:false }}">
+              <view class="rate al_center">
+                <text>成功指数</text>
+                <view class="rate-box-list">
+                  <van-rate allow-half value="{{ item.sscore }}" disabled disabled-color="#f96006" size="15" />
+                </view>
+              </view>
+              <view class="similar al_center" data-group="{{ item.num }}" data-first="{{ item.firstIndex }}" bindtap="onSimilar" hidden="{{ item.sscore>=4 }}">
+                <text>查看近似商标</text>
+              </view>
+            </view>
+            <view class="btn-box">
+              <view class="more">
+                <view data-id="{{ item.num }}" data-index="{{ index }}" data-first="{{ item.firstIndex }}" data-two="{{ item.twoIndex }}" data-name="{{ item.name }}" bindtap="addSmall">
+                  <image src="/images/more.png"></image>
+                </view>
+              </view>
+              <view class="lftmg">
+                <block wx:for="{{ item.third}}" wx:key="index">
+                  <view class="btn" hidden="{{ item.isSelect==false }}">
+                    <text>{{item.num}}{{item.name}}</text>
+                    <image class="delet-imgs" data-id="{{ item.id }}" src="/package/component/images/delet3.png" bindtap="onDeletBtn"></image>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <view class="b-list-box f_c al_center">
+            <view class="h-choose">
+              <text>已选</text>
+              <text>{{item.number}}</text>
+              <text>项（超过10项每项加收50元）</text>
+              <view class="price al_center rt">
+                <text>总计金额：</text>
+                <text>￥{{item.list[item.listIndex].bigprice}}</text>
+              </view>
+            </view>
+            <view class="h-choose bgh">
+              <text>服务类型：{{item.list[item.listIndex].title}}</text>
+            </view>
+            <view class="ptz">
+              <view class="ptz-text al_center">
+                <text wx:if="{{ item.listIndex==0 }}">*首次支付费用为:￥{{item.list[item.listIndex].cost}},初审公告后支付金额:￥{{item.list[item.listIndex].instance}}</text>
+                <text wx:if="{{ item.listIndex==1 }}">*首次支付费用为:￥{{item.list[item.listIndex].cost}},初审公告后支付金额:￥{{item.list[item.listIndex].instance}}</text>
+                <text wx:if="{{ item.listIndex==2 }}">*首次支付费用为:￥{{item.list[item.listIndex].cost}},初审公告后支付金额:￥{{item.list[item.listIndex].instance}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </van-transition>
+    </block>
+    <view class="b_box" style="height:{{ safeHeight }}rpx">
+      <view class="check_box">
+        <van-checkbox value="{{ checked }}" data-id="3" checked-color="#f96006" bind:change="onChange">全选</van-checkbox>
+      </view>
+      <!-- <van-transition show="{{ delet }}" name="slide-right" duration="{{ { enter: 50, leave: 50 } }}" custom-class="block"> -->
+        <view wx:if="{{ delet }}">
+          <view class="add_shop" bindtap="onAddShop">加入购物车</view>
+          <view class="add_more2 yll" bindtap="onHead">增加类别</view>
+          <view class="add_more2" bindtap="onDeleteArry">删减类别</view>
+        </view>
+      <!-- </van-transition> -->
+      <!-- <van-transition show="{{ !delet }}" name="slide-right" duration="{{ { enter: 50, leave: 50 } }}" custom-class="block"> -->
+        <view class="delet-box" wx:if="{{ !delet }}">
+          <view class="delet-choose" bindtap="onDeleteArry">删除</view>
+        </view>
+      <!-- </van-transition> -->
+    </view>
+  </view>
+  <van-popup show="{{ show }}" overlay="{{ true }}" custom-style="border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" z-index="90" bind:close="onClose">
+    <view class="sming">
+      <view class="t-sming">费用标准说明</view>
+      <view class="sming-txt">1.每个类别的基础价格包含10个小商品，超过10个商品的每个小商品加收50元；</view>
+      <view class="sming-txt">2.每个类别的总计金额为:官费+服务费+50*(小商品数量-10)，小商品数量不足10个的以10个计算；</view>
+      <view class="sming-txt">3.四星商标注册(成功指数高于三星)，首次无需支付任何费用，初审公告后再支付全部费用；</view>
+      <view class="sming-txt">4.三星商标注册(成功指数为三星)，首次支付费用为：300+30*(小商品数量-10)，初审公告后再支付尾款；</view>
+      <view class="sming-txt">5.普通商标注册(成功指数低于三星)，首次需支付全部费用；</view>
+    </view>
+  </van-popup>
+  <van-dialog id="van-dialog" />
+  <van-toast id="van-toast" />
+  <van-notify id="custom-selector" safe-area-inset-top/>
+  <van-dialog id="van-dialog" />
+  <wxs module="a">
+    var getNum = function(num) {
+      if (num.length == 3) {
+        return ('0' + num)
+      } else {
+        return num
+      }
+    };
+    module.exports.getNum = getNum;
+  </wxs>
+</template>
+<template name="name">
+	<view class="customs center" style="padding-top:{{statusBarHeight}}px">
+		<view class="l-T-arrow al_center" bindtap="onBack">
+			<view class="l-T-arrow-two center">
+				<image src="/images/left-arrow.png"></image>
+			</view>
+		</view>
+	</view>
+	<view class="body" style="height:{{ SafeHigh*3 }}rpx">
+		<view class="top_tab" style="height:{{SafeButtom/2}}px" />
+		<view class="guo_box" style="height:{{SafeButtom/2}}px">
+			<image class="bg" src="/package/component/images/pinlbg.png" mode="widthFix"></image>
+			<view class="g_box">
+				<image class="g_img" src="{{ icon_Url+'/public/images/guo.png' }}"></image>
+				<view class="g_t">{{text}}</view>
+					<view class="btn-box">
+						<block wx:for="{{ btn }}" wx:key="index">
+							<view class="btn {{ isSelect==index?'orange2':'' }}" data-index="{{ index }}" bindtap="onBtn">{{item.text}}</view>
+						</block>
+					</view>
+				</view>
+				<view class="input-box" wx:if="{{ isSelect==0 }}">
+					<view class="field">
+						<van-field value="{{ value }}" placeholder="例如:华为,海尔,LV" focus="{{ display }}" bind:blur="onCreateIcon" bind:clear='onClear' input-align="center" custom-style="border-bottom:2rpx solid #333;" clearable border="{{ false }}" bind:change="onChange" />
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="body_two" wx:if="{{ isSelect==1 }}">
+			<view class="r_list_box center border">
+				<image class="r_list_box_image {{ imgUrlsTwo.length==0?'':'bg3' }}" src="{{ imgUrlsTwo.length==0?'/images/up-ch.png':url+imgUrlsTwo }}" bindtap="onChooseImg" mode="aspectFit"></image>
+				<view class="selectIcon">
+					<view class="btn-slect1 {{ imgUrlsTwo_id==1?'':'btn-slect-now' }}" data-id='1' bindtap="_onSelect">原图</view>
+					<view class="btn-slect2 {{ imgUrlsTwo_id==2?'':'btn-slect-now' }}" data-id="2" bindtap="_onSelect">转黑白</view>
+				</view>
+				<view class="zhusi">注：上传黑白图形，注册后可以更换商标颜色使用，上传彩色图形，注册后只能按照上传的图形的颜色使用。</view>
+			</view>
+			<view class="b_box " style="height:{{ SafeButtom }}rpx" wx:if="{{ imgUrlsTwo.length>0 }}">
+				<view class="orange" data-id="3" bindtap="onClick">下一步</view>
+			</view>
+		</view>
+		<view class="body_two bgf9" wx:if="{{ isSelect==0 }}" id='show'>
+			<view class="tabs-box">
+				<view class="tabs" data-id="0" bindtap="onSlider">
+					<text>自动生成</text>
+				</view>
+				<view class="tabs" data-id="1" bindtap="onSlider">
+					<text>手动上传</text>
+				</view>
+				<view class="border-bottom" animation="{{ animationData }}"></view>
+			</view>
+			<view wx:if="{{ active==0 }}">
+				<view class="list_tabs">
+					<view class="btn1">生成图样</view>
+				</view>
+				<view class="txt_box" hidden="{{ value.length>0&&create.length>0?fasle:true }}">
+					<view class="txt_h">
+						<image src="{{ url+create }}"></image>
+					</view>
+				</view>
+				<view class="txt_box2 center" hidden="{{ value.length==0?false:true }}">
+					<text>*文字图片请直接上传</text>
+				</view>
+				<!-- <view hidden="{{ value.length>0&&create.length>0?false:true }}">
+					<van-cell title="选择字体" is-link data-id="4" value="{{ form[ch-1].font_name }}" bind:click="onClose" />
+				</view> -->
+				<picker bindchange="bindPickerChange" value="{{formIndex}}" range="{{formText}}">
+					<view hidden="{{ value.length>0&&create.length>0?false:true }}">
+						<van-cell title="选择字体" is-link data-id="4" value="{{ form[formIndex].font_name }}" />
+					</view>
+				</picker>
+			</view>
+			<view class="r_list_box  newBtn" wx:if="{{ active==1 }}">
+				<image class="r_list_box_image {{ imgUrls.length==0?'':'bg3' }}" src="{{ imgUrls.length==0?'/images/up-ch.png':url+imgUrls }}" bindtap="onChooseImg" mode="aspectFit"></image>
+				<view class="selectIcon">
+					<view class="btn-slect1 {{ imgUrls_id==1?'':'btn-slect-now' }}" data-id='1' bindtap="_onSelect">原图</view>
+					<view class="btn-slect2 {{ imgUrls_id==2?'':'btn-slect-now' }}" data-id="2" bindtap="_onSelect">转黑白</view>
+				</view>
+				<view class="zhusi">注：上传黑白图形，注册后可以更换商标颜色使用，上传彩色图形，注册后只能按照上传的图形的颜色使用。</view>
+			</view>
+			<view class="b_box " style="height:{{ SafeButtom }}rpx" hidden="{{ value.length>0&&create.length>0&&slider==0?fasle:true }}">
+				<view class="orange" data-id="1" bindtap="onClick">下一步</view>
+			</view>
+			<view class="b_box " style="height:{{ SafeButtom }}rpx" hidden="{{ value.length>0&&imgUrls.length>0&&slider==1?false:true }}">
+				<view class="orange" data-id="2" bindtap="onClick">下一步</view>
+			</view>
+			<view class="b_voice" style="bottom:{{ info.statusBarHeight  }}px;" hidden="{{ create.length==0&&slider==0?false:true }}">
+				<view class="vioce-t" hidden="{{ animationStatus }}">按住开始</view>
+				<view class="sr_box" bindtap="onBlock">
+					<image src="/images/sr.png" mode="widthFix"></image>
+				</view>
+				<view class="vioce_box" bindtouchstart="onVioce" bindtouchend="onStop">
+					<image src="/package/component/images/vioce_two.png" mode="widthFix"></image>
+					<view class="ripple" hidden="{{ !animationStatus }}"></view>
+					<view class="ripple {{animationStatus?'rippleAnimation1':''}}" hidden="{{ !animationStatus }}"></view>
+					<view class="ripple {{animationStatus?'rippleAnimation2':''}}" hidden="{{ !animationStatus }}"></view>
+					<view class="ripple {{animationStatus?'rippleAnimation3':''}}" hidden="{{ !animationStatus }}"></view>
+				</view>
+			</view>
+		</view>
+		<van-toast id="van-toast" />
+		<van-notify id="custom-selector" safe-area-inset-top />
+</template>
+
+<!--专利--><template name="order">
+	<block wx:for="{{ arry }}" wx:key='index'>
+		<van-transition show="{{ !item.isShow }}" custom-class="block">
+			<view class="box" hidden="{{ item.isShow }}">
+				<view class="card_box">
+					<view class="check-box center" hidden="{{ active==2||active==3||item.contract }}">
+						<van-checkbox value="{{ item.isSelect }}" data-id="{{ item.id }}" checked-color="#f96006" bind:change="onCecked" />
+					</view>
+					<view class="d_box"><text>订单号：{{item.order_id}}</text><text class="text-overflow van-ellipsis">{{item.orderStatus?item.orderStatus:''}}</text></view>
+					<view class="{{ active==2||active==3||item.contract?'s_box2':'s_box' }}">
+						<image hidden="{{ !item.brand_img }}" src="{{ icon_Url+item.brand_img }}" lazy-load="true" mode="aspectFit"></image>
+						<image hidden="{{ item.brand_img }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image><text>{{item.click_type}}</text>
+					</view>
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>申请人：</text><text>{{item.apply_name?item.apply_name:''}}</text></view>
+					<!--<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>类别：</text><text>{{item.one_cate?item.one_cate+'类':''}}</text></view>-->
+					<view class="{{  active==2||active==3||item.contract?'list_box2':'list_box'  }} van-hairline--bottom"><text>注册申请号：</text><text>{{item.regist_num?item.regist_num:''}}</text></view>
+					<view class="price_box"><text>订单金额：</text><text>￥{{item.total_price}}</text></view>
+					<view class="price_box top">
+						<view class="close_box orangetxt" data-id="{{ item.id }}" hidden="{{ item.left_status[0]!=='查看缴费'&&item.orderStatus=='待财务确认'?false:true }}" data-index="{{ index }}">待线下付款</view>
+
+						<view class="close_box orange"data-id="{{ item.id }}"hidden="{{ item.right_status[0]&&item.orderStatus!=='待财务确认'?false:true }}"data-index="{{ index }}"bindtap="onRight">{{item.right_status[0]}}</view>
+
+						<!-- <view class="close_box orange"data-id="{{ item.id }}"hidden="{{ item.right_status[0]?false:true }}"data-index="{{ index }}"bindtap="onRight">{{item.right_status[0]}}</view> -->
+
+						<view class="close_box"data-id="{{ item.id }}"hidden="{{ item.left_status[0]?false:true }}"data-index="{{ index }}"bindtap="onLeft">{{item.left_status[0]}}</view>
+						
+						<view class="close_box"data-id="{{ item.id }}"hidden="{{ item.contract&&item.right_status[0]!=='订单详情'&&item.left_status[0]!=='订单详情'||item.right_status[0]=='去付款'&&item.right_status[0]!=='订单详情'&&item.left_status[0]!=='订单详情'?false:true }}"data-index="{{ index }}"bindtap="onFist">订单详情</view>
+
+            <!-- <view class="close_box"data-id="{{ item.id }}"hidden="{{ item.left_status[0]&&item.left_status[0]=='取消订单'?false:true }}"data-index="{{ index }}"bindtap="onLeft">{{item.left_status[0]}}</view>
+						<view class="close_box" data-id="{{ item.id }}" hidden="{{ item.right_status[0]=='去付款'&&item.orderStatus!=='待财务确认'?false:true }}" data-index="{{ index }}" bindtap="onRight">{{item.right_status[0]}}</view>
+						<view class="close_box" data-id="{{ item.id }}" data-index="{{ index }}" bindtap="onFist">订单详情</view> -->
+
+						
+					</view>
+				</view>
+			</view>
+		</van-transition>
+	</block>
+	<view class="loading-more center top40" hidden="{{ display }}">
+		<van-loading size='25px' color="#f96006" /><text></text></view>
+	<view class="loading-more center top40" hidden="{{ !display }}"><text></text></view>
+</template>
+<!--shop--><template name="shopList1">
+	<scroll-view class="scro-v" scroll-y style="height:{{ safeHeight }}px" data-id="1" bindscrolltoupper="onRefresh">
+		<block wx:for="{{ arry1.shopCarList }}" wx:key="index">
+			<view class="list_box">
+				<view class="l_box center">
+					<view class="img_box center">
+						<van-transition show="{{ true }}" custom-class="block">
+							<image hidden="{{ !item.good_img }}" src="{{ url+item.good_img }}" lazy-load="true" mode="aspectFit"></image>
+							<image class="img-no" hidden="{{ item.good_img  }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image>
+						</van-transition>
+					</view>
+					<view class="list_check_box center">
+						<van-checkbox value="{{ item.isSelect }}" checked-color="#f96006" data-id="{{ index }}" bind:change="onChange" />
+					</view>
+				</view>
+				<view class="r_box f_c jc_center "><text class="van-ellipsis">{{item.good_id}}</text><text class="van-ellipsis">服务类型：{{item.click_type}}</text>
+					<view class="list_t" wx:if="{{ item.one_cate_name }}" data-id="{{ item.id }}" bindtap="onNape"><text>类别：</text>
+						<view class="dt van-ellipsis">{{a.getNum(item.one_cate)}}类</view>
+						<view class="arrow" />
+					</view><text>￥{{item.price}}</text></view>
+			</view>
+		</block>
+		<van-transition show="{{ !arry1.shopCarList.length }}" duration="{{ { enter: 5000, leave: 0 } }}" custom-class="block">
+			<view class="no_shop">
+				<image src="/images/sda.png" mode="widthFix"></image><text>您的购物车空空如也，快去选购商品吧～</text>
+				<view class="Bak" bindtap="onBack">查看首页</view>
+			</view>
+		</van-transition>
+		<view class="t_txt" hidden="{{ !arry1.recommend }}"><text>为您推荐</text></view>
+		<view class="shop_box">
+			<block wx:for="{{ arry1.recommend }}" wx:key="index">
+				<view class="s_btn f_c center" data-id="{{ item.pid }}" data-title="{{ item.title }}" bindtap="onDt">
+					<view class="icon_box center">
+						<image src="{{ url+item.pic}}" lazy-load="true" mode="aspectFit"></image>
+					</view><text>{{item.title}}</text><text>￥{{item.total}}</text>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<wxs module="a">
+		var getNum = function(num) {
+			if (num) {
+				if (num.length == 1) {
+					return ('0' + num)
+				} else {
+					return num
+				}
+			}
+		};
+		module.exports = {
+			getNum: getNum,
+		};
+	</wxs>
+</template>
+
+
+
+<template name="shopList2">
+	<scroll-view class="scro-v" scroll-y style="height:{{ safeHeight }}px" data-id="2" bindscrolltoupper="onRefresh">
+		<block wx:for="{{ arry2.shopCarList }}" wx:key="index">
+			<view class="list_box">
+				<view class="l_box center">
+					<view class="img_box center">
+						<van-transition show="{{ true }}" custom-class="block">
+							<image hidden="{{ !item.good_img }}" src="{{ url+item.good_img }}" lazy-load="true" mode="aspectFit"></image>
+							<image class="img-no" hidden="{{ item.good_img  }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image>
+						</van-transition>
+					</view>
+					<view class="list_check_box center">
+						<van-checkbox value="{{ item.isSelect }}" checked-color="#f96006" data-id="{{ index }}" bind:change="onChange" />
+					</view>
+				</view>
+				<view class="r_box f_c jc_center "><text class="van-ellipsis">{{item.good_id}}</text><text class="van-ellipsis">服务类型：{{item.click_type}}</text>
+					<view class="list_t" wx:if="{{ item.one_cate_name }}" data-id="{{ item.id }}" bindtap="onNape"><text>类别：</text>
+						<view class="dt van-ellipsis">{{a.getNum(item.one_cate)}}类</view>
+						<view class="arrow" />
+					</view><text>￥{{item.price}}</text></view>
+			</view>
+		</block>
+		<van-transition show="{{ !arry2.shopCarList.length }}" duration="{{ { enter: 5000, leave: 0 } }}" custom-class="block">
+			<view class="no_shop">
+				<image src="/images/sda.png" mode="widthFix"></image><text>您的购物车空空如也，快去选购商品吧～</text>
+				<view class="Bak" bindtap="onBack">查看首页</view>
+			</view>
+		</van-transition>
+		<view class="t_txt" hidden="{{ !arry2.recommend }}"><text>为您推荐</text></view>
+		<view class="shop_box">
+			<block wx:for="{{ arry2.recommend }}" wx:key="index">
+				<view class="s_btn f_c center" data-id="{{ item.pid }}" data-title="{{ item.title }}" bindtap="onDt">
+					<view class="icon_box center">
+						<image src="{{ url+item.pic}}" lazy-load="true" mode="aspectFit"></image>
+					</view><text>{{item.title}}</text><text>￥{{item.total}}</text>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<wxs module="a">
+		var getNum = function(num) {
+			if (num) {
+				if (num.length == 1) {
+					return ('0' + num)
+				} else {
+					return num
+				}
+			}
+		};
+		module.exports.getNum = getNum;
+	</wxs>
+</template>
+
+<template name="shopList3">
+	<scroll-view class="scro-v" scroll-y style="height:{{ safeHeight }}px" data-id="3" bindscrolltoupper="onRefresh">
+		<block wx:for="{{ arry3.shopCarList }}" wx:key="index">
+			<view class="list_box">
+				<view class="l_box center">
+					<view class="img_box center">
+						<van-transition show="{{ true }}" custom-class="block">
+							<image hidden="{{ !item.good_img }}" src="{{ url+item.good_img }}" lazy-load="true" mode="aspectFit"></image>
+							<image class="img-no" hidden="{{ item.good_img  }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image>
+						</van-transition>
+					</view>
+					<view class="list_check_box center">
+						<van-checkbox value="{{ item.isSelect }}" checked-color="#f96006" data-id="{{ index }}" bind:change="onChange" />
+					</view>
+				</view>
+				<view class="r_box f_c jc_center "><text class="van-ellipsis">{{item.good_id}}</text><text class="van-ellipsis">服务类型：{{item.click_type}}</text>
+					<view class="list_t" wx:if="{{ item.one_cate_name }}" data-id="{{ item.id }}" bindtap="onNape"><text>类别：</text>
+						<view class="dt van-ellipsis">{{a.getNum(item.one_cate)}}类</view>
+						<view class="arrow" />
+					</view><text>￥{{item.price}}</text></view>
+			</view>
+		</block>
+		<van-transition show="{{ !arry3.shopCarList.length }}" duration="{{ { enter: 5000, leave: 0 } }}" custom-class="block">
+			<view class="no_shop">
+				<image src="/images/sda.png" mode="widthFix"></image><text>您的购物车空空如也，快去选购商品吧～</text>
+				<view class="Bak" bindtap="onBack">查看首页</view>
+			</view>
+		</van-transition>
+		<view class="t_txt" hidden="{{ !arry3.recommend }}"><text>为您推荐</text></view>
+		<view class="shop_box">
+			<block wx:for="{{ arry3.recommend }}" wx:key="index">
+				<view class="s_btn f_c center" data-id="{{ item.pid }}" data-title="{{ item.title }}" bindtap="onDt">
+					<view class="icon_box center">
+						<image src="{{ url+item.pic}}" lazy-load="true" mode="aspectFit"></image>
+					</view><text>{{item.title}}</text><text>￥{{item.total}}</text>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+	<wxs module="a">
+		var getNum = function(num) {
+			if (num) {
+				if (num.length == 1) {
+					return ('0' + num)
+				} else {
+					return num
+				}
+			}
+		};
+		module.exports.getNum = getNum;
+	</wxs>
+</template>
+
+
+<template name="shopListtab1">
+	<view class="b_list_btn van-hairline--top" style="height:{{ safetop }}rpx">
+		<view class="tab_box">
+			<view class="b_l_box">
+				<view class="b_checkbox al_center">
+					<van-checkbox value="{{ checked1 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+				</view>
+				<view class="choose_box" hidden="{{ show1 }}"><text>已选</text><text>{{number1}}</text><text>件商品</text></view>
+				<view class="choose_box_two" hidden="{{ show1 }}"><text>合计：</text><text>￥</text><text>{{price1}}</text></view>
+			</view>
+			<!--<van-transition show="{{ !show1 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="b_r_box" bindtap="onBalance" wx:if="{{ !show1  }}">结算({{number1}})</view>
+			<!--</van-transition>-->
+			<!--<van-transition show="{{ show1 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="delet-box" wx:if="{{ show1  }}">
+				<view class="delet-choose" bindtap="onDelete">删除</view>
+			</view>
+			<!--</van-transition>-->
+		</view>
+	</view>
+</template>
+
+
+
+<template name="shopListtab2">
+	<view class="b_list_btn van-hairline--top" style="height:{{ safetop }}rpx">
+		<view class="tab_box">
+			<view class="b_l_box">
+				<view class="b_checkbox al_center">
+					<van-checkbox value="{{ checked2 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+				</view>
+				<view class="choose_box" hidden="{{ show2 }}"><text>已选</text><text>{{number2}}</text><text>件商品</text></view>
+				<view class="choose_box_two" hidden="{{ show2 }}"><text>合计：</text><text>￥</text><text>{{price2}}</text></view>
+			</view>
+			<!--<van-transition show="{{ !show2 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="b_r_box" bindtap="onBalance" wx:if="{{ !show2  }}">结算({{number2}})</view>
+			<!--</van-transition>-->
+			<!--<van-transition show="{{ show2 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="delet-box" wx:if="{{ show2  }}">
+				<view class="delet-choose" bindtap="onDelete">删除</view>
+			</view>
+			<!--</van-transition>-->
+		</view>
+	</view>
+</template>
+
+
+
+<template name="shopListtab3">
+	<view class="b_list_btn van-hairline--top" style="height:{{ safetop }}rpx">
+		<view class="tab_box">
+			<view class="b_l_box">
+				<view class="b_checkbox al_center">
+					<van-checkbox value="{{ checked3 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+				</view>
+				<view class="choose_box" hidden="{{ show3 }}"><text>已选</text><text>{{number3}}</text><text>件商品</text></view>
+				<view class="choose_box_two" hidden="{{ show3 }}"><text>合计：</text><text>￥</text><text>{{price3}}</text></view>
+			</view>
+			<!--<van-transition show="{{ !show2 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="b_r_box" bindtap="onBalance" wx:if="{{ !show3  }}">结算({{number3}})</view>
+			<!--</van-transition>-->
+			<!--<van-transition show="{{ show2 }}"name="slide-right"duration="{{ { enter: 50, leave: 50 } }}"custom-class="block">-->
+			<view class="delet-box" wx:if="{{ show3  }}">
+				<view class="delet-choose" bindtap="onDelete">删除</view>
+			</view>
+			<!--</van-transition>-->
+		</view>
+	</view>
+</template>
+
+
+
+<template name='shopTop1'>
+	<view class="checkbox al_center">
+		<van-checkbox value="{{ checked1 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+	</view>
+	<view class="edit" wx:if="{{ !show1 }}" bindtap="onDisplay">编辑</view>
+	<view class="edit" wx:else bindtap="onDisplay">完成</view>
+</template>
+
+
+<template name='shopTop2'>
+	<view class="checkbox al_center">
+		<van-checkbox value="{{ checked2 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+	</view>
+	<view class="edit" wx:if="{{ !show2 }}" bindtap="onDisplay">编辑</view>
+	<view class="edit" wx:else bindtap="onDisplay">完成</view>
+</template>
+
+
+<template name='shopTop3'>
+	<view class="checkbox al_center">
+		<van-checkbox value="{{ checked3 }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+	</view>
+	<view class="edit" wx:if="{{ !show3 }}" bindtap="onDisplay">编辑</view>
+	<view class="edit" wx:else bindtap="onDisplay">完成</view>
+</template>

@@ -1,0 +1,45 @@
+<view class="body">
+  <view class="gl-box ">
+    <text style="color:{{ isShow?'':'#017fff' }}" catchtap="onClick">{{ isShow?'管理':'完成' }}</text>
+  </view>
+  <block wx:for="{{ list }}" wx:key="index">
+    <view class="list-box" hover-class="bghover1" data-index="{{ index }}" bindtap="{{ isShow?'onDt':'' }}">
+      <view class="van-checkbox" hidden="{{ isShow }}">
+        <van-checkbox value="{{ item.checked }}" data-id="1" data-index="{{ index }}" checked-color="#f96006" bind:change="{{ isShow?'':'onChange' }}"></van-checkbox>
+      </view>
+      <view class="first-box" style="left:{{ isShow?'20':'' }}rpx">{{ item.firstStr }}</view>
+      <text class="name-box" style="left:{{ isShow?'116':'' }}rpx">{{ item.name }}</text>
+      <text class="phonr-box">{{ item.mobile }}</text>
+    </view>
+  </block>
+
+
+  <view class="seaf-box" style="height:{{ safeHeight }}rpx;background:{{ isShow?'#f1f1f1':'#fff' }}">
+
+    <view class="add-box center" hover-class="bghover" hidden="{{ !isShow }}" bindtap="onEdit">
+      <image src="/images/addxzzh.png"></image>
+      <text>新增账号</text>
+    </view>
+
+
+
+
+
+    <view class="add-box center {{ isShow?'':'delet-box' }}" hidden="{{ isShow }}">
+
+      <view class="van-checkbox-left">
+        <van-checkbox value="{{ checked }}" data-id="2" checked-color="#f96006" bind:change="onChange"></van-checkbox>
+        <text>全选</text>
+      </view>
+
+      <view class="delet-right-box" hover-class="delet-hover" bindtap="onDelet">
+        <text>删除<text hidden="{{ count==0 }}">(count)</text></text>
+      </view>
+
+    </view>
+  </view>
+
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" />

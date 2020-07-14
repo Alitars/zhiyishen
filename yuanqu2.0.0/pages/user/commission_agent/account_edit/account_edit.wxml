@@ -1,0 +1,30 @@
+<view class="body">
+
+
+ <view class="input-box">
+    <view class="withmax">
+      <van-field title-width="150px" value="{{ name  }}" id='name' maxlength="20" border="{{ false }}" input-align="right" type="text" size="large" clearable label="子代理名称" placeholder="{{ name?name:'请输入' }}" bind:click-icon="onClickIcon" bind:change="onchange" />
+            <van-field title-width="150px" value="{{ mobile  }}" id='mobile' maxlength="11" border="{{ false }}" input-align="right" type="number" size="large" clearable label="手机号码" placeholder="{{ mobile?mobile:'请输入' }}" bind:click-icon="onClickIcon" bind:change="onchange" />
+    </view>
+  </view>
+
+ 
+
+  <view class="input-box">
+    <view class="withmax">
+        <van-field value="{{ passworld1 }}" title-width="150px" id='passworld1' type="text" maxlength="20" border="{{ false }}" input-align="right" size="large" center clearable label="密码" placeholder="{{ passworld1?passworld1:'请输入' }}" bind:change="onchange" />
+      <view>
+        <van-field value="{{ passworld2 }}" title-width="150px" id='passworld2' type="text" maxlength="20" border="{{ false }}" input-align="right" size="large" center clearable label="确认密码" placeholder="{{ passworld2?passworld2:'请输入' }}" bind:change="onchange" />
+      </view>
+    </view>
+  </view>
+
+  <view class="seaf-box" style="height:{{ safeHeight }}rpx;" >
+    <view class="add-box center" hover-class="bghover" bindtap="onSave">
+      <text>保存</text>
+    </view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" />

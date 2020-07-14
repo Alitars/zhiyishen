@@ -1,0 +1,154 @@
+<view class="bodys">
+	<view class="blue-bg-img">
+		<view class="titel-box" style="padding-top:{{ statusBarHeight }}px;height: 45px;">{{titlename?titlename:'园区系统'}}</view>
+		<swiper class="top-swiper-box" style="margin-top:{{ statusBarHeight + 45 }}px" indicator-dots="true" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#b7d9fd" circular="true" autoplay="{{ autoplay }}" display-multiple-items="1">
+			<block wx:for="{{ imgUrls }}" wx:key="index">
+				<swiper-item>
+					<image class="swiper_img" src="{{ item.img }}"></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<view class="input-box" bindtap="goSearch">
+		<van-field value="{{ value }}" disabled id="value" custom-style="width: 540rpx;height: 80rpx;border-radius: 8rpx;" center clearable placeholder="请输入商标名称/申请人/注册号等" border="{{ false }}" use-button-slot bind:change="onChange">
+		</van-field><button class="search-jc" bindtap="{{ false?'onCheck':'' }}">查询</button>
+	</view>
+	<view class="list-row-btn">
+		<block wx:for="{{ btn }}" wx:key='index'>
+			<view class="btn-box-s" wx:if="{{ index<4 }}" data-id='{{ index }}' bindtap="onSevers">
+				<image src="{{ item.img }}"></image><text>{{item.text}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="title-box-zf">
+		<view class="title-zf-t">知产工具</view>
+	</view>
+	<!-- <button bindtap="onSw">搜索</button> -->
+	<!-- <view class="dot-box">
+asa
+</view> -->
+	<view class="slider-box-s">
+		<swiper class="slider-box-s-s" bindchange="onSwiper">
+
+		<block wx:for="{{ swiperArry }}" wx:key='index'>
+			<swiper-item>
+				<view class="img-box-s">
+					<image class="first-img" src="{{ item.imga  }}" data-id="{{ item.ida }}" bindtap="onTool"></image>
+					<image class="two-img" src="{{ item.imgb  }}" data-id="{{ item.idb }}" bindtap="onTool"></image>
+					<image class="three-img" src="{{ item.imgc  }}" data-id="{{ item.idc }}" bindtap="onTool"></image>
+					<image class="four-img" src="{{ item.imgd  }}" data-id="{{ item.idd }}" bindtap="onTool"></image>
+				</view>
+			</swiper-item>
+</block>
+		</swiper>
+		<view class="dot-box">
+			<block wx:for="{{ swiperArry }}" wx:key='index'>
+				<view class="slider-list {{ current==index?'opacity':'' }}"></view>
+			</block>
+		</view>
+	</view>
+	<view class="title-box-zf" wx:if="{{ ServerArry.length>0 }}">
+		<view class="title-zf-t">{{ ServerArry[0].cate_name }}</view>
+		<view class="last-more" data-id='0' bindtap="onSevers"><text>更多</text>
+			<image src="/images/right-r.png"></image>
+		</view>
+	</view>
+	<view class="flex-row-s" wx:if="{{ ServerArry.length>0 }}">
+		<block wx:for="{{ ServerArry[0].good }}" wx:key='index'>
+			<view class="li-box-s" wx:if="{{ index<4 }}" data-id="{{ index }}" data-uid="{{ item.pid }}" data-t="{{ item.titles }}" bindtap="onServerDt"><text>{{item.title}}</text>
+				<image src="{{ listBtn[index].imgUrls }}"></image><text style=" font-size: 24rpx;font-weight: 500;color:#f96006">¥{{item.total}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="title-box-zf" wx:if="{{ ServerArry.length>0 }}">
+		<view class="title-zf-t">{{ ServerArry[2].cate_name }}</view>
+		<view class="last-more" data-id='1' bindtap="onSevers"><text>更多</text>
+			<image src="/images/right-r.png"></image>
+		</view>
+	</view>
+	<view class="flex-row-c" wx:if="{{ ServerArry.length>0 }}">
+		<block wx:for="{{ ServerArry[2].good }}" wx:key='index'>
+			<view class="li-box-c" wx:if="{{ index<4 }}" data-id="{{ index+4 }}" data-uid="{{ item.pid }}" data-t="{{ item.titles }}" bindtap="onServerDt">
+				<image class="li-box-c-image" src="https://admin.iguolao.com/public/uploads/20200507164556203.png"></image>
+				<image class="bgimgbox" src="https://admin.iguolao.com/public/uploads/20200507163521932.png"></image><text class="li-t1">{{item.title}}</text><text class="li-t2">¥{{item.total}}</text>
+			</view>
+		</block>
+	</view>
+	<view class="title-box-zf" wx:if="{{ ServerArry.length>0 }}">
+		<view class="title-zf-t">{{ ServerArry[1].cate_name }}</view>
+		<view class="last-more" data-id='2' bindtap="onSevers"><text>更多</text>
+			<image src="/images/right-r.png"></image>
+		</view>
+	</view>
+	<view class="zf-box-list" wx:if="{{ ServerArry.length>0 }}">
+		<view class="btn-box-li-s" data-id='8' data-uid="{{ ServerArry[1].good[0].pid }}" data-t="{{ ServerArry[1].good[0].titles }}" bindtap="onServerDt">
+			<view class="btn-box-li-s-t1">{{ ServerArry[1].good[0].title }}</view>
+			<view class="btn-box-li-s-t2">¥{{ ServerArry[1].good[0].total }}</view>
+			<image class="btn-box-li-s-img" src="https://admin.iguolao.com/public/uploads/20200507170649802.png"></image>
+		</view>
+		<view class="btn-box-li-r" data-id='9' data-uid="{{ ServerArry[1].good[1].pid }}" data-t="{{ ServerArry[1].good[1].titles }}" bindtap="onServerDt">
+			<view class="btn-box-li-s-t1">{{ ServerArry[1].good[1].title }}</view>
+			<view class="btn-box-li-s-t2">¥{{ ServerArry[1].good[1].total }}</view>
+			<image class="btn-box-li-s-img" src="https://admin.iguolao.com/public/uploads/20200507171423103.png"></image>
+		</view>
+	</view>
+	<view class="title-box-zf" id='info' wx:if="{{ newArry.length>0 }}">
+		<view class="title-zf-t">政府项目</view>
+	</view>
+	<view class="set-box" wx:if="{{ newArry.length>0 }}">
+		<view class="set-left">
+			<image class="set-img" src="https://admin.iguolao.com/public/uploads/20200507172352724.png"></image>
+			<view class="province">{{ newArry[multiIndex[0]].city }}</view>
+			<view class="city">{{ newArry[multiIndex[0]].county[multiIndex[1]] }}</view>
+		</view>
+
+		<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+			<view class="set-right">
+				<view class="flex-sx"><text>地区筛选</text>
+					<image src="https://admin.iguolao.com/public/uploads/20200507175033612.png"></image>
+				</view>
+			</view>
+		</picker>
+	</view>
+
+
+	<view class="new-box">
+		<block wx:for="{{ newArry[multiIndex[0]].news }}" wx:key='index'>
+			<view class="list-new-box" data-index="{{ index }}" bindtap="onDtnew">
+				<view class="left-img-box">
+					<image src="http://51guolao.yiqibnb.com/public/uploads/20200508205537628.png"></image>
+				</view>
+				<view class="right-text-box">
+					<view class="t-new-top">{{item.title}}</view>
+					<view class="t-new-2"><text>主管单位：{{item.unit}}</text></view>
+					<view class="t-new-2"><text>扶持政策：{{item.policy}}</text></view>
+					<view class="t-new-2"><text>申报日期：{{item.cut_time}}</text></view>
+				</view>
+			</view>
+		</block>
+		<view class="" wx:if="{{ newArry.length>0?true:false }}" style="color:#999999;font-size:20rpx">没有更多了</view>
+	</view>
+	<van-toast id="van-toast" />
+	<van-notify id="custom-selector" safe-area-inset-top />
+</view>
+<view class="van-popup" wx:if="{{ showLogin }}" catchtouchmove="preventTouchMove">
+	<van-transition show="true" custom-class="block">
+		<view class="popup-center">
+			<view class="closes" data-id="1" catchtap="onClose">
+				<image src="/images/closelogon.png"></image>
+			</view>
+			<image class="popup-center-image" src="https://admin.iguolao.com/public/uploads/20200504133321463.jpg"></image>
+			<view class="text-logon">
+				<view class="text-box-liner" />
+				<view class="text-box">园区系统</view>
+			</view>
+			<view class="btn-box-logon"><button class="button-box" bindtap="onLogin">
+					<image src="/images/zhlogon.png"></image><text>登录</text>
+				</button>
+				<!-- <button class="button-box" open-type="getUserInfo" bindtap="onGetInfo">
+					<image src="/images/wx.png"></image><text>微信</text>
+				</button> -->
+			</view>
+		</view>
+	</van-transition>
+</view>

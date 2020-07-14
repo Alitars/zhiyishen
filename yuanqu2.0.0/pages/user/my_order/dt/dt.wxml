@@ -1,0 +1,542 @@
+<van-transition show="{{ arry }}" custom-class="block">
+  <view class="body">
+    <view class="top_box jc_center f_c" bindtap="onAdress" wx:if="{{ arry.shopAddress.address.length>0 }}">
+      <image class="set_img" src="/images/set.png"></image>
+      <view class="list_t2 al_center">
+        <text>收货地址：</text>
+        <text class="van-ellipsis" style="max-width:430rpx;">{{ arry.shopAddress.address }}</text>
+      </view>
+      <view class="list_t2 al_center">
+        <text>收货人：</text>
+        <text>{{ arry.shopAddress.consignee }}</text>
+      </view>
+      <view class="list_t2 al_center">
+        <text>联系号码：</text>
+        <text>{{ arry.shopAddress.mobile }}</text>
+      </view>
+    </view>
+    <view class="title-box" hidden="true">
+      <text>{{ arry.orderList.orderStatus }}</text>
+      <text>申请退款金额：￥600</text>
+      <text>实际退款金额：￥600</text>
+      <text>退款方式：支付宝</text>
+    </view>
+    <view class="card-box">
+      <view class="icon-box">
+        <image class="icon-img" hidden="{{ !arry.brand_upload.brand_img.length }}" mode="aspectFit" src="{{icon_Url+arry.brand_upload.brand_img }}"></image>
+        <image class="icon-img" hidden="{{ arry.brand_upload.brand_img.length }}" mode="aspectFit" src="/images/noImg.png"></image>
+        <view class="first-t two van-ellipsis">
+          <text>申请人名称：</text>
+          <text>{{ arry.brand_upload.apply_name?arry.brand_upload.apply_name:'暂无' }}</text>
+        </view>
+        <view class="first-t three">
+          <text>注册号：</text>
+          <text>{{  arry.orderList.regist_num?arry.orderList.regist_num:'暂无' }}</text>
+        </view>
+        <view class="first-t">
+          <text>商标状态：</text>
+          <text>{{ arry.brand_upload.brand_status?arry.brand_upload.brand_status:'暂无' }}</text>
+        </view>
+      </view>
+      <view class="info">
+        <text>申请日期：</text>
+        <text>{{ arry.brand_upload.apply_date?arry.brand_upload.apply_date:'暂无' }}</text>
+      </view>
+      <view class="info">
+        <text>有效日期：</text>
+        <text>{{  arry.brand_upload.effective_date?arry.brand_upload.effective_date:'暂无' }}</text>
+      </view>
+      <view class="cell" bindtap="onType">
+        <text>商品类别：</text>
+        <text>{{  arry.brand_upload.one_cate?applyType[arry.brand_upload.one_cate-1].name:'暂无' }}</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="cell" bindtap="onGuanlian">
+        <text>关联订单：</text>
+        <text>{{ arry.relevanceOrder.length==0?'暂无':arry.relevanceOrder[0].order_id}}</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+    <view class="card-box">
+      <view class="title al_center">订单信息</view>
+      <view class="info">
+        <text>订单号：</text>
+        <text>{{ arry.orderList.order_id }}</text>
+      </view>
+      <view class="info">
+        <text>订单状态 ：</text>
+        <text>{{ arry.orderList.orderStatus }}</text>
+      </view>
+      <view class="info">
+        <text>商品名称：</text>
+        <text>{{ arry.orderList.good_name }}</text>
+      </view>
+      <view class="info">
+        <text>服务类型：</text>
+        <text>{{ arry.orderList.click_type }}</text>
+      </view>
+      <view class="info">
+        <text>下单时间：</text>
+        <text>{{ arry.orderList.created_at }}</text>
+      </view>
+      <view class="info">
+        <text>支付方式：</text>
+        <text>{{ arry.orderList.pay_type }}</text>
+      </view>
+      <view class="info">
+        <text>订单金额：</text>
+        <!-- <text>￥{{arry.orderList.price }}</text> -->
+        <text>￥{{  arry.orderList.total_price }}</text>
+      </view>
+      <view class="info">
+        <text>优惠券金额：</text>
+        <text>￥{{ arry.orderList.coupon }}</text>
+      </view>
+      <view class="info">
+        <text>实付金额：</text>
+        <text>￥{{  arry.orderList.total_price }}</text>
+      </view>
+    </view>
+    <view class="cell border" bindtap="onProgress">
+      <text>订单进度：</text>
+      <text>{{ arry.orderList.orderStatus  }}</text>
+      <view class="arrow"></view>
+    </view>
+
+
+    <view class="card-box top" hidden="{{ !arry.certificate&&!arry.orderList.contract }}">
+      <view class="info">
+        <text>相关文件信息：</text>
+        <text/>
+      </view>
+      <view class="info  xg" data-url="{{ arry.orderList.contract }}" bindtap="onLook" hidden="{{ !arry.orderList.contract }}">
+        <text>{{  arry.orderList.click_type }}合同（预览）</text>
+        <text/>
+      </view>
+
+      <view hidden="{{ click_type=='商标注册'?false:true }}">
+        <!-- <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view> -->
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}驳回通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance}}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}部分驳回通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.first_notice }}" bindtap="onLook" hidden="{{ !arry.certificate.first_notice }}">
+          <text>{{  arry.orderList.click_type }}初审公告通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}注册证书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+
+      </view>
+
+
+
+      <view hidden="{{ click_type=='商标变更'?false:true }}">
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请通知书（预览）</text>
+          <text/>
+        </view>
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}委托通知书（预览）</text>
+          <text/>
+        </view>
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}核准通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+
+      </view>
+
+      <view hidden="{{ click_type=='商标续展'?false:true }}">
+
+        <!-- <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请通知书（预览）</text>
+          <text/>
+        </view> -->
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}委托通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+
+
+      </view>
+
+      <view hidden="{{ click_type=='商标宽展'?false:true }}">
+
+        <!-- <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请通知书（预览）</text>
+          <text/>
+        </view> -->
+
+
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}委托通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+
+
+      </view>
+
+
+      <view hidden="{{ click_type=='商标转让'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+
+
+      <view hidden="{{ click_type=='补发商标证书'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}注册证书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标驳回复审'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}正文（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标撤三申请'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}正文（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标撤三答辩'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}正文（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标异议答辩'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}正文（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标异议申请'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}申请书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_certificate }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_certificate }}">
+          <text>{{  arry.orderList.click_type }}正文（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}裁定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+
+      <view hidden="{{ click_type=='商标许可备案'?false:true }}">
+        <view class="info  xg" data-url="{{ arry.certificate.apply_url }}" bindtap="onLook" hidden="{{ !arry.certificate.apply_url }}">
+          <text>{{  arry.orderList.click_type }}备案表（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.brand_bailment }}" bindtap="onLook" hidden="{{ !arry.certificate.brand_bailment }}">
+          <text>{{  arry.orderList.click_type }}代理委托书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.portion_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.portion_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受让书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.natice_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.natice_acceptance }}">
+          <text>{{  arry.orderList.click_type }}受理通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance}}">
+          <text>{{  arry.orderList.click_type }}核准证明通知书（预览）</text>
+          <text/>
+        </view>
+        <view class="info  xg" data-url="{{ arry.certificate.reject_acceptance }}" bindtap="onLook" hidden="{{ !arry.certificate.reject_acceptance }}">
+          <text>{{  arry.orderList.click_type }}决定书（预览）</text>
+          <text/>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class="t_txt" hidden="{{ !arry.recommend }}">
+      <text>关联推荐</text>
+    </view>
+    <view class="shop_box">
+      <block wx:for="{{ arry.recommend }}" wx:key="index">
+        <view class="s_btn f_c center" data-id="{{ item.pid }}" data-title="{{ item.title }}" bindtap="onDt">
+          <view class="icon_box center">
+            <image src="{{ icon_Url+item.pic}}" mode="widthFix"></image>
+          </view>
+          <text>{{ item.title }}</text>
+          <text>￥{{ item.park_price[0] }}</text>
+        </view>
+      </block>
+    </view>
+    <view class="ft" />
+  </view>
+
+  <view class="w-box" style="height:{{ SafeButtom }}rpx" hidden="{{ arry.orderList.status==2||arry.orderList.status==3||arry.orderList.status==4||arry.orderList.status==6?false:true }}">
+    <view class="li-box" bindtap="onRefund">申请退款</view>
+  </view>
+
+</van-transition>
+<van-notify id="custom-selector" />
+<van-toast id="van-toast" />

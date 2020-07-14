@@ -1,0 +1,39 @@
+<view class="body">
+  <view class="top_box">
+    <swiper class="swiper-box" current="{{ current }}" skip-hidden-item-layout='true' circular="true" previous-margin="100px" next-margin="100px" bindchange="onChange">
+      <block wx:for="{{ imgUrls }}" wx:key="index">
+        <swiper-item class="item">
+          <view class="item-img center {{ index==current?'':'scale' }}">
+            <image src="{{ icon_Url+item.pic }}"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="title">推荐注册类别及推荐指数</view>
+    <view class="body">
+      <block wx:for="{{ imgUrls[current].fir }}" wx:key="ids">
+        <view class="list-box" data-id="{{ index }}" data-index="{{ item.index }}" data-check="{{ item.isSelect }}" bindtap="onChoose">
+          <image class="imgs1" src="/images/down1.png" hidden="{{ !item.isSelect }}"></image>
+          <image class="imgs2" src="/images/down1.png" hidden="{{ item.isSelect }}"></image>
+          <text class="txt1">{{ item.num }}类</text>
+          <text class="txt2">{{ applyType[item.num-1].name }}</text>
+        </view>
+        <view class="over">
+          <van-transition show="{{ item.isSelect }}" custom-class='trans' name='slide-down' duration="{{ { enter: 500, leave: 200 } }}" custom-class="block">
+            <block wx:for="{{ item.sec }}" wx:for-item="item" wx:key="id">
+              <view class="list-box2 van-ellipsis">
+                <text>{{ item.num }} {{ item.name }}</text>
+              </view>
+            </block>
+          </van-transition>
+        </view>
+      </block>
+      <view style="height:300rpx;"></view>
+    </view>
+  </view>
+  <view class="b_box" style="height:{{ SafeButtom }}rpx">
+    <view class="orange" data-id="{{ current }}" bindtap="onClick">申请注册</view>
+  </view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

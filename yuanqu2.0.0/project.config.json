@@ -1,0 +1,124 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"coverView": true,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": true,
+		"enhance": true,
+		"nodeModules": false,
+		"uglifyFileName": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"bundle": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.11.0",
+	"appid": "wx85e5ecd08d4f4840",
+	"projectname": "yuanqu",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "package/component/pages/index/classify/classify",
+					"pathName": "package/component/pages/index/classify/classify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/index/classify/dt/dt",
+					"pathName": "package/component/pages/index/classify/dt/dt",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/knowledge/business_name/business_name",
+					"pathName": "package/component/pages/knowledge/business_name/business_name",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/index/classify/classify",
+					"pathName": "package/component/pages/index/classify/classify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/index/classify/classify",
+					"pathName": "package/component/pages/index/classify/classify",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/knowledge/business_name/business_name",
+					"pathName": "package/component/pages/knowledge/business_name/business_name",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/log_on/bound/bound",
+					"pathName": "pages/user/log_on/bound/bound",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/knowledge/admin/admin",
+					"pathName": "package/component/pages/knowledge/admin/admin",
+					"scene": null
+				}
+			]
+		}
+	}
+}

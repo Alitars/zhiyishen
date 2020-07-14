@@ -1,0 +1,222 @@
+<navigation-bar back="{{ true }}" background="#fff" title="提交资料" />
+<!-- <van-transition show="{{ arry }}" custom-class="block"> -->
+<view class="animate_opacity">
+	<block wx:if="{{ arry.order.status==4&&arry.order.remark!=='' }}">
+		<van-notice-bar wrapable scrollable="false" left-icon="info-o" backgroundColor="#f44" color="#fff" text="{{ arry.order.remark }}" />
+	</block>
+	<view class="card-box-top">
+		<view class="r-imgbox center" bindtap="onPreview">
+			<image src="{{ arry.brand_update.brand_img?icon_Url+arry.brand_update.brand_img:'/images/noImg.png' }}" mode="widthFix" hidden="{{  imgUrlsTwo }}"></image>
+			<image src="{{ icon_Url+imgUrlsTwo }}" mode="widthFix" hidden="{{  !imgUrlsTwo }}"></image>
+		</view>
+		<view class="r-box-type">
+			<view class="list-box-type">
+				<text>{{ cate_name }}</text>
+				<text class="van-ellipsis"></text>
+			</view>
+			<view class="list-box-type" bindtap="onClick">
+				<text>查看更多</text>
+				<text></text>
+				<view class="arrows"></view>
+			</view>
+			<view class="list-box-type orange3" bindtap="chooseIcon">
+				<text bindtap="">重新上传</text>
+				<text></text>
+			</view>
+		</view>
+	</view>
+
+	<picker bindchange="bindPickerChange" value="{{formIndex}}" range="{{formText}}" hidden="{{ arry.order.is_design==1?true:false }}">
+		<view class="van-hairline--bottom">
+			<van-cell title="选择字体" is-link value="{{ formIndex==-1?'请选择':form[formIndex].font_name }}" border="{{ false }}" />
+			<!-- <van-cell title="选择字体" is-link value="{{ formIndex==-1?'请选择':form[formIndex].font_name }}" border="{{ false }}" data-id="1" bindtap="isShow" /> -->
+		</view>
+	</picker>
+
+	<block wx:for="{{ checkArry }}" wx:key='index'>
+		<view class="check-box-c f_r">
+			<view>
+				<text>{{ item.title }}</text>
+			</view>
+			<view class="f_r al_center  van-checkbox-1">
+				<text>{{ item.one }}</text>
+				<view>
+					<van-checkbox value="{{ item.checkone }}" checked-color="#f96006" data-id="{{ index }}" data-index="1" bind:change="onChange"></van-checkbox>
+				</view>
+			</view>
+			<view class="f_r al_center van-checkbox-2">
+				<text class="">{{ item.two }}</text>
+				<view>
+					<van-checkbox value="{{ item.checktwo }}" checked-color="#f96006" data-id="{{ index }}" data-index="2" bind:change="onChange"></van-checkbox>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{ index==0 }}" class="cell-beizu">注：黑白注册，注册后可以更换商标颜色使用，上传的图样必须是黑白颜色；指定颜色注册，注册后只能按照上传图样的颜色使用。</view>
+	</block>
+	<view class="cell-beizu">注：多家公司共同拥有此商标的使用权。</view>
+	<view class="card-bx-mid max" hidden="{{  checkArry[1].checktwo }}">
+		<view class="list-boc-info {{ qiyeName?'':'ch' }}" bindtap="onChooseConpany">
+			<text>共有企业：</text>
+			<text class="van-ellipsis">{{ qiyeName?qiyeName:'请选择' }}</text>
+			<view class="arrow-r"></view>
+		</view>
+	</view>
+
+	<!-- <view hidden="{{  checkArry[1].checktwo }}" bindtap="onChooseConpany">
+      <van-cell title="共有企业：" value-class="value-class" value="{{ qiyeName?qiyeName:'请选择' }}" is-link/>
+    </view> -->
+
+	<view class="card-bx-mid {{ attestType==1?'pdd-bottom':'' }}">
+		<view class="list-boc-info" bindtap="onAttest">
+			<text>申请人（企业）：</text>
+			<text class="van-ellipsis">{{ name?name:'' }}</text>
+			<view class="arrow-r"></view>
+		</view>
+		<view class="list-boc-info">
+			<text>企业法人：</text>
+			<text class="van-ellipsis">{{ referee }}</text>
+		</view>
+		<view class="list-boc-info">
+			<text>社会统一信用码：</text>
+			<text class="van-ellipsis">{{ license_num }}</text>
+		</view>
+		<view class="list-boc-info">
+			<text>地址：</text>
+			<text class="van-ellipsis">{{ card_address }}</text>
+		</view>
+	</view>
+	<view wx:if="{{  attestType==1&&name.length>0 }}">
+		<view class="check-box-c2 f_r">
+			<view class="f_r al_center  van-checkbox-3">
+				<text>企业名称申请</text>
+				<view class="pdd">
+					<van-checkbox value="{{ checkThree }}" checked-color="#f96006" data-id="3" bind:change="onAttestType"></van-checkbox>
+				</view>
+			</view>
+			<view class="f_r al_center van-checkbox-4">
+				<text class="">法人申请</text>
+				<view class="pdd">
+					<van-checkbox value="{{ checkFrou }}" checked-color="#f96006" data-id="4" bind:change="onAttestType"></van-checkbox>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="cell-beizu" wx:if="{{  attestType==1&&name.length>0 }}">注：《个体工商户营业执照》登记的字号作为申请人名义提出商标注册申请，也可以以执照上登记的负责人名义提出商标注册申请。根据个人喜好两者并无差别。</view>
+	<view class="up_card" wx:if="{{ checkFrou==true }}">
+		<view class="title">
+			<text>营业执照</text>
+			<text>（签字拍照上传）</text>
+		</view>
+		<view class="up-box relt flr_box">
+			<view class="up-img center" data-id="1" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ business_img }}"></image>
+				<image class="max-img" hidden="{{ !business_img }}" src="{{ icon_Url+business_img }}" hidden="{{ !business_img }}"></image>
+				<text class="up-t" hidden="{{ business_img }}">上传</text>
+			</view>
+
+			<view class="img_box center" data-id="{{index}}" data-url="{{ img_business }}" data-id="1" catchtap="onLiulan">
+				<image src="{{ img_business }}"></image>
+				<view class="yl">示例</view>
+			</view>
+			<!-- <view style="height:20rpx"></view>
+      <view class="up-img center" data-id="2" bindtap="onLiulan">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ yanglei }}"></image>
+        <image class="max-img" hidden="{{ !yanglei }}"  src="{{ icon_Url+yanglei }}" hidden="{{ !yanglei }}"></image>
+        <text class="up-t oranges" >委托书样类</text>
+      </view> -->
+
+		</view>
+	</view>
+	<view class="up_card" style="margin: 0;" wx:if="{{ checkFrou==true }}">
+		<view class="title">
+			<text>身份证复印件</text>
+			<text>（签字拍照上传）</text>
+		</view>
+		<view class="up-box relt flr_box">
+
+			<view class="up-img center" data-id="2" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ identity_img }}"></image>
+				<image class="max-img" hidden="{{ !identity_img }}" src="{{ icon_Url+identity_img }}" hidden="{{ !identity_img }}"></image>
+				<text class="up-t" hidden="{{ identity_img }}">上传</text>
+			</view>
+
+			<view class="img_box center" data-id="{{index}}" data-url="{{ img_identity }}" data-id="2" catchtap="onLiulan">
+				<image src="{{ img_identity }}"></image>
+				<view class="yl">示例</view>
+			</view>
+			<!-- <view style="height:20rpx"></view>
+      <view class="up-img center" data-id="2" bindtap="onLiulan">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ yanglei }}"></image>
+        <image class="max-img" hidden="{{ !yanglei }}"  src="{{ icon_Url+yanglei }}" hidden="{{ !yanglei }}"></image>
+        <text class="up-t oranges" >委托书样类</text>
+      </view> -->
+		</view>
+	</view>
+	<view class="up_card" style="{{ checkFrou==true?'margin: 0;':'' }}">
+		<view class="title">
+			<text>商标代理委托书</text>
+			<text>（盖公章拍照上传）</text>
+		</view>
+
+		<view class="up-box relt flr_box">
+			<view class="up-img center" data-id="3" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ imgUrls }}"></image>
+				<image class="max-img" hidden="{{ !imgUrls }}" src="{{ icon_Url+imgUrls }}" hidden="{{ !imgUrls }}"></image>
+				<text class="up-t" hidden="{{ imgUrls }}">上传</text>
+			</view>
+						<view class="img_box center" data-id="{{index}}" data-url="{{ yanglei }}" data-id="3" catchtap="onLiulan">
+				<image src="{{ yanglei }}"></image>
+				<view class="yl">示例</view>
+			</view>
+			<!-- <view style="height:20rpx"></view>
+      <view class="up-img center" data-id="2" bindtap="onLiulan">
+        <image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ yanglei }}"></image>
+        <image class="max-img" hidden="{{ !yanglei }}"  src="{{ icon_Url+yanglei }}" hidden="{{ !yanglei }}"></image>
+        <text class="up-t oranges" >委托书样类</text>
+      </view> -->
+			<view class="d-btn al_center" bindtap="onDown">
+				<image src="/images/dl.png"></image>
+				<text>下载委托书</text>
+				<!-- <text class="oranges" data-id="3" data-url="{{ yanglei }}" catchtap="onLiulan">（委托书样例）</text> -->
+			</view>
+		</view>
+	</view>
+	<view class="card-box-last f_c" bindtap="onChoose">
+		<view class="list-boc-info al-center pd">
+			<text>请选择需要同步提交资料的订单</text>
+			<text class="van-ellipsis"></text>
+			<view class="arrow-r"></view>
+		</view>
+		<block wx:for="{{ arry.dataList }}" wx:key='index'>
+			<view class="aly-choose" hidden="{{ !item.isSelect }}">
+				<text>已选订单号</text>
+				<text>{{ item.order_id }}</text>
+				<text>{{ item.one_cate }}类</text>
+			</view>
+		</block>
+	</view>
+	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
+		<view class="a_box" bindtap="onUpload">提交</view>
+	</view>
+
+	<view style="height:{{ SafeButtom }}rpx"></view>
+</view>
+
+<!-- </van-transition> -->
+<!-- <van-popup show="{{ show }}" custom-style="border-top-left-radius: 40rpx;border-top-right-radius: 40rpx;overflow: hidden;" position="bottom" overlay="{{ true }}" z-index="200" data-id="1" bind:close="isShow">
+  <view class="btn_choose">
+    <image class="close" src="/package/component/images/t_x.png" data-id="1" bindtap="isShow"></image>
+    <view class="list_btn_p ">
+      <block wx:for="{{ form }}" wx:key="index">
+        <view class="btn_p {{item.iSchoose?'orange2':''}}" data-index="{{ index }}" data-id="{{ item.id }}" bindtap="onBtn">{{ item.font_name }}</view>
+      </block>
+    </view>
+    <view class="sure" data-id="2" data-index="{{ index }}" bindtap="isShow">确定</view>
+  </view>
+</van-popup> -->
+<view wx:if="{{ isCut }}">
+	<image-cropper id="image-cropper" bindload="cropperload" bindimageload="loadimage" bindtapcut="clickcut" limit_move="{{limit_move}}" disable_rotate="{{ true }}" width="{{width}}" height="{{height}}" imgSrc="{{src}}" angle="{{angle}}" disable_width="{{disable_width}}" max_width="{{max_width}}" max_height="{{max_height}}" disable_height="{{disable_height}}" disable_ratio="{{disable_ratio}}" bind:run="onImagesUp">
+	</image-cropper>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top />

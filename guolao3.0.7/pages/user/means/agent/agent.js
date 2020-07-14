@@ -135,10 +135,13 @@ Page({
         var Str = 'imgUrls' + id;
         func.BusinessOCR().then(res => {
           if (res.errcode == 0) {
+            console.log(res)
             this.notify('识别成功');
             this.setData({
               [Str]: res.tempFilePaths,
               bsname: res.enterprise_name,
+              address:res.address,
+              reg_num:res.reg_num
             })
           } else {
             this.setData({
@@ -231,6 +234,8 @@ Page({
         name: username,
         company_name: company_name,
         identity_num: identity_num,
+        address:this.data.address,
+        reg_num:this.data.reg_num
       },
       method: "POST"
     }).then(res => {

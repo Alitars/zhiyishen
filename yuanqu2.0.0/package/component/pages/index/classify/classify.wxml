@@ -1,0 +1,20 @@
+<navigation-bar back="{{ true }}" color="#ffffff" background="-webkit-linear-gradient(left,#2fa5fc,#277cfb)" title="商标分类" />
+<block wx:if="{{ list.length>0 }}">
+	<view class="container">
+		<view class="top-search" style="top:{{ top }}px">
+			<van-search value="{{ value }}" shape="round" placeholder="请输入类别名称" type="text" bind:search="onSearch" bind:change="onChange" />
+		</view>
+		<view style="height:54px;background:#f9f9f9"></view>
+		<van-transition show="{{ list }}" name="fade-down" custom-class="block">
+			<view class="gray-box" wx:for="{{ list }}" wx:key="index">
+				<view class="gray_list al_center" data-id="{{ index }}" bindtap="onDetail">
+					<view class="gray_list_box">
+						<text>{{ item.id + item.name }}</text>
+					</view>
+				</view>
+			</view>
+		</van-transition>
+	</view>
+</block>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

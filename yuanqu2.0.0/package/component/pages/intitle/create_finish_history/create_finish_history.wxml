@@ -1,0 +1,32 @@
+<view class="back" style="height:{{ SafeHigh }}px" bindtap="onIndex">
+  <text>返回首页</text>
+</view>
+<view class="guo_box" style="height:{{ info.screenHeight }}px;">
+  <image class="bg" src="/package/component/images/pinlbg.png" mode="widthFix"></image>
+  <view class="screen" style="top:{{ SafeHigh }}px">
+    <text class="suced">生成商标完成！</text>
+    <text class="tisi">点击商标图案，可以查看推荐注册类别及注册成功指数</text>
+  </view>
+  <scroll-view class="box-btn" style="top:{{ 130*scale }}rpx;" scroll-y="true">
+    <view class="scroll_box">
+      <block wx:for="{{ imgUrls }}" wx:key="index">
+        <view class="btn_icon center" hover-class="scale" data-id="{{ index }}" data-index="{{ item.index }}" bindtap="onDt">
+          <view class="btn-txt van-multi-ellipsis--l3">{{ item }}</view>
+        </view>
+      </block>
+      <view class="bottom-res f_r">
+        <view class="rest al_center" bindtap="onBack">
+          <image src="/images/res.png"></image>
+          <text>重新设计</text>
+        </view>
+        <view class="more al_center " bindtap="onMore">
+          <image src="/images/more.png "></image>
+          <text>生成更多</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />
+<van-dialog id="van-dialog" />

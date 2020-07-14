@@ -1,0 +1,21 @@
+<view class="body">
+  <block wx:for="{{ list }}" wx:key='index'>
+    <view class="card-box {{ item.first_garden_little==''?'p-bottom30':'p-bottom10' }}" hover-class="bghovers">
+      <view class="list-box">
+        <view class="list-titile">{{ item.title }}</view>
+        <view class="edit-box" hover-class="bghover" data-index="{{ index }}" bindtap="onEdit">编辑</view>
+      </view>
+      <view class="list-box">
+        <view class="list-titile-two">基础价格：</view>
+        <view class="edit-box-two">￥{{ item.price }}</view>
+      </view>
+      <view class="list-box" hidden="{{ item.first_garden_little==''?true:false }}">
+        <view class="list-titile-two" style="top:10rpx">小商品价格：</view>
+        <view class="edit-box-two" style="top:10rpx">￥{{ item.first_garden_little }}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+<van-notify id="custom-selector" />

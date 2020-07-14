@@ -1,0 +1,107 @@
+<!-- <view class="custom center" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<view class="sx-box" bindtap="onClose">筛选</view>
+	<view class="custom-text van-ellipsis">
+		<text>发票申请</text>
+	</view>
+</view>
+<view class="empty_custom" style="padding-top:{{statusBarHeight}}px" /> -->
+<view class="top_switch top0">
+	<view class="checkbox al_center">
+		<van-checkbox value="{{ checked }}" checked-color="#f96006" bind:change="onChooseAll">全选</van-checkbox>
+	</view>
+	<!-- <view class="sx-box" bindtap="onClose">筛选</view> -->
+	<view class="edit" bindtap="onClick">申请开票</view>
+</view>
+<view class="body">
+	<block wx:for="{{ arry }}" wx:key='index'>
+		<view class="card_box" wx:if="{{ item.type==1 }}">
+			<view class="check-box center">
+				<van-checkbox value="{{ item.iSelect }}" data-id="{{ item.id }}" checked-color="#f96006" bind:change="onChoose" />
+			</view>
+			<view class="d_box">
+				<text>订单号：{{item.order_id}}</text>
+				<text>{{item.orderStatus?item.orderStatus:''}}</text>
+			</view>
+			<view class="s_box">
+				<image hidden="{{ !item.brand_img }}" src="{{ icon_Url+item.brand_img }}" lazy-load="true" mode="aspectFit"></image>
+				<image hidden="{{ item.brand_img }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image>
+				<text>{{item.click_type}}</text>
+			</view>
+			<view class="list_box van-hairline--bottom">
+				<text>申请人：</text>
+				<text>{{item.apply_name?item.apply_name:''}}</text>
+			</view>
+			<view class="list_box van-hairline--bottom">
+				<text>类别：</text>
+				<text>{{item.click_type}}</text>
+			</view>
+			<view class="list_box van-hairline--bottom">
+				<text>注册申请号：</text>
+				<text>{{item.regist_num?item.regist_num:''}}</text>
+			</view>
+			<view class="price_box">
+				<text>订单金额：</text>
+				<text>￥{{a.getNum(item.total_price)}}</text>
+			</view>
+			<view class="price_box top">
+				<button class="btn_pay" hidden="{{ !item.right_status[0] }}" data-index="{{ index }}" bindtap="onRight">{{item.right_status[0]}}</button>
+				<view class="close_box" data-id="{{ item.id }}" hidden="{{ !item.left_status[0] }}" data-index="{{ index }}" bindtap="onLeft">{{item.left_status[0]}}</view>
+			</view>
+		</view>
+
+
+		<view class="card_box" wx:if="{{ item.type==2 }}">
+			<view class="check-box center">
+				<van-checkbox value="{{ item.iSelect }}" data-id="{{ item.id }}" checked-color="#f96006" bind:change="onChoose" />
+			</view>
+			<view class="d_box">
+				<text>订单号：{{item.order_id}}</text>
+				<text>{{item.orderStatus?item.orderStatus:''}}</text>
+			</view>
+			<view class="s_boxs">
+				<!-- <image hidden="{{ !item.brand_img }}" src="{{ icon_Url+item.brand_img }}" lazy-load="true" mode="aspectFit"></image>
+				<image hidden="{{ item.brand_img }}" src="/images/noImg.png" lazy-load="true" mode="aspectFit"></image> -->
+				<text>{{item.good_name}}</text>
+			</view>
+			<view class="price_box">
+				<text>订单金额：</text>
+				<text>￥{{a.getNum(item.order_amount)}}</text>
+			</view>
+		</view>
+
+
+
+
+
+
+
+
+	</block>
+</view>
+<wxs module="a">
+	var getNum = function(num) {
+		num += '.00';
+		return num
+	};
+	module.exports.getNum = getNum;
+</wxs>
+<!-- <van-popup show="{{ display }}" position="top" overlay="{{ true }}" bind:close="onClose">
+	<view class="empty_custom" style="padding-top:{{statusBarHeight}}px;" />
+	<view class="bgbox center van-hairline--top">
+		<view class="box2" style="background:#fff">
+			<block wx:for="{{ btn }}" wx:key='index'>
+				<view class="btn {{ item.iSelect?'orange':'' }}" data-index="{{ index }}" bindtap="onBtn" >{{ item.text }}</view>
+			</block>
+		</view>
+	</view>
+</van-popup> -->
+<van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="请选择" bind:confirm="onConfirm" bind:cancel="onCancel" />
+</van-popup>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" />

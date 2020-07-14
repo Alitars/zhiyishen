@@ -1,0 +1,35 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+  <view class="l-T-arrow al_center" bindtap="onBack">
+    <view class="l-T-arrow-two center">
+      <image src="/images/left-arrow.png"></image>
+    </view>
+  </view>
+  <view class="sx-box" bindtap='onAdress'>添加地址</view>
+  <view class="custom-text van-ellipsis" bindtap="onClick">
+    <text>我的订单</text>
+  </view>
+</view>
+<view class="empty_custom" style="padding-top:{{ height/2 }}px" />
+<view class="body">
+  <block wx:for="{{ adress }}" wx:key='index'>
+    <view class="list_box">
+      <view class="list_t">
+        <text>{{ item.address }}</text>
+        <text/>
+      </view>
+      <view class="list_t">
+        <text>{{ item.consignee }}</text>
+        <text>{{ item.mobile }}</text>
+      </view>
+      <view class="delet_box al_center f_r" data-id="{{ item.id }}" bindtap="onDelet">
+        <image src="/images/delet.png"></image>
+        <text>删除</text>
+      </view>
+      <view class="setBtn {{ item.is_default==2?'org':'' }}" data-id="{{ item.id }}" bindtap="onSet">
+        <text>设为默认</text>
+      </view>
+    </view>
+  </block>
+</view>
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>

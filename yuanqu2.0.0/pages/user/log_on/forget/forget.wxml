@@ -1,0 +1,20 @@
+<view hidden="{{show==false?false:true}}">
+  <van-field value="{{ phoneNumber }}" maxlength="11" type="number" size="large" clearable label="＋86" placeholder="请输入手机号码" bind:change="onPhone" />
+  <van-field value="{{ code }}" type="number" maxlength="6" size="large" center clearable label="短信验证码" placeholder="请输入验证码" use-button-slot bind:change="onYzm">
+    <van-button slot="button" plain size="small" round type="warning" bind:click="{{ check?'':'onSend' }}">
+      <text hidden="{{ check }}">获取验证码</text>
+      <text hidden="{{ !check }}" style="color:#ccc">{{ time }}s 重新获取</text>
+    </van-button>
+  </van-field>
+  <view style="height:60rpx;" />
+  <view class="btn" hidden="{{ display }}">重置密码</view>
+  <view class="btn orange" hidden="{{ !display }}" bindtap="xiaoyan">重置密码</view>
+</view>
+<view hidden="{{show==true?false:true}}">
+  <van-field value="{{ password }}" right-icon="{{ exhibit?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ exhibit?'text':'password' }}" maxlength="15" size="large" clearable  focus="{{ exhibit }}" data-id="1" placeholder="您的新密码" bind:click-icon="onClickIcon"
+    bind:change="onPass" />
+  <van-field value="{{ re_pass }}" right-icon="{{ hide?icon:'https://admin.iguolao.com/public/uploads/20200403150143850.png' }}" type="{{ hide?'text':'password' }}" maxlength="15" size="large" clearable  focus="{{ hide }}" data-id="2" placeholder="重复新密码" bind:click-icon="onClickIcon" bind:change="onRepass"/>
+  <view style="height:60rpx;" />
+  <view class="btn orange" bindtap="getPassword">完成</view>
+</view>
+<van-notify id="custom-selector" />

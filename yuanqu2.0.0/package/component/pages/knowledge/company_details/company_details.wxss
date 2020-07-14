@@ -1,0 +1,2 @@
+/* package/component/pages/knowledge/company_details/company_details.wxss */
+@import '/package/component/pages/knowledge/admin/admin.wxss'

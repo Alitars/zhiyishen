@@ -1,0 +1,4 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
+
+@import '/package/component/pages/material/Up_ziliao/Up_ziliao.wxss';
+.list-box{width:100%;height:90rpx;background:#fff;margin-top:24rpx;font-size:28rpx;color:#333;line-height:90rpx;position:relative;z-index:200}.first{position:absolute;left:40rpx}.two{position:absolute;right:52rpx;color:#f9650f}.checked-box{position:absolute;right:40rpx;height:inherit;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;top:8rpx}.fiexd{z-index:20}

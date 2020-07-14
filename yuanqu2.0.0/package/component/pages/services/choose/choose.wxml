@@ -1,0 +1,4 @@
+<import src="../../../../../template/template.wxml" />
+<template is="onChoose" data="{{animationData,statusBarHeight,SafeHigh,icon_Url,text,SafeButtom,tabs,id}}" />
+<van-toast id="van-toast" />
+<van-notify id="custom-selector" safe-area-inset-top/>
