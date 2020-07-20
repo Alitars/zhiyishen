@@ -1,0 +1,4 @@
+<!--pages/user/company/company.wxml-->
+  <van-field value="{{ value }}" placeholder="请输入代理人公司名称" focus maxlength="24" data-id="1" size="large" clearable bind:change="onChange" />
+  <!-- <view class="prompt">*请输入代理人公司*</view> -->
+  <view class="btn" bindtap="onSave">提交</view>

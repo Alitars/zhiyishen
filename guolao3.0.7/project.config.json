@@ -72,9 +72,9 @@
 				},
 				{
 					"id": 1,
-					"name": "pages/index/index",
-					"pathName": "package/component1/pages/user/member/member",
-					"query": "flag=user",
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -116,7 +116,7 @@
 					"id": 7,
 					"name": "package/component2/pages/share/shareDetail/shareDetail",
 					"pathName": "package/component2/pages/share/shareDetail/shareDetail",
-					"query": "id=64",
+					"query": "id=114",
 					"scene": null
 				},
 				{

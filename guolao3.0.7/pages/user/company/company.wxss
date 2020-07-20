@@ -1,0 +1,22 @@
+/* pages/user/company/company.wxss */
+.prompt {
+  width: 100%;
+  font-size: 24rpx;
+  color: #F96006;
+  text-align: left;
+  padding-top: 14rpx;
+  padding-left: 26rpx;
+}
+
+.btn {
+  width: 600rpx;
+  height: 80rpx;
+  background: -webkit-linear-gradient(left, #fb9a60, #f96006);
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  margin-left: 75rpx;
+  margin-top: 100rpx
+}

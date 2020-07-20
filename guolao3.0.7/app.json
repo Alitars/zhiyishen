@@ -14,6 +14,7 @@
     "pages/knowledge/patent/patent",
     "pages/user/user",
     "pages/user/means/means",
+    "pages/user/company/company",
     "pages/user/means/means/field/field",
     "pages/user/about_us/about_us",
     "pages/user/feedback/feedback",

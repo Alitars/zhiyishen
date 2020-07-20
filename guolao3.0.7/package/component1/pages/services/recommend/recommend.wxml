@@ -6,5 +6,20 @@
 	<image class="shar-box-s-close" catchtap="onCloseWX" src="https://admin.iguolao.com/public/uploads/20200525132329403.png"></image>
 	<image class="shar-box-s-image" src="https://admin.iguolao.com/public/uploads/20200525115814568.png"></image>
 </view>
+<!-- 类别提示 -->
+<view class="show" hidden="{{modelShow}}">
+	<view class="abs">
+		<view>注意</view>
+		<view>一个大类,10项以内免费</view>
+		<view>以下类别,选择的商品/服务项目不足10项</view>
+		<block wx:for="{{arry}}" wx:key="index">
+			<view hidden="{{item.number>=10?true:false}}">{{item.name}},已选择{{item.number}}个项目</view>
+		</block>
+		<view class="clearfix bot">
+			<view class="fl" bindtap="noChange">继续修改</view>
+			<view class="fr" bindtap="toChange">确认</view>
+		</view>
+	</view>
+</view>
 <import src="../../../../../template/template.wxml" />
 <template is="recommend" data="{{ statusBarHeight,arry,checked,delet,show,safeHeight }}" />

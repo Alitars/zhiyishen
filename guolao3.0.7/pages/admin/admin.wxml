@@ -41,7 +41,7 @@
 	</view>
 
 	<!-- 专利 -->
-	<view class="card_box">
+	<!-- <view class="card_box">
 		<view class="title-box">
 			<image class="title-box-img" src="https://admin.iguolao.com/public/uploads/20200512103747184.png"></image><text style="color:#af4100">专利数据统计</text>
 		</view>
@@ -52,24 +52,17 @@
 				</block>
 			</view>
 		</view>
-	</view>
+	</view> -->
 	<!-- 专利柱状图 -->
-	<view class="histogram-box">
+	<!-- <view class="histogram-box">
 		<view class="hist-t"><text>近{{Pyear}}年专利申请量</text></view>
 		<view class="canvas-hist" wx:if="{{ ecBarShow }}">
 			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecBar }}"></ec-canvas>
 		</view>
-	</view>
-	<!-- 专利类型统计 饼图 -->
-	<!-- <view class="histogram-box">
-		<view class="hist-t"><text>专利类型统计</text></view>
-		<view class="canvas-hist" wx:if="{{ ecPieShow }}">
-			<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ecPie }}"></ec-canvas>
-		</view>
 	</view> -->
 
 	<!-- 代理机构 -->
-	<view class="list-box">
+	<!-- <view class="list-box">
 		<view class="hist-t"><text>近{{Pyear.length==0?'10':Pyear}}年专利申请量统计</text></view>
 		<view class="tabar-box">
 			<view class="tabar-t">
@@ -86,6 +79,6 @@
 			<view class="zli-num">{{item.num?item.num:0}}</view>
 		</view>
 		<view class="action-box" bindtap="onPatent">点击查看更多企业></view>
-	</view>
+	</view> -->
 </view>
 <van-toast id="van-toast" />

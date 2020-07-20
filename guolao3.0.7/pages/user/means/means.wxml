@@ -9,6 +9,7 @@
 <van-field size="large" title-width="200" value="{{ username }}" disabled input-align='right' clearable label="邮寄地址" is-link bindtap="onAdress" />
 <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="邮箱" is-link placeholder="{{ info.email==''||info.email==null?'绑定':info.email }}" data-id="3" bindtap="onChange" />
 <van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="修改密码" is-link bindtap="onResetting" />
+<van-field size="large" value="{{ username }}" disabled input-align='right' clearable label="代理人公司" is-link placeholder="{{ info.person_company }}" bindtap="onbusy" wx:if="{{info.business_type==1?false:true}}"/>
 <van-cell title="语音导航" size="large">
 <van-switch checked="{{ checked }}" bind:change="onSwitch" active-color="#f96006" size="20px" inactive-color="#fff" />
 </van-cell>

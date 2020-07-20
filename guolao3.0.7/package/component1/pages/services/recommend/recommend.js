@@ -29,6 +29,7 @@ Page({
     imgUrls: '',
     transX: true,
     ShareArry: [],
+    modelShow:true
   },
 
   onShare() {
@@ -326,6 +327,54 @@ Page({
     });
   },
   onAddShop() {
+    // addshop()
+    var arry = this.data.arry
+    if(arry.length>1){
+      
+      var obj =[];
+      for(var i = 0;i<arry.length;i++){
+        if( arry[i].number<10){
+          obj.push(arry[i].number)
+        }
+      }
+      if(obj.length>0){
+        this.setData({
+          modelShow:false
+        })
+      }else{
+        addshop()
+      }
+    }else{
+      var obj = arry[0].sec
+      var num = 0
+      for(var i = 0;i<obj.length;i++){
+        if(obj[i].checked == true){
+          num += obj[i].third.length
+        }
+      }
+      this.setData({
+        num:num
+      })
+      if(num<10){
+        this.setData({
+          modelShow:false
+        })
+      }else{
+        addshop()
+      }
+    }
+  },
+  // 取消模态框
+  noChange(){
+    this.setData({
+      modelShow:true 
+    })
+  },
+  // 提交
+  toChange(){
+    this.setData({
+      modelShow:true
+    })
     addshop()
   },
   onStatus() {

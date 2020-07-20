@@ -393,7 +393,9 @@ Page({
         info: userArry
       });
     };
-   
+    if (wx.getStorageSync('userid')) {
+      paydetail()
+    };
     this.getShop(1);
     this.getShop(2);
     this.getShop(3);

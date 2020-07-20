@@ -23,7 +23,6 @@
 		</view>
 	</view>
 	<!-- 放开 -->
-	<!-- <button bindtap="fenxi">专利分析</button> -->
 	<!-- <button bindtap="onxie">撰写</button> -->
 	<view class="center  pd-top">
 		<image class="ai_img" src="/images/ai.png" />

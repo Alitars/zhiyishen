@@ -447,6 +447,14 @@ Page({
       url: '/pages/user/means/means/field/field?id=' + id,
     })
   },
+  onbusy(){
+    
+    if(this.data.info.person_company == ''||this.data.info.person_company==null){
+      wx.navigateTo({
+        url: '/pages/user/company/company',
+      })
+    }
+  },
   onResetting() {
     wx.navigateTo({
       url: '/pages/user/log_on/forget/forget?tab=' + true,

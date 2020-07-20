@@ -306,7 +306,6 @@ Page({
     
   },
   onLoad: function (options) {
-    console.log(111111111)
     if (!getApp().globalData.userid) {
       Toast('请先登录')
       if(options.mobile){
@@ -328,19 +327,19 @@ Page({
       };
       
       this.getData()
-      this.getOther()
+      // this.getOther()
     }
   },
   onReady: function () {},
   onShow: function () {
-    // this.getData()
+    this.getData()
     // this.getOther()
   },
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {
     this.getData()
-    this.getOther()
+    // this.getOther()
   },
   onReachBottom: function () {},
   onShareAppMessage: function () {

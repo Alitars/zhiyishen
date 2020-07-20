@@ -180,6 +180,9 @@ Page({
   },
   onReady: function () {},
   onShow: function () {
+    this.setData({
+      info:wx.getStorageSync('userArry')
+    })
     if (this.data.status == 2) {
       this.notify('文件链接已复制，您可以粘贴发送至微信或使用浏览器进行下载！')
     }

@@ -472,8 +472,8 @@
 			</view>
 			<view class="ft" />
 		</view>
-		<view class="w-box" style="height:{{ SafeButtom }}rpx" hidden="{{ arry.orderList.status==2||arry.orderList.status==3||arry.orderList.status==4||arry.orderList.status==6?false:true }}">
-			<view class="li-box" bindtap="onRefund">申请退款</view>
+		<view class="w-box" style="height:{{ SafeButtom }}rpx" hidden="{{ arry.orderList.status==2||arry.orderList.status==3||arry.orderList.status==4||arry.orderList.status==6?false:true}}">
+			<view class="li-box" bindtap="onRefund" hidden="{{info.business_type==2&&info.person_company=='祺盛'}}">申请退款</view>
 		</view>
 </van-transition>
 <van-notify id="custom-selector" />

@@ -110,6 +110,21 @@
 		<view class="sming-txt">5.普通商标注册(成功指数低于三星)，首次需支付全部费用；</view>
 	</view>
 </van-popup>
+<!-- 类别提示 -->
+<view class="show" hidden="{{modelShow}}">
+	<view class="abs">
+		<view>注意</view>
+		<view>一个大类,10项以内免费</view>
+		<view>以下类别,选择的商品/服务项目不足10项</view>
+		<view>{{arry[0].name}},已选择{{num}}个项目</view>
+		<view class="clearfix bot">
+			<view class="fl" bindtap="noChange">继续修改</view>
+			<view class="fr" bindtap="toChange">确认</view>
+		</view>
+	</view>
+</view>
+
+
 <van-dialog id="van-dialog" />
 <van-toast id="van-toast" />
 <van-notify id="custom-selector" safe-area-inset-top />

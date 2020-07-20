@@ -151,7 +151,7 @@
 				<view class="yl">身份证样例</view>
 			</view>
 		</view>
-		<van-cell title="{{ list.user_type==2?'法人身份证:':'个人身份证：' }}：{{ list.user_type==2?CardID2:CardID3 }}" title-width="300px" />
+		<van-cell title="{{ list.user_type==2?'法人身份证:':'个人身份证：' }}{{ list.user_type==2?CardID2:CardID3 }}" title-width="300px" />
 		<view class="b_list_btn first" style="height:{{ safeHeight }}rpx" wx:if="{{ agree_cart!==''&&check_type==true?true:false }}">
 			<view class="a_box" bindtap="onDown">下载合同</view>
 		</view>
