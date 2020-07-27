@@ -86,13 +86,10 @@ Page({
       chooseImgs("identity_img");
     };
     if (id == 3) {
-      // chooseImgs("imgUrls");
       getApp().globalData.DataStr = "arry.brand_update.brand_img"
       wx.chooseImage({
         success: (res => {
-          // console.log(res)
           var tempFilePaths = res.tempFilePaths[0];
-
           //显示组件
           this.setData({
             isCrop: true
@@ -532,7 +529,7 @@ Page({
         if (res.data.code == 1) {
           var url = getApp().globalData.dm_Url + res.data.others;
           this.data.url = url;
-          console.log(wx.env.USER_DATA_PATH)
+          // console.log(wx.env.USER_DATA_PATH)
           // wx.downloadFile({
           //   url: url,
           //   // filePath:wx.env.USER_DATA_PATH + '/' + Date.parse(new Date()) + '.pdf',

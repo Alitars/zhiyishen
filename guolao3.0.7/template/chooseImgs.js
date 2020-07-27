@@ -19,6 +19,8 @@ export default function chooseImgs(data) {
         //   }
         // };
         var url = res.tempFilePaths[0];
+        console.log(121321312)
+
         wx.uploadFile({
           url: getApp().globalData.main_Url + '/BrandUpload/brandUploadFile',
           filePath: url,
@@ -28,6 +30,7 @@ export default function chooseImgs(data) {
           },
           formData: {},
           success: (res => {
+            console.log(8975695496789457694857)
             Toast.clear();
             var arry = JSON.parse(res.data);
             wx.hideLoading();

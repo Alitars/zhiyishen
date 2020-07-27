@@ -357,7 +357,7 @@ var ImagesUp = function (e) {
       mask: true
     });
     wx.uploadFile({
-      url: getApp().globalData.main_Url + '/BrandUpload/brandUploadFile',
+      url: getApp().globalData.main_Url + '/BrandUpload/brandUploadFiless',
       filePath: url,
       name: 'url_img',
       header: {
@@ -365,7 +365,6 @@ var ImagesUp = function (e) {
       },
       formData: {},
       success: (res => {
-        // console.log(res, 'asasa');
         wx.hideLoading();
         if (typeof (res.data) == 'string') {
           var list = JSON.parse(res.data)
@@ -382,6 +381,7 @@ var ImagesUp = function (e) {
         resolve(list)
       }),
       fail: (err => {
+        console.log(err)
         reject('err');
         wx.hideLoading();
         wx.showToast({
