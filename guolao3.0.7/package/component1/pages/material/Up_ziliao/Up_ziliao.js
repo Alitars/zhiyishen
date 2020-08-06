@@ -46,7 +46,9 @@ Page({
       urls: [url],
     })
   },
+  change(){
 
+  },
   //picker
   bindPickerChange(e) {
     var value = e.detail.value;

@@ -69,18 +69,114 @@ Page({
     identity_img: '',
     business_img: '',
     logoImg:'',
+    main_Url:getApp().globalData.main_Url,
   },
-
+  seeView(e){
+    var url = e.currentTarget.dataset.url;
+    wx.previewImage({
+      url:url,
+      urls: [url],
+    })
+  },
+  previewMore(e){
+    var type = e.currentTarget.dataset.type;
+    var imgUrls = this.data.business_img;
+    var index = e.currentTarget.dataset.id
+    var icon_Url = this.data.icon_Url;
+    if (type == 1) {
+      wx.previewImage({
+        current: icon_Url + imgUrls[index],
+        urls: [icon_Url + imgUrls[index]],
+      })
+    };
+  },
+  deletImgMore(e){
+    var type = e.currentTarget.dataset.type;
+    var imgUrls = this.data.business_img;
+    var index = e.currentTarget.dataset.id
+    if (type == 1) {
+      imgUrls.splice(index,1)
+      this.setData({
+        business_img: imgUrls
+      })
+    };
+  },
+  // 多文件上传
+  onMore(e){
+    var type = e.currentTarget.dataset.type;
+    const token = wx.getStorageSync('token');
+    wx.chooseImage({
+      count: 5,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: (res => {
+        var img = res.tempFilePaths;
+        if (type == 1) {
+          Toast.loading({
+            message: '识别中...',
+            duration: 0,
+          });
+          for (var i = 0; i < img.length; i++) {
+            var imgUrl = img[i];
+            wx.uploadFile({
+              url: this.data.main_Url + '/authentication/upload_card',
+              filePath: imgUrl,
+              name: 'pic',
+              header: {
+                'content-type': 'multipart/form-data'
+              },
+              formData: {
+                token: token,
+              },
+              success: (res => {
+                Toast.clear();
+                var arry = JSON.parse(res.data);
+                if (arry.others == '') {
+                  var imglist =  this.data.business_img.concat(arry.data)
+                  this.setData({
+                    business_img:imglist
+                  });
+                  this.notify("上传成功！");
+                } else {
+                  Toast.clear();
+                  this.notify("上传失败");
+                  this.data.address = '';
+                  this.data.person = '';
+                  this.data.reg_num = '';
+                }
+              }),
+              fail:(err=>{
+                console.log(err)
+              })
+            });
+          }
+        };
+      }),
+    })
+  },
+  toastUp() {
+    Toast.loading({
+      // mask: true,
+      message: '请稍后...',
+      duration: 0,
+    });
+  },
   onChooseImgs(e) {
     this.data.isPreviewImage = true;
     var id = e.currentTarget.dataset.id;
-    console.log(id)
     if (id == 1) {
-      func.BusinessOCR().then((res) => {
-        this.setData({
-          business_img: res.tempFilePaths,
+      if(this.data.companyStatus == 1){
+        func.BusinessOCR().then((res) => {
+          this.setData({
+            business_img: res.tempFilePaths,
+          })
         })
-      })
+      }else{
+        // var img = this.data.icon_Url+this.data.business_img
+        // wx.previewImage({
+        //   urls: [img],
+        // })
+      }
     };
     if (id == 2) {
       chooseImgs("identity_img");
@@ -102,7 +198,7 @@ Page({
       })
     };
   },
-
+  
   onLiulan(e) {
     var url = e.currentTarget.dataset.url;
     // console.log(e);
@@ -420,6 +516,15 @@ Page({
       Toast('请上传委托书！');
       return;
     };
+
+    if(this.data.companyType == 3||this.data.companyType==4||this.data.companyType==5){
+      if(this.data.business_img.length == []&&this.data.business_img == ''){
+        Toast('请上传营业执照');
+        return;
+      }else{
+        var business_img = this.data.business_img.toString()
+      }
+    }
     NetworkRequest({
       url: '/BrandUpload/submitData',
       data: {
@@ -430,6 +535,7 @@ Page({
         auth_type: auth_type,
         apply_id: apply_id,
         type: 2,
+        b_type: this.data.companyType,
         brand_num: '',
         upload_file: '',
         brand_img: img,
@@ -719,6 +825,10 @@ Page({
                 referee: newarry[i].referee,
                 license_num: newarry[i].license_num,
                 card_address: newarry[i].card_address,
+                business_img:newarry[i].business_license,
+                imgUrlsTwo:arry.brand_update.brand_bailment_img,
+                companyType:newarry[i].type,
+                companyStatus:newarry[i].status
               });
               break;
             };
@@ -736,6 +846,10 @@ Page({
                 referee: newarry[i].referee,
                 license_num: newarry[i].license_num,
                 card_address: newarry[i].card_address,
+                business_img:newarry[i].business_license,
+                imgUrlsTwo:arry.brand_update.brand_bailment_img,
+                companyType:newarry[i].type,
+                companyStatus:newarry[i].status
               });
             };
             if (qiyeName.length == 0 && this.data.checkArry[1].checkone) {
@@ -810,20 +924,43 @@ Page({
       };
     }).catch(err => {})
   },
+  change(){
+    var newarry = this.data.arry.business;
+    var s = newarry.length;
+    for (var i = 0; i < s; i++) {
+      if (this.data.apply_id == newarry[i].id) {
+        this.setData({
+          referee: newarry[i].referee,
+          license_num: newarry[i].license_num,
+          card_address: newarry[i].card_address,
+          business_img:newarry[i].business_license,
+          companyType:newarry[i].type,
+          companyStatus:newarry[i].status
+        });
+        break;
+      };
+    };
+  },
   onLoad: function (options) {
+    
     this.data.good_name = options.click_type;
     this.data.order_id = options.order_id;
     this.onForm();
-    // this.setData({
-    //   isCrop:true
-    // })
-  },
-  onShow: function () {
     if (this.data.isPreviewImage == false) {
       this.getData(this.data.order_id, this.data.good_name);
     } else {
       this.data.isPreviewImage = false;
     };
+    // this.setData({
+    //   isCrop:true
+    // })
+  },
+  onShow: function () {
+    // if (this.data.isPreviewImage == false) {
+    //   this.getData(this.data.order_id, this.data.good_name);
+    // } else {
+    //   this.data.isPreviewImage = false;
+    // };
     wx.setStorageSync('brand_type', 2);
     if (this.data.status == 2) {
       copyText(this.data.url);

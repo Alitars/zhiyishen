@@ -69,7 +69,21 @@ Page({
     identity_img: '',
     business_img: '',
   },
-
+  change(){
+    var newarry = this.data.arry.business;
+    var s = newarry.length;
+    for (var i = 0; i < s; i++) {
+      if (this.data.apply_id == newarry[i].id) {
+        this.setData({
+          referee: newarry[i].referee,
+          license_num: newarry[i].license_num,
+          card_address: newarry[i].card_address,
+          business_img:newarry[i].business_license,
+        });
+        break;
+      };
+    };
+  },
   onChooseImgs(e) {
     this.data.isPreviewImage = true;
     var id = e.currentTarget.dataset.id;

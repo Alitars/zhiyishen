@@ -23,6 +23,9 @@ Page({
       url: '/pages/user/attest/attest?open=' + true + '&type=' + 'merg',
     })
   },
+  change(){
+
+  },
   onChange(e) {
     var id = e.currentTarget.dataset.id;
     if (id == 1) {

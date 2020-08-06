@@ -382,6 +382,7 @@ Page({
                   apply_id: list.id,
                   attestType: list.type,
                 });
+                PrePage.change()
               }
             };
             if (type == 22) {

@@ -189,7 +189,66 @@ var deletArry = function (arry) {
     };
   });
 };
-
+//营业执照识别WX OCR
+var BusinessOCR = function () {
+  return new Promise((resolve, reject) => {
+    var pages = getCurrentPages();
+    var _this = pages[pages.length - 1];
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: (e => {
+        const tempFilePaths = e.tempFilePaths[0];
+        wx.showLoading({
+          title: '识别中...',
+          duration: 15000,
+          mask: true,
+        });
+        wx.uploadFile({
+          url: getApp().globalData.main_Url + '/checklicense',
+          filePath: tempFilePaths,
+          name: 'pic',
+          header: {
+            'content-type': 'multipart/form-data'
+          },
+          formData: {},
+          success: ((res) => {
+            var list = JSON.parse(res.data);
+            var arry = JSON.parse(JSON.stringify(list.data));
+            // console.log(arry, 'asdadsdsadasdasdaa');
+            if (list.code == 1) {
+              wx.showToast({
+                title: '识别成功',
+                icon: 'none',
+                duration: 3000
+              })
+              arry.errcode == 0;
+              arry.tempFilePaths = arry.business_license;
+              arry.address = arry.address
+              arry.reg_num = arry.reg_num
+              arry.enterprise_name = arry.company_name;
+              resolve({
+                'errcode': 0,
+                'tempFilePaths': arry.business_license,
+                'enterprise_name': arry.company_name,
+                'reg_num':arry.reg_num,
+                'address':arry.address
+              })
+            } else {
+              wx.showToast({
+                title: list.msg,
+                icon: 'none',
+                duration: 3000
+              })
+            };
+            wx.hideLoading();
+          })
+        })
+      })
+    })
+  })
+}
 //行业 推荐  自选
 var onTrade = function (res) {
   return new Promise((resolve, reject) => {
@@ -462,7 +521,72 @@ var ImagesUp = function (e) {
     })
   })
 }
-
+// 身份证校验
+var iDCard = function (code) {
+  var city = {
+    11: "北京",
+    12: "天津",
+    13: "河北",
+    14: "山西",
+    15: "内蒙古",
+    21: "辽宁",
+    22: "吉林",
+    23: "黑龙江 ",
+    31: "上海",
+    32: "江苏",
+    33: "浙江",
+    34: "安徽",
+    35: "福建",
+    36: "江西",
+    37: "山东",
+    41: "河南",
+    42: "湖北 ",
+    43: "湖南",
+    44: "广东",
+    45: "广西",
+    46: "海南",
+    50: "重庆",
+    51: "四川",
+    52: "贵州",
+    53: "云南",
+    54: "西藏 ",
+    61: "陕西",
+    62: "甘肃",
+    63: "青海",
+    64: "宁夏",
+    65: "新疆",
+    71: "台湾",
+    81: "香港",
+    82: "澳门",
+    91: "国外 "
+  };
+  var idCardReg = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i;
+  var errorMess = "";
+  var isPass = true;
+  if (!code || !idCardReg.test(code)) {
+    errorMess = "您输入的身份证号有误！";
+    isPass = true;
+    return {
+      'err': errorMess,
+      'isPass': isPass
+    };
+  } else if (!city[code.substr(0, 2)]) {
+    errorMess = "您输入的身份证地址编码有误！";
+    isPass = true;
+    return {
+      'err': errorMess,
+      'isPass': isPass
+    };
+  } else {
+    if (code.length == 18) {
+      isPass = false;
+      return {
+        'err': errorMess,
+        'isPass': isPass
+      };
+    };
+  };
+};
 
 //颜色生成
 var colorList = function () {
@@ -498,6 +622,7 @@ module.exports = {
   countDown: countDown,
   sendma: sendma,
   onCreateIcon: onCreateIcon,
+  BusinessOCR: BusinessOCR,
   VoicePlay: VoicePlay,
   colorImg: colorImg,
   onHistory: onHistory,
@@ -505,5 +630,6 @@ module.exports = {
   ImagesUp: ImagesUp,
   colorList: colorList,
   showLoading: showLoading,
+  iDCard: iDCard,
   date_time:date_time
 };

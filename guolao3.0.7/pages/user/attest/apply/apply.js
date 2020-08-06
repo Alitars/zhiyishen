@@ -45,6 +45,7 @@ Page({
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     message: '',
     // contactAdress: [],
+    imageList:[]
   },
   // id 和 index  id=1?'企业认证':'个人认证'  id==1&&index==1 '个体工商户'
 
@@ -87,6 +88,7 @@ Page({
       phoneNmuber: '',
       name: '',
       idcard: '',
+      imageList:[]
     })
   },
   onBack() {
@@ -150,6 +152,7 @@ Page({
     var imgUrlsTwo = this.data.imgUrlsTwo;
     var imgUrlsTree = this.data.imgUrlsTree;
     var imgUrlsFour = this.data.imgUrlsFour;
+    var imageList = this.data.imageList
     var idcard = this.data.idcard;
     var current = this.data.current;
     var userid = wx.getStorageSync('userid');
@@ -161,6 +164,10 @@ Page({
     var address = this.data.address;
     var person = this.data.person;
     var reg_num = this.data.reg_num;
+    if(imageList.length>0){
+      var imageListJson = imageList.toString()
+      console.log(imageListJson)
+    }
     // var contactAdress = this.data.contactAdress;
     // if (contactAdress.length > 0) {
     // var contact_address_pro = contactAdress[0].name;
@@ -170,8 +177,8 @@ Page({
     // if (contact_address_pro == contact_address_city) {
     //   var contact_address_pro = '';
     // };
-    // var add_detail_address = this.data.message;
-    var add_detail_address = '';
+    var add_detail_address = this.data.message;
+    // var add_detail_address = '';
     var contact_address_pro = '';
     var contact_address_city = '';
     var contact_address_area = '';
@@ -307,7 +314,7 @@ Page({
         }
       };
       if (type == 2) {
-        if (!imgUrls.length) {
+        if (!imageList.length) {
           Toast('请上传营业执照！')
           return;
         } else {
@@ -320,7 +327,7 @@ Page({
               token: token,
               company_name: companny,
               mobile: phoneNmuber,
-              business_license: imgUrls[0],
+              business_license: imageListJson,
               address: address,
               person: person,
               reg_num: reg_num,
@@ -349,7 +356,7 @@ Page({
         }
       };
       if (type == 3) {
-        if (!imgUrls.length) {
+        if (!imageList.length) {
           Toast('请上传营业执照！')
           return;
         } else {
@@ -362,7 +369,7 @@ Page({
               token: token,
               company_name: companny,
               mobile: phoneNmuber,
-              business_license: imgUrls[0],
+              business_license: imageListJson,
               address: address,
               person: person,
               reg_num: reg_num,
@@ -391,7 +398,7 @@ Page({
         }
       };
       if (type == 4) {
-        if (!imgUrls.length) {
+        if (!imageList.length) {
           Toast('请上传营业执照！')
           return;
         };
@@ -408,7 +415,7 @@ Page({
               token: token,
               company_name: companny,
               mobile: phoneNmuber,
-              business_license: imgUrls[0],
+              business_license: imageListJson,
               english_license: imgUrlsFour[0],
               address: address,
               person: person,
@@ -493,7 +500,8 @@ Page({
         }
       };
       if (current == 1) {
-        if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        // if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        if (imgUrlsTwo.length<0|| imgUrlsTree.length<0) {
           Toast('请上传护照照片！')
         } else {
           var index = 2;
@@ -534,7 +542,8 @@ Page({
         }
       };
       if (current == 2) {
-        if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        // if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        if (imgUrlsTwo.length<0|| imgUrlsTree.length<0) {
           Toast('请上传护照照片！')
         } else {
           var index = 1;
@@ -575,7 +584,8 @@ Page({
         }
       };
       if (current == 3) {
-        if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        // if (!imgUrlsTwo.length || !imgUrlsTree.length) {
+        if (imgUrlsTwo.length<0|| imgUrlsTree.length<0) {
           Toast('请上传护照照片！')
           return;
         };
@@ -646,6 +656,65 @@ Page({
   },
   onCancel() {
     this.onClose();
+  },
+  // 多文件上传
+  onMore(e){
+    var type = e.currentTarget.dataset.type;
+    const token = wx.getStorageSync('token');
+    wx.chooseImage({
+      count: 5,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: (res => {
+        var img = res.tempFilePaths;
+        if (type == 1) {
+          Toast.loading({
+            message: '识别中...',
+            duration: 0,
+          });
+          if (this.data.id == 1) {
+              for (var i = 0; i < img.length; i++) {
+                var imgUrl = img[i];
+                console.log(imgUrl)
+                wx.uploadFile({
+                  url: main_Url + '/authentication/upload_card',
+                  filePath: imgUrl,
+                  name: 'pic',
+                  header: {
+                    'content-type': 'multipart/form-data'
+                  },
+                  formData: {
+                    token: token,
+                  },
+                  success: (res => {
+                    Toast.clear();
+                    var arry = JSON.parse(res.data);
+                    console.log(arry)
+                    if (arry.others == '') {
+                      var imglist =  this.data.imageList.concat(arry.data)
+                      this.setData({
+                        imageList:imglist
+                      });
+                      this.notify("上传成功！");
+                    } else {
+                      Toast.clear();
+                      this.notify("上传失败");
+                      this.data.address = '';
+                      this.data.person = '';
+                      this.data.reg_num = '';
+                    }
+                  }),
+                  fail:(err=>{
+                    console.log(err)
+                  })
+                });
+              }
+          } else {
+            this.toastUp();
+          }
+        };
+      }),
+    })
   },
   // up image
   onChoose(e) {
@@ -857,6 +926,18 @@ Page({
       })
     }
   },
+  previewMore(e){
+    var type = e.currentTarget.dataset.type;
+    var imgUrls = this.data.imageList;
+    var index = e.currentTarget.dataset.id
+    var icon_Url = this.data.icon_Url;
+    if (type == 1) {
+      wx.previewImage({
+        current: icon_Url + imgUrls[index],
+        urls: [icon_Url + imgUrls[index]],
+      })
+    };
+  },
   onYanglei(e) {
     var id = e.currentTarget.dataset.type;
     var url = id == 1 ? this.data.icon_yanglei : this.data.icon_idCard;
@@ -869,6 +950,18 @@ Page({
     })
   },
   //delet img
+  deletImgMore(e){
+    var type = e.currentTarget.dataset.type;
+    var imgUrls = this.data.imageList;
+    var index = e.currentTarget.dataset.id
+    if (type == 1) {
+      imgUrls.splice(index,1)
+      this.setData({
+        imageList: imgUrls
+      })
+    };
+   
+  },
   deletImg(e) {
     var imgUrls = this.data.imgUrls;
     var type = e.currentTarget.dataset.type;

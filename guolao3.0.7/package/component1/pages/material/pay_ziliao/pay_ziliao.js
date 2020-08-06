@@ -335,6 +335,9 @@ Page({
       })
     })
   },
+  change(){
+
+  },
   onChange(e) {
     this.setData({
       brand_num: e.detail,

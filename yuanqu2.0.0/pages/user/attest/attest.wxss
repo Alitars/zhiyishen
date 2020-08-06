@@ -1,5 +1,3 @@
-/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
-
 page {
   background: #f9f9f9;
   padding-bottom: 200rpx
@@ -61,17 +59,37 @@ page {
   top: 12rpx
 }
 
+.lisi {
+  width: 66rpx;
+  height: 156rpx;
+  border-radius: 20rpx;
+  z-index: 120;
+  background: -webkit-linear-gradient(top, #f96006, #fb9a60);
+  position: absolute;
+  font-size: 24rpx;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
+  right: 56rpx;
+  top: 12rpx
+}
+
 .r_btn::after {
   border: 0
 }
 
 .t_txt {
-  color: #2b3139
+  color: #2b3139;
+  font-size: 28rpx
 }
 
 .type_t {
   color: #f96108;
-  margin-top: 5rpx
+  margin-top: 5rpx;
+  font-size: 28rpx
 }
 
 .t_box {
@@ -83,7 +101,7 @@ page {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  left: 48rpx;
+  left: 100rpx;
   font-size: 24rpx
 }
 
@@ -217,4 +235,17 @@ page {
   font-weight: 600;
   text-align: center;
   color: #333
+}
+
+.firstStr-t {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100%;
+  background: #f9f9f9;
+  left: 16rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 60rpx
 }

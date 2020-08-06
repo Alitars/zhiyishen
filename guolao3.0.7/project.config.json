@@ -72,15 +72,15 @@
 				},
 				{
 					"id": 1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
-					"query": "",
+					"name": "订单",
+					"pathName": "pages/user/my_order/my_order",
+					"query": "id=0",
 					"scene": null
 				},
 				{
 					"id": 2,
-					"name": "资产管理",
-					"pathName": "pages/admin/admin",
+					"name": "认证",
+					"pathName": "pages/user/attest/attest",
 					"query": "",
 					"scene": null
 				},

@@ -105,8 +105,10 @@
 		</view>
 	</view>
 	<view class="cell-beizu" wx:if="{{  attestType==1&&name.length>0 }}">注：《个体工商户营业执照》登记的字号作为申请人名义提出商标注册申请，也可以以执照上登记的负责人名义提出商标注册申请。根据个人喜好两者并无差别。</view>
-	<view class="up_card" wx:if="{{  attestType==1&&name.length>0&&checkFrou==false }}">
-	<!-- <view class="up_card" wx:if="{{ checkFrou==false }}"> -->
+
+	<!-- wx:if="{{  attestType==1&&name.length>0&&checkFrou==false }}" -->
+	<view class="up_card" wx:if="{{companyType ==2||companyType==1}}">
+		<!-- <view class="up_card" wx:if="{{  attestType==1&&name.length>0&&checkFrou==false }}" > -->
 		<view class="title">
 			<text>营业执照</text>
 			<text>（盖章拍照上传）</text>
@@ -122,6 +124,7 @@
 				<image src="{{ img_business }}"></image>
 				<view class="yl">示例</view>
 			</view>
+			<view class="v-btn al_center" bindtap="seeView" data-url="{{ icon_Url+business_img }}" hidden="{{!business_img}}">预览</view>
 			
 			<!-- <view style="height:20rpx"></view>
       <view class="up-img center" data-id="2" bindtap="onLiulan">
@@ -132,6 +135,43 @@
 
 		</view>
 	</view>
+	<view class="up_card" wx:if="{{companyType ==3||companyType==4||companyType==5}}">
+		<!-- <view class="up_card" wx:if="{{  attestType==1&&name.length>0&&checkFrou==false }}" > -->
+		<view class="title">
+			<text>营业执照</text>
+			<text>（盖章拍照上传）</text>
+		</view>
+		<view class="other m_t20 clearfix" >
+			<block wx:for="{{ business_img }}" wx:key="index">
+				<view class="img_box_more" data-id="{{index}}" data-type="1" bindtap="previewMore">
+					<image src="{{icon_Url+item}}"></image>
+					<view class="delet_box center" data-id="{{index}}" data-type="1" catchtap="deletImgMore" wx:if="{{companyStatus == 1}}">
+						<image src="/images/t_x.png"></image>
+					</view>
+				</view>
+			</block>
+			<!-- business_img.length<5?false:true||companyStatus == 1 -->
+			<view class="up_img_box_more center" hidden="{{companyStatus == 1? (business_img.length<5?false:true) : true}}" data-type="1" bindtap="onMore" >
+				<image src="/images/up.png"></image>
+			</view>
+			<view class="pre-box center"  data-id="{{index}}" data-url="{{ img_business }}" data-id="1" catchtap="onLiulan" hidden="{{companyStatus == 1?false:true}}">
+				<image src="{{ img_business }}"></image>
+				<view class="y2">示例</view>
+			</view>
+			<!-- <view class="up-img center" data-id="1" bindtap="onChooseImgs">
+				<image class="up-img-image" src="/images/up.png" mode="widthFix" hidden="{{ business_img }}"></image>
+				<image class="max-img" hidden="{{ !business_img }}" src="{{ icon_Url+business_img }}" hidden="{{ !business_img }}"></image>
+				<text class="up-t" hidden="{{ business_img }}">上传</text>
+			</view> -->
+
+			<!-- <view class="img_box center" data-id="{{index}}" data-url="{{ img_business }}" data-id="1" catchtap="onLiulan">
+				<image src="{{ img_business }}"></image>
+				<view class="yl">示例</view>
+			</view> -->
+			<!-- <view class="v-btn al_center" bindtap="seeView" data-url="{{ icon_Url+business_img }}" hidden="{{!business_img}}">预览</view> -->
+		</view>
+	</view>
+
 	<!-- <view class="up_card" style="margin: 0;" wx:if="{{ checkFrou==true }}"> -->
 
 		<!-- <view class="title">
@@ -161,7 +201,8 @@
 
 
 
-	<view class="up_card" style="{{ checkFrou==true?'margin: 0;':'' }}">
+	<view class="up_card">
+	<!-- <view class="up_card" style="{{ checkFrou==true?'margin: 0;':'' }}"> -->
 		<view class="title">
 			<text>商标代理委托书</text>
 			<text>（盖公章拍照上传）</text>
@@ -185,6 +226,7 @@
         <image class="max-img" hidden="{{ !yanglei }}"  src="{{ icon_Url+yanglei }}" hidden="{{ !yanglei }}"></image>
         <text class="up-t oranges" >委托书样类</text>
       </view> -->
+			<view class="v-upntn al_center" bindtap="seeView" data-url="{{ icon_Url+imgUrlsTwo }}" hidden="{{!imgUrlsTwo}}">预览</view>
 			<view class="d-btn al_center" bindtap="onDown">
 				<image src="/images/dl.png"></image>
 				<text>下载委托书</text>

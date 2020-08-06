@@ -48,7 +48,6 @@ Page({
     })
   },
   formSubmit(e) {
-    // console.log(e.detail.value);
     if (this.data.img ? true : false || e.detail.value.names ? true : false || e.detail.value.phoneNumber ? true : false || e.detail.value.car_num ? true : false || e.detail.value.message ? true : false) {
       var address = this.data.address;
       var person = this.data.person;
@@ -254,7 +253,7 @@ Page({
 
           })
         };
-        if (type == 2 || type == 4 || type == 3) {
+        if (type == 2) {
           NetworkRequest({
             url: '/authentication/updatebusiness',
             data: {
@@ -286,42 +285,146 @@ Page({
 
           })
         };
-        if (type == 5) {
-          NetworkRequest({
-            url: '/authentication/updatebusiness',
-            data: {
-              id: id,
-              company_name: company_name,
-              mobile: mobile,
-              business_license: business_license,
-              english_license: english_license,
-              // contact_address_pro: contact_address_pro,
-              // contact_address_city: contact_address_city,
-              // contact_address_area: contact_address_area,
-              // add_detail_address: add_detail_address,
-            },
-            method: 'POST',
-          }).then(res => {
-            var code = res.data.code;
-            Toast.clear();
-            this.notify(res.data.msg);
-            if (code == 1) {
-              PrePage.getData();
-              setTime().then(res => {
-                wx.navigateBack();
-              })
-            };
-          }).catch(err => {
-            Toast.clear();
+        // 港澳台
+        if(type == 3|| type == 4){
+          if(arry.business_license.length>0){
+            var json = arry.business_license.toString()
+            NetworkRequest({
+              url: '/authentication/updatebusiness',
+              data: {
+                id: id,
+                company_name: company_name,
+                mobile: mobile,
+                business_license: json,
+                address: address,
+                person: person,
+                reg_num: reg_num,
+                // contact_address_pro: contact_address_pro,
+                // contact_address_city: contact_address_city,
+                // contact_address_area: contact_address_area,
+                // add_detail_address: add_detail_address,
+              },
+              method: 'POST',
+            }).then(res => {
+              var code = res.data.code;
+              Toast.clear();
+              this.notify(res.data.msg);
+              if (code == 1) {
+                PrePage.getData();
+                setTime().then(res => {
+                  wx.navigateBack();
+                })
+              };
+            }).catch(err => {
+              Toast.clear();
 
-          })
+            })
+          }else{
+            Toast('营业执照不能为空！');
+          }
+          
+        }
+        if (type == 5) {
+          var json = arry.business_license.toString()
+          if(arry.business_license.length>0){
+            NetworkRequest({
+              url: '/authentication/updatebusiness',
+              data: {
+                id: id,
+                company_name: company_name,
+                mobile: mobile,
+                business_license: json,
+                english_license: english_license,
+                // contact_address_pro: contact_address_pro,
+                // contact_address_city: contact_address_city,
+                // contact_address_area: contact_address_area,
+                // add_detail_address: add_detail_address,
+              },
+              method: 'POST',
+            }).then(res => {
+              var code = res.data.code;
+              Toast.clear();
+              this.notify(res.data.msg);
+              if (code == 1) {
+                PrePage.getData();
+                setTime().then(res => {
+                  wx.navigateBack();
+                })
+              };
+            }).catch(err => {
+              Toast.clear();
+  
+            })
+          }else{
+            Toast('营业执照不能为空！');
+          }
+          
         };
       };
     } else {
       Toast('请先编辑！');
     };
   },
-
+  onMore(e){
+    const token = wx.getStorageSync('token');
+    wx.chooseImage({
+      count: 5,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: (res => {
+        var img = res.tempFilePaths;
+        Toast.loading({
+          message: '识别中...',
+          duration: 0,
+        });
+        for (var i = 0; i < img.length; i++) {
+          var imgUrl = img[i];
+          wx.uploadFile({
+            url: main_Url + '/authentication/upload_card',
+            filePath: imgUrl,
+            name: 'pic',
+            header: {
+              'content-type': 'multipart/form-data'
+            },
+            formData: {
+              token: token,
+            },
+            success: (res => {
+              Toast.clear();
+              var arry = JSON.parse(res.data);
+              if (arry.others == '') {
+                var imglist =  this.data.arry.business_license.concat(arry.data)
+                this.setData({
+                  'arry.business_license':imglist,
+                  img:true
+                });
+                this.notify("上传成功！");
+              } else {
+                Toast.clear();
+                this.notify("上传失败");
+                this.data.address = '';
+                this.data.person = '';
+                this.data.reg_num = '';
+              }
+            }),
+            fail:(err=>{
+              console.log(err)
+            })
+          });
+        }
+      }),
+    })
+  },
+  // 删除图片
+  deletImgMore(e){
+    var imgUrls = this.data.arry.business_license;
+    var index = e.currentTarget.dataset.id
+    imgUrls.splice(index,1)
+    this.setData({
+     'arry.business_license' : imgUrls,
+     img:true
+    })
+  },
   onUp(e) {
     var id = e.currentTarget.dataset.id;
     var icon_url = this.data.icon_Url;

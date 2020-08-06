@@ -6,21 +6,39 @@ const info = getApp().globalData.sysinfo;
 import setTime from '../../../template/setTime.js';
 Page({
   data: {
-    high: info.windowHeight,
+    SafeHigh: info.windowHeight,
     SafeButtom: getApp().globalData.sysinfo.statusBarHeight * 4,
     arry: [],
-    high: '',
+    SafeHigh: '',
     isDelete: false,
     lastX: 0,
     lastY: 0,
     index: 0,
     open: false,
     type: '',
-    li: 0,
-    display: true,
-    page: 2,
   },
-
+  //导入历史商标
+  onHistory(e) {
+    console.log(e.currentTarget.dataset.id);
+    var id = e.currentTarget.dataset.id;
+    // return;
+    wx.showLoading({
+      title: '导入中...',
+      mask: true,
+    })
+    NetworkRequest({
+      url: '/businessBrand',
+      data: {
+        b_id: id,
+      },
+    }).then(res => {
+      // console.log(res, '导入');
+      this.notify(res.data.msg);
+      wx.hideLoading({
+        complete: (res) => {},
+      })
+    }).catch(err => {})
+  },
   onTap2(event) {
     var index = event.currentTarget.dataset.index;
     this.setData({
@@ -75,8 +93,8 @@ Page({
         // 个人
         Dialog.confirm({
           title: '提示',
-          message: '是否删除该认证',
-          zIndex: 200,
+          message: '是否删除该认证！',
+          zIndex: 1000,
         }).then(() => {
           // on confirm
           NetworkRequest({
@@ -115,8 +133,8 @@ Page({
         // 企业
         Dialog.confirm({
           title: '提示',
-          message: '是否删除该认证',
-          zIndex: 200,
+          message: '是否删除该认证！',
+          zIndex: 1000,
         }).then(() => {
           NetworkRequest({
             url: '/authentication/delbusiness',
@@ -159,11 +177,11 @@ Page({
   notify(res) {
     Notify({
       text: res,
-      duration: 1000,
+      duration: 5000,
       selector: '#custom-selector',
       backgroundColor: '#f44',
       color: '#fff',
-      zIndex: 200,
+      zIndex: 300,
     })
   },
   getData() {
@@ -183,29 +201,23 @@ Page({
       Toast.clear();
       if (code == 1) {
         for (var i = 0; i < arry.length; i++) {
-          arry[i] = {
-            isDelete: false,
-            isShow: false,
-            card_address: arry[i].card_address,
-            company_name: arry[i].company_name,
-            id: arry[i].id,
-            mobile: arry[i].mobile,
-            ptype: arry[i].ptype,
-            referee: arry[i].referee,
-            status: arry[i].status,
-            type: arry[i].type,
-            types: arry[i].types,
-          };
+          arry[i].isDelete = false;
+          arry[i].isShow = false;
+          arry[i].firstStr = arry[i].chinese_name ? arry[i].chinese_name.slice(0, 1) : arry[i].company_name.slice(0, 1);
         };
-        getApp().globalData.arry = arry;
-        var list = arry.slice(0, 50);
-        this.setData({
-          // arry: arry
-          arry: list,
-          li: list.length
+        that.setData({
+          arry: arry,
         });
         Toast.clear();
         wx.stopPullDownRefresh();
+      };
+      if (code == 2) {
+        // this.notify('登录失效，请重新登录！');
+        setTime().then(res => {
+          wx.navigateTo({
+            url: '/pages/user/log_on/log_on',
+          })
+        })
       };
     }).catch(err => {
       Toast.clear();
@@ -370,6 +382,7 @@ Page({
                   apply_id: list.id,
                   attestType: list.type,
                 });
+                PrePage.change()
               }
             };
             if (type == 22) {
@@ -428,65 +441,7 @@ Page({
       })
     }
   },
-  onpull() {
-    this.getData()
-  },
-  onBottom() {
-    this.setData({
-      display: false
-    });
-    setTime(50).then(ss => {
-      var list = JSON.parse(JSON.stringify(getApp().globalData.arry));
-      var len = this.data.arry.length;
-      var newList = list.slice(len, len + 5);
-      for (var i = 0; i < newList.length; i++) {
-        console.log(newList[i]);
-        var c = len + i;
-        this.setData({
-          ["arry[" + c + "]"]: list[i]
-        });
-      };
-      this.setData({
-        display: true
-      });
-    });
-  },
   onPullDownRefresh: function () {
-    // this.getData();
+    this.getData();
   },
-
-  onReachBottom: function () {
-    this.setData({
-      display: false
-    })
-    var list = JSON.parse(JSON.stringify(getApp().globalData.arry));
-    // console.log(list.length);
-    var arry = JSON.parse(JSON.stringify(this.data.arry));
-    var li = this.data.li;
-    var len = arry.length;
-    if (arry.length > 200) {
-      this.setData({
-        arry: []
-      })
-      Toast('已为您更新当前' + ' ' + this.data.page + ' ' + '页');
-      var len = 0;
-      this.data.page = this.data.page + 1
-    };
-    var newList = list.slice(li, li + 20);
-    setTime(100).then(ss => {
-      this.data.li = li + newList.length;
-      for (var i = 0; i < newList.length; i++) {
-        var s = len + i;
-        this.data.li = this.data.li + 1;
-        // console.log(this.data.li);
-        // Toast(this.data.li);
-        this.setData({
-          ["arry[" + s + "]"]: newList[i]
-        })
-      }
-      this.setData({
-        display: true
-      })
-    })
-  }
 })

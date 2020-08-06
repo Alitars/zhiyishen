@@ -4,7 +4,8 @@ export default function canonical(res) {
   var _this = pages[pages.length - 1];
   if (res) {
     var Route = pages[pages.length - 1].route;
-    var value = res.replace(/\s+/g, "");
+    // var value = res.replace(/\s+/g, "");
+    var value = res;
     if (Route == 'package/component1/pages/intitle/terms/terms' || Route == 'package/component1/pages/intitle/brand_name/brand_name') {
       var str = value.replace(/\s+/g, "");
       _this.setData({

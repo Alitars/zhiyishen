@@ -236,6 +236,9 @@ Page({
   //   })
   // },
   //xukeren
+  change(){
+
+  },
   onXuke(e) {
     var id = e.currentTarget.dataset.id;
     if (id == 1) {

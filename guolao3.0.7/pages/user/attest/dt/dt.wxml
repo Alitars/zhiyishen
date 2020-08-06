@@ -57,34 +57,64 @@
 			</view>
 
 			<!-- 台湾企业 -->
-			<view class="list_img_box hg" hidden="{{ ptype==2&&type==4?fasle:true }}">
+			<!-- <view class="list_img_box hg" hidden="{{ ptype==2&&type==4?fasle:true }}">
 				<text>营业执照</text>
 				<view class="img_box_t" data-id="3">
 					<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+				</view>
+			</view> -->
+			<view class="other-sc clearfix"  hidden="{{ ptype==2&&type==4?fasle:true }}">
+				<view class="fl">营业执照</view>
+				<view class="fl-mg clearfix" data-id="3">
+					<block wx:for="{{arry.business_license}}" wx:key="index">
+						<view class="posab">
+							<image class="icom-img" src="{{ icon_Url+item }}"></image>
+						</view>
+					</block>
 				</view>
 			</view>
 
 
 			<!-- 港澳企业 -->
-			<view class="list_img_box hg" hidden="{{ ptype==2&&type==3?fasle:true }}">
+			<!-- <view class="list_img_box hg" hidden="{{ ptype==2&&type==3?fasle:true }}">
 				<text>营业执照</text>
 				<view class="img_box_t" data-id="3">
 					<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
+				</view>
+			</view> -->
+			<view class="other-sc clearfix"   hidden="{{ ptype==2&&type==3?fasle:true }}">
+				<view class="fl">营业执照</view>
+				<view class="fl-mg clearfix" data-id="3">
+					<block wx:for="{{arry.business_license}}" wx:key="index">
+						<view class="posab">
+							<image class="icom-img" src="{{ icon_Url+item }}"></image>
+						</view>
+					</block>
 				</view>
 			</view>
 
 
 			<!-- 国外企业 -->
-			<view class="list_img_box hg" hidden="{{ ptype==2&&type==5?fasle:true }}">
+			<!-- <view class="list_img_box hg" hidden="{{ ptype==2&&type==5?fasle:true }}">
 				<text>营业执照</text>
 				<view class="img_box_t" data-id="3">
 					<image class="z_img" src="{{ icon_Url+arry.business_license }}"></image>
 				</view>
-			</view>
+			</view> -->
 			<view class="list_img_box hg" hidden="{{ ptype==2&&type==5?fasle:true }}">
 				<text>营业执照中英文翻译件</text>
 				<view class="img_box_t" data-id="4">
 					<image class="z_img" src="{{ icon_Url+arry.english_license }}"></image>
+				</view>
+			</view>
+			<view class="other-sc clearfix" hidden="{{ ptype==2&&type==5?fasle:true }}">
+				<view class="fl">营业执照</view>
+				<view class="fl-mg clearfix" data-id="3">
+					<block wx:for="{{arry.business_license}}" wx:key="index">
+						<view class="posab">
+							<image class="icom-img" src="{{ icon_Url+item }}"></image>
+						</view>
+					</block>
 				</view>
 			</view>
 

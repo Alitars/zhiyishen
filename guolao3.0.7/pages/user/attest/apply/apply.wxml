@@ -84,7 +84,7 @@
 				<text>营业执照</text>
 				<text class="txt_two">{{ id==1&&index==1? '（需盖签字后拍照上传）':'（需盖公章后拍照上传）' }}</text>
 			</view>
-			<view class="up_img_list m_t20" hidden="{{index!==0&&index!==1&&index!==2&&index!==3&&index!==4}}">
+			<view class="up_img_list m_t20" hidden="{{index!==0&&index!==1}}">
 				<block wx:for="{{ imgUrls }}" wx:key="index">
 					<view class="img_box" data-id="{{index}}" data-type="1" bindtap="preview">
 						<image src="{{icon_Url+item}}"></image>
@@ -101,6 +101,25 @@
 					<view class="yl">营业执照样例</view>
 				</view>
 			</view>
+			<!-- 外国企业 港澳台 -->
+			<view class="other m_t20 clearfix" hidden="{{index!==2&&index!==3&&index!==4}}">
+				<block wx:for="{{ imageList }}" wx:key="index">
+					<view class="img_box_more" data-id="{{index}}" data-type="1" bindtap="previewMore">
+						<image src="{{icon_Url+item}}"></image>
+						<view class="delet_box center" data-id="{{index}}" data-type="1" catchtap="deletImgMore">
+							<image src="/images/t_x.png"></image>
+						</view>
+					</view>
+				</block>
+				<view class="up_img_box_more center" hidden="{{imageList.length<5?false:true}}" data-type="1" bindtap="onMore">
+					<image src="/images/up.png"></image>
+				</view>
+				<view class="pre-box center" data-id="{{index}}" data-type="1" bindtap="onYanglei">
+					<image src="{{ id==1&&index==1? signature:icon_yanglei }}"></image>
+					<view class="y2">营业执照样例</view>
+				</view>
+			</view>
+
 			<view class="list_head m_t20" hidden="{{index!==4}}">
 				<text>营业执照中英文翻译件</text>
 				<text class="txt_two">（需盖公章后拍照上传）</text>
