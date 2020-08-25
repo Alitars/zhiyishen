@@ -60,7 +60,6 @@ Page({
         wx.hideLoading({
         })
         var json = JSON.parse(res.data.data)
-
         NetworkRequest({
             url:'/patent/analyAdd',
             data:{
@@ -89,7 +88,8 @@ Page({
             var patent_title= []
             for (var i = 0;i<titleList.length&&i<per.length;i++){
                 var perNum = per[i]
-                var str= Math.floor(perNum*100)/100 *100
+                // var str= Math.floor(perNum*100)/100 *100
+                var str = Math.floor(perNum*100)
                 str = str +'%'
                 patent_title.push({name:titleList[i],per:str})
             }
@@ -325,7 +325,6 @@ Page({
         method:'GET'
     }).then((res)=>{
         var jsonArr= JSON.parse(res.data.data)
-        console.log(jsonArr)
         wx.hideLoading({})
         if(jsonArr.result.code == 200){
             var pieList=jsonArr.result.keywords_freq;
@@ -336,7 +335,7 @@ Page({
             var patent_title= []
             for (var i = 0;i<titleList.length&&i<per.length;i++){
                 var perNum = per[i]
-                var str= Math.floor(perNum*100)/100 *100
+                var str = Math.floor(perNum*100)
                 str = str +'%'
                 patent_title.push({name:titleList[i],per:str})
             }

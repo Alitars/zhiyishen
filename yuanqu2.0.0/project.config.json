@@ -65,9 +65,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "package/component/pages/index/classify/classify",
-					"pathName": "package/component/pages/index/classify/classify",
-					"query": "",
+					"name": "11111",
+					"pathName": "package/component/pages/knowledge/business_name/shareDetail/shareDetail",
+					"query": "id=333",
 					"scene": null
 				},
 				{
@@ -116,6 +116,14 @@
 					"id": -1,
 					"name": "package/component/pages/knowledge/admin/admin",
 					"pathName": "package/component/pages/knowledge/admin/admin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "package/component/pages/services/dt/dt",
+					"pathName": "package/component/pages/services/dt/dt",
+					"query": "",
 					"scene": null
 				}
 			]

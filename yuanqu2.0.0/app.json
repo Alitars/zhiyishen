@@ -140,7 +140,9 @@
       "pages/knowledge/company_details/company_details",
       "pages/knowledge/company_list/company_list",
       "pages/knowledge/business_name/business_name",
-      "pages/knowledge/business_name/dt/dt"
+      "pages/knowledge/business_name/dt/dt",
+      "pages/knowledge/business_name/category_share/category_share",
+      "pages/knowledge/business_name/shareDetail/shareDetail"
     ]
   }],
   "window": {

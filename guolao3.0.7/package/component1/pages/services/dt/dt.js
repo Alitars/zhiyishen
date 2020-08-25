@@ -8,6 +8,7 @@ import route from '../../../../../template/route.js';
 import func from '../../../../../template/func.js';
 Page({
   data: {
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     show: '',
     block: '',
     icon_Url: getApp().globalData.icon_Url,
@@ -39,6 +40,21 @@ Page({
     code: 1,
     key: '',
     mold: '',
+    transX:true,
+  },
+  onBack(){
+    wx.switchTab({
+      url: '/pages/services/services',
+    })
+  },
+  onCloseWX(){
+    this.setData({
+      transX: !this.data.transX
+    })
+  },
+  onShare() {
+    var arry = this.data.arry;
+    
   },
   onShop() {
     wx.navigateTo({
@@ -483,6 +499,13 @@ Page({
   },
   onPullDownRefresh: function () {
     this.getData(this.data.id)
+  },
+  onShareAppMessage: function (res) {
+    return{
+      title:'业务详情',
+      path:'/package/component1/pages/services/dt/dt?id='+this.data.id + '&title='+this.data.title
+      
+    }
   },
   onShow: function () {},
 })

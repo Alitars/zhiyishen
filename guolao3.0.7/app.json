@@ -39,6 +39,7 @@
     "pages/user/my_order/my_order",
     "pages/user/my_order/merg/merg",
     "pages/user/my_order/dt/dt",
+    "pages/user/my_order/edit_adress/edit_adress",
     "pages/user/my_order/order_progress/order_progress",
     "pages/user/bill/bill",
     "pages/user/bill/s_bill/s_bill",

@@ -1,4 +1,15 @@
-<navigation-bar back="{{ true }}" background="#fff" title="业务详情" />
+<!-- <navigation-bar back="{{ true }}" background="#fff" title="业务详情" /> -->
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<!--<view class="sx-box"bindtap="onClose">筛选</view>-->
+	<!-- <view class="custom-text van-ellipsis" bindtap="onClick"><text>商标注册</text></view> -->
+	<view class="custom-text van-ellipsis"><text>业务详情</text></view>
+</view>
+<view class="empty_custom" style="padding-top:{{ statusBarHeight }}px" />
 <van-transition show="{{ arry.length }}" custom-class="block">
 	<view class="body">
 		<view class="{{ mold==1||mold==3?'top_box':'' }} {{ mold==2?'top_box_two':'' }} center">
@@ -8,6 +19,12 @@
 			<view class="btn_t {{ mold==2?'newcolor':'' }}" hidden="{{ showId==39?true:false  }}">{{arry[type].title}}</view>
 			<view class="btn_t" hidden="{{ showId==39?false:true }}">AI商标注册</view>
 		</view>
+		<!--  -->
+		<button class="shar-box-s" open-type='share'>
+			<image class="shar-box-s-image" src="https://admin.iguolao.com/public/uploads/20200525115814568.png"></image>
+		</button>
+		
+		<!--  -->
 		<view class="title-price" hidden="{{ showId==39 }}">
 			<text>￥{{ arry[type].total }}</text>
 		</view>

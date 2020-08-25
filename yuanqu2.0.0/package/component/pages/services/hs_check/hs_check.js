@@ -78,9 +78,16 @@ Page({
             percent: 100
           })
           clearInterval(time)
-          wx.redirectTo({
-            url: '/package/component/pages/services/recommend/recommend?name=' + name + '&imgUrls=' + this.data.imgUrls,
-          })
+          if(this.data.toImg){
+            wx.redirectTo({
+              url: '/package/component/pages/services/recommend/recommend?name=' + this.data.toName + '&imgUrls=' + this.data.toImg,
+            })
+          }else{
+            wx.redirectTo({
+              url: '/package/component/pages/services/recommend/recommend?name=' + name + '&imgUrls=' + this.data.imgUrls,
+            })
+          }
+          
         }
       }
     }, 1000)
@@ -111,7 +118,46 @@ Page({
           })
         });
         // wx.redirectTo({
-        //   url: '/package/component/pages/services/check_fail/check_fail?text=' + text + '&key=' + this.data.key + '&name=' + this.data.name + '&imgUrls=' + this.data.imgUrls,
+        //   url: '/package/component1/pages/services/check_fail/check_fail?text=' + text + '&key=' + this.data.key + '&name=' + this.data.name + '&imgUrls=' + this.data.imgUrls,
+        // });
+      };
+    }).catch(err => {
+      Dialog.alert({
+        title: '提示',
+        message: '请求出错！'
+      }).then(() => {
+        wx.navigateBack({
+          delta: 1,
+        })
+      });
+    })
+  },
+  getShare(shareId,brand){
+    var token = wx.getStorageSync('token');
+    NetworkRequest({
+      url: '/brandDetect',
+      data: {
+        share_id: shareId,
+        brand_name: brand,
+        token: token,
+      },
+      method: 'POST',
+    }).then(res => {
+      var code = res.data.code;
+      var arry = res.data.data;
+      if (arry.length > 0) {
+        this.onRecord(arry);
+      } else {
+        Dialog.alert({
+          title: '提示',
+          message: '暂无数据!',
+        }).then(() => {
+          wx.navigateBack({
+            delta: 1,
+          })
+        });
+        // wx.redirectTo({
+        //   url: '/package/component1/pages/services/check_fail/check_fail?text=' + text + '&key=' + this.data.key + '&name=' + this.data.name + '&imgUrls=' + this.data.imgUrls,
         // });
       };
     }).catch(err => {
@@ -130,13 +176,23 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
     vioceText({
       data: {
         content: '小果正在为您检测推荐类别,请稍后',
       },
     }).then(res => {})
     progress()
-    this.getData(options.id, options.keywords, options.type);
+    if(options.shareId){
+      this.setData({
+        toName:options.brandname,
+        toImg:options.imgUrl
+      })
+      this.getShare(options.shareId,options.brandname)
+    }else{
+
+      this.getData(options.id, options.keywords, options.type);
+    }
     this.data.name = options.keywords;
     this.data.imgUrls = options.imgUrls;
     this.getType();

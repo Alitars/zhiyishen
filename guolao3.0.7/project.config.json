@@ -65,9 +65,9 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "package/component1/pages/user/activity/activity",
-					"pathName": "package/component1/pages/user/activity/activity",
-					"query": "phone=11111",
+					"name": "pages/services/services",
+					"pathName": "pages/services/services",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -116,7 +116,7 @@
 					"id": 7,
 					"name": "package/component2/pages/share/shareDetail/shareDetail",
 					"pathName": "package/component2/pages/share/shareDetail/shareDetail",
-					"query": "id=114",
+					"query": "id=76",
 					"scene": null
 				},
 				{

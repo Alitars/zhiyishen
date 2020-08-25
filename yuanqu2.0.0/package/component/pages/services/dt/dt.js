@@ -10,6 +10,7 @@ import GardenNetwork from '../../../../../template/GardenNetwork';
 import CopyrightRequest from '../../../../../template/copyright'
 Page({
   data: {
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     show: '',
     block: '',
     icon_Url: getApp().globalData.icon_Url,
@@ -42,6 +43,22 @@ Page({
     key: '',
     mold: '',
   },
+  // 分享
+  onBack(){
+    wx.switchTab({
+      url: '/pages/services/services',
+    })
+  },
+  onCloseWX(){
+    this.setData({
+      transX: !this.data.transX
+    })
+  },
+  onShare() {
+    var arry = this.data.arry;
+    
+  },
+  //
   onShop() {
     wx.navigateTo({
       url: '/pages/user/shop/shop',
@@ -500,6 +517,12 @@ Page({
   },
   onPullDownRefresh: function () {
     this.getData(this.data.id)
+  },
+  onShareAppMessage: function (res) {
+    return{
+      title:'业务详情',
+      path:'/package/component/pages/services/dt/dt?id='+this.data.id + '&title='+this.data.title
+    }
   },
   onShow: function () {},
 })

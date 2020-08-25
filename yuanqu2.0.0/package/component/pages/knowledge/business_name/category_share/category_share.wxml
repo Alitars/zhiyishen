@@ -1,0 +1,32 @@
+<navigation-bar back="{{ true }}" background="#fff" title="类别分享" />
+<view class="continer">
+	<view class="top-img-box" wx:if='{{ imgUrls }}'>
+		<view class="center-img">
+			<image src="{{ icon_Url+imgUrls }}"></image>
+		</view>
+	</view>
+	<view class="title">商标类别</view>
+	<block wx:for='{{  arry  }}' wx:key='index'>
+		<view class="first-box {{ item.isSelect==true?'rotate':'' }}" data-index="{{ index }}" bindtap="onClick">
+			<image src="https://admin.iguolao.com/public/uploads/20200525144717502.png"></image>
+			<text>第{{ item.name }}</text>
+		</view>
+		<view class="over">
+			<van-transition show="{{ item.isSelect }}" name="fade-down" custom-class="block">
+				<view class="flex-box">
+					<view class="center-box-fl">
+						<block wx:for='{{ item.sec }}' wx:for-item="item" wx:key='index'>
+							<block wx:for="{{ item.third }}" wx:for-item="item" wx:key='index'>
+								<view class="flx-btn">{{ item.num + ' ' + item.name }}</view>
+							</block>
+						</block>
+					</view>
+				</view>
+			</van-transition>
+		</view>
+	</block>
+</view>
+<button class="wx-box" open-type='share'>
+	<image src="/images/wx.png"></image>
+	<text>微信好友</text>
+</button>

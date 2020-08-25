@@ -38,6 +38,10 @@ Page({
       url: '/pages/user/feedback/feedback',
       images: '/images/icon6.png',
       text: '意见反馈'
+    },{
+      url: '修改地址',
+      images: '/images/icon1.png',
+      text: '邮寄地址'
     }],
     listBtn: [{
       id: 0,
@@ -218,6 +222,7 @@ Page({
   },
   goDt(e) {
     var id = e.currentTarget.dataset.id;
+    console.log(id)
     var userid = wx.getStorageSync('userid');
     if (userid.length == 0) {
       wx.showToast({
@@ -227,9 +232,91 @@ Page({
       });
       return
     };
-    wx.navigateTo({
-      url: id,
-    })
+    if(id == '修改地址'){
+      wx.getSetting({
+        success(res) {
+          if (res.authSetting['scope.address']) {
+            wx.chooseAddress({
+              success(res) {
+                var consignee = res.userName;
+                var mobile = res.telNumber;
+                var province = res.provinceName;
+                var city = res.cityName;
+                var area = res.countyName;
+                var address = res.detailInfo;
+                NetworkRequest({
+                  url: '/shippingAddress/addShippAddress',
+                  data: {
+                    user_id: userid,
+                    token: token,
+                    consignee: consignee,
+                    mobile: mobile,
+                    province: province,
+                    city: city,
+                    area: res.countyName,
+                    address: address,
+                    is_default: 2,
+                  },
+                  method: 'POST',
+                }).then(res => {
+                  Notify({
+                    text: res.data.msg,
+                    duration: 3000,
+                    selector: '#custom-selector',
+                    backgroundColor: '#f44',
+                    color: '#fff',
+                  })
+                }).catch(err => {})
+              }
+            })
+          } else {
+            if (res.authSetting['scope.address'] == false) {
+              wx.openSetting({
+                success(res) {}
+              })
+            } else {
+              wx.chooseAddress({
+                success(res) {
+                  var consignee = res.userName;
+                  var mobile = res.telNumber;
+                  var province = res.provinceName;
+                  var city = res.cityName;
+                  var area = res.countyName;
+                  var address = res.detailInfo;
+                  NetworkRequest({
+                    url: '/shippingAddress/addShippAddress',
+                    data: {
+                      user_id: userid,
+                      token: token,
+                      consignee: consignee,
+                      mobile: mobile,
+                      province: province,
+                      city: city,
+                      area: res.countyName,
+                      address: address,
+                      is_default: 2,
+                    },
+                    method: 'POST',
+                  }).then(res => {
+                    Notify({
+                      text: res.data.msg,
+                      duration: 3000,
+                      selector: '#custom-selector',
+                      backgroundColor: '#f44',
+                      color: '#fff',
+                    })
+                  }).catch(err => {})
+                }
+              })
+            }
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: id,
+      })
+    }
   },
   onRegister(e) {
     wx.navigateTo({

@@ -23,6 +23,11 @@ Page({
       url: '/pages/user/shop/refund/refund?order_id=' + order_id + '&refund_type=' + refund_type,
     })
   },
+  onAdress(){
+    wx.navigateTo({
+      url: '/pages/user/my_order/edit_adress/edit_adress?id=' +this.data.id,
+    })
+  },
   onLook(e) {
     var url = e.currentTarget.dataset.url;
     this.toast();

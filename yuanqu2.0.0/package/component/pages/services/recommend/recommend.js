@@ -27,6 +27,34 @@ Page({
     listIndex: '',
     sscore: [],
     imgUrls: '',
+    transX: true,
+    ShareArry: [],
+    modelShow:true
+  },
+  onCloseWX() {
+    this.setData({
+      transX: !this.data.transX
+    })
+  },
+  onShare() {
+    var arry = this.data.arry;
+    if (arry.length > 0) {
+      func.shareWx(this.data.arry).then((res) => {
+        // console.log(res, 'asasa');
+        getApp().globalData.CopyAllClassArry = res;
+        // console.log(getApp().globalData.CopyAllClassArry)
+        if (JSON.stringify(res) == '[]') {
+          Toast('请先选择您要分享的类别');
+          return;
+        };
+        wx.navigateTo({
+          url: '/package/component/pages/knowledge/business_name/category_share/category_share?name='+this.data.name,
+        })
+      });
+    } else {
+      Toast('请先添加类别');
+      return;
+    };
   },
   onDustbin(e) {
     func.onDustbin(e, this.data.arry).then(res => {
@@ -294,6 +322,54 @@ Page({
     });
   },
   onAddShop() {
+    // addshop()
+    var arry = this.data.arry
+    if(arry.length>1){
+      
+      var obj =[];
+      for(var i = 0;i<arry.length;i++){
+        if( arry[i].number<10){
+          obj.push(arry[i].number)
+        }
+      }
+      if(obj.length>0){
+        this.setData({
+          modelShow:false
+        })
+      }else{
+        addshop()
+      }
+    }else{
+      var obj = arry[0].sec
+      var num = 0
+      for(var i = 0;i<obj.length;i++){
+        if(obj[i].checked == true){
+          num += obj[i].third.length
+        }
+      }
+      this.setData({
+        num:num
+      })
+      if(num<10){
+        this.setData({
+          modelShow:false
+        })
+      }else{
+        addshop()
+      }
+    }
+  },
+  // 取消模态框
+  noChange(){
+    this.setData({
+      modelShow:true 
+    })
+  },
+  // 提交
+  toChange(){
+    this.setData({
+      modelShow:true
+    })
     addshop()
   },
   onStatus() {

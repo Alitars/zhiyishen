@@ -610,9 +610,40 @@ var showLoading = function (event) {
     duration: event.time,
   })
 };
+var shareWx = function (data) {
+  return new Promise((resolve, reject) => {
+    // console.log(data);
+    var arry = JSON.parse(JSON.stringify(data));
+    for (var i = arry.length - 1; i >= 0; i--) {
+      arry[i] = {
+        'name': arry[i].name,
+        'checked': arry[i].checked == true ? true : false,
+        'num': arry[i].num,
+        'sec': arry[i].sec,
+        'isSelect': false,
+      };
+      for (var m = arry[i].sec.length - 1; m >= 0; m--) {
+        arry[i].sec[m] = {
+          'name': arry[i].sec[m].name,
+          'checked': arry[i].sec[m].checked == true ? true : false,
+          'num': arry[i].sec[m].num,
+          'third': arry[i].sec[m].third,
+        };
+        if (arry[i].sec[m].checked == false) {
+          arry[i].sec.splice(m, 1);
+        };
+        if (arry[i].sec.length == 0) {
+          arry.splice(i, 1);
+        };
+      };
+    };
+    resolve(arry);
+  })
+};
 
 
 module.exports = {
+  shareWx:shareWx,
   shopback: shopback,
   delet: delet,
   deletArry: deletArry,

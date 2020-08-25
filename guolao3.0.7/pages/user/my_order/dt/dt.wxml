@@ -14,6 +14,7 @@
 				<text>联系号码：</text>
 				<text>{{ arry.shopAddress.mobile }}</text>
 			</view>
+      <view class="abs-edit">编辑</view>
 		</view>
 		<view class="title-box" hidden="true">
 			<text>{{ arry.orderList.orderStatus }}</text>
