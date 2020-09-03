@@ -417,6 +417,7 @@ Page({
         brand_type: brand_type,
         business_img: business_img,
         identity_img: identity_img,
+        submit_type:2
       },
       method: "POST",
     }).then(res => {

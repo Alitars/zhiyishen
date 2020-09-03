@@ -300,7 +300,7 @@ Component({
     onUpImgs() {
       wx.chooseImage({
         count: 1,
-        sizeType: ['compressed'],
+        sizeType: ['compressed','original'],
         sourceType: ['camera', 'album'],
         success: (res => {
           var imgUrls = res.tempFilePaths[0];

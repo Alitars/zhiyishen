@@ -261,6 +261,7 @@ Page({
         token: token,
         change_type: change_type,
         choice: choice,
+        submit_type:2
       },
       method: "POST",
     }).then(res => {

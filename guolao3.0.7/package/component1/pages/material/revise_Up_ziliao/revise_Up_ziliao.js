@@ -128,6 +128,7 @@ Page({
         choice: choice,
         revoking_reson: reason,
         change_type: change_type,
+        submit_type:2
       },
       method: "POST",
     }).then(res => {

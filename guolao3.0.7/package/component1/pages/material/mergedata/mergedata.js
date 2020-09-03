@@ -185,7 +185,7 @@ Page({
       getApp().globalData.DataStr = "arry.brand_update.brand_img"
       wx.chooseImage({
         count: 1, // 最多可以选择的图片张数，默认9
-        sizeType: ['compressed'], // original 原图，compressed 压缩图，默认二者都有
+        sizeType: ['compressed','original'], // original 原图，compressed 压缩图，默认二者都有
         sourceType: ['album', 'camera'],
         success: (res => {
           var tempFilePaths = res.tempFilePaths[0];

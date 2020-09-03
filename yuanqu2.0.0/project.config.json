@@ -20,8 +20,6 @@
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
-		"useMultiFrameRuntime": false,
-		"useApiHook": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -31,6 +29,8 @@
 		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": false,
 		"packNpmManually": false,
 		"packNpmRelationList": []
 	},

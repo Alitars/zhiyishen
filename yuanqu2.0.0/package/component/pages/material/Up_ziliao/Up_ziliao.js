@@ -46,7 +46,9 @@ Page({
       urls: [url],
     })
   },
+  change(){
 
+  },
   //picker
   bindPickerChange(e) {
     var value = e.detail.value;
@@ -242,6 +244,7 @@ Page({
         choice: choice,
         revoking_reson: reason,
         change_type: change_type,
+        submit_type:2
       },
       method: "POST",
     }).then(res => {
