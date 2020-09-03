@@ -16,7 +16,7 @@ Page({
   },
   onLoad: function (options) {
     wx.downloadFile({
-      url:'https://admin.iguolao.com/public/uploads/20200902095951513.png',
+      url:'https://admin.iguolao.com/public/uploads/20200903114711298.png',
       success: ((res) => {
         // console.log(res)
         this.setData({

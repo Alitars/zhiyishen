@@ -428,8 +428,8 @@ Page({
       })
     }
   },
-
-  onUpload() {
+  onUpload(e) {
+    var typeId = e.currentTarget.dataset.id
     var pages = getCurrentPages();
     var PrePage = pages[pages.length - 2];
     var arry = this.data.arry.dataList;
@@ -487,10 +487,10 @@ Page({
       var public_business = 0;
     };
     var brand_img = this.data.imgUrls;
-    if (apply_id == '' || apply_id.length == 0) {
-      Toast('请添加申请人');
-      return;
-    };
+    // if (apply_id == '' || apply_id.length == 0) {
+    //   Toast('请添加申请人');
+    //   return;
+    // };
     // var identity_img = this.data.identity_img;
     // var business_img = this.data.business_img;
     if (attestType == 1) {
@@ -515,10 +515,20 @@ Page({
       var identity_img = '';
       var brand_type = '';
     };
-    if (imgUrlsTwo == '' || apply_id.length == 0) {
-      Toast('请上传委托书！');
-      return;
-    };
+    // if (imgUrlsTwo == '' || apply_id.length == 0) {
+    //   Toast('请上传委托书！');
+    //   return;
+    // };
+    if(typeId == 2){
+      if (apply_id == '' || apply_id.length == 0) {
+        Toast('请添加申请人');
+        return;
+      };
+      if (imgUrlsTwo == '' || apply_id.length == 0) {
+        Toast('请上传委托书!');
+        return;
+      };
+    }
 
     if(this.data.companyType == 3||this.data.companyType==4||this.data.companyType==5){
       if(this.data.business_img.length == []&&this.data.business_img == ''){
@@ -554,6 +564,7 @@ Page({
         brand_type: brand_type,
         business_img: business_img,
         identity_img: identity_img,
+        submit_type:typeId
       },
       method: "POST",
     }).then(res => {
@@ -761,6 +772,7 @@ Page({
         var isBind = this.data.checkArry[0].isBind;
         var attestType = this.data.attestType;
         var brand_type = arry.brand_update.brand_type;
+        
         if (isBind == false) {
           var brand_color = arry.brand_update.brand_color;
           var is_public = arry.brand_update.is_public;
@@ -874,7 +886,8 @@ Page({
           arry: arry,
           cate_name: cate_name,
           order: order,
-          fontImg:arry.brand_update.brand_img
+          fontImg:arry.brand_update.brand_img,
+          submit_id:arry.brand_update.submit_type
         });
       };
     }).catch(err => {

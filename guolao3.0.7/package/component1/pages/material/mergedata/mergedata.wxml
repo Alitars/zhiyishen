@@ -248,8 +248,13 @@
 			</view>
 		</block>
 	</view>
-	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx">
-		<view class="a_box" bindtap="onUpload">提交</view>
+	<view class="b_list_btn clearfix" style="height:{{ SafeButtom }}rpx" wx:if="{{ submit_id == 1 }}">
+		<view class="a_box h-50" bindtap="onUpload" data-id="2">提交</view>
+		<view class="a_box h-50" bindtap="onUpload" data-id="1">保存</view>
+	</view>
+
+	<view class="b_list_btn" style="height:{{ SafeButtom }}rpx" wx:if="{{submit_id == 2}}">
+		<view class="a_box" bindtap="onUpload" data-id="2">提交</view>
 	</view>
 
 	<view style="height:{{ SafeButtom }}rpx"></view>

@@ -57,3 +57,7 @@
   font-size: 24rpx;
   position: absolute;
 }
+.h-50{
+  width: 50%!important;
+  float: left;
+}
