@@ -1,0 +1,16 @@
+<view class="custom center" style="padding-top:{{statusBarHeight}}px">
+	<view class="l-T-arrow al_center" bindtap="onBack">
+		<view class="l-T-arrow-two center">
+			<image src="/images/left-arrow.png"></image>
+		</view>
+	</view>
+	<!--<view class="sx-box"bindtap="onClose">筛选</view>-->
+	<view class="custom-text van-ellipsis" bindtap="onClick"><text>开学季</text></view>
+</view>
+<view class="agent_box" style="padding-top:{{ statusBarHeight +45 }}px">
+	<image src="{{ imgUrls }}" mode="widthFix"></image>
+</view>
+<view class="b_list_btn first" style="height:{{ SafeButtom }}rpx" hidden="{{ imgUrls?false:true }}">
+	<view class="a_box" bindtap="onUser">前往代理人招募</view>
+</view>
+<button class="btn" open-type="share">去邀请</button>

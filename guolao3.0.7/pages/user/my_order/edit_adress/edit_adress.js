@@ -34,6 +34,7 @@ Page({
       }
     })
   },
+  // 原来的设置默认地址需要隐藏
   // onSet(e) {
   //   this.toast();
   //   var userid = wx.getStorageSync('userid');

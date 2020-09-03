@@ -16,7 +16,17 @@ const innerAudioContext = wx.createInnerAudioContext();
 const recorderManager = wx.getRecorderManager();
 //dpr
 const dpr = wx.getSystemInfoSync().pixelRatio;
-
+/***
+ * 系统信息
+ */
+const info = {
+  getSystem() {
+    return wx.getSystemInfoSync();
+  },
+  getMenu() {
+    return wx.getMenuButtonBoundingClientRect();
+  }
+};
 App({
   onLaunch: function (options) {
     wx.onNetworkStatusChange(function (res) {
@@ -30,28 +40,36 @@ App({
         wx.hideToast()
       }
     });
-    this.globalData.menuInfo = wx.getMenuButtonBoundingClientRect();
-    this.globalData.menu = this.globalData.menuInfo;
+    this.globalData.sysinfo = info.getSystem();
+    this.globalData.menuInfo = info.getMenu();
+    this.globalData.menu = info.getMenu();
     this.globalData.userid = wx.getStorageSync('userid');
     this.globalData.token = wx.getStorageSync('token');
-    wx.getSystemInfo({
-      success: (res => {
-        if (res.system.indexOf('iOS') > -1) {
-          this.globalData.isIos = true
-        } else {
-          this.globalData.isIos = false
-        };
-        this.globalData.sysinfo = res;
-        this.globalData.systemInfo = res
-      })
-    });
+    this.globalData.isIos = info.getSystem().system.indexOf('iOS') > -1 ? true : false;
+    this.globalData.systemInfo = info.getSystem();
+
+    // this.globalData.menuInfo = wx.getMenuButtonBoundingClientRect();
+    // this.globalData.menu = this.globalData.menuInfo;
+    // this.globalData.userid = wx.getStorageSync('userid');
+    // this.globalData.token = wx.getStorageSync('token');
+    // wx.getSystemInfo({
+    //   success: (res => {
+    //     if (res.system.indexOf('iOS') > -1) {
+    //       this.globalData.isIos = true
+    //     } else {
+    //       this.globalData.isIos = false
+    //     };
+    //     this.globalData.sysinfo = res;
+    //     this.globalData.systemInfo = res
+    //   })
+    // });
     // 更新
     const updateManager = wx.getUpdateManager();
     updateManager.onCheckForUpdate(function (res) {});
     updateManager.onUpdateReady(function () {
       wx.showModal({
         title: '更新提示',
-        showCancel: false,
+        showCancel: false, 
         content: '新版本已经准备好了，点击确定重启更新~',
         confirmColor: "#f96509",
         success: (res => {

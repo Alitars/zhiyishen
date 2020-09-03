@@ -1,0 +1,20 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+page{background:#f9f9f9;padding:0;margin:0}.agent_box{width:100%;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.agent_box image{width:inherit;height:inherit}.bottom_btn{width:100%;height:100rpx;background:-webkit-linear-gradient(left,#fd9c28,#f96509);display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#fff;font-size:24rpx}.a_box{width:100%;height:80rpx;font-size:24rpx;color:#fff;text-align:center;line-height:80rpx;position:relative;top:0rpx;background:-webkit-linear-gradient(right,#f96006,#fb9a60);-webkit-box-shadow:0 5px 5px rgba(249,96,6,0.3);box-shadow:0 5px 5px rgba(249,96,6,0.3);overflow:hidden}.a_box:after{content:"";background:#f96006;position:absolute;width:750rpx;height:750rpx;left:calc(50% - 375rpx);top:calc(50% - 375rpx);opacity:0;margin:auto;border-radius:50%;-webkit-transform:scale(1);-ms-transform:scale(1);transform:scale(1);-webkit-transition:all .4s ease-in-out;-o-transition:all .4s ease-in-out;transition:all .4s ease-in-out}.a_box:active:after{-webkit-transform:scale(0);-ms-transform:scale(0);transform:scale(0);opacity:1;-webkit-transition:0s;-o-transition:0s;transition:0s}.b_list_btn{width:100%;background:#fff;position:fixed;z-index:20;left:0;bottom:0;min-height:80rpx}
+.btn{
+  padding: 0;
+  border-radius: 26rpx  0 0 26rpx;
+  position: fixed;
+  top: 80%;
+  right: 0;
+  font-size: 24rpx;
+  background-color: #FF843D;
+  color:#fff;
+  border: 0;
+  line-height: 24rpx;
+  padding: 18rpx 10rpx 18rpx 26rpx;
+  box-sizing: border-box;
+}
+.btn::after{
+  border:none 
+}

@@ -1,3 +1,4 @@
+<view wx:if="{{ false }}">
 <van-overlay wx:if="{{ mask || forbidClick }}" show="{{ show }}" mask="{{ mask }}" z-index="{{ zIndex }}" />
 <van-transition show="{{ show }}" custom-style="z-index: {{ zIndex }}" custom-class="van-toast__container">
 	<view class="van-toast van-toast--{{ type === 'text' ? 'text' : 'icon' }} van-toast--{{ position }}" catch:touchmove="noop">
@@ -20,3 +21,4 @@
 		<slot />
 	</view>
 </van-transition>
+</view>

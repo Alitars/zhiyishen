@@ -579,6 +579,11 @@ Page({
         url: '/package/component1/pages/index/agent_dt/agent_dt',
       })
     };
+    if (url == 'schoolOpen') {
+      wx.navigateTo({
+        url: '/package/component1/pages/index/schoolOpen/schoolOpen',
+      })
+    };
     if (url == 'baiwanrl') {
       wx.navigateTo({
         url: '/package/component1/pages/index/award/award'

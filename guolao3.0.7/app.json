@@ -83,6 +83,7 @@
       "pages/index/classify/dt/dt",
       "pages/index/same_similar/same_similar",
       "pages/index/agent_dt/agent_dt",
+      "pages/index/schoolOpen/schoolOpen",
       "pages/user/transfer_accounts/transfer_accounts",
       "pages/user/activity/activity",
       "pages/user/activitytwo/activitytwo",
